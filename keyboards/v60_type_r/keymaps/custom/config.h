@@ -23,4 +23,14 @@
 #undef V60_POLESTAR
 #endif
 
+// Have to hold space (or whatever MO(<layer>) key for 300ms before shifting
+#define TAPPING_TERM 300
+// Always tap if another key wasn't pressed. Feels like lag but get used to it.
+#define RETRO_TAPPING
+
+// For KC_GESC - ignore grave escape when those modifiers pressed.
+#define GRAVE_ESC_ALT_OVERRIDE
+#define GRAVE_ESC_CTRL_OVERRIDE
+#define GRAVE_ESC_GUI_OVERRIDE
+
 #endif
