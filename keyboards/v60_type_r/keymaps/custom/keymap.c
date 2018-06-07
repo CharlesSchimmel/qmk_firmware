@@ -27,12 +27,6 @@
 #define _____ KC_TRNS
 #define XXXXX KC_NO
 
-#define _VIM_WORD 1
-#define _VIM_BACK 2
-
-#define VIM_WORD M(1)
-#define VIM_BACK M(2)
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Default Layer (Qwerty)
@@ -62,21 +56,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------.
    * |   |   |   |   |End|   |   |   |   |   |Hom|   |   |  Del  |
    * |-----------------------------------------------------------|
-   * |     |   | w |   |   |   |   |   |   |   |   |PU|PgD| Ins  |
+   * |     |   |   |   |   |   |   |   |   |   |   |PU|PgD| Ins  |
    * |-----------------------------------------------------------|
    * |      |   |   |   |   |   | h | j | k | l |   |   |        |
    * |-----------------------------------------------------------|
-   * |        |   |   |   |   | b  |    |   |VlD|VlU|Mut|        |
+   * |        |   |   |   |   |    |    |   |VlD|VlU|Mut|        |
    * |-----------------------------------------------------------|
    * |NumP|    |    |                        |    |    |    |    |
    * `-----------------------------------------------------------'
    */
   [_NAV] = LAYOUT_60_ansi(
 	       _____,    _____,    _____,    _____,    KC_END,    _____,    _____,     _____,   _____,   _____,   KC_HOME,  _____,   _____,  KC_DEL, \
-	       _____,   _____,  VIM_WORD,     _____,  _____,  _____,  _____,   _____, _____, _____, _____, KC_PGUP,    KC_PGDN,          KC_INS, \
+	       _____,   _____,  _____,     _____,  _____,  _____,  _____,   _____, _____, _____, _____, KC_PGUP,    KC_PGDN,          KC_INS, \
 	       _____,   _____,  _____,  _____,  _____,  _____,  KC_LEFT,   KC_DOWN,   KC_UP, KC_RGHT, _____, _____,          _____,          \
-	       _____,   _____,  _____,  _____,  _____,  VIM_BACK, _____, _____, KC_VOLD,  KC_VOLU,  KC_MUTE,           _____,  \
-	       TG(_NUMPAD),   _____,  _____,            _____,                                                           _____,  _____, _____, _____),
+	       _____,   _____,  _____,  _____,  _____,  _____, _____, _____, KC_VOLD,  KC_VOLU,  KC_MUTE,           _____,  \
+	       _____,   _____,  _____,            _____,                                                           _____,  _____, _____, TG(_NUMPAD)),
 
   /* Keymap 2: Numpad Layer
    * Parent: Navigation
@@ -92,14 +86,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----------------------------------------------------------|
    * |    |    |    |                        |    |    |    |    |
    * `-----------------------------------------------------------'
-   */
+l  */
 
   [_NUMPAD] = LAYOUT_60_ansi(
 	       _____,        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
 	       _____,        _____,    _____,    _____,    _____,    _____,    KC_7,    KC_8,    KC_9,    _____,    _____,    _____, _____, _____, \
 	       _____, _____,    _____,    _____,    _____,    _____,    KC_4,    KC_5,    KC_6,    _____,    _____, _____,          _____,  \
 	       _____,       _____,    _____,    _____,    _____,    KC_0,    KC_1,    KC_2,    KC_3, KC_DOT,  KC_SLSH,          _____,   \
-	       TG(_NUMPAD),       _____, _____,          _____,                                      _____,   _____, _____,  _____),
+	       _____,       _____, _____,          _____,                                      _____,   _____, _____,  TG(_NUMPAD)),
 
   /* Keymap 3: Function, Media
    * Parent: Default
@@ -121,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       _____,   _____,  _____,     _____,  _____,  _____,  _____,   _____, KC_PSCR, KC_SLCK, KC_MPLY, KC_MPRV,    KC_MNXT,          _____, \
 	       KC_CAPS,   _____,  _____,  _____,  _____,  _____,  _____,   _____,   _____, _____, _____, _____,          _____,          \
 	       _____,   _____,  _____,  _____,  _____,  _____, _____, KC_MUTE, KC_VOLD,  KC_VOLU,  _____,           _____,  \
-	       _____,   _____,  _____,            _____,                                                           _____,  _____, _____, _____),
+	       _____,   _____,  _____,            _____,                                                           _____,  _____, _____, TG(_NUMPAD)),
 };
 
 
@@ -140,10 +134,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
           } else {
             unregister_code(KC_RSFT);
           }
-		case _VIM_WORD:
-		  return MACRO(D(LCTL),T(RIGHT),U(LCTL),T(RIGHT));
-		case _VIM_BACK:
-		  return MACRO(D(LCTL),T(LEFT),U(LCTL));
         break;
       }
     return MACRO_NONE;
