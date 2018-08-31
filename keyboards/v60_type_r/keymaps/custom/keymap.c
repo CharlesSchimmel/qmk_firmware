@@ -43,11 +43,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------'
    */
   [0] = LAYOUT_60_ansi(
-	       KC_GESC,        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
-	       KC_TAB,        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, \
-	       CTL_T(KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          ALT_T(KC_ENT ),  \
-	       KC_LSFT,       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT,   \
-	       KC_LCTL,       KC_LALT, KC_LGUI,          LT(_NAV,KC_SPC),                         MO(_FUNC),   KC_RGUI, KC_APP,  KC_RCTL),
+	       KC_GESC,       KC_1,    KC_2,    KC_3,    KC_4,    KC_5,      KC_6,    KC_7,   KC_8,     KC_9,   KC_0,    KC_MINS, KC_EQL,         KC_BSPC, \
+	       KC_TAB,        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,      KC_Y,    KC_U,   KC_I,     KC_O,   KC_P,    KC_LBRC, KC_RBRC,        KC_BSLS, \
+	       CTL_T(KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,      KC_H,    KC_J,   KC_K,     KC_L,   KC_SCLN, KC_QUOT, ALT_T(KC_ENT ), \
+	       KC_LSFT,       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,      KC_N,    KC_M,   KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT, \
+	       KC_LCTL,       KC_LALT, KC_LGUI, LT(_NAV, KC_SPC), MO(_FUNC), KC_RGUI, KC_APP, KC_RCTL
+		   ),
 
   /* Keymap 1: Navigation, VIM
    * Parent: Default
@@ -66,11 +67,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------'
    */
   [_NAV] = LAYOUT_60_ansi(
-	       _____,    _____,    _____,    _____,    KC_END,    _____,    _____,     _____,   _____,   _____,   KC_HOME,  _____,   _____,  KC_DEL, \
-	       _____,   _____,  _____,     _____,  _____,  _____,  _____,   _____, _____, _____, _____, KC_PGUP,    KC_PGDN,          KC_INS, \
-	       _____,   _____,  _____,  _____,  _____,  _____,  KC_LEFT,   KC_DOWN,   KC_UP, KC_RGHT, _____, _____,          _____,          \
-	       _____,   _____,  _____,  _____,  _____,  _____, _____, _____, KC_VOLD,  KC_VOLU,  KC_MUTE,           _____,  \
-	       _____,   _____,  _____,            _____,                                                           _____,  _____, _____, TG(_NUMPAD)),
+	       _____, _____, _____, _____, KC_END, _____, _____,   _____,        _____,   _____,   KC_HOME, _____,   _____,   KC_DEL, \
+	       _____, _____, _____, _____, _____,  _____, _____,   _____,        _____,   _____,   _____,   KC_PGUP, KC_PGDN, KC_INS, \
+	       _____, _____, _____, _____, _____,  _____, KC_LEFT, KC_DOWN,      KC_UP,   KC_RGHT, _____,   _____,   _____,   \
+	       _____, _____, _____, _____, _____,  _____, _____,   _____,        KC_VOLD, KC_VOLU, KC_MUTE, _____,   \
+	       _____, _____, _____, _____, _____,  _____, _____,   TG(_NUMPAD)
+		   ),
 
   /* Keymap 2: Numpad Layer
    * Parent: Navigation
@@ -89,11 +91,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 l  */
 
   [_NUMPAD] = LAYOUT_60_ansi(
-	       _____,        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
-	       _____,        _____,    _____,    _____,    _____,    _____,    KC_7,    KC_8,    KC_9,    _____,    _____,    _____, _____, _____, \
-	       _____, _____,    _____,    _____,    _____,    _____,    KC_4,    KC_5,    KC_6,    _____,    _____, _____,          _____,  \
-	       _____,       _____,    _____,    _____,    _____,    KC_0,    KC_1,    KC_2,    KC_3, KC_DOT,  KC_SLSH,          _____,   \
-	       _____,       _____, _____,          _____,                                      _____,   _____, _____,  TG(_NUMPAD)),
+	       _____, KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,         KC_8, KC_9,   KC_0,    KC_MINS, KC_EQL, KC_BSPC, \
+	       _____, _____, _____, _____, _____, _____, KC_7,  KC_8,         KC_9, _____,  _____,   _____,   _____,  _____,   \
+	       _____, _____, _____, _____, _____, _____, KC_4,  KC_5,         KC_6, _____,  _____,   _____,   _____,  \
+	       _____, _____, _____, _____, _____, KC_0,  KC_1,  KC_2,         KC_3, KC_DOT, KC_SLSH, _____,   \
+	       _____, _____, _____, _____, _____, _____, _____, TG(_NUMPAD)
+		   ),
 
   /* Keymap 3: Function, Media
    * Parent: Default
@@ -111,11 +114,12 @@ l  */
    * `-----------------------------------------------------------'
    */
   [_FUNC] = LAYOUT_60_ansi(
-	       KC_GRV,    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,  KC_DEL, \
-	       _____,   _____,  _____,     _____,  _____,  _____,  _____,   _____, KC_PSCR, KC_SLCK, KC_MPLY, KC_MPRV,    KC_MNXT,          _____, \
-	       _____,   _____,  _____,  _____,  _____,  _____,  _____,   _____,   _____, _____, _____, _____,          KC_ENT,          \
-	       _____,   _____,  _____,  _____,  _____,  _____, _____, KC_MUTE, KC_VOLD,  KC_VOLU,  _____,           _____,  \
-	       _____,   _____,  _____,            _____,                                                           _____,  _____, KC_CAPS, TG(_NUMPAD)),
+	       KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,   KC_F7, KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL, \
+	       _____,  _____, _____, _____, _____, _____, _____,   _____, KC_PSCR, KC_SLCK, KC_MPLY, KC_MPRV, KC_MNXT, _____,  \
+	       _____,  _____, _____, _____, _____, _____, _____,   _____, _____,   _____,   _____,   _____,   KC_ENT,  \
+	       _____,  _____, _____, _____, _____, _____, _____,   _____, KC_VOLD, KC_VOLU, KC_MUTE, _____,   \
+	       _____,  _____, _____, _____, _____, _____, KC_CAPS, TG(_NUMPAD)
+		   ),
 };
 
 
