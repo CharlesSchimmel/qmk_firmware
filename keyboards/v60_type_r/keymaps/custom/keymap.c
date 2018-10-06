@@ -24,11 +24,13 @@
 #define _NUMPAD 2
 #define _FUNC 3
 
-// Aliases
+// Mod Taps
 #define SH_BSP MT(MOD_RSFT, KC_BSPC)
 #define SH_DEL MT(MOD_RSFT, KC_DEL)
 #define CT_ESC CTL_T(KC_ESC)
 #define AL_ENT ALT_T(KC_ENT)
+#define CT_QOT LCTL_T(KC_QUOT)
+#define AL_A RALT_T(KC_A)
 
 #define _____ KC_TRNS
 #define XXXXX KC_NO
