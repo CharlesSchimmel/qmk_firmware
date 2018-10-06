@@ -24,7 +24,7 @@
 #endif
 
 // Have to hold space (or whatever MO(<layer>) key for 200ms before shifting
-#define TAPPING_TERM 175
+#define TAPPING_TERM 200
 
 // Always tap if another key wasn't pressed. Feels like lag but get used to it.
 #define RETRO_TAPPING
