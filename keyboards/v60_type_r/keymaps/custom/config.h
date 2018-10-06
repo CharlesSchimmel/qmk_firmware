@@ -27,7 +27,7 @@
 #define TAPPING_TERM 200
 
 // Always tap if another key wasn't pressed. Feels like lag but get used to it.
-#define RETRO_TAPPING
+// #define RETRO_TAPPING
 
 // This makes it easier for fast typists to use dual-function keys. Without this, if you let go of a held key inside the tapping term, it won't register.
 #define PERMISSIVE_HOLD
