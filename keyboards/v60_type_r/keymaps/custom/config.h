@@ -28,7 +28,7 @@
 
 // If the second key in a chord is pressed after the modifier key is released, ignore it, even if it's inside the tapping term
 // Fewer dropped keypresses, but more dropped chords
-#define IGNORE_MOD_TAP_INTERRUPT
+// #define IGNORE_MOD_TAP_INTERRUPT
 
 // Always tap if another key wasn't pressed. Feels like lag but get used to it.
 // #define RETRO_TAPPING
