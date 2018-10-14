@@ -55,11 +55,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------.
    * | ` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | = |   Bs  |
    * |-----------------------------------------------------------|
-   * | Tab | Q | W | E | R | T | Y | U | I | O | P | [ | ] |  \  |
+   * |Altab| Q | W | E | R | T | Y | U | I | O | P | [ | ] | \lt |
    * |-----------------------------------------------------------|
-   * | EsCtl | A | S | D | F | G | H | J | K | L | ; | ' | AlEnt |
+   * | ShTab | A | S | D | F | G | H | J | K | L | ; |ShB|   '   |
    * |---------------------.-----------.-------------------------|
-   * | Shift  | Z | X | C | V | B | N | M | , | . | / |  SftBsp  |
+   * |  Ctrl  | Z | X | C | V | B | N | M | , | . |Ctl|    /     |
    * |-----------------------------------------------------------|
    * |Ctrl|Alt |Gui |         SpNav           |Sym | Fn |Alt|Ctrl|
    * `-----------------------------------------------------------'
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       _____, _____,         _____,      _____,      _____,       _____, _____,   TG(_NUM)
 		   ),
 
-  /* Keymap 3: Symbols
+  /* Keymap 3: Function, Media
    * Parent: Default
    * Chldrn: None
    * ,-----------------------------------------------------------.
@@ -167,23 +167,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed && get_mods() & MOD_BIT(KC_LGUI)) {
-	switch(keycode) {
-	  case KC_H :
-		SEND_STRING(SS_TAP(X_LEFT));
-		return false;
-	  case KC_J :
-		SEND_STRING(SS_TAP(X_DOWN));
-		return false;
-	  case KC_K :
-		SEND_STRING(SS_TAP(X_UP));
-		return false;
-	  case KC_L :
-		SEND_STRING(SS_TAP(X_RIGHT));
-		return false;
-	  break;
-	}
-  }
-  return true;
+const uint16_t PROGMEM fn_actions[] = {
+};
+
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
+{
+  // MACRODOWN only works in this function
+      /* switch(id) { */
+      /*   case 0: */
+      /*     if (record->event.pressed) { */
+      /*       register_code(KC_RSFT); */
+      /*     } else { */
+      /*       unregister_code(KC_RSFT); */
+      /*     } */
+      /*   break; */
+      /* } */
+    return MACRO_NONE;
+};
+
+
+void led_set_user(uint8_t usb_led) {
 }
