@@ -23,7 +23,7 @@
 #undef V60_POLESTAR
 #endif
 
-// Have to hold space (or whatever MO(<layer>)) key for 200ms before shifting
+// Have to hold space (or whatever MO(<layer>) or MT() ) key for 200ms before shifting
 #define TAPPING_TERM 200
 
 // If the second key in a chord is pressed after the modifier key is released, ignore it, even if it's inside the tapping term
