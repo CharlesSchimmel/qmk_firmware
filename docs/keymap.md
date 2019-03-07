@@ -89,15 +89,11 @@ There are 3 main sections of a `keymap.c` file you'll want to concern yourself w
 
 At the top of the file you'll find this:
 
-    #include QMK_KEYBOARD_H
+    #include "clueboard.h"
 
     // Helpful defines
     #define GRAVE_MODS  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT)|MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI)|MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
-
-    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-     *  You can use _______ in place for KC_TRNS (transparent)   *
-     *  Or you can use XXXXXXX for KC_NO (NOOP)                  *
-     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    #define _______ KC_TRNS
 
     // Each layer gets a name for readability.
     // The underscores don't mean anything - you can
@@ -109,9 +105,7 @@ At the top of the file you'll find this:
     #define _FL 1
     #define _CL 2
 
-These are some handy definitions we can use when building our keymap and our custom function. The `GRAVE_MODS` definition will be used later in our custom function, and the following `_BL`, `_FL`, and `_CL` defines make it easier to refer to each of our layers.
-
-Note: You may also find some older keymap files may also have a define(s) for `_______` and/or `XXXXXXX`. These can be used in place for `KC_TRNS` and `KC_NO` respectively, making it easier to see what keys a layer is overriding. These definitions are now unecessary, as they are included by default.
+These are some handy definitions we can use when building our keymap and our custom function. The `GRAVE_MODS` definition will be used later in our custom function. The `_______` define makes it easier to see what keys a layer is overriding, while the `_BL`, `_FL`, and `_CL` defines make it easier to refer to each of our layers.
 
 ### Layers and Keymaps
 

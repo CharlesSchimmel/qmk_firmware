@@ -19,7 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#ifndef CONFIG_USER_H
+#define CONFIG_USER_H
+
+#include QMK_KEYBOARD_CONFIG_H
 
 /* Use I2C or Serial, not both */
 
@@ -58,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define C6_AUDIO
 #ifdef RGBLIGHT_ENABLE
 #define NO_MUSIC_MODE
-#endif
+#endif //RGBLIGHT_ENABLE
 #endif //AUDIO_ENABLE
 
 #undef PRODUCT
@@ -69,21 +72,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define QMK_ESC_OUTPUT D7 // usually COL
-#ifdef KEYBOARD_orthodox_rev1
 #define QMK_ESC_INPUT D4 // usually ROW
-#else
-#define QMK_ESC_INPUT D2 // usually ROW
-#endif
 #define QMK_LED B0
 #define QMK_SPEAKER C6
 
-
-#define SHFT_LED1 5
-#define SHFT_LED2 10
-
-#define CTRL_LED1 6
-#define CTRL_LED2 9
-
-#define GUI_LED1 8
-#define ALT_LED1 7
-
+#endif

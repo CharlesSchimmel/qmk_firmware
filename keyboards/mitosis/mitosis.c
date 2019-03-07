@@ -5,11 +5,12 @@ void uart_init(void) {
 }
 
 void led_init(void) {
-	DDRD  |= (1<<1); // Pin to green, set as output
-	PORTD |= (1<<1); // Turn it off
-	DDRF  |= (1<<4) | (1<<5); // Pins to red and blue, set as output
-	PORTF |= (1<<4) | (1<<5); // Turn them off
+	DDRD  |= (1<<1);
+	PORTD |= (1<<1);
+	DDRF  |= (1<<4) | (1<<5);
+	PORTF |= (1<<4) | (1<<5);
 }
+
 
 void matrix_init_kb(void) {
 	// put your keyboard start-up code here
@@ -17,6 +18,16 @@ void matrix_init_kb(void) {
 	matrix_init_user();
 	uart_init();
 	led_init();
+}
+
+void matrix_scan_kb(void) {
+	// put your looping keyboard code here
+	// runs every cycle (a lot)
+	matrix_scan_user();
+}
+
+void led_set_kb(uint8_t usb_led) {
+
 }
 
 #ifdef SWAP_HANDS_ENABLE

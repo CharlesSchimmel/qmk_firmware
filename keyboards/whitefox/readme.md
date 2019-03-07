@@ -1,10 +1,11 @@
-# WhiteFox
+WhiteFox
+========
 
 A compact 65% keyboard.
 
-Keyboard Maintainer: QMK Community  
-Hardware Supported: Whitefox PCB  
-Hardware Availability: https://input.club/whitefox/  
+Keyboard Maintainer: QMK Community
+Hardware Supported: Whitefox PCB
+Hardware Availability: https://input.club/whitefox/
 
 Make example for this keyboard (after setting up your build environment):
 

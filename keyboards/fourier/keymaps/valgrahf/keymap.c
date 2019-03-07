@@ -1,4 +1,6 @@
-#include QMK_KEYBOARD_H
+#include "fourier.h"
+#include "action_layer.h"
+#include "eeconfig.h"
 
 extern keymap_config_t keymap_config;
 
@@ -64,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|-----`----`----`----`----`----|----`----`----`----`----`--------|
            ,RHUD,RSAD,RVAD,    ,    ,VOLU,VOLD,    ,    , UP ,      ,
  //|-------`----`----`----`----`----|----`----`----`----`----`------|
-         ,RTOG,RMOD ,    ,        ,        ,     , LEFT, DOWN, RIGHT
+         ,RTOG,RMOD ,    ,        ,        ,     , LEFT, DOWN, RIGHT 
  //`-----+----+-----+-------------|--------+-----+-----+-----+------'
   )
 

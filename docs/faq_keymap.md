@@ -11,8 +11,8 @@ Keycodes are actually defined in [common/keycode.h](https://github.com/qmk/qmk_f
 
 There are 3 standard keyboard layouts in use around the world- ANSI, ISO, and JIS. North America primarily uses ANSI, Europe and Africa primarily use ISO, and Japan uses JIS. Regions not mentioned typically use either ANSI or ISO. The keycodes corresponding to these layouts are shown here:
 
-<!-- Source for this image: http://www.keyboard-layout-editor.com/#/gists/070a530eedaed36a2d77f3f6fd455677 -->
-![Keyboard Layout Image](https://i.imgur.com/gvlNUpQ.png)
+<!-- Source for this image: http://www.keyboard-layout-editor.com/#/gists/9ce023dc6caadc0cf11c88c782350a8c -->
+![Keyboard Layout Image](https://i.imgur.com/45m4mRf.png)
 
 ## Some Of My Keys Are Swapped Or Not Working
 
@@ -34,11 +34,12 @@ See [issue #168](https://github.com/tmk/tmk_keyboard/issues/168) and
 * http://en.wikipedia.org/wiki/Magic_SysRq_key
 * http://en.wikipedia.org/wiki/System_request
 
-## Power Keys Aren't Working
+## Power Key Doesn't Work
+Use `KC_PWR` instead of `KC_POWER` or vice versa.
+* `KC_PWR` works with Windows and Linux, not with OSX.
+* `KC_POWER` works with OSX and Linux, not with Windows.
 
-Somewhat confusingly, there are two "Power" keycodes in QMK: `KC_POWER` in the Keyboard/Keypad HID usage page, and `KC_SYSTEM_POWER` (or `KC_PWR`) in the Consumer page.
-
-The former is only recognized on macOS, while the latter, `KC_SLEP` and `KC_WAKE` are supported by all three major operating systems, so it is recommended to use those instead. Under Windows, these keys take effect immediately, however on macOS they must be held down until a dialog appears.
+More info: http://geekhack.org/index.php?topic=14290.msg1327264#msg1327264
 
 ## One Shot Modifier
 Solves my personal 'the' problem. I often got 'the' or 'THe' wrongly instead of 'The'.  One Shot Shift mitigates this for me.
@@ -86,14 +87,14 @@ On **Xorg** you can use `compose` key, instead.
 And see this for **Unicode** input.
 * http://en.wikipedia.org/wiki/Unicode_input
 
-## `Fn` Key on macOS
 
-Unlike most Fn keys, the one on Apple keyboards actually has its own keycode... sort of. It takes the place of the sixth keycode in a basic 6KRO HID report -- so an Apple keyboard is in fact only 5KRO.
+## Apple/Mac Keyboard `Fn`
+Not supported.
 
-It is technically possible to get QMK to send this key. However, doing so requires modification of the report format to add the state of the Fn key.
-Even worse, it is not recognized unless the keyboard's VID and PID match that of a real Apple keyboard. The legal issues that official QMK support for this feature may create mean it is unlikely to happen.
+Apple/Mac keyboard sends keycode for Fn unlike most of other keyboards.
+I think you can send Apple Fn key using Apple venter specific Page 0xff01 and usage 0x0003. But you have to change HID Report Descriptor for this, of course.
 
-See [this issue](https://github.com/qmk/qmk_firmware/issues/2179) for detailed information.
+https://opensource.apple.com/source/IOHIDFamily/IOHIDFamily-606.1.7/IOHIDFamily/AppleHIDUsageTables.h
 
 
 ## Media Control Keys in Mac OSX

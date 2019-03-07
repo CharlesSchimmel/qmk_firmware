@@ -26,33 +26,25 @@ F_CPU = 12000000
 
 # Bootloader
 #     This definition is optional, and if your keyboard supports multiple bootloaders of
-#     different sizes, comment this out, and the correct address will be loaded
+#     different sizes, comment this out, and the correct address will be loaded 
 #     automatically (+60). See bootloader.mk for all options.
-BOOTLOADER = bootloadHID
+BOOTLOADER = atmel-dfu
 
 # build options
-BOOTMAGIC_ENABLE = no
-MOUSEKEY_ENABLE = no
+BOOTMAGIC_ENABLE = yes
+MOUSEKEY_ENABLE = yes
 EXTRAKEY_ENABLE = yes
-CONSOLE_ENABLE = no
-COMMAND_ENABLE = no
-
-BACKLIGHT_ENABLE = yes
-BACKLIGHT_CUSTOM_DRIVER = yes
-
+CONSOLE_ENABLE = yes
+COMMAND_ENABLE = yes
+BACKLIGHT_ENABLE = no
 RGBLIGHT_ENABLE = yes
 RGBLIGHT_CUSTOM_DRIVER = yes
-
-KEY_LOCK_ENABLE = yes
-
-# Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
-SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 OPT_DEFS = -DDEBUG_LEVEL=0
 
 # custom matrix setup
 CUSTOM_MATRIX = yes
-SRC = matrix.c i2c.c backlight.c
+SRC = matrix.c i2c.c
 
 # programming options
-PROGRAM_CMD = ./util/atmega32a_program.py $(TARGET).hex
+PROGRAM_CMD = ./keyboards/ps2avrGB/program $(TARGET).hex

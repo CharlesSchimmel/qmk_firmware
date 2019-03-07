@@ -34,6 +34,9 @@
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
 
+/* prevent stuck modifiers */
+#define PREVENT_STUCK_MODIFIERS
+
 /* eliminate lag on space cadet mods */
 #define PERMISSIVE_HOLD
 

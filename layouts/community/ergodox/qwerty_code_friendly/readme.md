@@ -122,16 +122,11 @@ Notes:
                               '--------------------'  '--------------------'
 ```
 
-## Keymap 2: Media, Mouse Keys and Numbers
-
-Notes:
-
-- Numbers are included on this layer since some applications differentiate
-  between numbers top row and keypad.
+## Keymap 2: Keymap 2: Media and Mouse Keys
 
 ```
 .--------------------------------------------------.  .--------------------------------------------------.
-|        |   1  |   2  |   3  |   4  |   5  |      |  | Mute |   6  |   7  |   8  |   9  |   0  |        |
+|        |      |      |      |      |      |      |  |Mute  |      |      |      |      |      |        |
 |--------+------+------+------+------+------+------|  |------+------+------+------+------+------+--------|
 |        |      |      | MsUp |      |      |MWhlUp|  |VolUp |      |      |      |      |      |        |
 |--------+------+------+------+------+------|      |  |      |------+------+------+------+------+--------|
@@ -178,9 +173,6 @@ eg: `-DCFQ_WORD_E=\"my@email.com\"`
 ```
 
 ## Changelog
-
-- 2018/05/29
-  Add number keys for cases when keypad numbers are handled differently.
 
 - 2018/05/19
   Move all media keys to right thumb cluster

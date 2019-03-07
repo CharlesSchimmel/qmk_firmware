@@ -11,7 +11,6 @@
 // this fork for updates as I probably won't bother jack with my pull requests frequently.
 //
 
-#pragma message "You may need to add LAYOUT_planck_grid to your keymap layers - see default for an example"
 #include "planck.h"
 
 #define _QWERTY 0

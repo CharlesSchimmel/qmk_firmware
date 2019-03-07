@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+#include "laplace.h"
 
 #define _BASE 0
 #define _FN1 1
@@ -25,7 +25,7 @@
 #define KC_RVAD RGB_VAD
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_kc(
+  [_BASE] = KC_KEYMAP(
  //,----+----+----+----+----+----+----+----+----+----+----+----+----.
     ESC , Q  , W  , E  , R  , T  , Y  , U  , I  , O  , P  ,DEL ,BSPC,
  //|----`----`----`----`----`----`----`----`----`----`----`----`----+
@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //`-----+----+-----+----+--------+--------+-----+-----+-----+------'
   ),
 
-  [_FN1] = LAYOUT_kc(
+  [_FN1] = KC_KEYMAP(
  //,----+----+----+----+----+----+----+----+----+----+----+----+----.
     GRV , 1  , 2  , 3  , 4  , 5  , 6  , 7  , 8  , 9  , 0  ,MINS,EQL ,
  //|----`----`----`----`----`----`----`----`----`----`----`----`----+
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //`-----+----+-----+----+--------+--------+-----+-----+-----+------'
   ),
 
-  [_FN2] = LAYOUT_kc(
+  [_FN2] = KC_KEYMAP(
  //,----+----+----+----+----+----+----+----+----+----+----+----+----.
     TILD,EXLM, AT ,HASH,DLR ,PERC,CIRC,AMPR,ASTR,LPRN,RPRN,UNDS,PLUS,
  //|----`----`----`----`----`----`----`----`----`----`----`----`----+

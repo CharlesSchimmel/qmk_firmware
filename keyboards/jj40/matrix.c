@@ -51,7 +51,7 @@ void matrix_init(void) {
         matrix_debouncing[row] = 0x00;
     }
 
-    matrix_init_quantum();
+    matrix_init_quantum();  // missing from original port by Luiz
 }
 
 uint8_t matrix_scan(void) {
@@ -86,7 +86,7 @@ uint8_t matrix_scan(void) {
         }
     }
 
-    matrix_scan_quantum();
+    matrix_scan_quantum();  // also missing in original PS2AVRGB implementation
 
     return 1;
 }

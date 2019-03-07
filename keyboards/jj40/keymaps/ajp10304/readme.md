@@ -1,5 +1,5 @@
 # AJP10304 Custom JJ40 Layout
-# Also available for the Atreus50 and Planck
+###Based on my Planck layout of the same name.
 
 **Note:** In the tables below where there are two characters on a key,
 the second is the output when shift is applied.

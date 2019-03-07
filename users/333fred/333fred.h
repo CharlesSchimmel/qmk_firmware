@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FRED_333
+#define FRED_333
 
 #include "quantum.h"
 
@@ -8,7 +9,6 @@
 #define MDIA 3 // media keys
 #define VIM  4
 #define GAME 5
-#define GAME_ARROW 6
 
 // Tap dance config shared between my keyboards
 enum tap_dance_declarations {
@@ -18,3 +18,5 @@ enum tap_dance_declarations {
 void tap_dance_layer_finished(qk_tap_dance_state_t*, void*);
 void tap_dance_layer_reset(qk_tap_dance_state_t*, void*);
 void tap_dance_process_record(uint16_t);
+
+#endif

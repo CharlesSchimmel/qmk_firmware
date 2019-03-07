@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+#include "jc65.h"
 #include "version.h"
 
 enum layers {

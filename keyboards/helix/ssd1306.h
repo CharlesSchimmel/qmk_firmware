@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "pincontrol.h"
+#include "config.h"
 
 enum ssd1306_cmds {
   DisplayOff = 0xAE,

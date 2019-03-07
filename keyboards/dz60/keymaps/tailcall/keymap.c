@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+#include "dz60.h"
 
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO

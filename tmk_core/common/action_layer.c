@@ -15,22 +15,13 @@
  */
 uint32_t default_layer_state = 0;
 
-/** \brief Default Layer State Set At user Level
- *
- * FIXME: Needs docs
- */
-__attribute__((weak))
-uint32_t default_layer_state_set_user(uint32_t state) {
-    return state;
-}
-
 /** \brief Default Layer State Set At Keyboard Level
  *
  * FIXME: Needs docs
  */
 __attribute__((weak))
 uint32_t default_layer_state_set_kb(uint32_t state) {
-    return default_layer_state_set_user(state);
+    return state;
 }
 
 /** \brief Default Layer State Set
@@ -228,7 +219,7 @@ void layer_debug(void)
 }
 #endif
 
-#if !defined(NO_ACTION_LAYER) && !defined(STRICT_LAYER_RELEASE)
+#if !defined(NO_ACTION_LAYER) && defined(PREVENT_STUCK_MODIFIERS)
 uint8_t source_layers_cache[(MATRIX_ROWS * MATRIX_COLS + 7) / 8][MAX_LAYER_BITS] = {{0}};
 
 void update_source_layers_cache(keypos_t key, uint8_t layer)
@@ -272,7 +263,7 @@ uint8_t read_source_layers_cache(keypos_t key)
  */
 action_t store_or_get_action(bool pressed, keypos_t key)
 {
-#if !defined(NO_ACTION_LAYER) && !defined(STRICT_LAYER_RELEASE)
+#if !defined(NO_ACTION_LAYER) && defined(PREVENT_STUCK_MODIFIERS)
     if (disable_action_cache) {
         return layer_switch_get_action(key);
     }

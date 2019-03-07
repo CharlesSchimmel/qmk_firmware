@@ -11,7 +11,7 @@
 // actually sends Ctrl-x. That's bad.)
 #define IGNORE_MOD_TAP_INTERRUPT
 #undef PERMISSIVE_HOLD
-#define STRICT_LAYER_RELEASE
+#undef PREVENT_STUCK_MODIFIERS
 
 #define FORCE_NKRO
 

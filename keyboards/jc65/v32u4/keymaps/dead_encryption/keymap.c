@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+#include "v32u4.h"
 // How long (in ms) to wait between animation steps for the breathing mode
 const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {30, 20, 10, 5};
 

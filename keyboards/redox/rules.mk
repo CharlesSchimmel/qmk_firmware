@@ -1,3 +1,8 @@
+SRC += matrix.c \
+	   i2c.c \
+	   split_util.c \
+	   serial.c
+
 # MCU name
 #MCU = at90usb1286
 MCU = atmega32u4
@@ -70,6 +75,6 @@ RGBLIGHT_ENABLE = no        # Enable WS2812 RGB underlight.  Do not enable this 
 SUBPROJECT_rev1 = yes
 USE_I2C = yes
 
-SPLIT_KEYBOARD = yes
+CUSTOM_MATRIX = yes
 
 DEFAULT_FOLDER = redox/rev1

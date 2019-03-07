@@ -105,4 +105,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Space Cadet Rollover - if set, allows to tap opposite shift key to cancel erroneous press
 #define DISABLE_SPACE_CADET_ROLLOVER
 
+// Prevent stuck modifiers
+#define PREVENT_STUCK_MODIFIERS
+
 #endif

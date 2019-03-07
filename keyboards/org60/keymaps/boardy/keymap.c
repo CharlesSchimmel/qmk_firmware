@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H
+#include "org60.h"
 #include "action_layer.h"
 
 // Keyboard Layers
@@ -9,7 +9,7 @@ enum keyboard_layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_BASE] = LAYOUT(
+  [_BASE] = KEYMAP(
   /*
     0: Base Layer
     .--------------------------------------------------------------------------------------------------------------------------------------.
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //--------------------------------------------------------------------------------------------------------------------------------------'
 
 
-  [_FUNCTION] = LAYOUT(
+  [_FUNCTION] = KEYMAP(
   /*
     1: Function Layer
     .--------------------------------------------------------------------------------------------------------------------------------------.

@@ -5,9 +5,8 @@ ECO
 
 An economical 4x14 ortholinear keyboard
 
-Keyboard Maintainer: BishopKeyboards and That-Canadian  
-Hardware Supported: ECO PCB rev1 Pro Micro  
-Hardware Availability: [BishopKeyboards](https://bishopkeyboards.com/product/eco-keyboard-pcb-4x14/)
+Keyboard Maintainer: BishopKeyboards and That-Canadian
+Hardware Supported: ECO PCB rev1 Pro Micro
 
 Make example for this keyboard (after setting up your build environment):
 

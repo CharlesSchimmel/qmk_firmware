@@ -1,19 +1,23 @@
-#include QMK_KEYBOARD_H
+#include "nano.h"
 
 #define _MAIN 0
 #define _FN 1
 
-#define _______ KC_TRNS
+#define KC_ KC_TRNS
 #define KC_X0 LT(_FN, KC_ESC)
+#define KC_RTOG RGB_TOG
+#define KC_RMOD RGB_MOD
+#define KC_RHUI RGB_HUI
+#define KC_RHUD RGB_HUD
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_MAIN] = LAYOUT(
-     KC_VOLU, KC_MPLY, KC_MPRV, KC_PGUP,
-     KC_VOLD, KC_MUTE, KC_MNXT, KC_PGDN
+     VOLU,MPLY,MPRV,PGUP,
+     VOLD,MUTE,MNXT,PGDN
   ),
 
   [_FN] = LAYOUT(
-     KC_F,    _______, RGB_HUI, _______,
-     RGB_TOG, RGB_MOD, RGB_HUD, _______
+      F  ,    ,RHUI,    ,
+     RTOG,RMOD,RHUD,
   )
 };

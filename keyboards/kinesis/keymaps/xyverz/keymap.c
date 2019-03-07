@@ -1,29 +1,23 @@
 #include QMK_KEYBOARD_H
+#include "action_layer.h"
+#include "eeconfig.h"
 
 extern keymap_config_t keymap_config;
 
-#define _DVORAK 0 // Dvorak layer
-#define _QWERTY 1 // Qwerty layer
-#define _COLEMAK 2 // Colemak layer
-#define _MEDIA 3 // Media Layer
-#define _KEYPAD 4 // Keypad Layer
+#define _DV 0 // Dvorak layer
+#define _QW 1 // Qwerty layer
+#define _CM 2 // Colemak layer
+#define _MD 3 // Media Layer
+#define _KP 4 // Keypad Layer
 
-enum custom_keycodes {
-  DVORAK = SAFE_RANGE,
-  QWERTY,
-  COLEMAK,
-  MEDIA,
-  KEYPAD
-};
+// Macro name shortcuts
+#define DVORAK M(_DV)
+#define QWERTY M(_QW)
+#define COLEMAK M(_CM)
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
-
-// Aliases to make the keymap more uniform
-#define GUI_END GUI_T(KC_END)
-#define MED_DEL LT(_MEDIA, KC_DEL)
-#define KPD_ENT LT(_KEYPAD, KC_ENT)
 
 /*
 
@@ -74,7 +68,7 @@ enum custom_keycodes {
 	                      | BkSp |   /   |------||------|   /   | Space |
 	                      |      | Media | End  || PgDn | KeyPd |       |
 	                      `---------------------'`----------------------'
-
+	 
         Colemak layer:
 	,-------------------------------------------.,-------------------------------------------.
 	|   =    |   1  |   2  |   3  |   4  |   5  ||   6  |   7  |   8  |   9  |   0  |   -    |
@@ -101,9 +95,9 @@ enum custom_keycodes {
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
 	|        |      |      |      |      |      ||      |      |      |      |      |        |
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
-	|        |      | Mute | Vol- | Vol+ |      ||      |      |      |      |      |        |
+	|        |      |      |      |      |      ||      | Mute | Vol- | Vol+ |      |        |
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
-	|        | Stop | Prev | Play | Next | Sel  ||      |      |      |      |      |        |
+	|        |      |      |      |      |      || Stop | Prev | Play | Next | Sel  |        |
 	`--------+------+------+------+------+------'`------+------+------+------+------+--------'
 	         |      |      |      |      |              |      |      |      |      |
 	         `---------------------------'              `---------------------------'
@@ -121,12 +115,12 @@ enum custom_keycodes {
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
 	| Sleep  |      |      |      |      |      ||      | KP 7 | KP 8 | KP 9 | KP - |        |
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
-	| Wake   |      | Mute | Vol- | Vol+ |      ||      | KP 4 | KP 5 | KP 6 | KP + |        |
+	| Wake   |      |QWERTY|Colemk|Dvorak|      ||      | KP 4 | KP 5 | KP 6 | KP + |        |
 	|--------+------+------+------+------+------||------+------+------+------+------+--------|
-	|        | Stop | Prev | Play | Next | Sel  ||      | KP 1 | KP 2 | KP 3 |KP Ent|        |
+	|        |      |      |      |      |      ||      | KP 1 | KP 2 | KP 3 |KP Ent|        |
 	`--------+------+------+------+------+------'`------+------+------+------+------+--------'
-	         |      |QWERTY|Colemk|Dvorak|              |      |      | KP . |KP Ent|
-	         `---------------------------'              `---------------------------'
+	         |      |      |      |      |              |      |      | KP . |KP Ent|      |
+	         `---------------------------'              `----------------------------------'
 	                              ,-------------.,-------------.
 	                              |      |      ||      |      |
 	                       ,------|------|------||------+------+------.
@@ -138,7 +132,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-[_DVORAK] = LAYOUT (
+[_DV] = LAYOUT (
            // Left Hand
            KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,
            KC_RBRC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,
@@ -149,10 +143,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            // Left Thumb
                     KC_LCTL, KC_LALT,
                              KC_HOME,
-           KC_BSPC, MED_DEL, GUI_END,
+           KC_BSPC, LT(_MD, KC_DEL),  KC_END,
 
            // Right Hand
-           KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, TG(_KEYPAD),  RESET,
+           KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, TG(_KP),  RESET,
            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_LBRC,
            KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSLS,
            KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_MINS,
@@ -161,10 +155,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            // Right Thumb
            KC_RGUI, KC_RCTL,
            KC_PGUP,
-           KC_PGDN, KPD_ENT, KC_SPC
+           KC_PGDN, LT(_KP, KC_ENT),  KC_SPC
     ),
 
-[_QWERTY] = LAYOUT (
+[_QW] = LAYOUT (
            // Left Hand
            KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,
            KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,
@@ -175,10 +169,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            // Left Thumb
                     KC_LCTL, KC_LALT,
                              KC_HOME,
-           KC_BSPC, MED_DEL, KC_END,
+           KC_BSPC, LT(_MD, KC_DEL),  KC_END,
 
            // Right Hand
-           KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, TG(_KEYPAD),  RESET,
+           KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, TG(_KP),  RESET,
            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL ,
            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
@@ -187,10 +181,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            // Right Thumb
            KC_RGUI, KC_RCTL,
            KC_PGUP,
-           KC_PGDN, KPD_ENT, KC_SPC
+           KC_PGDN, LT(_KP, KC_ENT),  KC_SPC
     ),
 
-[_COLEMAK] = LAYOUT (
+[_CM] = LAYOUT (
            // Left Hand
            KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,
            KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,
@@ -201,10 +195,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            // Left Thumb
                     KC_LCTL, KC_LALT,
                              KC_HOME,
-           KC_BSPC, MED_DEL, KC_END,
+           KC_BSPC, LT(_MD, KC_DEL),  KC_END,
 
            // Right Hand
-           KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, TG(_KEYPAD),  RESET,
+           KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, TG(_KP),  RESET,
            KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
            KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_DEL,
            KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
@@ -213,16 +207,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            // Right Thumb
            KC_RGUI, KC_RCTL,
            KC_PGUP,
-           KC_PGDN, KPD_ENT, KC_SPC
+           KC_PGDN, LT(_KP, KC_ENT),  KC_SPC
     ),
 
-[_MEDIA] = LAYOUT (
+[_MD] = LAYOUT (
            // Left Hand
            _______, _______, _______, _______, _______, _______, _______, _______, _______,
            KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,
            _______, _______, _______, _______, _______, _______,
-           _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,
-           _______, KC_MSTP, KC_MPRV, KC_MPLY, KC_MNXT, KC_MSEL,
+           _______, _______, _______, _______, _______, _______,
+           _______, _______, _______, _______, _______, _______,
                     _______, _______, _______, _______,
            // Left Thumb
                     _______, _______,
@@ -233,8 +227,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            _______, _______, _______, _______, _______, _______, _______, _______, _______,
            KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F12,
            _______, _______, _______, _______, _______, _______,
-           _______, _______, _______, _______, _______, _______,
-           _______, _______, _______, _______, _______, _______,
+           _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,
+           KC_MSTP, KC_MPRV, KC_MPLY, KC_MNXT, KC_MSEL, _______,
                     _______, _______, _______, _______,
            // Right Thumb
            _______, _______,
@@ -242,14 +236,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            _______, _______, _______
     ),
 
-[_KEYPAD] = LAYOUT (
+[_KP] = LAYOUT (
            // Left Hand
            _______, _______, _______, _______, _______, _______, _______, _______, _______,
            KC_PWR,  _______, _______, _______, _______, _______,
            KC_SLEP, _______, _______, _______, _______, _______,
-           KC_WAKE, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______,
-           _______, KC_MSTP, KC_MPRV, KC_MPLY, KC_MNXT, KC_MSEL,
-                    _______, QWERTY,  COLEMAK, DVORAK,
+           KC_WAKE, _______, QWERTY,  COLEMAK, DVORAK,  _______,
+           _______, _______, _______, _______, _______, _______,
+                    _______, _______, _______, _______,
            // Left Thumb
                     _______, _______,
                              _______,
@@ -280,30 +274,47 @@ void persistent_default_layer_set(uint16_t default_layer) {
   default_layer_set(default_layer);
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-        case DVORAK:
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
+{
+      switch(id) {
+        case _DV:
           if (record->event.pressed) {
-            persistent_default_layer_set(1UL<<_DVORAK);
+            persistent_default_layer_set(1UL<<_DV);
           }
-          return false;
           break;
-        case QWERTY:
+        case _QW:
           if (record->event.pressed) {
-            persistent_default_layer_set(1UL<<_QWERTY);
+            persistent_default_layer_set(1UL<<_QW);
           }
-          return false;
           break;
-        case COLEMAK:
+        case _CM:
           if (record->event.pressed) {
-            persistent_default_layer_set(1UL<<_COLEMAK);
+            persistent_default_layer_set(1UL<<_CM);
           }
-          return false;
           break;
       }
-    return true;
+    return MACRO_NONE;
 };
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
+
 };
+
+void led_set_user(uint8_t usb_led) {
+    if (usb_led & (1<<USB_LED_NUM_LOCK)) {
+        PORTF |= (1<<2);
+    } else {
+        PORTF &= ~(1<<2);
+    }
+    if (usb_led & (1<<USB_LED_CAPS_LOCK)) {
+        PORTF |= (1<<3);
+    } else {
+        PORTF &= ~(1<<3);
+    }
+    if (usb_led & (1<<USB_LED_SCROLL_LOCK)) {
+        PORTF |= (1<<1);
+    } else {
+        PORTF &= ~(1<<1);
+    }
+}

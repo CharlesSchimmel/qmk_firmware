@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   *                                 |      |      |      |       |      |      |      |
   *                                 `--------------------'       `--------------------'
   */
-  [NORMAL_MODE] = LAYOUT_ergodox(
+  [NORMAL_MODE] = KEYMAP(
     // Layer 2 Left Hand
     X_____X,X_____X,X_____X,X_____X,X_____X,X_____X,X_____X,
     KC_TAB ,X_____X,VIM_W,  VIM_E  ,X_____X,X_____X,X_____X,
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   *                                 |   ⌘  |      |      |       |      |      |   ⌘  |
   *                                 `--------------------'       `--------------------'
   */
-  [INSERT_MODE] = LAYOUT_ergodox(
+  [INSERT_MODE] = KEYMAP(
     // Left Hand
     NOR_MOD,KC_1,   KC_2,   KC_3,    KC_4,   KC_5, KC_ATM,
     KC_TAB ,KC_Q,   KC_W,   KC_E,    KC_R,   KC_T, KC_GRV,
@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     MO(MOUSE) , KC_ENT, GUI_T(KC_BSPC)
   ),
 
-  [SYMB] = LAYOUT_ergodox(
+  [SYMB] = KEYMAP(
     // Left Hand
     NOR_MOD,KC_1,   KC_2,   KC_3,    KC_4,   KC_5, KC_ATM,
     KC_TAB ,KC_Q,   KC_W,   KC_E,    KC_R,   KC_T, KC_GRV,
@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,_______,_______
   ),
 
-  [MOUSE] = LAYOUT_ergodox(
+  [MOUSE] = KEYMAP(
     // Left Hand
     _______,_______,_______,_______,_______,_______,_______,
     _______,_______,_______,_______,_______,_______,_______,

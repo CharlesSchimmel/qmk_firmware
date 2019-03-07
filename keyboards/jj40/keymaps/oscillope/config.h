@@ -3,6 +3,7 @@
 
 #include "../../config.h"
 
-#define TAPPING_TERM 200
+#define PREVENT_STUCK_MODIFIERS
+#define TAPPING_TERM 300
 
 #endif

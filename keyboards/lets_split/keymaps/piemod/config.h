@@ -43,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_EFFECT_KNIGHT_LENGTH 1
 
 // Typing Options
+#define PREVENT_STUCK_MODIFIERS
 #define QMK_KEYS_PER_SCAN 4
 
 #endif

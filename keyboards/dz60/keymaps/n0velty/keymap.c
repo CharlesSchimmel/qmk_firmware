@@ -1,4 +1,5 @@
-#include QMK_KEYBOARD_H
+#include "dz60.h"
+#include "action_layer.h"
 
 #define _______ KC_TRNS //readability
 
