@@ -177,18 +177,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       SEND_STRING(SS_UP(X_LCTRL));
       return false;
       break;
-    /* case MD_UP : */
-    /*   SEND_STRING(X_AUDIO_VOL_UP); */
-    /*   return false; */
-    /*   break; */
-    /* case MD_DWN : */
-    /*   SEND_STRING(X_AUDIO_VOL_DOWN); */
-    /*   return false; */
-    /*   break; */
-    /* case MD_ALT : */
-    /*   SEND_STRING(X_AUDIO_MUTE); */
-    /*   return false; */
-    /*   break; */
+    case MD_UP :
+      tap_code(KC_VOLU);
+      return false;
+      break;
+    case MD_DWN :
+      tap_code(KC_VOLD);
+      return false;
+      break;
+    case MD_ALT :
+      tap_code(KC_MUTE);
+      return false;
+      break;
   }
 
   // windows/meta key activated macros for i3 parity :D
@@ -218,22 +218,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case KC_ESC : // block Alt+Esc
       return false;
     }
-  } 
-  /* else if ( get_mods() & MOD_BIT(KC_LSFT) ) { */
-  /*   switch(keycode) { */
-  /*     case MD_UP : */
-  /*       SEND_STRING(X_MEDIA_NEXT_TRACK); */
-  /*       return false; */
-  /*       break; */
-  /*     case MD_DWN : */
-  /*       SEND_STRING(X_MEDIA_PREV_TRACK); */
-  /*       return false; */
-  /*       break; */
-  /*     case MD_ALT : */
-  /*       SEND_STRING(X_MEDIA_PLAY_PAUSE); */
-  /*       return false; */
-  /*       break; */
-  /*   } */
-  /* } */
+  } else if ( get_mods() & MOD_BIT(KC_LSFT) ) {
+    switch(keycode) {
+      case MD_UP :
+        tap_code(KC_MNXT);
+        return false;
+        break;
+      case MD_DWN :
+        tap_code(KC_MPRV);
+        return false;
+        break;
+      case MD_ALT :
+        tap_code(KC_MPLY);
+        return false;
+        break;
+    }
+  }
   return true;
 }
