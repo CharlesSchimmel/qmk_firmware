@@ -27,15 +27,18 @@
 #define _RAD 4
 
 // Mod Taps
-#define SH_BSP MT(MOD_RSFT, KC_BSPC)
-#define SH_DEL MT(MOD_RSFT, KC_DEL)
-#define CT_ESC CTL_T(KC_ESC)
-#define AL_ENT ALT_T(KC_ENT)
+#define AL_BSLS ALT_T(KC_BSLS)
+#define AL_ENT  ALT_T(KC_ENT)
+#define AL_TAB  RALT_T(KC_TAB)
+
+#define CT_BSLS RCTL_T(KC_BSLS)
+#define CT_ENT  CTL_T(KC_ENT)
+#define CT_ESC  CTL_T(KC_ESC)
+
+#define SH_BSP  MT(MOD_RSFT, KC_BSPC)
+#define SH_DEL  MT(MOD_RSFT, KC_DEL)
 #define SH_SLSH MT(MOD_RSFT, KC_SLSH)
-#define SH_TAB MT(MOD_LSFT, KC_TAB)
-#define AL_TAB MT(MOD_LALT, KC_TAB)
-#define AL_BSLS MT(MOD_RALT, KC_BSLS)
-#define CT_ENT MT(MOD_RCTL, KC_ENT)
+#define SH_TAB  MT(MOD_LSFT, KC_TAB)
 
 // Layer Taps
 #define MNU_FNC LT(_FNC, KC_APP)
@@ -57,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------.
    * | ` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | = |   Bs  |
    * |-----------------------------------------------------------|
-   * | Tab | Q | W | E | R | T | Y | U | I | O | P | [ | ] |  \  |
+   * | ATb | Q | W | E | R | T | Y | U | I | O | P | [ | ] | Ct\ |
    * |-----------------------------------------------------------|
    * | EsCtl | A | S | D | F | G | H | J | K | L | ; | ' | AlEnt |
    * |---------------------.-----------.-------------------------|
@@ -68,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [0] = LAYOUT_60_ansi(
 	       KC_GESC, KC_1,    KC_2,    KC_3,   KC_4,    KC_5,    KC_6,    KC_7, KC_8,    KC_9,   KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
-	       KC_TAB,  KC_Q,    KC_W,    KC_E,   KC_R,    KC_T,    KC_Y,    KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, \
+	       AL_TAB,  KC_Q,    KC_W,    KC_E,   KC_R,    KC_T,    KC_Y,    KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, CT_BSLS, \
 	       CT_ESC,  KC_A,    KC_S,    KC_D,   KC_F,    KC_G,    KC_H,    KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT, AL_ENT,  \
 	       SH_TAB,  KC_Z,    KC_X,    KC_C,   KC_V,    KC_B,    KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH, SH_BSP,  \
 	       KC_LCTL, KC_LALT, KC_LGUI, SP_NAV, MNU_FNC, KC_RGUI, KC_RALT, KC_RCTL
