@@ -46,8 +46,6 @@
 enum custom_keycodes {
   M_LOK = SAFE_RANGE,
   M_CAD,
-  M_YNK,
-  M_PUT
 };
 
 #define _____ KC_TRNS
@@ -93,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------'
    */
   [_NAV] = LAYOUT_60_ansi(
-	       _____, _____,         _____,      _____,      KC_END,      _____, _____,   _____,   _____, _____,   KC_HOME, _____,   _____,   KC_DEL, \
+       _____, _____,         _____,      _____,      KC_END,      _____, _____,   _____,   _____, _____,   KC_HOME, _____,   _____,   KC_DEL, \
 	       _____, KC_MS_WH_UP,   KC_MS_BTN1, KC_MS_UP,   KC_MS_BTN2,  _____, _____,   _____,   _____, _____,   _____,   KC_PGUP, KC_PGDN, KC_INS, \
 	       _____, KC_MS_WH_DOWN, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _____, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, _____,   _____,   _____,   \
 	       _____, _____,         _____,      _____,      _____,       _____, _____,   _____,   _____, _____,   _____,   SH_DEL,  \
@@ -163,13 +161,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		SEND_STRING(SS_UP(X_LALT));
 		SEND_STRING(SS_UP(X_LCTRL));
 		return false;
-	  case M_YNK :
-		SEND_STRING(SS_LCTRL("c"));
-		return false;
-	  case M_PUT :
-		SEND_STRING(SS_LCTRL("v"));
-		return false;
-		break;
 	}
 
 	// windows/meta key activated macros for i3 parity :D
@@ -193,6 +184,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		  SEND_STRING(SS_UP(X_LALT));
 		  return true; // want W-Q to still go through for i3 setup
 		  break;
+	  }
+	} else if ( get_mods() & MOD_BIT(KC_LALT) ) {
+	  switch(keycode) {
+		case KC_ESC;
+		return false;
 	  }
 	}
 
