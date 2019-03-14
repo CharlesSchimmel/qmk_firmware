@@ -190,7 +190,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	  }
 	} else if ( get_mods() & MOD_BIT(KC_LALT) ) {
 	  switch(keycode) {
-		case KC_ESC;
+		case KC_ESC :
 		return false;
 	  }
 	}
