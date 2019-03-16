@@ -23,8 +23,7 @@
 #define _DEF 0
 #define _NAV 1
 #define _FNC 2
-#define _NUM 3
-#define _RAD 4
+#define _SYM 3
 
 // Mod Taps
 #define AL_BSLS ALT_T(KC_BSLS)
@@ -41,9 +40,8 @@
 #define SH_TAB  MT(MOD_LSFT, KC_TAB)
 
 // Layer Taps
-#define MNU_FNC LT(_FNC, KC_APP)
+#define MNU_FNC LT(_SYM, KC_APP)
 #define SP_NAV LT(_NAV, KC_SPC)
-#define LT_FNC MO(_FNC)
 
 // Macro defs
 enum custom_keycodes {
@@ -51,9 +49,13 @@ enum custom_keycodes {
   M_CAD,
 };
 
+// Tap Dance
+enum {
+  TD_ALTAB = 0
+};
+
 #define _____ KC_TRNS
 #define XXXXX KC_NO
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: Default Layer (Qwerty)
@@ -74,13 +76,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       AL_TAB,  KC_Q,    KC_W,    KC_E,   KC_R,    KC_T,    KC_Y,    KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, CT_BSLS, \
 	       CT_ESC,  KC_A,    KC_S,    KC_D,   KC_F,    KC_G,    KC_H,    KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT, AL_ENT,  \
 	       SH_TAB,  KC_Z,    KC_X,    KC_C,   KC_V,    KC_B,    KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH, SH_BSP,  \
-	       KC_LCTL, KC_LALT, KC_LGUI, SP_NAV, MNU_FNC, KC_RGUI, KC_RALT, KC_RCTL
+	       KC_LCTL, KC_LALT, KC_LGUI, SP_NAV, MNU_FNC, TD(TD_ALTAB), KC_RALT, KC_RCTL
 		   ),
 
   /* Keymap 1: Navigation, VIM
    * Parent: Default
    *	Actvtr: Space
-   * Chldrn: Numpad (RCtrl)
    * ,-----------------------------------------------------------.
    * |   |   |   |   |End|   |   |   |   |   |Hom|   |   |  Del  |
    * |-----------------------------------------------------------|
@@ -90,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------------------.-----------.--------------------------|
    * |        |   |   |   |   |    |    |   |   |   |   | SftDel |
    * |-----------------------------------------------------------|
-   * |    |    |    |          XXXX          |    |    |    |NumP|
+   * |    |    |    |          XXXX          |    |    |    |    |
    * `-----------------------------------------------------------'
    */
   [_NAV] = LAYOUT_60_ansi(
@@ -98,12 +99,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       _____, KC_MS_WH_UP,   KC_MS_BTN1, KC_MS_UP,   KC_MS_BTN2,  _____, _____,   _____,   _____, _____,   _____,   KC_PGUP, KC_PGDN, KC_INS, \
 	       _____, KC_MS_WH_DOWN, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _____, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, _____,   _____,   _____,   \
 	       _____, _____,         _____,      _____,      _____,       _____, _____,   _____,   _____, _____,   _____,   SH_DEL,  \
-	       _____, _____,         _____,      _____,      _____,       _____, _____,   TG(_NUM)
+	       _____, _____,         _____,      _____,      _____,       _____, _____,   _____
 		   ),
 
   /* Keymap 2: Function, Media
    * Parent: Default
-   * Chldrn: None
    * ,-----------------------------------------------------------.
    * | ` | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|  Del  |
    * |-----------------------------------------------------------|
@@ -113,39 +113,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------------------.-----------.--------------------------|
    * |        |Prn|Slk|   |   |    |    |   |VlD|VlU|Mut| SftDel |
    * |-----------------------------------------------------------|
-   * |    |    |    |                        |XXXX|    |Caps|NumP|
+   * |    |    |    |                        |    |XXXX|    |    |
    * `-----------------------------------------------------------'
    */
   [_FNC] = LAYOUT_60_ansi(
 	       KC_GRV, KC_F1,   KC_F2,   KC_F3, KC_F4, KC_F5, KC_F6,   KC_F7, KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL, \
 	       _____,  M_LOK,   M_CAD,   _____, _____, _____, _____,   _____, _____,   _____,   KC_MPLY, KC_MPRV, KC_MNXT, _____,  \
-	       _____,  _____,   _____,   _____, _____, _____, _____,   _____, _____,   _____,   _____,   _____,   _____,   \
-	       _____,  KC_PSCR, KC_SLCK, _____, _____, _____, _____,   _____, KC_VOLD, KC_VOLU, KC_MUTE, SH_DEL,  \
-	       _____,  _____,   _____,   _____, _____, _____, KC_CAPS, TG(_NUM)
+	       _____,  _____,   _____,   _____, _____, _____, _____,   _____, _____,   _____,   _____,   _____,   _____,           \
+	       _____,  _____,   _____,   _____, _____, _____, _____,   _____, KC_VOLD, KC_VOLU, KC_MUTE, SH_DEL,                   \
+	       _____,  _____,   _____,   _____, _____, _____, _____,   _____
 		   ),
 
-  /* Keymap 3: Numpad Layer
-   * Parent: Func
-   * Chldrn: None
+  /* Keymap 3: Symbols
+   * Parent: Default
    * ,-----------------------------------------------------------.
-   * |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | - | = |       |
+   * | ` | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|  Del  |
    * |-----------------------------------------------------------|
-   * |     |   |   |   |   |   | 7 | 8 | 9 |   |   |  |   |      |
+   * |     | { | [ | ( | = |   |   | - | ) | ] | } |  |   |      |
    * |-----------------------------------------------------------|
-   * |      |   |   |   |   |   | 4 | 5 | 6 |   |   |   |        |
+   * |      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | = |        |
+   * |--------------------.-----------.--------------------------|
+   * |        |   |   |   |   |    |    |   |   |   |   |        |
    * |-----------------------------------------------------------|
-   * |        |   |   |   |   |  0 |  1 | 2 | 3 | . | / |        |
-   * |-----------------------------------------------------------|
-   * |    |    |    |                        |    |    |    |NumP|
+   * |    |    |    |                        |XXXX|    |    |    |
    * `-----------------------------------------------------------'
    */
-  [_NUM] = LAYOUT_60_ansi(
-	       _____, KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7, KC_8, KC_9,   KC_0,    KC_MINS, KC_EQL, KC_BSPC, \
-	       _____, _____, _____, _____, _____, _____, KC_7,  KC_8, KC_9, _____,  _____,   _____,   _____,  _____,   \
-	       _____, _____, _____, _____, _____, _____, KC_4,  KC_5, KC_6, _____,  _____,   _____,   _____,  \
-	       _____, _____, _____, _____, _____, KC_0,  KC_1,  KC_2, KC_3, KC_DOT, KC_SLSH, _____,   \
-	       _____, _____, _____, _____, _____, _____, _____, TG(_NUM)
-		   ),
+  [_SYM] = LAYOUT_60_ansi(
+	       KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,   \
+	       _____,   KC_LBRC, KC_LCBR, KC_LPRN, KC_EQL,  _____,   _____,   KC_MINS, KC_RPRN, KC_RCBR, KC_RBRC, _____,   _____,   _____,    \
+	       _____,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,  _____,             \
+	       _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,                      \
+	       _____,   _____,   _____,   _____,   XXXXX,   _____,   _____,   _____
+		   )
 
 };
 
@@ -188,12 +187,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		  return true; // want W-Q to still go through for i3 setup
 		  break;
 	  }
-	} else if ( get_mods() & MOD_BIT(KC_LALT) ) {
-	  switch(keycode) {
-		case KC_ESC :
-		return false;
-	  }
-	}
+	} 
 
   // on keyup
   } else {
@@ -201,3 +195,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   return true;
 }
+
+void td_atab_fn(qk_tap_dance_state_t *state, void *user_data) {
+  if (state-> count == 1) {
+	SEND_STRING(SS_DOWN(X_LALT));
+	SEND_STRING(SS_TAP(X_TAB));
+  } else {
+	SEND_STRING(SS_TAP(X_TAB));
+  }
+}
+
+void td_atab_done_fn(qk_tap_dance_state_t *state, void *user_data) {
+  SEND_STRING(SS_UP(X_LALT));
+}
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [TD_ALTAB] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(td_atab_fn, td_atab_done_fn, NULL, 300)
+};
+
