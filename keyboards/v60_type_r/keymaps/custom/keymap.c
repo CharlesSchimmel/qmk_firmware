@@ -42,6 +42,8 @@
 // Layer Taps
 #define MNU_FNC LT(_SYM, KC_APP)
 #define SP_NAV LT(_NAV, KC_SPC)
+#define SP_SYM LT(_SYM, KC_SPC)
+#define SC_NAV LT(_NAV, KC_SCLN)
 
 // Macro defs
 enum custom_keycodes {
@@ -68,15 +70,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |---------------------.-----------.-------------------------|
    * | Shift  | Z | X | C | V | B | N | M | , | . | / |  SftBsp  |
    * |-----------------------------------------------------------|
-   * |Ctrl|Alt |Gui |         SpNav           |Sym | Fn |Alt|Ctrl|
+   * |Ctrl|Alt |Gui |         SpSym           |Sym | Fn |Alt|Ctrl|
    * `-----------------------------------------------------------'
    */
   [0] = LAYOUT_60_ansi(
 	       KC_GESC, KC_1,    KC_2,    KC_3,   KC_4,    KC_5,    KC_6,    KC_7, KC_8,    KC_9,   KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
 	       AL_TAB,  KC_Q,    KC_W,    KC_E,   KC_R,    KC_T,    KC_Y,    KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, CT_BSLS, \
-	       CT_ESC,  KC_A,    KC_S,    KC_D,   KC_F,    KC_G,    KC_H,    KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT, AL_ENT,  \
+	       CT_ESC,  KC_A,    KC_S,    KC_D,   KC_F,    KC_G,    KC_H,    KC_J, KC_K,    KC_L,   SC_NAV,  KC_QUOT, AL_ENT,  \
 	       SH_TAB,  KC_Z,    KC_X,    KC_C,   KC_V,    KC_B,    KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH, SH_BSP,  \
-	       KC_LCTL, KC_LALT, KC_LGUI, SP_NAV, MNU_FNC, TD(TD_ALTAB), KC_RALT, KC_RCTL
+	       KC_LCTL, KC_LALT, KC_LGUI, SP_SYM, MNU_FNC, TD(TD_ALTAB), KC_RALT, KC_RCTL
 		   ),
 
   /* Keymap 1: Navigation, VIM
@@ -87,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----------------------------------------------------------|
    * |     |wu |lc | u | rc|   |   |   |   |   |   |PU|PgD| Ins  |
    * |-----------------------------------------------------------|
-   * |      |wd | l | d | r |   | h | j | k | l |   |   |        |
+   * |      |wd | l | d | r |   | h | j | k | l |XxX|   |        |
    * |--------------------.-----------.--------------------------|
    * |        |   |   |   |   |    |    |   |   |   |   | SftDel |
    * |-----------------------------------------------------------|
@@ -135,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------------------.-----------.--------------------------|
    * |        |   |   |   |   |    |    |   |   |   |   |        |
    * |-----------------------------------------------------------|
-   * |    |    |    |                        |XXXX|    |    |    |
+   * |    |    |    |          XXXX          |    |    |    |    |
    * `-----------------------------------------------------------'
    */
   [_SYM] = LAYOUT_60_ansi(
@@ -143,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	       _____,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL,  _____,   _____,    \
 	       _____,   KC_LBRC, KC_LCBR, KC_LPRN, KC_EQL,  _____,   _____,   KC_MINS, KC_RPRN, KC_RCBR, KC_RBRC, _____,   _____,             \
 	       _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,   _____,                      \
-	       _____,   _____,   _____,   _____,   XXXXX,   _____,   _____,   _____
+	       _____,   _____,   _____,   XXXXX,   _____,   _____,   _____,   _____
 		   )
 
 };
