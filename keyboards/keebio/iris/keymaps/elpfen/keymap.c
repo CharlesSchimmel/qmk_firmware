@@ -2,6 +2,8 @@
  * Quote as Control mod-tap?
  * Function layer on upper thumbs
  * Lsft mod-tap as enter?
+ * One shot layers on upper thumbs
+ * Tap Dance LSft for Enter or Tab?
  */
 #include QMK_KEYBOARD_H
 
@@ -24,24 +26,26 @@ enum custom_keycodes {
 };
 
 // Mod Taps
-#define AL_BSLS ALT_T(KC_BSLS)
-#define AL_ENT  ALT_T(KC_ENT)
-#define AL_TAB  RALT_T(KC_TAB)
-#define AL_QUOT ALT_T(KC_QUOT)
+#define AL_ENT  RALT_T(KC_ENT)
+#define AL_TAB  ALT_T(KC_TAB)
+#define AL_QUOT RALT_T(KC_QUOT)
+#define AL_3    ALT_T(KC_3)
+#define AL_8    RALT_T(KC_8)
 
-#define CT_BSLS RCTL_T(KC_BSLS)
-#define CT_ENT  CTL_T(KC_ENT)
-#define CT_SLSH CTL_T(KC_SLSH)
 #define CT_ESC  CTL_T(KC_ESC)
-#define CT_QUOT CTL_T(KC_QUOT)
+#define CT_ENT  RCTL_T(KC_ENT)
+#define CT_SLSH CTL_T(KC_SLSH)
+#define CT_2    CTL_T(KC_2)
+#define CT_9    RCTL_T(KC_9)
 
 #define SH_BSP  MT(MOD_RSFT, KC_BSPC)
 #define SH_DEL  MT(MOD_RSFT, KC_DEL)
-#define SH_SLSH MT(MOD_RSFT, KC_SLSH)
 #define SH_TAB  MT(MOD_LSFT, KC_TAB)
+#define SH_ENT  MT(MOD_LSFT, KC_ENT)
 
 // Layer Taps
 #define LW_SPC  LT(_LOWER, KC_SPC)
+#define LW_ENT  LT(_LOWER, KC_ENT)
 #define RS_ENT  LT(_RAISE, KC_ENT)
 #define RS_SCLN LT(_RAISE, KC_SCLN)
 #define RS_SLSH LT(_RAISE, KC_SLSH)
@@ -63,21 +67,22 @@ enum custom_keycodes {
 #define M_CAD LCA(KC_DEL)
 #define M_CSE LCTL(LSFT(KC_ESC))
 
+// "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-   KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+   KC_GESC, KC_1,    CT_2,    AL_3,    KC_4,    KC_5,                               KC_6,    KC_7,    AL_8,    CT_9,    KC_0,    KC_BSLS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    AL_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    CT_ENT,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    RS_SCLN, AL_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_TAB,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    RAISE,            LOWER,   KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
+   SH_ENT,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    RAISE,            LOWER,   KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  KC_RCTL, KC_LGUI, RS_ENT,                    LW_SPC,  FN_MNU,  KC_RALT
+                                  KC_RCTL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI,  KC_RALT
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
                               /*
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -97,15 +102,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Symbols
   [_LOWER] = LAYOUT(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, KC_LBRC, KC_LCBR, KC_LPRN, KC_EQL,  KC_LABK,                            KC_RABK, KC_MINS, KC_RPRN, KC_RCBR, KC_RBRC, KC_QUOT,
+   _______, KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK,                            KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC, KC_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  _______, _______, _______,                   OOOOOOO, _______, _______
+                                  _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
