@@ -66,6 +66,7 @@
 #define M_LOK LGUI(KC_L)
 #define M_CAD LCA(KC_DEL)
 #define M_CSE LCTL(LSFT(KC_ESC))
+#define M_SHN LSFT(KC_INS)
 
 // Tap Dance
 enum {
@@ -103,7 +104,7 @@ KC_LCTL, MNU_FNC, KC_LGUI, SP_SYM, KC_RGUI, MNU_FNC, KC_RALT, KC_RCTL
    * ,-----------------------------------------------------------.
    * |   |   |   |   |End|   |   |   |   |   |Hom|   |   |  Del  |
    * |-----------------------------------------------------------|
-   * |     |wu |lc | u | rc|   |   |   |   |   |   |PU|PgD| Ins  |
+   * |     |wu |lc | u | rc|   |   |   |   |   |SHn|PU|PgD| Ins  |
    * |-----------------------------------------------------------|
    * |      |wd | l | d | r |   | h | j | k | l |   |   |        |
    * |--------------------.-----------.--------------------------|
@@ -114,7 +115,7 @@ KC_LCTL, MNU_FNC, KC_LGUI, SP_SYM, KC_RGUI, MNU_FNC, KC_RALT, KC_RCTL
    */
   [_NAV] = LAYOUT_60_ansi(
 _____, _____,  _____,   _____,   KC_END,  _____, _____,   _____,   _____, _____,   KC_HOME, _____,   _____,   KC_DEL, \
-_____, MS_WUP, MS_BTN1, MS_UP,   MS_BTN2, _____, _____,   _____,   _____, _____,   _____,   KC_PGUP, KC_PGDN, KC_INS, \
+_____, MS_WUP, MS_BTN1, MS_UP,   MS_BTN2, _____, _____,   _____,   _____, _____,   M_SHN,   KC_PGUP, KC_PGDN, KC_INS, \
 _____, MS_WDN, MS_LEFT, MS_DOWN, MS_RGHT, _____, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, _____,   _____,   _____,           \
 _____, Z_NAV,  _____,   _____,   _____,   _____, _____,   _____,   _____, _____,   SL_NAV,  SH_DEL,                   \
 _____, _____,  _____,   _____,   _____,   _____, _____,   _____

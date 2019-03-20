@@ -66,6 +66,7 @@ enum custom_keycodes {
 #define M_LOK LGUI(KC_L)
 #define M_CAD LCA(KC_DEL)
 #define M_CSE LCTL(LSFT(KC_ESC))
+#define M_SHN LSFT(KC_INS)
 
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS
@@ -119,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
    _______, _______, _______, _______, KC_END,  _______,                            _______, _______, _______, KC_HOME, _______, KC_DEL,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, KC_INS,
+   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  M_INS,   KC_INS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, OOOOOOO, KC_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
