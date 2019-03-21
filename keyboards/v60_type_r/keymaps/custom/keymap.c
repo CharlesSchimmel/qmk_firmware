@@ -91,11 +91,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------'
    */
   [0] = LAYOUT_60_ansi(
+
+KC_GESC, KC_1,    CT_2,    AL_3,   KC_4,    KC_5,    KC_6,    KC_7, AL_8,    CT_9,   KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
+AL_TAB,  KC_QUOT, KC_COMM, KC_DOT, KC_P,    KC_Y,    KC_F,    KC_G, KC_C,    KC_R,   KC_L,    KC_LBRC, KC_RBRC, CT_BSLS, \
+CT_ESC,  KC_A,    KC_O,    KC_E,   KC_U,    KC_I,    KC_D,    KC_H, KC_T,    KC_N,   KC_S,    KC_MINS, AL_ENT,           \
+SH_ENT,  SL_NAV,  KC_Q,    KC_J,   KC_K,    KC_X,    KC_B,    KC_M, KC_W,    KC_V,   Z_NAV,   SH_BSP,                    \
+KC_LCTL, MNU_FNC, KC_LGUI, SP_SYM, KC_RGUI, MNU_FNC, KC_RALT, KC_RCTL
+
+/*
 KC_GESC, KC_1,    CT_2,    AL_3,   KC_4,    KC_5,    KC_6,    KC_7, AL_8,    CT_9,   KC_0,    KC_MINS, KC_EQL,  KC_BSPC, \
 AL_TAB,  KC_Q,    KC_W,    KC_E,   KC_R,    KC_T,    KC_Y,    KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, CT_BSLS, \
 CT_ESC,  KC_A,    KC_S,    KC_D,   KC_F,    KC_G,    KC_H,    KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT, AL_ENT,           \
 SH_ENT,  Z_NAV,   KC_X,    KC_C,   KC_V,    KC_B,    KC_N,    KC_M, KC_COMM, KC_DOT, SL_NAV,  SH_BSP,                    \
 KC_LCTL, MNU_FNC, KC_LGUI, SP_SYM, KC_RGUI, MNU_FNC, KC_RALT, KC_RCTL
+*/
            ),
 
   /* Keymap 1: Navigation, VIM
@@ -114,11 +123,20 @@ KC_LCTL, MNU_FNC, KC_LGUI, SP_SYM, KC_RGUI, MNU_FNC, KC_RALT, KC_RCTL
    * `-----------------------------------------------------------'
    */
   [_NAV] = LAYOUT_60_ansi(
+
+_____, _____,  _____,   _____,   KC_END,  _____, _____,   _____,   _____, _____,   KC_HOME, _____,   _____,   KC_DEL, \
+_____, MS_WUP, MS_BTN1, MS_UP,   MS_BTN2, _____, _____,   _____,   _____, _____,   KC_RGHT, KC_PGUP, KC_PGDN, KC_INS, \
+_____, MS_WDN, MS_LEFT, MS_DOWN, MS_RGHT, _____, _____,   KC_LEFT, _____, ______,  _____,   _____,   _____,           \
+_____, Z_NAV,  _____,   KC_DOWN, KC_UP,   _____, _____,   _____,   _____, _____,   SL_NAV,  SH_DEL,                   \
+_____, _____,  _____,   _____,   _____,   _____, _____,   _____
+
+/*
 _____, _____,  _____,   _____,   KC_END,  _____, _____,   _____,   _____, _____,   KC_HOME, _____,   _____,   KC_DEL, \
 _____, MS_WUP, MS_BTN1, MS_UP,   MS_BTN2, _____, _____,   _____,   _____, _____,   M_SHN,   KC_PGUP, KC_PGDN, KC_INS, \
 _____, MS_WDN, MS_LEFT, MS_DOWN, MS_RGHT, _____, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, _____,   _____,   _____,           \
 _____, Z_NAV,  _____,   _____,   _____,   _____, _____,   _____,   _____, _____,   SL_NAV,  SH_DEL,                   \
 _____, _____,  _____,   _____,   _____,   _____, _____,   _____
+*/
            ),
 
   /* Keymap 2: Function, Media
