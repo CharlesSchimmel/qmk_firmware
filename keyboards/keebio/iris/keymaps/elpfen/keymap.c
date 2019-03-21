@@ -20,9 +20,6 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   ADJUST,
-  MD_UP,
-  MD_DWN,
-  MD_ALT
 };
 
 // Mod Taps
@@ -68,6 +65,11 @@ enum custom_keycodes {
 #define M_CSE LCTL(LSFT(KC_ESC))
 #define M_SHN LSFT(KC_INS)
 
+// Tap Dance
+enum {
+  TD_ALTAB = 0
+};
+
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS
 
@@ -81,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    RS_SCLN, AL_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_ENT,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    RAISE,            LOWER,   KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
+   SH_ENT,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    RAISE,            KC_RGUI,   KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   KC_RCTL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -93,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    AL_ENT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_TAB,  RS_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    RAISE,            LOWER,   KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    SH_BSP,
+   SH_TAB,  RS_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    RAISE,            LOWER,   KC_B,    KC_M,    KC_W,    KC_V,    RS_Z,    SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  KC_RCTL, KC_LGUI, RS_ENT,                    LW_SPC,  FN_MNU,  KC_RALT
+                                  KC_RCTL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
                               */
   ),
@@ -120,11 +122,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
    _______, _______, _______, _______, KC_END,  _______,                            _______, _______, _______, KC_HOME, _______, KC_DEL,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  M_INS,   KC_INS,
+   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  M_SHN,   KC_INS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, OOOOOOO, KC_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, OOOOOOO, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, SH_DEL,
+   _______, OOOOOOO, _______, M_SHN,   _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, SH_DEL,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -164,6 +166,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // no mods
   switch (keycode) {
 
+    // this stuff doesn't even work with layer taps so...
     case BASE:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_BASE);
@@ -242,3 +245,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+/* void td_atab_fn(qk_tap_dance_state_t *state, void *user_data) { */
+/*   if (state-> count == 1) { */
+/*     SEND_STRING(SS_DOWN(X_LALT)); */
+/*     SEND_STRING(SS_TAP(X_TAB)); */
+/*   } else { */
+/*     SEND_STRING(SS_TAP(X_TAB)); */
+/*   } */
+/* } */
+
+/* void td_atab_done_fn(qk_tap_dance_state_t *state, void *user_data) { */
+/*   SEND_STRING(SS_UP(X_LALT)); */
+/* } */
+
+/* qk_tap_dance_action_t tap_dance_actions[] = { */
+/*   [TD_ALTAB] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(td_atab_fn, td_atab_done_fn, NULL, 300) */
+/* }; */
+
