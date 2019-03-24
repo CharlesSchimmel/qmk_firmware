@@ -111,7 +111,7 @@ KC_LCTL, MNU_FNC, KC_LGUI, SP_SYM, KC_RGUI, MNU_FNC, KC_RALT, KC_RCTL
    * Parent: Default
    *    Actvtr: Space
    * ,-----------------------------------------------------------.
-   * |   |   |   |   |End|   |   |   |   |   |Hom|   |   |  Del  |
+   * | ` |   |   |   |End|   |   |   |   |   |Hom|   |   |  Del  |
    * |-----------------------------------------------------------|
    * |     |wu |lc | u | rc|   |   |   |   |   |SHn|PU|PgD| Ins  |
    * |-----------------------------------------------------------|
@@ -124,7 +124,7 @@ KC_LCTL, MNU_FNC, KC_LGUI, SP_SYM, KC_RGUI, MNU_FNC, KC_RALT, KC_RCTL
    */
   [_NAV] = LAYOUT_60_ansi(
 
-_____, _____,  _____,   _____,   KC_END,  _____, _____,   _____,   _____, _____,   KC_HOME, _____,   _____,   KC_DEL, \
+KC_GRV, _____,  _____,   _____,   KC_END,  _____, _____,   _____,   _____, _____,   KC_HOME, _____,   _____,   KC_DEL, \
 _____, MS_WUP, MS_BTN1, MS_UP,   MS_BTN2, _____, _____,   _____,   _____, _____,   KC_RGHT, KC_PGUP, KC_PGDN, KC_INS, \
 _____, MS_WDN, MS_LEFT, MS_DOWN, MS_RGHT, _____, _____,   KC_LEFT, _____, _____,  _____,   _____,   _____,           \
 _____, Z_NAV,  _____,   KC_DOWN, KC_UP,   _____, _____,   _____,   _____, _____,   SL_NAV,  SH_DEL,                   \
