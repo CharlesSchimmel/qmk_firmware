@@ -171,7 +171,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // on keydown
   if (record->event.pressed) {
 
-    if ( get_mods() & MOD_BIT(KC_LGUI) get_mods() & MOD_BIT(KC_RGUI)) {
+    if ( get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
       switch(keycode) {
         // windows/meta key activated macros for i3 parity :D
         case KC_H :
