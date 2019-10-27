@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define RGBLIGHT_VAL_STEP 8
 //
 // Have to hold space (or whatever MO(<layer>) or MT() ) key for 200ms before shifting
-#define TAPPING_TERM 200
+#define TAPPING_TERM 175
 
 // If the second key in a chord is pressed after the modifier key is released, ignore it, even if it's inside the tapping term
 // Fewer dropped keypresses, but more dropped chords

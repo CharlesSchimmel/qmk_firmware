@@ -1,9 +1,5 @@
 /* Notes:
- * Quote as Control mod-tap?
- * Function layer on upper thumbs
- * Lsft mod-tap as enter?
- * One shot layers on upper thumbs
- * Tap Dance LSft for Enter or Tab?
+ * Pressing both thumb keys on left thumb sends only upper key
  */
 #include QMK_KEYBOARD_H
 
@@ -26,14 +22,11 @@ enum custom_keycodes {
 #define AL_ENT  RALT_T(KC_ENT)
 #define AL_TAB  ALT_T(KC_TAB)
 #define AL_QUOT RALT_T(KC_QUOT)
-#define AL_3    ALT_T(KC_3)
-#define AL_8    RALT_T(KC_8)
 
 #define CT_ESC  CTL_T(KC_ESC)
 #define CT_ENT  RCTL_T(KC_ENT)
+#define CT_BSLS RCTL_T(KC_BSLS)
 #define CT_SLSH CTL_T(KC_SLSH)
-#define CT_2    CTL_T(KC_2)
-#define CT_9    RCTL_T(KC_9)
 
 #define SH_BSP  MT(MOD_RSFT, KC_BSPC)
 #define SH_DEL  MT(MOD_RSFT, KC_DEL)
@@ -63,7 +56,7 @@ enum custom_keycodes {
 #define M_LOK LGUI(KC_L)
 #define M_CAD LCA(KC_DEL)
 #define M_CSE LCTL(LSFT(KC_ESC))
-#define M_SHN LSFT(KC_INS)
+#define M_PST LSFT(KC_INS)
 
 // Tap Dance
 enum {
@@ -77,13 +70,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_BASE] = LAYOUT(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-   KC_GESC, KC_1,    CT_2,    AL_3,    KC_4,    KC_5,                               KC_6,    KC_7,    AL_8,    CT_9,    KC_0,    KC_BSLS,
+   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   AL_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    CT_ENT,
+   AL_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    CT_BSLS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    RS_SCLN, AL_QUOT,
+   CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, AL_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_ENT,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    RAISE,            KC_RGUI, KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
+   SH_TAB,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    RAISE,            KC_RGUI, KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   KC_RCTL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -125,11 +118,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
    KC_GRV,  _______, _______, _______, KC_END,  _______,                            _______, _______, _______, KC_HOME, _______, KC_DEL,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  M_SHN,   KC_INS,
+   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  M_PST,   KC_INS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, OOOOOOO, KC_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, OOOOOOO, _______, M_SHN,   _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, SH_DEL,
+   _______, OOOOOOO, _______, M_PST,   _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, SH_DEL,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -173,7 +166,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if ( get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
       switch(keycode) {
-        // windows/meta key activated macros for i3 parity :D
+        // windows/meta key activated macros for i3/XMonad parity :D
         case KC_H :
           SEND_STRING(SS_TAP(X_LEFT));
           return false; break;
@@ -190,7 +183,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           SEND_STRING(SS_DOWN(X_LALT));
           SEND_STRING(SS_TAP(X_F4));
           SEND_STRING(SS_UP(X_LALT));
-          return true; break; // want W-Q to still go through for i3 setup
+          return true; break; // want W-Q to still go through for twm setup
       }
     } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
       switch(keycode) {
