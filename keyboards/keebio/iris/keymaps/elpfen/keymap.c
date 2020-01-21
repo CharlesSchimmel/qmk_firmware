@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, AL_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_TAB,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    RAISE,            KC_RGUI, KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
+   SH_TAB,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    LOWER,            KC_RGUI,   KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   KC_RCTL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -159,7 +159,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+bool lower_press = false;
+uint16_t alt_tab_timer = 0;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+  // if enter or space is pressed before lower, ignore it when lower is pressed
+  // delay the keycode sending until keyup to check if lower was pressed during that time
+  /* switch (keycode) { */
+  /*   case LOWER: */
+  /*     lower_press = record->event.pressed; */
+  /*     if (lower_press) { layer_on(_LOWER); } */
+  /*     else { layer_off(_LOWER); } */
+  /*     return false; // true or false for macros? */
+  /*   case KC_ENT: */
+  /*   case KC_SPC: */
+  /*     return !(record->event.pressed) && !lower_press; */
+  /* } */
 
   // on keydown
   if (record->event.pressed) {
