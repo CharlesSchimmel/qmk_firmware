@@ -76,9 +76,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, AL_QUOT,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_TAB,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    LOWER,            KC_RGUI,   KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH, SH_BSP,
+   SH_TAB,  RS_Z,    KC_X,    KC_C,    KC_V,    KC_B,    LOWER,            KC_RGUI, KC_N,    KC_M,    KC_COMM, KC_DOT,  RS_SLSH,  SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  KC_RCTL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
+                                  KC_RCTL, KC_LGUI, LW_SPC,                    LW_ENT,  KC_RGUI, FN_MNU
                               // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
                               /*
