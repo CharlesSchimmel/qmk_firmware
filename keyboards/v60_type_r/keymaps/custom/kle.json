@@ -1,0 +1,117 @@
+	
+0	
+0	"~\n`"
+1	"!\n1"
+2	"@\n2"
+3	"#\n3"
+4	"$\n4\n\n\nEnd"
+5	"%\n5"
+6	"^\n6"
+7	"&\n7"
+8	"*\n8"
+9	"(\n9"
+10	")\n0\n\n\nHome"
+11	"_\n-"
+12	"+\n="
+13	
+w	2
+14	"Backspace"
+1	
+0	
+w	1.5
+1	"Tab"
+2	"Q"
+3	"W\n\n\n\nword"
+4	"E"
+5	"R"
+6	"T"
+7	
+a	0
+8	"Y\n\n\n\n\n7"
+9	"U\n\n\n\n\n8"
+10	"I\n\n\n\n\n9"
+11	
+a	4
+12	"O"
+13	
+a	0
+14	"P\n\n\n\n⏸"
+15	
+a	4
+16	"{\n[\n\n\nPU"
+17	"}\n]\n\n\nPD"
+18	
+w	1.5
+19	"|\n\\"
+2	
+0	
+w	1.75
+1	"Esc/Ctl"
+2	"A"
+3	"S"
+4	"D"
+5	"F"
+6	"G"
+7	
+a	0
+8	"H\n\n\n\n\n4\n\n\n\n\n\n<-"
+9	"J\n\n\n\n\n5\n\n\n\n\n\n\\/"
+10	"K\n\n\n\n\n6\n\n\n\n\n\n/\\"
+11	
+a	4
+12	"L\n\n\n\n->"
+13	":\n;"
+14	"\"\n'"
+15	
+w	2.25
+16	"Enter"
+3	
+0	
+w	2.25
+1	"Shift"
+2	"Z"
+3	"X"
+4	"C"
+5	"V"
+6	
+a	0
+7	"B\n\n\n\n\n0\n\n\n\n\n\nback"
+8	"N\n\n\n\n\n1"
+9	"M\n\n\n\n\n2"
+10	"<\n,\n\n\nVUp\n3"
+11	">\n.\n\n\nVDn"
+12	"?\n/\n\n\nMute"
+13	
+a	4
+w	2.75
+14	"Shift"
+4	
+0	
+a	0
+w	1.25
+1	"Ctrl\n\n\n\n\n->Num"
+2	
+a	4
+w	1.25
+3	"Tux"
+4	
+w	1.25
+5	"Alt"
+6	
+a	7
+w	6.25
+7	"Space\n\n\n\n->NaVim"
+8	
+a	0
+w	1.25
+9	"Fn\n\n\n\n->Fn"
+10	
+a	4
+w	1.25
+11	"Tux"
+12	
+w	1.25
+13	"Menu"
+14	
+w	1.25
+15	"Ctrl"
