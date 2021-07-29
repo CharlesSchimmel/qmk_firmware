@@ -10,16 +10,6 @@ extern keymap_config_t keymap_config;
 #define _LOWER 1
 #define _RAISE 2
 #define _FUNC 3
-// #define _GAME 4
-// #define _GAM1 5
-#define _ADJUST 16
-
-enum custom_keycodes {
-  BASE = SAFE_RANGE,
-  LOWER,
-  RAISE,
-  ADJUST,
-};
 
 // Mod Taps
 #define AL_ENT  RALT_T(KC_ENT)
@@ -28,8 +18,6 @@ enum custom_keycodes {
 #define AL_MINS RALT_T(KC_MINS)
 
 #define CT_ESC  CTL_T(KC_ESC)
-#define CT_ENT  RCTL_T(KC_ENT)
-#define CT_BSLS RCTL_T(KC_BSLS)
 #define CT_SLSH CTL_T(KC_SLSH)
 
 #define SH_BSP  MT(MOD_RSFT, KC_BSPC)
@@ -42,15 +30,8 @@ enum custom_keycodes {
 #define LW_ENT  LT(_LOWER, KC_ENT)
 #define RS_ENT  LT(_RAISE, KC_ENT)
 #define RS_SCLN LT(_RAISE, KC_SCLN)
-#define RS_SLSH LT(_RAISE, KC_SLSH)
 #define RS_Z    LT(_RAISE, KC_Z)
 #define FN_MNU  LT(_FUNC, KC_MENU)
-
-/*
-#define DF_GAME DF(_GAME)
-#define DF_BASE DF(_BASE)
-#define GM_Z    LT(_GAM1, KC_Z)
-*/
 
 // Mouse Aliases
 #define MS_BTN1 KC_MS_BTN1
@@ -71,6 +52,13 @@ enum custom_keycodes {
 // Tap Dance
 enum {
   TD_ALTAB = 0
+};
+
+enum custom_keycodes {
+  BASE = SAFE_RANGE,
+  LOWER,
+  RAISE,
+  ADJUST,
 };
 
 // "This key is pressed for this layer"
