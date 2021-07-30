@@ -170,7 +170,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           SEND_STRING(SS_DOWN(X_LALT));
           SEND_STRING(SS_TAP(X_F4));
           SEND_STRING(SS_UP(X_LALT));
-          return true; break; // want W-Q to still go through for twm setup
+          return false; break;
       }
     } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
       switch(keycode) {
