@@ -1,7 +1,6 @@
-# Ideas
-- [x] Macro: LGUI + hjkl act as LGUI + arrows to avoid having to hold space when
-  manipulating windows. Or LGUI + Shift to achieve parity with i3.
-    - Altered i3 layout to work with arrows
-- [x] Macro: LGUI + q = A-F4
-- [x] Macro: LGUI + L and C-A-Del 
-    - Assigned to FNC + q and w for lock and unlock
+# Some pain points
+- Ctl + ;z + hjkl to move around text is a pain.
+    - Maybe make q and v act as Ctl when on Raise?
+    - Yes, this worked great and it's easy to shift as well
+- Ctl + Shift + Tab to switch tabs is a pain
+    - Add another layer su
