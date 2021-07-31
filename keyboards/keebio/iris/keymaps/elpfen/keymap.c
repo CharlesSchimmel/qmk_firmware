@@ -139,26 +139,13 @@ bool lower_press = false;
 uint16_t alt_tab_timer = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
-  // if enter or space is pressed before lower, ignore it when lower is pressed
-  // delay the keycode sending until keyup to check if lower was pressed during that time
-  /* switch (keycode) { */
-  /*   case LOWER: */
-  /*     lower_press = record->event.pressed; */
-  /*     if (lower_press) { layer_on(_LOWER); } */
-  /*     else { layer_off(_LOWER); } */
-  /*     return false; // true or false for macros? */
-  /*   case KC_ENT: */
-  /*   case KC_SPC: */
-  /*     return !(record->event.pressed) && !lower_press; */
-  /* } */
-
   // on keydown
   if (record->event.pressed) {
 
     if ( get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
       switch(keycode) {
-        // windows/meta key activated macros for i3/XMonad parity :D
+       // move windows in Windows without holding Shift
+       //
         case KC_H :
           SEND_STRING(SS_TAP(X_LEFT));
           return false; break;
@@ -178,6 +165,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false; break;
       }
     } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
+      // volume buttons turn into media keys if they're pressed with shift
       switch(keycode) {
         case KC_VOLD :
           SEND_STRING(SS_TAP(X_MEDIA_PREV_TRACK));

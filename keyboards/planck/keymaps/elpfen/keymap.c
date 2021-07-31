@@ -26,20 +26,23 @@ enum planck_layers {
   _LOWER,
   _RAISE,
   _ADJUST,
-  _UTIL
+  _UTIL,
+  _QWERTY
+  _QNAV
 };
 
 enum planck_keycodes {
   DVORAK = SAFE_RANGE,
-  PLOVER,
+  QWERTY,
   BACKLIT,
-  EXT_PLV
 };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 
 #define AL_TAB  ALT_T(KC_GRV)
+#define AL_X LALT_T(KC_X)
+#define AL_DOT RALT_T(KC_DOT)
 
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS
@@ -53,37 +56,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | EsCtl|   A  |   O  |   E  |   U  |   I  |   D  |   H  |   T  |   N  |   S  |  Al- |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | ShTab|   ;  |   Q  |   J  |   K  |   X  |   B  |   M  |   W  |   V  |   Z  |ShBsp |
+ * | ShTab|  Rs; |  CtQ |   J  |   K  |   X  |   B  |   M  |   W  |  CtV |  RsZ |ShBsp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      | LGUI | LEnt | LSpc | RGUI | Menu |      |             |
+ * |      |      |      |      | LGUI | LEnt | LSpc | RGUI | Menu |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_DVORAK] = LAYOUT_planck_grid(
     AL_GRV,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,   KC_F,   KC_G,    KC_C,   KC_R,    KC_L,    CT_SLSH,
     CT_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,   KC_D,   KC_H,    KC_T,   KC_N,    KC_S,    AL_MINS,
-    SH_TAB,  RS_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,   KC_B,   KC_M,    KC_W,   KC_V,    RS_Z,    SH_BSP,
+    SH_TAB,  RS_SCLN, AL_Q,    KC_J,    KC_K,    KC_X,   KC_B,   KC_M,    KC_W,   AL_V,    RS_Z,    SH_BSP,
     _______, _______, _______, _______, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, KC_MNU, _______, _______, _______
 ),
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * | AlTab|   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Ct/  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * | EsCtl|   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  Al" |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * | ShTab|  RsZ |  CtX |   C  |   V  |   B  |   N  |   M  |   ,  |  Ct. |  Rs/ |ShBsp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * |      |      |      |      | LGUI | LEnt | LSpc | RGUI | Menu |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    AL_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    SH_TAB,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+   AL_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,    CT_SLSH,
+   CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,   KC_J,    KC_K,    KC_L,    KC_SCLN, AL_QUOT,
+   SH_TAB,  RS_Z,    AL_X,    KC_C,    KC_V,    KC_B,   KC_N,   KC_M,    KC_COMM, AL_DOT,  RS_SLSH, SH_BSP,
+   _______, _______, _______, _______, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, KC_MNU,  _______, _______, _______
 ),
 
-/* Lower
+/* Symbols
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -119,6 +122,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
+/*
+ * Need a different layer for QWERTY nav so that the Vim arrows are in the right place
+ * Everything else is the same.
+ */
+[_QNAV] = LAYOUT_planck_grid(
+   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  M_PST,   KC_INS,
+   _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_QUOT,
+   _______, OOOOOOO, _______, _______, _______, _______, _______, _______, _______, _______, OOOOOOO, SH_DEL,
+   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
  * |      | Lock | CAD  | CSE  |      |      |      |      |      |      |      |      |
@@ -150,36 +164,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_UTIL] = LAYOUT_planck_grid(
     _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK,  DVORAK,  PLOVER,  _______,
+    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  _______, _______, QWERTY,  _______,  DVORAK,  _______, _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 )
 };
 
-#ifdef AUDIO_ENABLE
-  float plover_song[][2]     = SONG(PLOVER_SOUND);
-  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-#endif
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  /* switch (keycode) { */
-    /* case DVORAK: */
-    /*   if (record->event.pressed) { */
-    /*     set_single_persistent_default_layer(_DVORAK); */
-    /*   } */
-    /*   return false; */
-    /*   break; */
-  /* } */
-  /* return true; */
   if (record->event.pressed) {
-
-    if ( get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
+    if (get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
+      // move windows in Windows without holding Shift
       switch(keycode) {
-        // windows/meta key activated macros for i3/XMonad parity :D
         case KC_H :
           SEND_STRING(SS_TAP(X_LEFT));
           return false; break;
@@ -199,6 +194,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false; break;
       }
     } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
+      // volume buttons turn into media keys if they're pressed with shift
       switch(keycode) {
         case KC_VOLD :
           SEND_STRING(SS_TAP(X_MEDIA_PREV_TRACK));
@@ -212,9 +208,94 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     }
 
-   // on keyup
+  // on keyup
   } else {
   }
+  return true;
+}
+
+#ifdef AUDIO_ENABLE
+  float plover_song[][2]     = SONG(PLOVER_SOUND);
+  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
+#endif
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case DVORAK:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_DVORAK);
+      }
+      return false;
+      break;
+    case BACKLIT:
+      if (record->event.pressed) {
+        register_code(KC_RSFT);
+        #ifdef BACKLIGHT_ENABLE
+          backlight_step();
+        #endif
+        #ifdef KEYBOARD_planck_rev5
+          writePinLow(E6);
+        #endif
+      } else {
+        unregister_code(KC_RSFT);
+        #ifdef KEYBOARD_planck_rev5
+          writePinHigh(E6);
+        #endif
+      }
+      return false;
+      break;
+  }
+
+  // on keydown
+  if (record->event.pressed) {
+    if (get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
+      // move windows in Windows without holding Shift
+      switch(keycode) {
+        case KC_H :
+          SEND_STRING(SS_TAP(X_LEFT));
+          return false; break;
+        case KC_J :
+          SEND_STRING(SS_TAP(X_DOWN));
+          return false; break;
+        case KC_K :
+          SEND_STRING(SS_TAP(X_UP));
+          return false; break;
+        case KC_L :
+          SEND_STRING(SS_TAP(X_RIGHT));
+          return false; break;
+        case KC_Q :
+          SEND_STRING(SS_DOWN(X_LALT));
+          SEND_STRING(SS_TAP(X_F4));
+          SEND_STRING(SS_UP(X_LALT));
+          return false; break;
+      }
+    } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
+      // volume buttons turn into media keys if they're pressed with shift
+      switch(keycode) {
+        case KC_VOLD :
+          SEND_STRING(SS_TAP(X_MEDIA_PREV_TRACK));
+          return false; break;
+        case KC_VOLU :
+          SEND_STRING(SS_TAP(X_MEDIA_NEXT_TRACK));
+          return false; break;
+        case KC_MUTE :
+          SEND_STRING(SS_TAP(X_MEDIA_PLAY_PAUSE));
+          return false; break;
+      }
+    }
+  // on keyup
+  } else { }
+
   return true;
 }
 
@@ -309,8 +390,6 @@ void matrix_scan_user(void) {
 #endif
 }
 
-/* if true, it will try to interpret the keycode as a note
- */
 bool music_mask_user(uint16_t keycode) {
   switch (keycode) {
     case RAISE:
