@@ -23,19 +23,6 @@
 #undef V60_POLESTAR
 #endif
 
-// Have to hold space (or whatever MO(<layer>) or MT() ) key for 200ms before shifting
-#define TAPPING_TERM 175
-
-// If the second key in a chord is pressed after the modifier key is released, ignore it, even if it's inside the tapping term
-// Fewer dropped keypresses, but more dropped chords
-// #define IGNORE_MOD_TAP_INTERRUPT
-
-// Always tap if another key wasn't pressed.
-// #define RETRO_TAPPING
-
-// This makes it easier for fast typists to use dual-function keys. Without this, if you let go of a held key inside the tapping term, it won't register.
-#define PERMISSIVE_HOLD
-
 // For KC_GESC - ignore grave escape when those modifiers pressed.
 #define GRAVE_ESC_ALT_OVERRIDE
 #define GRAVE_ESC_CTRL_OVERRIDE
