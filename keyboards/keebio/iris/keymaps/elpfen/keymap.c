@@ -103,7 +103,7 @@ void SCLN_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 void ZMO_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_layer_lock_finished(state, KC_Z, _NAV, &nav_lock);
+    td_layer_lock_finished(state, KC_Z, _NAV);
 }
 
 void nav_lock_reset(qk_tap_dance_state_t *state, void *user_data) {
