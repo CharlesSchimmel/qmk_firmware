@@ -54,7 +54,7 @@ void Z_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 void nav_lock_reset(qk_tap_dance_state_t *state, void *user_data) {
-    td_layer_lock_reset(state, &nav_lock, _NAV);
+    td_layer_lock_reset(state, nav_lock, _NAV);
 }
 ```
 
@@ -85,3 +85,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 ```
 
 And you should be good to go!
+
+## Details
+We need to use a tap-dance to create our mod-tap so that we can catch the keyup 
+of the held key. Otherwise there's no way to tell it to not shift out of layer 
+on keyup.
