@@ -19,7 +19,8 @@ enum {
 enum custom_keycodes {
   BASE = SAFE_RANGE,
   X_LOCK,
-  L_NAV
+  L_NAV,
+  M_SIMPL
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -34,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    SH_TAB,  MO_NAV,  AL_Q,    KC_J,    KC_K,    KC_X,    KC_LGUI,          KC_RGUI, KC_B,    KC_M,    KC_W,    AL_V,    MO_NAV,  SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  KC_MENU, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
+                                  M_SIMPL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
   ),
@@ -100,14 +101,11 @@ static bool lock_flag = false;
  */
 bool lock_NAV(uint16_t keycode, keyrecord_t *record) {
     if (keycode != L_NAV || !record->event.pressed) return true;
-    tap_code(KC_X);
 
     if (lock_flag) {
         layer_off(_NAV);
-        tap_code(KC_Y);
         lock_flag = false;
     } else {
-        tap_code(KC_N);
         lock_flag = true;
     }
 
@@ -115,10 +113,10 @@ bool lock_NAV(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  return vim_windows_movement(keycode, record)
-    || dual_purpose_volume_keys(keycode, record)
-    || lock_NAV(keycode, record)
-    || true;
+    return vim_windows_movement(keycode, record)
+        && dual_purpose_volume_keys(keycode, record)
+        && lock_NAV(keycode, record)
+        && true;
 }
 
 // Define a type for as many tap dance states as you need
@@ -167,11 +165,27 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_HOLD:
             layer_on(_NAV);
             break;
-        case TD_DOUBLE_TAP:
         default:
             break;
     }
 }
+
+/* void ql_finished_for(uint16_t keycode, uint16_t layer) { */
+/*     void custom(qk_tap_dance_state_t *state, void *user_data) { */
+/*     ql_tap_state.state = cur_dance(state); */
+/*     switch (ql_tap_state.state) { */
+/*         case TD_SINGLE_TAP: */
+/*             tap_code(keycode); */
+/*             break; */
+/*         case TD_SINGLE_HOLD: */
+/*             layer_on(layer); */
+/*             break; */
+/*         default: */
+/*             break; */
+/*     } */
+/*     } */
+/*     return void */ 
+/* } */
 
 void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
     // If the key was held down and now is released then switch off the layer
