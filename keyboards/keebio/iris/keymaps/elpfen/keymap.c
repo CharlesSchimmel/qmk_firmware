@@ -8,8 +8,7 @@ enum layers {
     _FUNC
 };
 
-// Tap Dance Declarations
-enum {
+enum tap_dances {
   TD_VIM_G = 0,
   TD_ZMO_NAV,
   TD_SCLNMO_NAV
@@ -36,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    SH_TAB,  CLN_NAV, AL_Q,    KC_J,    KC_K,    KC_X,    KC_LGUI,          KC_RGUI, KC_B,    KC_M,    KC_W,    AL_V,    Z_NAV,   SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  KC_MENU, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
+                                  KC_APP,  KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
   ),
