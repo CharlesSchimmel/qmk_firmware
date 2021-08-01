@@ -2,7 +2,6 @@
 #include "action.h"
 #include "elpfen.h"
 
-
 bool dual_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
   // ignore keyup
   if (!record->event.pressed) return true;
