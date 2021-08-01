@@ -18,18 +18,18 @@
 #include "muse.h"
 #include "elpfen.h"
 
-#define _SYM _LOWER
-#define _NAV _RAISE
+#define _SYM _SYM
+#define _NAV _NAV
 #define _FNC _ADJUST
 
 enum planck_layers {
   _DVORAK,
-  _LOWER,
-  _RAISE,
-  _ADJUST,
+  _SYM,
+  _NAV,
   _UTIL,
   _QWERTY
-  _QNAV
+  _QNAV,
+  _ADJUST,
 };
 
 enum planck_keycodes {
@@ -38,8 +38,8 @@ enum planck_keycodes {
   BACKLIT,
 };
 
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
+#define LOWER MO(_SYM)
+#define RAISE MO(_NAV)
 
 #define AL_TAB  ALT_T(KC_GRV)
 #define AL_X LALT_T(KC_X)
@@ -216,24 +216,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 // ADJUST never works right for me.
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/*   return update_tri_layer_state(state, _SYM, _NAV, _ADJUST); */
+/* } */
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_macros(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
       }
       return false;
-      break;
     case DVORAK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_DVORAK);
       }
       return false;
-      break;
     case BACKLIT:
       if (record->event.pressed) {
         register_code(KC_RSFT);
@@ -250,50 +248,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #endif
       }
       return false;
-      break;
   }
 
-  // on keydown
-  if (record->event.pressed) {
-    if (get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
-      // move windows in Windows without holding Shift
-      switch(keycode) {
-        case KC_H :
-          SEND_STRING(SS_TAP(X_LEFT));
-          return false; break;
-        case KC_J :
-          SEND_STRING(SS_TAP(X_DOWN));
-          return false; break;
-        case KC_K :
-          SEND_STRING(SS_TAP(X_UP));
-          return false; break;
-        case KC_L :
-          SEND_STRING(SS_TAP(X_RIGHT));
-          return false; break;
-        case KC_Q :
-          SEND_STRING(SS_DOWN(X_LALT));
-          SEND_STRING(SS_TAP(X_F4));
-          SEND_STRING(SS_UP(X_LALT));
-          return false; break;
-      }
-    } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
-      // volume buttons turn into media keys if they're pressed with shift
-      switch(keycode) {
-        case KC_VOLD :
-          SEND_STRING(SS_TAP(X_MEDIA_PREV_TRACK));
-          return false; break;
-        case KC_VOLU :
-          SEND_STRING(SS_TAP(X_MEDIA_NEXT_TRACK));
-          return false; break;
-        case KC_MUTE :
-          SEND_STRING(SS_TAP(X_MEDIA_PLAY_PAUSE));
-          return false; break;
-      }
-    }
-  // on keyup
-  } else { }
-
   return true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  return vim_windows_movement(keycode, record)
+      || dual_purpose_volume_keys(keycode, record)
+      || process_macros(keycode, record)
+      || true;
 }
 
 bool muse_mode = false;
@@ -304,7 +268,7 @@ uint16_t muse_tempo = 50;
 
 bool encoder_update(bool clockwise) {
   if (muse_mode) {
-    if (IS_LAYER_ON(_RAISE)) {
+    if (IS_LAYER_ON(_NAV)) {
       if (clockwise) {
         muse_offset++;
       } else {

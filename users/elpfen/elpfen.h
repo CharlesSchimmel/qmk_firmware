@@ -2,12 +2,11 @@
 #define USERSPACE
 
 #include "quantum.h"
-#endif
 
-#define _BASE 0
-#define _LOWER 1
-#define _RAISE 2
-#define _FUNC 3
+/*
+ * _SYM, NAV, and _FUNC need to be defined in the individual
+ * keyboard file
+ */
 
 // Mod Taps
 #define AL_ENT  RALT_T(KC_ENT)
@@ -28,11 +27,11 @@
 #define SH_ENT  MT(MOD_LSFT, KC_ENT)
 
 // Layer Taps
-#define LW_SPC  LT(_LOWER, KC_SPC)
-#define LW_ENT  LT(_LOWER, KC_ENT)
-#define RS_ENT  LT(_RAISE, KC_ENT)
-#define RS_SCLN LT(_RAISE, KC_SCLN)
-#define RS_Z    LT(_RAISE, KC_Z)
+#define LW_SPC  LT(_SYM, KC_SPC)
+#define LW_ENT  LT(_SYM, KC_ENT)
+#define RS_ENT  LT(_NAV, KC_ENT)
+#define RS_SCLN LT(_NAV, KC_SCLN)
+#define RS_Z    LT(_NAV, KC_Z)
 #define FN_MNU  LT(_FUNC, KC_MENU)
 
 // Mouse Aliases
@@ -52,3 +51,8 @@
 #define M_PST LSFT(KC_INS)
 #define M_SHTAB LSFT(KC_TAB)
 
+
+bool vim_windows_movement(uint16_t, keyrecord_t*);
+bool dual_purpose_volume_keys(uint16_t, keyrecord_t*);
+
+#endif

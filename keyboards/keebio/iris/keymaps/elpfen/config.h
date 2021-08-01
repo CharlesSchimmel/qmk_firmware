@@ -48,8 +48,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // This makes it easier for fast typists to use dual-function keys. Without this, if you let go of a held key inside the tapping term, it won't register.
 #define PERMISSIVE_HOLD
-
-// For KC_GESC - ignore grave escape when those modifiers pressed.
-#define GRAVE_ESC_ALT_OVERRIDE
-#define GRAVE_ESC_CTRL_OVERRIDE
-#define GRAVE_ESC_GUI_OVERRIDE

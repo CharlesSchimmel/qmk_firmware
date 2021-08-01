@@ -1,9 +1,13 @@
-#include "elpfen.h"
 #include "quantum.h"
 #include "action.h"
+#include "elpfen.h"
 
 
-bool dual_purpose_volume_keys(uint16_t keycode) {
+bool dual_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
+  // ignore keyup
+  if (!record->event.pressed) return true;
+
+  // use the VOL keys as media keys as well
   if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
     switch(keycode) {
       case KC_VOLD :
@@ -21,7 +25,10 @@ bool dual_purpose_volume_keys(uint16_t keycode) {
 }
 
 
-bool vim_windows_movement(uint16_t keycode) {
+bool vim_windows_movement(uint16_t keycode, keyrecord_t *record) {
+  // ignore keyup
+  if (!record->event.pressed) return true;
+
   // move and close windows in Windows using vim keys (WIN+HJKL)
   if (get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
     switch(keycode) {
