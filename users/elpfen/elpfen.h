@@ -14,9 +14,13 @@
 #define AL_TAB  ALT_T(KC_TAB)
 #define AL_QUOT RALT_T(KC_QUOT)
 #define AL_MINS RALT_T(KC_MINS)
+#define AL_Q LALT_T(KC_Q)
+#define AL_V RALT_T(KC_V)
 
 #define CT_ESC  CTL_T(KC_ESC)
 #define CT_SLSH CTL_T(KC_SLSH)
+#define CT_BSLS CTL_T(KC_BSLS)
+#define CT_MINS CTL_T(KC_MINS)
 
 #define SH_BSP  MT(MOD_RSFT, KC_BSPC)
 #define SH_DEL  MT(MOD_RSFT, KC_DEL)
@@ -46,4 +50,5 @@
 #define M_CAD LCA(KC_DEL)
 #define M_CSE LCTL(LSFT(KC_ESC))
 #define M_PST LSFT(KC_INS)
+#define M_SHTAB LSFT(KC_TAB)
 

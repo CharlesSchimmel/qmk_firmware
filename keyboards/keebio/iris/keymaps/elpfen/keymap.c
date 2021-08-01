@@ -1,69 +1,22 @@
-/* Notes:
- * Pressing both thumb keys on left thumb sends only upper key,
- * so true "adjust" layer doesn't work.
- */
 #include QMK_KEYBOARD_H
 
-extern keymap_config_t keymap_config;
+// /users/elpfen/elpfen.{h,c}
+#include "elpfen.h"
 
-#define _BASE 0
-#define _LOWER 1
-#define _RAISE 2
-#define _FUNC 3
-
-// Mod Taps
-#define AL_ENT  RALT_T(KC_ENT)
-#define AL_TAB  ALT_T(KC_TAB)
-#define AL_QUOT RALT_T(KC_QUOT)
-#define AL_MINS RALT_T(KC_MINS)
-#define AL_Q LALT_T(KC_Q)
-#define AL_V RALT_T(KC_V)
-
-#define CT_ESC  CTL_T(KC_ESC)
-#define CT_SLSH CTL_T(KC_SLSH)
-#define CT_BSLS CTL_T(KC_BSLS)
-#define CT_MINS CTL_T(KC_MINS)
-
-#define SH_BSP  MT(MOD_RSFT, KC_BSPC)
-#define SH_DEL  MT(MOD_RSFT, KC_DEL)
-#define SH_TAB  MT(MOD_LSFT, KC_TAB)
-#define SH_ENT  MT(MOD_LSFT, KC_ENT)
-
-// Layer Taps
-#define LW_SPC  LT(_LOWER, KC_SPC)
-#define LW_ENT  LT(_LOWER, KC_ENT)
-#define RS_ENT  LT(_RAISE, KC_ENT)
-#define RS_SCLN LT(_RAISE, KC_SCLN)
-#define RS_Z    LT(_RAISE, KC_Z)
-#define FN_MNU  LT(_FUNC, KC_MENU)
-
-// Mouse Aliases
-#define MS_BTN1 KC_MS_BTN1
-#define MS_BTN2 KC_MS_BTN2
-#define MS_DOWN KC_MS_DOWN
-#define MS_LEFT KC_MS_LEFT
-#define MS_RGHT KC_MS_RIGHT
-#define MS_UP KC_MS_UP
-#define MS_WDWN KC_MS_WH_DOWN
-#define MS_WUP KC_MS_WH_UP
-
-// Quick Macros
-#define M_LOK LGUI(KC_L)
-#define M_CAD LCA(KC_DEL)
-#define M_CSE LCTL(LSFT(KC_ESC))
-#define M_PST LSFT(KC_INS)
-#define M_SHTAB LSFT(KC_TAB)
-
-// Tap Dance
+// Tap Dance Declarations
 enum {
-  TD_ALTAB = 0
+  TD_NAV_LOK = 0
 };
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  // when double tapped, lock in the nav layer
+  [TD_NAV_LOK] = ACTION_TAP_DANCE_DOUBLE(KC_TRNS, TG(_NAV))
+};
+
+#define TD_NLOK TD(TD_NAV_LOK)
 
 enum custom_keycodes {
   BASE = SAFE_RANGE,
-  LOWER,
-  RAISE,
-  ADJUST,
 };
 
 // "This key is pressed for this layer"
@@ -111,8 +64,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______,                            _______, KC_LEFT, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, OOOOOOO, KC_LCTL, KC_DOWN, KC_UP,   _______, _______,          _______, _______, _______, _______, KC_RCTL, OOOOOOO, SH_DEL,
-//└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+   _______, TD_NLOK, KC_LCTL, KC_DOWN, KC_UP,   _______, _______,          _______, _______, _______, _______, KC_RCTL, TD_NLOK, SH_DEL,
+//└────────┴oooooooo┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴oooooooo┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
@@ -135,70 +88,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-bool lower_press = false;
-uint16_t alt_tab_timer = 0;
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // on keydown
   if (record->event.pressed) {
-
-    if ( get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
-      switch(keycode) {
-       // move windows in Windows without holding Shift
-       //
-        case KC_H :
-          SEND_STRING(SS_TAP(X_LEFT));
-          return false; break;
-        case KC_J :
-          SEND_STRING(SS_TAP(X_DOWN));
-          return false; break;
-        case KC_K :
-          SEND_STRING(SS_TAP(X_UP));
-          return false; break;
-        case KC_L :
-          SEND_STRING(SS_TAP(X_RIGHT));
-          return false; break;
-        case KC_Q :
-          SEND_STRING(SS_DOWN(X_LALT));
-          SEND_STRING(SS_TAP(X_F4));
-          SEND_STRING(SS_UP(X_LALT));
-          return false; break;
-      }
-    } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
-      // volume buttons turn into media keys if they're pressed with shift
-      switch(keycode) {
-        case KC_VOLD :
-          SEND_STRING(SS_TAP(X_MEDIA_PREV_TRACK));
-          return false; break;
-        case KC_VOLU :
-          SEND_STRING(SS_TAP(X_MEDIA_NEXT_TRACK));
-          return false; break;
-        case KC_MUTE :
-          SEND_STRING(SS_TAP(X_MEDIA_PLAY_PAUSE));
-          return false; break;
-      }
-    }
-
-   // on keyup
+    return vim_windows_movement(keycode) || dual_purpose_volume_keys(keycode) || true;
+  // on keyup
   } else {
   }
+
   return true;
 }
-
-/* void td_atab_fn(qk_tap_dance_state_t *state, void *user_data) { */
-/*   if (state-> count == 1) { */
-/*     SEND_STRING(SS_DOWN(X_LALT)); */
-/*     SEND_STRING(SS_TAP(X_TAB)); */
-/*   } else { */
-/*     SEND_STRING(SS_TAP(X_TAB)); */
-/*   } */
-/* } */
-
-/* void td_atab_done_fn(qk_tap_dance_state_t *state, void *user_data) { */
-/*   SEND_STRING(SS_UP(X_LALT)); */
-/* } */
-
-/* qk_tap_dance_action_t tap_dance_actions[] = { */
-/*   [TD_ALTAB] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(td_atab_fn, td_atab_done_fn, NULL, 300) */
-/* }; */
-
