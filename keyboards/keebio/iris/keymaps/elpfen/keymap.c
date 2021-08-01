@@ -100,7 +100,7 @@ bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
 }
 
 void SCLN_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_layer_lock_finished(state, KC_SCLN, _NAV, &nav_lock);
+    td_layer_lock_finished(state, KC_SCLN, _NAV);
 }
 
 void ZMO_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
@@ -115,6 +115,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   // act (sort of) like G in vim: single tap (instead of shift) for END, double
   // tap for HOME. This assumes that systems will interpret C+HOME as "start of file"
   [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME)),
+  // set up Mod-Taps and layer locks 
   [TD_ZMO_NAV] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, ZMO_NAV_finished, nav_lock_reset, 100),
   [TD_SCLNMO_NAV] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, SCLN_NAV_finished, nav_lock_reset, 100)
 };

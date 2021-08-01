@@ -41,7 +41,7 @@ static td_tap_t ql_tap_state = {
     .state = TD_NONE,
 };
 
-void td_layer_lock_finished(qk_tap_dance_state_t *state, uint16_t keycode, uint16_t layer, bool *lock_flag) {
+void td_layer_lock_finished(qk_tap_dance_state_t *state, uint16_t keycode, uint16_t layer) {
     ql_tap_state.state = cur_dance(state);
     switch (ql_tap_state.state) {
         case TD_SINGLE_TAP:
