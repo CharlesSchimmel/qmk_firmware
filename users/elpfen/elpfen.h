@@ -51,6 +51,9 @@
 #define M_PST LSFT(KC_INS)
 #define M_SHTAB LSFT(KC_TAB)
 
+// "This key is pressed for this layer"
+#define OOOOOOO KC_TRNS
+
 
 bool vim_windows_movement(uint16_t, keyrecord_t*);
 bool dual_purpose_volume_keys(uint16_t, keyrecord_t*);

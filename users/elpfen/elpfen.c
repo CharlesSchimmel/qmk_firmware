@@ -50,11 +50,13 @@ bool vim_windows_movement(uint16_t keycode, keyrecord_t *record) {
 
       case KC_Q :
         send_alt_f4();
-        return false;
+        return true;
 
       case KC_C :
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
           send_alt_f4();
+          // still want win-shift-c to get sent when using this keyboard with
+          // xmonad/i3
           return false;
         }
     }
