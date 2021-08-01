@@ -53,16 +53,19 @@ bool vim_windows_movement(uint16_t keycode, keyrecord_t *record) {
         return false;
 
       case KC_C :
-        if (getmods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
           send_alt_f4();
           return false;
+        }
     }
   }
   return true;
 }
 
-void send_alt_f4() {
+void send_alt_f4(void) {
   SEND_STRING(SS_DOWN(X_LALT));
   SEND_STRING(SS_TAP(X_F4));
   SEND_STRING(SS_UP(X_LALT));
 }
+
+

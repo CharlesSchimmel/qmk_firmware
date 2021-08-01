@@ -54,5 +54,6 @@
 
 bool vim_windows_movement(uint16_t, keyrecord_t*);
 bool dual_purpose_volume_keys(uint16_t, keyrecord_t*);
+void send_alt_f4(void);
 
 #endif
