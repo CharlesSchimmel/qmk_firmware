@@ -1,7 +1,15 @@
 # Overview
 Sometimes it would be nice to be able to toggle or "lock in" a layer that you 
-usually hold with LT(_LAYER, KC_KEY). This will set up a tap-dance that will act 
-as your layer-tap and a macro that will lock in your current layer.
+usually hold with `LT(_LAYER, KC_KEY)`. This will set up a tap-dance that will 
+act as your layer-tap and a macro that will lock in your current layer.
+
+In other words:
+- When the layer-tap is tapped, it will tap the regular key.
+- When the layer-tap is held, it will shift into your other layer.
+- When layer-tap is held and the macro is pressed, it will "lock in" the layer 
+    allowing you to release your layer-tap and continue using the layer. When 
+    the macro is pressed again, it will "unlock" the layer and return to the 
+    previous layer.
 
 # How To Use
 First, either link to `td_layer_lock.h` or copy the contents of 
