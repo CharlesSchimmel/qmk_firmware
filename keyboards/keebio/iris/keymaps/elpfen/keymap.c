@@ -170,23 +170,6 @@ void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-/* void ql_finished_for(uint16_t keycode, uint16_t layer) { */
-/*     void custom(qk_tap_dance_state_t *state, void *user_data) { */
-/*     ql_tap_state.state = cur_dance(state); */
-/*     switch (ql_tap_state.state) { */
-/*         case TD_SINGLE_TAP: */
-/*             tap_code(keycode); */
-/*             break; */
-/*         case TD_SINGLE_HOLD: */
-/*             layer_on(layer); */
-/*             break; */
-/*         default: */
-/*             break; */
-/*     } */
-/*     } */
-/*     return void */ 
-/* } */
-
 void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
     // If the key was held down and now is released then switch off the layer
     if (ql_tap_state.state == TD_SINGLE_HOLD && !lock_flag) {
