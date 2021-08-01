@@ -11,16 +11,17 @@ enum layers {
 // Tap Dance Declarations
 enum {
   TD_VIM_G = 0,
-  TD_MO_NAV
+  TD_ZMO_NAV,
+  TD_SCLNMO_NAV
 };
 #define TD_VIMG TD(TD_VIM_G)
-#define MO_NAV TD(TD_MO_NAV)
+#define Z_NAV TD(TD_ZMO_NAV)
+#define CLN_NAV TD(TD_SCLNMO_NAV)
 
 enum custom_keycodes {
   BASE = SAFE_RANGE,
   X_LOCK,
   L_NAV,
-  M_SIMPL
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -33,9 +34,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    CT_MINS,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_TAB,  MO_NAV,  AL_Q,    KC_J,    KC_K,    KC_X,    KC_LGUI,          KC_RGUI, KC_B,    KC_M,    KC_W,    AL_V,    MO_NAV,  SH_BSP,
+   SH_TAB,  CLN_NAV, AL_Q,    KC_J,    KC_K,    KC_X,    KC_LGUI,          KC_RGUI, KC_B,    KC_M,    KC_W,    AL_V,    Z_NAV,   SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  M_SIMPL, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
+                                  KC_MENU, KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
   ),
@@ -89,33 +90,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-static bool lock_flag = false;
+static bool nav_lock = false;
 
-/* On L_NAV keydown
- *     if _NAV is the current layer, toggle lock
- *     otherwise, turn _NAV on
- * On L_NAV keyup
- *     if the lock is set, ignore
- *     otherwise, turn _NAV off
- * roughly based on <https://github.com/qmk/qmk_firmware/blob/master/users/bbaserdem/bbaserdem.c#L270>
- */
-bool lock_NAV(uint16_t keycode, keyrecord_t *record) {
-    if (keycode != L_NAV || !record->event.pressed) return true;
+bool m_lock_layer(uint16_t current_keycode, keyrecord_t *record, bool *lock_flag, uint16_t target_keycode, uint16_t layer) {
+    if (current_keycode != target_keycode || !record->event.pressed) return true;
 
     if (lock_flag) {
-        layer_off(_NAV);
-        lock_flag = false;
+        layer_off(layer);
+        *lock_flag = false;
     } else {
-        lock_flag = true;
+        *lock_flag = true;
     }
 
     return false;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return vim_windows_movement(keycode, record)
-        && dual_purpose_volume_keys(keycode, record)
-        && lock_NAV(keycode, record)
+bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
+    return vim_windows_movement(current_keycode, record)
+        && dual_purpose_volume_keys(current_keycode, record)
+        && m_lock_layer(current_keycode, record, &nav_lock, L_NAV, _NAV)
         && true;
 }
 
@@ -133,14 +126,6 @@ typedef struct {
     bool lock_state;
 } td_tap_t;
 
-// Declare the functions to be used with your tap dance key(s)
-// Function associated with all tap dances
-td_state_t cur_dance(qk_tap_dance_state_t *state);
-
-// Functions associated with individual tap dances
-void ql_finished(qk_tap_dance_state_t *state, void *user_data);
-void ql_reset(qk_tap_dance_state_t *state, void *user_data);
-
 // Determine the current tap dance state
 td_state_t cur_dance(qk_tap_dance_state_t *state) {
     if (state->count == 1) {
@@ -155,33 +140,42 @@ static td_tap_t ql_tap_state = {
     .state = TD_NONE,
 };
 
-// Functions that control what our tap dance key does
-void ql_finished(qk_tap_dance_state_t *state, void *user_data) {
-    ql_tap_state.state = cur_dance(state);
-    switch (ql_tap_state.state) {
+void td_layer_lock_finished(qk_tap_dance_state_t *state, uint16_t keycode, uint16_t layer) {
+    switch (cur_dance(state)) {
         case TD_SINGLE_TAP:
-            tap_code(KC_Z);
+            tap_code(keycode);
             break;
         case TD_SINGLE_HOLD:
-            layer_on(_NAV);
+            layer_on(layer);
             break;
-        default:
-            break;
+        default: break;
     }
 }
 
-void ql_reset(qk_tap_dance_state_t *state, void *user_data) {
-    // If the key was held down and now is released then switch off the layer
-    if (ql_tap_state.state == TD_SINGLE_HOLD && !lock_flag) {
-        layer_off(_NAV);
+void SCLN_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_layer_lock_finished(state, KC_SCLN, _NAV);
+}
+
+void ZMO_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_layer_lock_finished(state, KC_Z, _NAV);
+}
+
+void td_layer_lock_reset(qk_tap_dance_state_t *state, bool flag, uint16_t layer) {
+    if (ql_tap_state.state == TD_SINGLE_HOLD && !flag) {
+        layer_off(layer);
     }
     ql_tap_state.state = TD_NONE;
+}
+
+void nav_lock_reset(qk_tap_dance_state_t *state, void *user_data) {
+    td_layer_lock_reset(state, nav_lock, _NAV);
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   // act (sort of) like G in vim: single tap (instead of shift) for END, double
   // tap for HOME. This assumes that systems will interpret C+HOME as "start of file"
   [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME)),
-  [TD_MO_NAV] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ql_finished, ql_reset)
+  [TD_ZMO_NAV] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, ZMO_NAV_finished, nav_lock_reset, 100),
+  [TD_SCLNMO_NAV] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, SCLN_NAV_finished, nav_lock_reset, 100)
 };
 
