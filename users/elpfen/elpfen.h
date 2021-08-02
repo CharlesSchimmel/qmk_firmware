@@ -33,7 +33,7 @@
 #define RS_ENT  LT(_NAV, KC_ENT)
 #define RS_SCLN LT(_NAV, KC_SCLN)
 #define RS_Z    LT(_NAV, KC_Z)
-#define FN_MNU  LT(_FUNC, KC_APP)
+#define FN_MNU  LT(_FNC, KC_APP)
 
 // Mouse Aliases
 #define MS_BTN1 KC_MS_BTN1

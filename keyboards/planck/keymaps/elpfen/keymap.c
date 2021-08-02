@@ -1,4 +1,4 @@
-/* Copyright 2015-2017 Jack Humbert
+/* Copyright 2021 elpfen
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,6 @@
 #include QMK_KEYBOARD_H
 #include "muse.h"
 #include "elpfen.h"
-
-#define _SYM _SYM
-#define _NAV _NAV
-#define _FNC _ADJUST
 
 enum planck_layers {
   _DVORAK,
@@ -63,10 +59,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_DVORAK] = LAYOUT_planck_grid(
-    AL_GRV,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,   KC_F,   KC_G,    KC_C,   KC_R,    KC_L,    CT_SLSH,
-    CT_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,   KC_D,   KC_H,    KC_T,   KC_N,    KC_S,    AL_MINS,
-    SH_TAB,  RS_SCLN, AL_Q,    KC_J,    KC_K,    KC_X,   KC_B,   KC_M,    KC_W,   AL_V,    RS_Z,    SH_BSP,
-    _______, _______, _______, _______, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, KC_MNU, _______, _______, _______
+    AL_GRV,  KC_QUOT, KC_COMM, KC_DOT,    KC_P,    KC_Y,   KC_F,   KC_G,    KC_C,   KC_R,    KC_L,    CT_SLSH,
+    CT_ESC,  KC_A,    KC_O,    KC_E,      KC_U,    KC_I,   KC_D,   KC_H,    KC_T,   KC_N,    KC_S,    AL_MINS,
+    SH_TAB,  RS_SCLN, AL_Q,    KC_J,      KC_K,    KC_X,   KC_B,   KC_M,    KC_W,   AL_V,    RS_Z,    SH_BSP,
+    _______, _______, _______, TG(_UTIL), KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, FN_MNU, _______, _______, _______
 ),
 
 /* Qwerty
@@ -87,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, _______, _______, _______, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, KC_MNU,  _______, _______, _______
 ),
 
-/* Symbols
+/* SYMbols
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -105,15 +101,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, OOOOOOO, OOOOOOO, _______, _______, _______, _______, _______
 ),
 
-/* Raise
+/* NAVigation
  * ,-----------------------------------------------------------------------------------.
- * |      | MwUp |      | MUp  |      |      | Home | PgDn | PgUp | End  |  ->  | Ins  |
+ * |      | MwUp |  M1  | MUp  |  M2  |      | Home | PgDn | PgUp | End  |  ->  | Ins  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      | MwDn | MLft | MDn  | MRht |      |      |  <-  |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      | OOOO |      | ArDn | ArUp |      |      |      |      |      | OOOO | Del  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      | Mute | VlDn | VlUp | Play |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_NAV] = LAYOUT_planck_grid(
@@ -123,9 +119,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
-/*
+/* QWERTY Nav
  * Need a different layer for QWERTY nav so that the Vim arrows are in the right place
  * Everything else is the same.
+ * ,-----------------------------------------------------------------------------------.
+ * |      | MwUp |  M1  | MUp  |  M2  |      | Home | PgDn | PgUp | End  |  Pst | Ins  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | MwDn | MLft | MDn  | MRht |      |  <-  |  Dn  |  Up  |  ->  |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | OOOO |      |      |      |      |      |      |      |      | OOOO | Del  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
  */
 [_QNAV] = LAYOUT_planck_grid(
    _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  M_PST,   KC_INS,
@@ -134,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
-/* Adjust (Lower + Raise)
+/* FNCtions
  * ,-----------------------------------------------------------------------------------.
  * |      | Lock | CAD  | CSE  |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -142,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |VolDn |VolUp | Mute |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_FNC] = LAYOUT_planck_grid(
@@ -164,61 +169,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_UTIL] = LAYOUT_planck_grid(
-    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  _______, _______, QWERTY,  _______,  DVORAK,  _______, _______,
-    _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
+    _______, RESET,   DEBUG,   RGB_TOG,   RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL,
+    _______, _______, MU_MOD,  AU_ON,     AU_OFF,  _______, _______, QWERTY,  _______,  DVORAK,  _______, _______,
+    _______, MUV_DE,  MUV_IN,  MU_ON,     MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
+    _______, _______, _______, TG(_UTIL), _______, _______, _______, _______, _______,  _______, _______, _______
 )
+
 };
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    if (get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI)) {
-      // move windows in Windows without holding Shift
-      switch(keycode) {
-        case KC_H :
-          SEND_STRING(SS_TAP(X_LEFT));
-          return false; break;
-        case KC_J :
-          SEND_STRING(SS_TAP(X_DOWN));
-          return false; break;
-        case KC_K :
-          SEND_STRING(SS_TAP(X_UP));
-          return false; break;
-        case KC_L :
-          SEND_STRING(SS_TAP(X_RIGHT));
-          return false; break;
-        case KC_Q :
-          SEND_STRING(SS_DOWN(X_LALT));
-          SEND_STRING(SS_TAP(X_F4));
-          SEND_STRING(SS_UP(X_LALT));
-          return false; break;
-      }
-    } else if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT) ) {
-      // volume buttons turn into media keys if they're pressed with shift
-      switch(keycode) {
-        case KC_VOLD :
-          SEND_STRING(SS_TAP(X_MEDIA_PREV_TRACK));
-          return false; break;
-        case KC_VOLU :
-          SEND_STRING(SS_TAP(X_MEDIA_NEXT_TRACK));
-          return false; break;
-        case KC_MUTE :
-          SEND_STRING(SS_TAP(X_MEDIA_PLAY_PAUSE));
-          return false; break;
-      }
-    }
-
-  // on keyup
-  } else {
-  }
-  return true;
-}
-
-// ADJUST never works right for me.
-/* layer_state_t layer_state_set_user(layer_state_t state) { */
-/*   return update_tri_layer_state(state, _SYM, _NAV, _ADJUST); */
-/* } */
 
 bool process_macros(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -255,10 +212,15 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return vim_windows_movement(keycode, record)
-      || dual_purpose_volume_keys(keycode, record)
-      || process_macros(keycode, record)
-      || true;
+      && dual_purpose_volume_keys(keycode, record)
+      && process_macros(keycode, record)
+      && true;
 }
+
+// ADJUST never works right for me.
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/*   return update_tri_layer_state(state, _SYM, _NAV, _ADJUST); */
+/* } */
 
 bool muse_mode = false;
 uint8_t last_muse_note = 0;

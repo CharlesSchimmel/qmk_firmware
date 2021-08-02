@@ -23,7 +23,7 @@
 // LAYER DEFs
 #define _DEF 0
 #define _NAV 1
-#define _FUNC 2
+#define _FNC 2
 #define _SYM 3
 
 // Mod Taps
@@ -128,7 +128,7 @@ _____, _____,  _____,   _____,   _____,   _____, _____,   _____
    * |    |    |    |                        |XXXX|    |    |    |
    * `-----------------------------------------------------------'
    */
-  [_FUNC] = LAYOUT_60_ansi(
+  [_FNC] = LAYOUT_60_ansi(
 KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL, \
 _____,  M_LOK, M_CAD, M_CSE, _____, _____, _____, _____, _____,   _____,   KC_MPLY, KC_MPRV, KC_MNXT, _____,  \
 _____,  _____, _____, _____, _____, _____, _____, _____, _____,   _____,   _____,   _____,   _____,           \

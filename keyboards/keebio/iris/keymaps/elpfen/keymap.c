@@ -1,11 +1,11 @@
 #include QMK_KEYBOARD_H
 #include "elpfen.h"
-
 enum layers {
     _BASE = 0,
     _SYM,
     _NAV,
-    _FUNC
+    _FNC,
+    _ADJ
 };
 
 enum tap_dances {
@@ -19,7 +19,6 @@ enum tap_dances {
 
 enum custom_keycodes {
   BASE = SAFE_RANGE,
-  X_LOCK,
   L_NAV,
 };
 
@@ -73,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   // Functions
-  [_FUNC] = LAYOUT(
+  [_FNC] = LAYOUT(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
    KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤

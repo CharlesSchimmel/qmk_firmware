@@ -29,10 +29,6 @@ void matrix_scan_user(void) {
     } else
     SEQ_ONE_KEY(KC_T) {
       // Send the Tmux Prefix
-      tmux_prefix();
-      leader_succeed = true;
-    } else
-    SEQ_ONE_KEY(KC_A) {
        // tmux: Send the prefix and press 'right' arrow
       tmux_prefix();
       tap_code(KC_RIGHT);
