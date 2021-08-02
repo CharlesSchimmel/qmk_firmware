@@ -17,18 +17,18 @@ enum tap_dances {
 #define Z_NAV TD(TD_ZMO_NAV)
 #define CLN_NAV TD(TD_SCLNMO_NAV)
 
-#define C_V C(KC_V)
-#define C_C C(KC_C)
-#define C_X C(KC_X)
-#define C_Z C(KC_X)
-
 enum custom_keycodes {
   BASE = SAFE_RANGE,
   L_NAV,
   VI_U,
   VI_D,
-  VI_R
+  VI_R,
+  VI_P,
+  VI_V,
+  VI_Y
 };
+
+#define CT_VIS CTL_T(VI_Y)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Symbols
   [_SYM] = LAYOUT(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+    KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_BSLS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -66,13 +66,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NAV] = LAYOUT(
 
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-   KC_GRV,  _______, _______, _______, KC_END,  _______,                            _______, _______, _______, _______, KC_HOME,  KC_DEL,
+   KC_GRV,  _______, _______, _______, KC_END,  _______,                            _______, _______, _______, _______, KC_HOME, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, MS_WUP,  MS_BTN1, MS_UP,     C_V,     C_C,                              _______, TD_VIMG, _______,  VI_R,   KC_RGHT,  M_PST,
+   _______, MS_WUP,  MS_BTN1, _______,  VI_P,    VI_Y,                              _______, TD_VIMG, _______,  VI_R,   KC_RGHT,  M_PST,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, MS_WDWN, MS_LEFT, MS_DOWN,  VI_U,   _______,                             VI_D,   KC_LEFT, _______, _______, _______, _______,
+   _______, MS_WDWN, _______, _______,  VI_U,   _______,                             VI_D,   KC_LEFT, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______, _______, _______, _______, KC_RCTL,  L_NAV,   SH_DEL,
+   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______, _______, _______, _______, CT_VIS,  L_NAV,   SH_DEL,
 //└────────┴oooooooo┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴oooooooo┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -97,14 +97,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 static bool nav_lock = false;
+static bool visual_mode = false;
 
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
 
-    bool with_ctl = get_mods() & MOD_BIT(KC_RCTL) || get_mods() & MOD_BIT(KC_LCTL);
+    bool with_ctl = get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTL);
+    bool with_shift = get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT);
 
     switch(current_keycode) {
+        case KC_LSFT:
+        case KC_RSFT:
+            visual_mode = false;
+            return true;
+
+        case VI_Y:
+            SEND_STRING(SS_LCTL("c"));
+            visual_mode = false;
+            return false;
+
+        case VI_V:
+            if (visual_mode) {
+                SEND_STRING(SS_DOWN(X_LSFT));
+            } else {
+                SEND_STRING(SS_UP(X_LSFT));
+            }
+            return false;
+
+        case VI_P:
+            if (with_shift) {
+                SEND_STRING(SS_LSFT(SS_TAP(X_INSERT)));
+            } else {
+                SEND_STRING(SS_LCTL("v"));
+            }
+            return false;
+
         case VI_R:
             if (with_ctl) {
                 SEND_STRING(SS_LCTL("y"));
@@ -124,8 +152,10 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
                 SEND_STRING(SS_TAP(X_PGDOWN));
             } else {
                 SEND_STRING(SS_LCTL("x"));
+                visual_mode = false;
             }
             return false;
+
         default:
             return true;
     }
