@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "elpfen.h"
+
 enum layers {
     _BASE = 0,
     _SYM,
@@ -11,9 +12,11 @@ enum layers {
 enum tap_dances {
   TD_VIM_G = 0,
   TD_ZMO_NAV,
-  TD_SCLNMO_NAV
+  TD_SCLNMO_NAV,
+  TD_VI_V
 };
-#define TD_VIMG TD(TD_VIM_G)
+#define VI_G TD(TD_VIM_G)
+#define VI_V TD(TD_VI_V)
 #define Z_NAV TD(TD_ZMO_NAV)
 #define CLN_NAV TD(TD_SCLNMO_NAV)
 
@@ -24,11 +27,10 @@ enum custom_keycodes {
   VI_D,
   VI_R,
   VI_P,
-  VI_V,
-  VI_Y
+  VI_Y,
+  VI_W,
+  VI_B
 };
-
-#define CT_VIS CTL_T(VI_Y)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -56,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK,                            KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, _______, M_SHTAB, KC_TAB,  _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+   _______, _______, _______, M_SHTAB, KC_TAB,  _______, _______,          _______, _______, _______, _______, _______, _______, SH_DEL,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -68,11 +70,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
    KC_GRV,  _______, _______, _______, KC_END,  _______,                            _______, _______, _______, _______, KC_HOME, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, MS_WUP,  MS_BTN1, _______,  VI_P,    VI_Y,                              _______, TD_VIMG, _______,  VI_R,   KC_RGHT,  M_PST,
+   _______, MS_WUP,  MS_BTN1, _______,  VI_P,    VI_Y,                              _______,   VI_G,  _______,  VI_R,   KC_RGHT,  M_PST,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, _______, _______,  VI_U,   _______,                             VI_D,   KC_LEFT, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______, _______, _______, _______, CT_VIS,  L_NAV,   SH_DEL,
+   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______,  VI_B,   _______,   VI_W,    VI_V,  L_NAV,   _______,
 //└────────┴oooooooo┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴oooooooo┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -88,13 +90,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, RESET,   M_LOK,   M_CAD,   M_CSE,   _______, _______,          _______, _______, _______, KC_VOLD, KC_VOLU, KC_MUTE, _______,
+   _______, RESET,    M_LOK,   M_CAD,   M_CSE,  _______, _______,          _______, _______, _______, KC_VOLD, KC_VOLU, KC_MUTE, _______,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, _______,                   _______, _______, OOOOOOO
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
+  // Functions
+  [_ADJ] = LAYOUT(
+//┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+//├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+//├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+//├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+   _______, OOOOOOO, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, _______,
+//└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                  _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
+//                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+  ),
+
 };
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, _SYM, _NAV, _ADJ);
+}
 
 static bool nav_lock = false;
 static bool visual_mode = false;
@@ -107,26 +128,31 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     bool with_shift = get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT);
 
     switch(current_keycode) {
+        case KC_ESC:
         case KC_LSFT:
         case KC_RSFT:
             visual_mode = false;
             return true;
+
+        case VI_B:
+            SEND_STRING(SS_DOWN(X_LCTL));
+            SEND_STRING(SS_TAP(X_LEFT));
+            SEND_STRING(SS_UP(X_LCTL));
+            return false;
+
+        case VI_W:
+            SEND_STRING(SS_DOWN(X_LCTL));
+            SEND_STRING(SS_TAP(X_RIGHT));
+            SEND_STRING(SS_UP(X_LCTL));
+            return false;
 
         case VI_Y:
             SEND_STRING(SS_LCTL("c"));
             visual_mode = false;
             return false;
 
-        case VI_V:
-            if (visual_mode) {
-                SEND_STRING(SS_DOWN(X_LSFT));
-            } else {
-                SEND_STRING(SS_UP(X_LSFT));
-            }
-            return false;
-
         case VI_P:
-            if (with_shift) {
+            if (!visual_mode && with_shift) {
                 SEND_STRING(SS_LSFT(SS_TAP(X_INSERT)));
             } else {
                 SEND_STRING(SS_LCTL("v"));
@@ -182,12 +208,67 @@ void nav_lock_reset(qk_tap_dance_state_t *state, void *user_data) {
     td_layer_lock_reset(state, nav_lock, _NAV);
 }
 
+static td_tap_t td_tap_state = {
+    .state = TD_NONE,
+};
+
+
+void td_vi_v_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_tap_state.state = cur_dance(state);
+    switch (td_tap_state.state) {
+        case TD_SINGLE_TAP:
+            // this sends KC_APP, not sure why
+            if (visual_mode) {
+                SEND_STRING(SS_UP(X_RSFT));
+                visual_mode = false;
+            } else {
+                SEND_STRING(SS_DOWN(X_RSFT));
+                visual_mode = true;
+            }
+            break;
+        case TD_SINGLE_HOLD:
+            SEND_STRING(SS_DOWN(X_RCTL));
+            break;
+        default: break;
+
+    }
+}
+
+void td_vi_v_reset(qk_tap_dance_state_t *state, void *user_data) {
+    if (td_tap_state.state == TD_SINGLE_HOLD) {
+        SEND_STRING(SS_UP(X_RCTL));
+    }
+    td_tap_state.state = TD_NONE;
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
   // act (sort of) like G in vim: single tap (instead of shift) for END, double
   // tap for HOME. This assumes that systems will interpret C+HOME as "start of file"
   [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME)),
-  // set up Mod-Taps and layer locks 
-  [TD_ZMO_NAV] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, ZMO_NAV_finished, nav_lock_reset, 100),
-  [TD_SCLNMO_NAV] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, SCLN_NAV_finished, nav_lock_reset, 100)
+  // on tap, toggle "visual mode"
+  // on hold, send CTL
+  [TD_VI_V] =
+    ACTION_TAP_DANCE_FN_ADVANCED_TIME(
+        NULL,
+        td_vi_v_finished,
+        td_vi_v_reset,
+        125
+        ),
+
+  // layer locks 
+  [TD_ZMO_NAV] =
+    ACTION_TAP_DANCE_FN_ADVANCED_TIME(
+        NULL,
+        ZMO_NAV_finished,
+        nav_lock_reset,
+        135
+        ),
+  [TD_SCLNMO_NAV] =
+    ACTION_TAP_DANCE_FN_ADVANCED_TIME(
+        NULL,
+        SCLN_NAV_finished,
+        nav_lock_reset,
+        135
+        )
 };
 

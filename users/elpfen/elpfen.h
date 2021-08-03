@@ -3,6 +3,7 @@
 
 #include "quantum.h"
 #include "td_layer_lock.h"
+#include "td_helpers.h"
 
 /*
  * _SYM, NAV, and _FUNC need to be defined in the individual
