@@ -117,7 +117,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _SYM, _NAV, _ADJ);
 }
 
-static bool nav_lock = false;
 static bool visual_mode = false;
 
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
@@ -187,6 +186,8 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     }
     return true;
 }
+
+static bool nav_lock = false;
 
 bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
     return vim_windows_movement(current_keycode, record)
