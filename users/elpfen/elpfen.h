@@ -43,16 +43,26 @@
 #define MS_DOWN KC_MS_DOWN
 #define MS_LEFT KC_MS_LEFT
 #define MS_RGHT KC_MS_RIGHT
-#define MS_UP KC_MS_UP
+#define MS_UP   KC_MS_UP
 #define MS_WDWN KC_MS_WH_DOWN
-#define MS_WUP KC_MS_WH_UP
+#define MS_WUP  KC_MS_WH_UP
 
 // Quick Macros
-#define M_LOK LGUI(KC_L)
-#define M_CAD LCA(KC_DEL)
-#define M_CSE LCTL(LSFT(KC_ESC))
-#define M_PST LSFT(KC_INS)
+#define M_LOK   LGUI(KC_L)
+#define M_CAD   LCA(KC_DEL)
+#define M_CSE   LCTL(LSFT(KC_ESC))
+#define M_PST   LSFT(KC_INS)
 #define M_SHTAB LSFT(KC_TAB)
+
+#define GUI_1 LGUI(KC_1)
+#define GUI_2 LGUI(KC_2)
+#define GUI_3 LGUI(KC_3)
+#define GUI_4 LGUI(KC_4)
+#define GUI_5 LGUI(KC_5)
+#define GUI_6 LGUI(KC_6)
+#define GUI_7 LGUI(KC_7)
+#define GUI_8 LGUI(KC_8)
+#define GUI_9 LGUI(KC_9)
 
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS
