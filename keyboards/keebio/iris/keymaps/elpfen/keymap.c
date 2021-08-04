@@ -22,6 +22,10 @@ enum tap_dances {
 
 enum custom_keycodes {
   BASE = SAFE_RANGE,
+  SYM,
+  NAV,
+  FNC,
+  ADJ,
   L_NAV,
   VI_U,
   VI_D,
@@ -58,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK,                            KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, _______, M_SHTAB, KC_TAB,  _______, _______,          _______, _______, _______, _______, _______, _______, SH_DEL,
+   _______,   NAV,   _______, M_SHTAB, KC_TAB,  _______, _______,          _______,   NAV,     FNC,   _______, _______,   NAV,   SH_DEL,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -118,6 +122,36 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 static bool visual_mode = false;
+
+/* If MO(LOW) is held, then FNC or NAV are presesd, FNC or NAV will be
+ * activated so long as MO(LOW) is maintained.  This should act and feel like
+ * only FNC or NAV are activated; _BASE should still be the lowest layer.
+ */
+bool switchboard(uint16_t current_keycode, keyrecord_t *record) {
+    // ignore keyup
+    if (!record->event.pressed) {
+        switch (current_keycode) {
+            case LW_SPC:
+            case LW_ENT:
+                layer_move(_BASE);
+            default:
+                return true;
+        }
+    }
+
+    switch (current_keycode) {
+        case FNC:
+            layer_off(_SYM);
+            layer_on(_FNC);
+            return false;
+        case NAV:
+            layer_off(_SYM);
+            layer_on(_NAV);
+            return false;
+        default:
+            return true;
+    }
+}
 
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
@@ -194,6 +228,7 @@ bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
         && vi_keys(current_keycode, record)
         && dual_purpose_volume_keys(current_keycode, record)
         && m_layer_lock(current_keycode, record, &nav_lock, L_NAV, _NAV)
+        && switchboard(current_keycode, record)
         && true;
 }
 
