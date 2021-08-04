@@ -299,14 +299,14 @@ qk_tap_dance_action_t tap_dance_actions[] = {
         NULL,
         ZMO_NAV_finished,
         nav_lock_reset,
-        135
+        150
         ),
   [TD_SCLNMO_NAV] =
     ACTION_TAP_DANCE_FN_ADVANCED_TIME(
         NULL,
         SCLN_NAV_finished,
         nav_lock_reset,
-        135
+        150
         )
 };
 

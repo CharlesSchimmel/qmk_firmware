@@ -10,13 +10,18 @@
  * keyboard file
  */
 
+enum elpfen_custom_keycodes {
+    ELPFEN_START_RANGE = SAFE_RANGE,
+    ELPFEN_SAFE_RANGE
+};
+
 // Mod Taps
 #define AL_ENT  RALT_T(KC_ENT)
 #define AL_TAB  ALT_T(KC_TAB)
 #define AL_QUOT RALT_T(KC_QUOT)
 #define AL_MINS RALT_T(KC_MINS)
-#define AL_Q LALT_T(KC_Q)
-#define AL_V RALT_T(KC_V)
+#define AL_Q    LALT_T(KC_Q)
+#define AL_V    RALT_T(KC_V)
 
 #define CT_ESC  CTL_T(KC_ESC)
 #define CT_SLSH CTL_T(KC_SLSH)
@@ -73,3 +78,14 @@ bool dual_purpose_volume_keys(uint16_t, keyrecord_t*);
 void send_alt_f4(void);
 
 #endif
+
+// WIP
+// clang-format off
+#define _____________Dvorak_2Up_Sides______________ KC_GRV,  KC_1,    KC_2,    KC_3,   KC_4, KC_5, KC_6, KC_7, KC_8, KC_9,  KC_0,  KC_BSLS
+#define _____________Dvorak_1Up_Core_______________ KC_QUOT, KC_COMM, KC_DOT,  KC_P,   KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
+#define _____________Dvorak_1Up_Sides______________ KC_GRV,  KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R,  KC_L,  KC_SLSH
+#define _____________Dvorak_Home_Core______________ KC_A,    KC_O,    KC_E,    KC_U,   KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
+#define _____________Dvorak_Home_Sides_____________ CT_ESC,  KC_A,    KC_O,    KC_E,   KC_U, KC_I, KC_D, KC_H, KC_T, KC_N,  KC_S,  CT_MINS
+#define _____________Dvorak_1Dn_Core_______________ CLN_NAV, AL_Q,    KC_J,    KC_K,   KC_X, KC_B, KC_M, KC_W, AL_V, Z_NAV
+#define _____________Dvorak_1Dn_Sides______________ SH_TAB,  CLN_NAV, AL_Q,    KC_J,   KC_K, KC_X, KC_B, KC_M, KC_W, AL_V,  Z_NAV, SH_BSP
+// clang-format on
