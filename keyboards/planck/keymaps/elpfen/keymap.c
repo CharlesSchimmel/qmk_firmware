@@ -104,8 +104,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_SYM] = LAYOUT_planck_grid(
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-    _______, KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC, KC_BSLS,
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
+    _______, KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC, _______,
     _______, _______, _______, M_SHTAB, KC_TAB,  _______, _______, _______, _______, _______, _______, SH_DEL,
     _______, _______, _______, _______, _______, OOOOOOO, OOOOOOO, _______, _______, _______, _______, _______
 ),
@@ -370,6 +370,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   // act (sort of) like G in vim: single tap (instead of shift) for END, double
   // tap for HOME. This assumes that systems will interpret C+HOME as "start of file"
   [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME)),
+
   // on tap, toggle "visual mode"
   // on hold, send CTL
   [TD_VI_V] =
