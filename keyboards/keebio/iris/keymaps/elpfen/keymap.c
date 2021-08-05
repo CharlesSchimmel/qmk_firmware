@@ -201,7 +201,6 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
 }
 
 static bool visual_mode = false;
-
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
@@ -272,8 +271,9 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
 
 static bool nav_lock = false;
 
-bool layer_lock_2(uint16_t current_keycode, keyrecord_t *record) {
+bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     switch (current_keycode) {
+        // the MT(_layer, KC_KEY) mod-taps that activate the layer
         case RS_Z:
         case RS_SCLN:
             if (nav_lock) {
@@ -281,6 +281,8 @@ bool layer_lock_2(uint16_t current_keycode, keyrecord_t *record) {
             } else {
                 return true;
             }
+
+        // the custom keycode that will lock and unlock in the layer
         case L_NAV:
             if (record->event.pressed) {
                 if (nav_lock) {
@@ -300,7 +302,7 @@ bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
     return vim_windows_movement(current_keycode, record)
         && vi_keys(current_keycode, record)
         && dual_purpose_volume_keys(current_keycode, record)
-        && layer_lock_2(current_keycode, record)
+        && layer_lock(current_keycode, record)
         && true;
 }
 
@@ -309,6 +311,7 @@ static td_tap_t td_tap_state = {
 };
 
 
+// This could maybe be replaced with a mod-tap overload
 void td_vi_v_finished(qk_tap_dance_state_t *state, void *user_data) {
     td_tap_state.state = cur_dance(state);
     switch (td_tap_state.state) {
