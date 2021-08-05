@@ -6,8 +6,17 @@ enum layers {
     _SYM,
     _NAV,
     _FNC,
-    _ADJ
+    _ADJ,
+    _MOUSE,
+    /* _NEWSYM */
 };
+
+#define MO_ADJ MO(_ADJ)
+#define TG_FNC TG(_FNC)
+#define TG_NAV TG(_NAV)
+#define TG_MSE TG(_MOUSE)
+#define TG_ADJ TG(_ADJ)
+
 
 enum tap_dances {
   TD_VIM_G = 0,
@@ -15,6 +24,7 @@ enum tap_dances {
   TD_SCLNMO_NAV,
   TD_VI_V
 };
+
 #define VI_G TD(TD_VIM_G)
 #define VI_V TD(TD_VI_V)
 #define Z_NAV TD(TD_ZMO_NAV)
@@ -33,11 +43,8 @@ enum custom_keycodes {
   VI_P,
   VI_Y,
   VI_W,
-  VI_B,
+  VI_B
 };
-
-#define MO_ADJ MO(_ADJ)
-#define MO_NAV MO(_NAV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -49,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    CT_MINS,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_TAB,  CLN_NAV, AL_Q,    KC_J,    KC_K,    KC_X,    MO_NAV,           MO_NAV,  KC_B,    KC_M,    KC_W,    AL_V,    Z_NAV,   SH_BSP,
+   SH_TAB,  CLN_NAV, AL_Q,    KC_J,    KC_K,    KC_X,    MO_ADJ,           MO_ADJ,  KC_B,    KC_M,    KC_W,    AL_V,    Z_NAV,   SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   KC_APP,  KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -64,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK,                            KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,   NAV,   _______, M_SHTAB, KC_TAB,  _______, _______,          _______,   NAV,     FNC,   _______, _______,   NAV,   SH_DEL,
+   _______,   NAV,   _______, M_SHTAB, KC_TAB,  _______, _______,          _______, _______,  TG_FNC, TG_ADJ,  _______,   NAV,   SH_DEL,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -79,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, _______, _______,  VI_U,   _______,                             VI_D,   KC_LEFT, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______,  VI_B,   _______,   VI_W,    VI_V,  L_NAV,   _______,
+   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______,  VI_B,   TG_MSE,   VI_W,    VI_V,    L_NAV,  _______,
 //└────────┴oooooooo┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴oooooooo┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -101,29 +108,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
-  // Symbols
-  [_NEWSYM] = LAYOUT(
+  // Functions
+  [_MOUSE] = LAYOUT(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-    KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                              _______, KC_LABK, KC_RABK, KC_LBRC, KC_RBRC, KC_BSLS,
+   _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                              KC_EQL,  KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_MINS,
+   _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,   NAV,   _______, M_SHTAB, KC_TAB,  _______, _______,          _______,   NAV,     FNC,   _______, _______,   NAV,   SH_DEL,
+   _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, _______,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
+                                  _______, _______, _______,                   _______, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
+
+  /* // Symbols */
+  /* [_NEWSYM] = LAYOUT( */
+/* //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐ */
+  /*   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, */
+/* //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤ */
+  /*  _______,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,                              _______, KC_LABK, KC_RABK, KC_LBRC, KC_RBRC, KC_BSLS, */
+/* //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤ */
+  /*  _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                              KC_EQL,  KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, KC_MINS, */
+/* //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤ */
+  /*  _______,   NAV,   _______, M_SHTAB, KC_TAB,  _______, _______,          _______,   NAV,     FNC,   _______, _______,   NAV,   SH_DEL, */
+/* //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘ */
+  /*                                 _______, _______, OOOOOOO,                   OOOOOOO, _______, _______ */
+/* //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘ */
+  /* ), */
 
   // Functions
   [_ADJ] = LAYOUT(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
    _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,    KC_F5,                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-//├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______,  GUI_1,   GUI_2,   GUI_3,   GUI_4,   GUI_5,                              GUI_6,   GUI_7,   GUI_8,   GUI_9,  _______, _______,
+//├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
    _______, _______, _______, _______, _______, _______, OOOOOOO,          OOOOOOO, _______, _______, _______, _______, _______, _______,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -133,41 +155,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _SYM, _NAV, _ADJ);
+bool was_layer_turned_off(layer_state_t previous, layer_state_t current, uint16_t layer) {
+  if (previous == current) return false;
+
+  uint16_t was_on = IS_LAYER_ON_STATE(previous, layer);
+  uint16_t now_off = IS_LAYER_OFF_STATE(current, layer);
+  return was_on && now_off;
+}
+
+/* If MO(LOW) is held, then FNC or NAV are presesd, FNC or NAV will be
+ * activated so long as MO(LOW) is maintained. This should act and feel like
+ * only FNC or NAV are activated; _BASE should still be the lowest layer.
+ *
+ * Getting NAV to act as a switchboard is a little tricky because it drops out 
+ * of NAV using a TapDance. If I can fit this code into layer_state_set_user 
+ * then we could do it for any layer change.
+ *
+ * SYM doesn't even need to be turned off so long as the layer that is switched 
+ * to is higher than SYM.
+ */
+static layer_state_t previous_state;
+
+layer_state_t layer_state_set_user(layer_state_t current_state) {
+    if (was_layer_turned_off(previous_state, current_state, _NAV)) {
+        layer_off(_MOUSE);
+    }
+
+    if (was_layer_turned_off(previous_state, current_state, _SYM)) {
+        layer_off(_FNC);
+        layer_off(_ADJ);
+    }
+    /* current_state = update_tri_layer_state(current_state, _SYM, _NAV, _ADJ); */
+    previous_state = current_state;
+    return current_state;
 }
 
 static bool visual_mode = false;
-
-/* If MO(LOW) is held, then FNC or NAV are presesd, FNC or NAV will be
- * activated so long as MO(LOW) is maintained.  This should act and feel like
- * only FNC or NAV are activated; _BASE should still be the lowest layer.
- */
-bool switchboard(uint16_t current_keycode, keyrecord_t *record) {
-    // ignore keyup
-    if (!record->event.pressed) {
-        switch (current_keycode) {
-            case LW_SPC:
-            case LW_ENT:
-                layer_move(_BASE);
-            default:
-                return true;
-        }
-    }
-
-    switch (current_keycode) {
-        case FNC:
-            layer_off(_SYM);
-            layer_on(_FNC);
-            return false;
-        case NAV:
-            layer_off(_SYM);
-            layer_on(_NAV);
-            return false;
-        default:
-            return true;
-    }
-}
 
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
@@ -244,7 +267,6 @@ bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
         && vi_keys(current_keycode, record)
         && dual_purpose_volume_keys(current_keycode, record)
         && m_layer_lock(current_keycode, record, &nav_lock, L_NAV, _NAV)
-        && switchboard(current_keycode, record)
         && true;
 }
 
