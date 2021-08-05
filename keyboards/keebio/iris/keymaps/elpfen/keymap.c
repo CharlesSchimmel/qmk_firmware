@@ -156,37 +156,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // ~~~~~~~~ Switchboard ~~~~~~~~~
-bool was_layer_turned_off(layer_state_t previous, layer_state_t current, uint16_t layer) {
-  if (previous == current) return false;
-
-  uint16_t was_on = IS_LAYER_ON_STATE(previous, layer);
-  uint16_t now_off = IS_LAYER_OFF_STATE(current, layer);
-  return was_on && now_off;
-}
-
-static layer_state_t previous_state;
-
-// modified from tmk_core/common/action_layer.c
-layer_state_t layer_on_state(layer_state_t layer_state, uint8_t layer) {
-    return layer_state | (1UL << layer);
-}
-
-// pulled from tmk_core/common/action_layer.c
-layer_state_t layer_off_state(layer_state_t layer_state, uint8_t layer) {
-    return layer_state & ~(1UL << layer);
-}
-
 /* Switchboard: Make a "child" layer dependent on its parent layer.
  *
  * Example: If _LOW is the active laer, then TG(ADJ) is pressed, ADJ will stay
  * active so long as _LOW is active.
  *
  * This is really useful as it lets one layer "switchboard" to many other
- * layers, but occupy only one activating switch.
+ * layers, but occupy only one activating switch. It's like a
+ * Raise+Lower=Adjust but you only have to keep one key held.
  *
  * Note: this requirse that the child layers are higher than the parent layers.
  */
 layer_state_t layer_state_set_user(layer_state_t current_state) {
+    static layer_state_t previous_state;
     if (was_layer_turned_off(previous_state, current_state, _NAV)) {
         current_state = layer_off_state(current_state, _MOUSE);
     }
@@ -200,6 +182,8 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
     return current_state;
 }
 
+// ~~~~~~~~~ Pseudo-Vi ~~~~~~~~~~
+// Just some macros to mimic the most useful vim keys
 static bool visual_mode = false;
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
@@ -269,8 +253,8 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     return true;
 }
 
+// ~~~~~~~~~ LayerLock ~~~~~~~~~~
 static bool nav_lock = false;
-
 bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     switch (current_keycode) {
         // the MT(_layer, KC_KEY) mod-taps that activate the layer
