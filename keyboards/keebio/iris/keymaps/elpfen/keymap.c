@@ -17,7 +17,6 @@ enum layers {
 #define TG_MSE TG(_MOUSE)
 #define TG_ADJ TG(_ADJ)
 
-
 enum tap_dances {
   TD_VIM_G = 0,
   TD_ZMO_NAV,
@@ -155,8 +154,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// ~~~~~~~~ Switchboard ~~~~~~~~~
-/* Switchboard: Make a "child" layer dependent on its parent layer.
+/* ~~~~~~~~ Switchboard ~~~~~~~~~
+ * Make a "child" layer dependent on its parent layer.
  *
  * Example: If _LOW is the active laer, then TG(ADJ) is pressed, ADJ will stay
  * active so long as _LOW is active.
@@ -167,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  * Note: this requirse that the child layers are higher than the parent layers.
  */
-layer_state_t layer_state_set_user(layer_state_t current_state) {
+layer_state_t switchboard(layer_state_t current_state) {
     static layer_state_t previous_state;
     if (was_layer_turned_off(previous_state, current_state, _NAV)) {
         current_state = layer_off_state(current_state, _MOUSE);
@@ -177,13 +176,18 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
         current_state = layer_off_state(current_state, _FNC);
         current_state = layer_off_state(current_state, _ADJ);
     }
-    /* current_state = update_tri_layer_state(current_state, _SYM, _NAV, _ADJ); */
+
     previous_state = current_state;
     return current_state;
 }
 
-// ~~~~~~~~~ Pseudo-Vi ~~~~~~~~~~
-// Just some macros to mimic the most useful vim keys
+layer_state_t layer_state_set_user(layer_state_t current_state) {
+    return switchboard(current_state);
+}
+
+/* ~~~~~~~~~ Pseudo-Vi ~~~~~~~~~~
+ * Just some macros to mimic the most useful vim keys
+ */
 static bool visual_mode = false;
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
@@ -253,7 +257,11 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     return true;
 }
 
-// ~~~~~~~~~ LayerLock ~~~~~~~~~~
+/* ~~~~~~~~~ LayerLock ~~~~~~~~~~
+ * "Lock" in a layer, allowing you to let go of a MT(_layer) or MO(_layer) key
+ * after you've pressed the lock key in that layer. Sort of like toggling the
+ * layer after you're already in it.
+ */
 static bool nav_lock = false;
 bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     switch (current_keycode) {
@@ -282,6 +290,7 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     }
 }
 
+// ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
     return vim_windows_movement(current_keycode, record)
         && vi_keys(current_keycode, record)
@@ -290,6 +299,7 @@ bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
         && true;
 }
 
+// ~~~~~~~~~ TapDances ~~~~~~~~~~
 static td_tap_t td_tap_state = {
     .state = TD_NONE,
 };
