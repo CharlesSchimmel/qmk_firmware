@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    CT_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    CT_MINS,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   SH_TAB,  CLN_NAV, AL_Q,    KC_J,    KC_K,    KC_X,    MO_ADJ,           MO_ADJ,  KC_B,    KC_M,    KC_W,    AL_V,    Z_NAV,   SH_BSP,
+   SH_TAB,  RS_SCLN, AL_Q,    KC_J,    KC_K,    KC_X,    MO_ADJ,           MO_ADJ,  KC_B,    KC_M,    KC_W,    AL_V,    RS_Z,    SH_BSP,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   KC_APP,  KC_LGUI, LW_ENT,                    LW_SPC,  KC_RGUI, FN_MNU
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -262,24 +262,36 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
 
 static bool nav_lock = false;
 
+bool layer_lock_2(uint16_t current_keycode, keyrecord_t *record) {
+    switch (current_keycode) {
+        case RS_Z:
+        case RS_SCLN:
+            if (nav_lock) {
+                return false;
+            } else {
+                return true;
+            }
+        case L_NAV:
+            if (record->event.pressed) {
+                if (nav_lock) {
+                    layer_off(_NAV);
+                    nav_lock = false;
+                } else {
+                    nav_lock = true;
+                }
+            }
+            return false;
+        default:
+            return true;
+    }
+}
+
 bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
     return vim_windows_movement(current_keycode, record)
         && vi_keys(current_keycode, record)
         && dual_purpose_volume_keys(current_keycode, record)
-        && m_layer_lock(current_keycode, record, &nav_lock, L_NAV, _NAV)
+        && layer_lock_2(current_keycode, record)
         && true;
-}
-
-void SCLN_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_layer_lock_finished(state, KC_SCLN, _NAV);
-}
-
-void ZMO_NAV_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_layer_lock_finished(state, KC_Z, _NAV);
-}
-
-void nav_lock_reset(qk_tap_dance_state_t *state, void *user_data) {
-    td_layer_lock_reset(state, nav_lock, _NAV);
 }
 
 static td_tap_t td_tap_state = {
@@ -330,20 +342,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
         125
         ),
 
-  // layer locks 
-  [TD_ZMO_NAV] =
-    ACTION_TAP_DANCE_FN_ADVANCED_TIME(
-        NULL,
-        ZMO_NAV_finished,
-        nav_lock_reset,
-        150
-        ),
-  [TD_SCLNMO_NAV] =
-    ACTION_TAP_DANCE_FN_ADVANCED_TIME(
-        NULL,
-        SCLN_NAV_finished,
-        nav_lock_reset,
-        150
-        )
 };
 
