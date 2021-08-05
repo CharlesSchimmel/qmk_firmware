@@ -2,7 +2,6 @@
 #define USERSPACE
 
 #include "quantum.h"
-#include "td_layer_lock.h"
 #include "td_helpers.h"
 #include "layer_helpers.h"
 
