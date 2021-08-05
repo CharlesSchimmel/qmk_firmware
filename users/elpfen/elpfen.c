@@ -3,21 +3,25 @@
 #include "elpfen.h"
 
 bool dual_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
-  // ignore keyup
-  if (!record->event.pressed) return true;
-  if (!(get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT))) return true;
+    // ignore keyup
+    if (!record->event.pressed) return true;
 
-  // use the VOL keys as media keys as well
+    bool with_shift = get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT);
+    bool with_ctl = get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTL);
+    bool vanilla = !with_shift && !with_ctl;
+
+    if (vanilla) { return true; }
+
     switch(keycode) {
-      case KC_VOLD :
-        SEND_STRING(SS_TAP(X_MEDIA_PREV_TRACK));
-        return false;
-      case KC_VOLU :
-        SEND_STRING(SS_TAP(X_MEDIA_NEXT_TRACK));
-        return false;
-      case KC_MUTE :
-        SEND_STRING(SS_TAP(X_MEDIA_PLAY_PAUSE));
-        return false;
+        case KC_VOLD :
+            with_shift ? tap_code(KC_MEDIA_PREV_TRACK) : tap_code(KC_BRIGHTNESS_DOWN);
+            return false;
+        case KC_VOLU :
+            with_shift ? tap_code(KC_MEDIA_NEXT_TRACK) : tap_code(KC_BRIGHTNESS_UP);
+            return false;
+        case KC_MUTE :
+            SEND_STRING(SS_TAP(X_MEDIA_PLAY_PAUSE));
+            return false;
     }
 
     return true;
