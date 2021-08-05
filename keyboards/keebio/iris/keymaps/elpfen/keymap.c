@@ -163,27 +163,38 @@ bool was_layer_turned_off(layer_state_t previous, layer_state_t current, uint16_
   return was_on && now_off;
 }
 
-/* If MO(LOW) is held, then FNC or NAV are presesd, FNC or NAV will be
- * activated so long as MO(LOW) is maintained. This should act and feel like
- * only FNC or NAV are activated; _BASE should still be the lowest layer.
+/* Switchboard: Make a "child" layer dependent on its parent layer.
  *
- * Getting NAV to act as a switchboard is a little tricky because it drops out 
- * of NAV using a TapDance. If I can fit this code into layer_state_set_user 
- * then we could do it for any layer change.
+ * If _LOW is the active laer, then TG(ADJ) is pressed, ADJ will stay active so
+ * long as _LOW is active.
  *
- * SYM doesn't even need to be turned off so long as the layer that is switched 
- * to is higher than SYM.
+ * This is really useful as it lets one layer "switchboard" to many other
+ * layers, but occupy only one activating switch.
+ *
+ * Note: this requirse that the child layers are higher than the parent
+ * layers.
  */
+
 static layer_state_t previous_state;
+
+// modified from tmk_core/common/action_layer.c
+layer_state_t layer_on_state(layer_state_t layer_state, uint8_t layer) {
+    return layer_state | (1UL << layer);
+}
+
+// pulled from tmk_core/common/action_layer.c
+layer_state_t layer_off_state(layer_state_t layer_state, uint8_t layer) {
+    return layer_state & ~(1UL << layer);
+}
 
 layer_state_t layer_state_set_user(layer_state_t current_state) {
     if (was_layer_turned_off(previous_state, current_state, _NAV)) {
-        layer_off(_MOUSE);
+        current_state = layer_off_state(current_state, _MOUSE);
     }
 
     if (was_layer_turned_off(previous_state, current_state, _SYM)) {
-        layer_off(_FNC);
-        layer_off(_ADJ);
+        current_state = layer_off_state(current_state, _FNC);
+        current_state = layer_off_state(current_state, _ADJ);
     }
     /* current_state = update_tri_layer_state(current_state, _SYM, _NAV, _ADJ); */
     previous_state = current_state;
