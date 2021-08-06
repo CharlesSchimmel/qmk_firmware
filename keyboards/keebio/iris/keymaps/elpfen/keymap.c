@@ -351,3 +351,22 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 };
 
+bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case AL_Q:
+        case AL_V:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case AL_Q:
+        case AL_V:
+            return true;
+        default:
+            return false;
+    }
+}
