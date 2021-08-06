@@ -79,13 +79,34 @@ void send_alt_f4(void);
 
 #endif
 
-// WIP
 // clang-format off
-#define _____________Dvorak_2Up_Sides______________ KC_GRV,  KC_1,    KC_2,    KC_3,   KC_4, KC_5, KC_6, KC_7, KC_8, KC_9,  KC_0,  KC_BSLS
+
+// BoTtoM row, Left side, 0 from the middle
+#define BTML0 LW_ENT
+#define BTML1 KC_LGUI
+#define BTML2 FN_MNU
+#define BTMR0 LW_SPC
+#define BTMR1 KC_RGUI
+#define BTMR2 FN_MNU
+
+#define _____________Base_Bottom_Center____________ BTML2, BTML1, BTML0, BTMR0, BTMR1, BTMR2
+
+#define _____________Dvorak_2Up_Core_______________ KC_1,    KC_2,    KC_3,    KC_4,   KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
+#define _____________Dvorak_2Up_Sides______________ KC_GRV,  _____________Dvorak_1Up_Core_______________,  KC_BSLS
+
 #define _____________Dvorak_1Up_Core_______________ KC_QUOT, KC_COMM, KC_DOT,  KC_P,   KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
-#define _____________Dvorak_1Up_Sides______________ KC_GRV,  KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R,  KC_L,  KC_SLSH
+#define _____________Dvorak_1Up_Sides______________ KC_GRV,  _____________Dvorak_1Up_Core_______________,  KC_SLSH
+
 #define _____________Dvorak_Home_Core______________ KC_A,    KC_O,    KC_E,    KC_U,   KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
-#define _____________Dvorak_Home_Sides_____________ CT_ESC,  KC_A,    KC_O,    KC_E,   KC_U, KC_I, KC_D, KC_H, KC_T, KC_N,  KC_S,  CT_MINS
-#define _____________Dvorak_1Dn_Core_______________ CLN_NAV, AL_Q,    KC_J,    KC_K,   KC_X, KC_B, KC_M, KC_W, AL_V, Z_NAV
-#define _____________Dvorak_1Dn_Sides______________ SH_TAB,  CLN_NAV, AL_Q,    KC_J,   KC_K, KC_X, KC_B, KC_M, KC_W, AL_V,  Z_NAV, SH_BSP
+#define _____________Dvorak_Home_Sides_____________ CT_ESC,  _____________Dvorak_Home_Core______________,  CT_MINS
+
+#define _____________Dvorak_1Dn_Core_L_____________ RS_SCLN, AL_Q,    KC_J,   KC_K, KC_X
+#define _____________Dvorak_1Dn_Core_R_____________ KC_B, KC_M, KC_W, AL_V, RS_Z
+#define _____________Dvorak_1Dn_Sides_L____________ SH_TAB,  _____________Dvorak_1Dn_Core_L_____________
+#define _____________Dvorak_1Dn_Sides_R____________ _____________Dvorak_1Dn_Core_R_____________, SH_BSP
+#define _____________Dvorak_1Dn_Core_______________ _____________Dvorak_1Dn_Core_L_____________, _____________Dvorak_1Dn_Core_R_____________
+#define _____________Dvorak_1Dn_Sides______________ _____________Dvorak_1Dn_Sides_L____________, _____________Dvorak_1Dn_Sides_R____________
+
 // clang-format on
+
+#define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
