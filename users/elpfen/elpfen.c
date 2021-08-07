@@ -119,22 +119,6 @@ layer_state_t switchboard(layer_state_t current_state) {
     return current_state;
 }
 
-/* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
- * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
- * for mod-taps whose tapped key is used in normal typing.
- */
-__attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case AL_Q:
-        case AL_V:
-        case AL_X:
-        case AL_DOT:
-            return true;
-        default:
-            return false;
-    }
-}
-
 /* layer-lock: If a layer-tap is being held to activate a layer, tapping a
  * specific macro associated with that layer will "Lock In" that layer,
  * preventing it from being deactivated when the mod-tap is released. In
@@ -144,7 +128,6 @@ __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t 
  * This works by overriding the MT(_LAYER, KC_KEY) code and preventing it's
  * Keyup event from being processed..
  */
-
 bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     static bool nav_lock = false;
     switch (current_keycode) {
@@ -170,5 +153,21 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
             return false;
         default:
             return true;
+    }
+}
+
+/* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
+ * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
+ * for mod-taps whose tapped key is used in normal typing.
+ */
+__attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case AL_Q:
+        case AL_V:
+        case AL_X:
+        case AL_DOT:
+            return true;
+        default:
+            return false;
     }
 }

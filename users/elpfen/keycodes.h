@@ -30,6 +30,7 @@ enum elpfen_custom_keycodes {
 #define CT_SLSH CTL_T(KC_SLSH)
 #define CT_BSLS CTL_T(KC_BSLS)
 #define CT_MINS CTL_T(KC_MINS)
+#define CT_QUOT CTL_T(KC_QUOT)
 
 #define SH_BSP  RSFT_T(KC_BSPC)
 #define SH_DEL  RSFT_T(KC_DEL)

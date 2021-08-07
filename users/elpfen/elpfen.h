@@ -2,10 +2,13 @@
 #include QMK_KEYBOARD_H
 
 #include "quantum.h"
-#include "td_helpers.h"
 #include "layer_helpers.h"
 #include "keycodes.h"
 #include "keymaps.h"
+
+#ifdef TAP_DANCE_ENABLE
+#include "td_helpers.h"
+#endif
 
 bool pseudo_twm(uint16_t, keyrecord_t*);
 bool multi_purpose_volume_keys(uint16_t, keyrecord_t*);

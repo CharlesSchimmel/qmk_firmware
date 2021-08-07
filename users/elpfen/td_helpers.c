@@ -1,3 +1,4 @@
+#ifdef TAP_DANCE_ENABLE
 #include "td_helpers.h"
 
 // This is all from the docs
@@ -10,4 +11,4 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
     } else if (state->count == 2) return TD_DOUBLE_TAP;
     else return TD_UNKNOWN;
 }
-
+#endif
