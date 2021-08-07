@@ -1,13 +1,22 @@
 #include "quantum.h"
 #include "action.h"
 #include "elpfen.h"
+#include "keycodes.h"
 
-bool dual_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
+/* Multi-Purpose Volume Keys: Alter the behavior of valume keys depending on
+ * if Shift or Control is pressed.
+ *
+ * Some OS's/Desktops will use Ctl, Alt, and Shift to change how much the
+ * volume is increased, so it might not be for everyone.
+ */
+bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
 
-    bool with_shift = get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT);
-    bool with_ctl = get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTL);
+    bool with_shift = get_mods() & MOD_BIT(KC_LSFT)
+                   || get_mods() & MOD_BIT(KC_RSFT);
+    bool with_ctl = get_mods() & MOD_BIT(KC_LCTL)
+                 || get_mods() & MOD_BIT(KC_RCTL);
     bool vanilla = !with_shift && !with_ctl;
 
     if (vanilla) { return true; }
@@ -27,8 +36,10 @@ bool dual_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-
-bool vim_windows_movement(uint16_t keycode, keyrecord_t *record) {
+/* Imitate Xmonad or i3 in Windows by enabling movement of windows with
+ * Win+HJKL and closing windows with W-S-C
+ */
+bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
     if (!(get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI))) return true;
@@ -53,7 +64,7 @@ bool vim_windows_movement(uint16_t keycode, keyrecord_t *record) {
 
         case KC_C :
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            send_alt_f4();
+            tap_code16(A(KC_F4));
             // still want win-shift-c to get sent when using this keyboard with
             // xmonad/i3
             return true;
@@ -63,10 +74,72 @@ bool vim_windows_movement(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-void send_alt_f4(void) {
-  SEND_STRING(SS_DOWN(X_LALT));
-  SEND_STRING(SS_TAP(X_F4));
-  SEND_STRING(SS_UP(X_LALT));
+/* IGNORE_MOD_TAP_INTERRUPT_PER_KEY: For these specific mod-taps, if the
+ * second key in a chord is pressed after the modifier key is released,
+ * ignore the modifier, even if it's inside the tapping term.
+ */
+__attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case AL_Q:
+        case AL_V:
+        case AL_X:
+        case AL_DOT:
+            return true;
+        default:
+            return false;
+    }
 }
 
+/* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
+ * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
+ * for mod-taps whose tapped key is used in normal typing.
+ */
+__attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case AL_Q:
+        case AL_V:
+        case AL_X:
+        case AL_DOT:
+            return true;
+        default:
+            return false;
+    }
+}
 
+/* layer-lock: If a layer-tap is being held to activate a layer, tapping a
+ * specific macro associated with that layer will "Lock In" that layer,
+ * preventing it from being deactivated when the mod-tap is released. In
+ * this case, my layer is _NAV, my mod-taps are aliased to RS_Z and RS_SCLN
+ * and my lock macro is L_NAV
+ *
+ * This works by overriding the MT(_LAYER, KC_KEY) code and preventing it's
+ * Keyup event from being processed..
+ */
+
+bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
+    static bool nav_lock = false;
+    switch (current_keycode) {
+        // the MT(_layer, KC_KEY) mod-taps that activate the layer
+        case RS_Z:
+        case RS_SCLN:
+            if (nav_lock) {
+                return false;
+            } else {
+                return true;
+            }
+
+        // the custom keycode that will lock and unlock in the layer
+        case L_NAV:
+            if (record->event.pressed) {
+                if (nav_lock) {
+                    layer_off(_NAV);
+                    nav_lock = false;
+                } else {
+                    nav_lock = true;
+                }
+            }
+            return false;
+        default:
+            return true;
+    }
+}

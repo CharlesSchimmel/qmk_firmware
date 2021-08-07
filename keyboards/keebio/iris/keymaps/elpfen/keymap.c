@@ -4,11 +4,7 @@
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
 enum layers {
-    _BASE = 0,
-    _SYM,
-    _NAV,
-    _FNC,
-    _ADJ,
+    _ADJ = ELPFEN_LAYERS_END,
     _MOUSE,
     /* _NEWSYM */
 };
@@ -28,12 +24,7 @@ enum tap_dances {
 #define Z_NAV TD(TD_ZMO_NAV)
 
 enum custom_keycodes {
-  BASE = SAFE_RANGE,
-  SYM,
-  NAV,
-  FNC,
-  ADJ,
-  L_NAV,
+  BASE = ELPFEN_SAFE_RANGE,
   VI_U,
   VI_D,
   VI_R,
@@ -44,7 +35,7 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_wrapper(
+  [_DVORAK] = LAYOUT_wrapper(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
                                                 _____________Dvorak_2Up_Sides______________,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -265,40 +256,13 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
  * after you've pressed the lock key in that layer. Sort of like toggling the
  * layer after you're already in it.
  */
-static bool nav_lock = false;
-bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
-    switch (current_keycode) {
-        // the MT(_layer, KC_KEY) mod-taps that activate the layer
-        case RS_Z:
-        case RS_SCLN:
-            if (nav_lock) {
-                return false;
-            } else {
-                return true;
-            }
-
-        // the custom keycode that will lock and unlock in the layer
-        case L_NAV:
-            if (record->event.pressed) {
-                if (nav_lock) {
-                    layer_off(_NAV);
-                    nav_lock = false;
-                } else {
-                    nav_lock = true;
-                }
-            }
-            return false;
-        default:
-            return true;
-    }
-}
 
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
-    return vim_windows_movement(current_keycode, record)
-        && vi_keys(current_keycode, record)
-        && dual_purpose_volume_keys(current_keycode, record)
+    return pseudo_twm(current_keycode, record)
+        && multi_purpose_volume_keys(current_keycode, record)
         && layer_lock(current_keycode, record)
+        && vi_keys(current_keycode, record)
         && true;
 }
 
@@ -353,23 +317,3 @@ qk_tap_dance_action_t tap_dance_actions[] = {
         ),
 
 };
-
-bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case AL_Q:
-        case AL_V:
-            return true;
-        default:
-            return false;
-    }
-}
-
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case AL_Q:
-        case AL_V:
-            return true;
-        default:
-            return false;
-    }
-}

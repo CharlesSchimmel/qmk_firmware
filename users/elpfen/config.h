@@ -1,45 +1,49 @@
 #pragma once
 
-/* For Mod-Tap keys: Sets the time needed to hold mod-taps (MO(), MT()) before 
- * it will apply that modifier. The shorter this is, the more often it will 
- * erroneosly apply the modifier when you intended to tap. The longer this is, 
- * the more difficult it will be to quickly execute chords.
+/* This is the length of time (in milliseconds) that a mod-tap needs to be held
+ * to be considered a hold and not a tap (other options not withstanding).
  *
- * ./docs/tap_hold.md > TAPPING_TERM
+ * Shorter intervals result in more taps being interpreted as holds, resulting
+ * in more dropped taps. Good for keys that are held more often than tapped.
+ *
+ * Longer intervals result in more holds being interpreted as taps, resulting
+ * in more dropped holds. Good for keys that are tapped more often than held.
  */
 #define TAPPING_TERM 150
+// #define TAPPING_TERM_PER_KEY
 
-/* For Mod-Tap keys (but not Layer-tap keys): If the second key in a chord is 
- * released after the modifier key is released, ignore it, even if it's inside 
- * the tapping term.  Results in fewer dropped taps, but more dropped chords. 
- * 
- * Sometimes when typing, fast typists will overlap the presses of multiple 
- * keys. Ex: "the" may be typed t_down, h_down, t_up, e_down, h_up, e_up.  
- * Without this, if 't' had a mod-tap on this it would be sent as `MOD-h .`.  
- * With this, it will be sent as "the".
+/* If the second key in a chord is released after the modifier key is released,
+ * treat it as two taps instead, even if it's inside the tapping term.
  *
- * This will also affect PERMISSIVE_HOLD: The regular key has the modifier 
- * added if the first key is released first or if both keys are held longer 
- * than the TAPPING_TERM.
- *
- * ./docs/tap_hold.md > IGNORE_MOD_TAP_INTERRUPT
+ * Fewer dropped keypresses, but more dropped chords. Good for keys that are
+ * used in normal typing (ie, alpha-nums)
  */
-// #define IGNORE_MOD_TAP_INTERRUPT
+#define IGNORE_MOD_TAP_INTERRUPT
+#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
-/* For Mod-Tap keys: If the MOD is pressed and released without another key 
- * having been pressed, send the TAP key. This has an odd effect of always 
- * waiting for keyup to send the TAP key, which feels laggy. Sometimes if you 
- * press a chord, the tap in the mod tap will register
+
+/* Normally with a mod-tap, tapping then tapping and holding will repeat the
+ * tap key. TAPPING_FORCE_HOLD turns that off, allowing the mod to be activated
+ * shortly after using it as a tap. This is useful for keys that are used as
+ * normal characters to allow for a quick transition from tapping to modding.
+ */
+#define TAPPING_FORCE_HOLD
+#define TAPPING_FORCE_HOLD_PER_KEY
+
+/* For mod-taps and layer-taps, always tap if another key wasn't pressed.
  *
- * ./docs/tap_hold.md > RETRO_TAPPING
+ * This can prevent dropped taps for shorter TAPPING_TERM intervals, but feels
+ * a little odd. If you sometimes shift into a layer and then change your mind,
+ * you'll have to undo whatever tap was.
  */
 // #define RETRO_TAPPING
 
-/* If you tap another key while holding a Mod-Tap key it will always be sent as 
- * MOD+Key. This means that if the chord is executed within the TAPPING_TERM it 
- * will still be sent as MOD+Key. This makes it easier for fast typists to 
- * execute chords.
+/* If a chord is executed entirely within the tapping term, register it as a
+ * chord (instead of ignoring the held key because it was released before the
+ * tapping term elaprsed.)
  *
- * ./docs/tap_hold.md > PERMISSIVE_HOLD
+ * This makes it easier for fast typists to use dual-function keys, but can
+ * result in unintended chords 
  */
 #define PERMISSIVE_HOLD
+// #define PERMISSIVE_HOLD_PER_KEY
