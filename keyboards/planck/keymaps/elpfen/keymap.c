@@ -20,34 +20,21 @@
 
 #define LAYOUT_wrapper(...) LAYOUT_planck_grid(__VA_ARGS__)
 
-enum planck_layers {
-  _DVORAK = 0,
-  _SYM,
-  _NAV,
-  _FNC,
-  _UTIL,
-  _QWERTY,
+enum layers {
+  _QWERTY = ELPFEN_LAYERS_END,
   _QNAV,
-  _ADJUST,
+  _UTIL,
+  _ADJUST
 };
 
 enum custom_keycodes {
   DVORAK = SAFE_RANGE,
   QWERTY,
-  BACKLIT,
-  L_NAV
+  BACKLIT
 };
 
 #define LOWER MO(_SYM)
 #define RAISE MO(_NAV)
-
-enum tap_dances {
-  TD_VIM_G = 0,
-  TD_VI_V
-};
-#define VI_G TD(TD_VIM_G)
-#define VI_V TD(TD_VI_V)
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -100,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SYM] = LAYOUT_wrapper(
                                     _____________SYM_2U_Sides_12k______________,
-    _______,                        _____________SYM_1U_Sides_10k______________,                      _______,
+    _______,                        _____________SYM_1U_Sides_10k______________,                       _______,
     _______, _______, _______, M_SHTAB, KC_TAB,  _______, _______, _______, _______, _______, _______, SH_DEL,
     _______, _______, _______, _______, _______, OOOOOOO, OOOOOOO, _______, _______, _______, _______, _______
 ),
@@ -179,11 +166,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, TG(_UTIL)
 ),
 
-[_MOUSE] = LAYOUT(
+[_MOUSE] = LAYOUT_planck_grid(
    _______, MS_WUP,  MS_BTN1, MS_UP,   MS_BTN2, _______, _______, _______, _______, _______, _______, _______,
    _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______, _______, _______, _______, _______, _______, _______,
    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, OOOOOOO, _______,
-   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
 };
@@ -221,11 +208,11 @@ bool process_macros(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-static bool nav_lock = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  return vim_windows_movement(keycode, record)
-      && dual_purpose_volume_keys(keycode, record)
+  return pseudo_twm(keycode, record)
+      && multi_purpose_volume_keys(keycode, record)
       && process_macros(keycode, record)
+      && layer_lock(keycode, record)
       && true;
 }
 
@@ -239,39 +226,6 @@ uint8_t last_muse_note = 0;
 uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
-
-bool encoder_update(bool clockwise) {
-  if (muse_mode) {
-    if (IS_LAYER_ON(_NAV)) {
-      if (clockwise) {
-        muse_offset++;
-      } else {
-        muse_offset--;
-      }
-    } else {
-      if (clockwise) {
-        muse_tempo+=1;
-      } else {
-        muse_tempo-=1;
-      }
-    }
-  } else {
-    if (clockwise) {
-      #ifdef MOUSEKEY_ENABLE
-        tap_code(KC_MS_WH_DOWN);
-      #else
-        tap_code(KC_PGDN);
-      #endif
-    } else {
-      #ifdef MOUSEKEY_ENABLE
-        tap_code(KC_MS_WH_UP);
-      #else
-        tap_code(KC_PGUP);
-      #endif
-    }
-  }
-    return true;
-}
 
 void dip_switch_update_user(uint8_t index, bool active) {
     switch (index) {
@@ -320,55 +274,4 @@ bool music_mask_user(uint16_t keycode) {
       return true;
   }
 }
-
-static td_tap_t td_tap_state = {
-    .state = TD_NONE,
-};
-
-
-static bool visual_mode = false;
-void td_vi_v_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_tap_state.state = cur_dance(state);
-    switch (td_tap_state.state) {
-        case TD_SINGLE_TAP:
-            // this sends KC_APP, not sure why
-            if (visual_mode) {
-                SEND_STRING(SS_UP(X_RSFT));
-                visual_mode = false;
-            } else {
-                SEND_STRING(SS_DOWN(X_RSFT));
-                visual_mode = true;
-            }
-            break;
-        case TD_SINGLE_HOLD:
-            SEND_STRING(SS_DOWN(X_RCTL));
-            break;
-        default: break;
-
-    }
-}
-
-void td_vi_v_reset(qk_tap_dance_state_t *state, void *user_data) {
-    if (td_tap_state.state == TD_SINGLE_HOLD) {
-        SEND_STRING(SS_UP(X_RCTL));
-    }
-    td_tap_state.state = TD_NONE;
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  // act (sort of) like G in vim: single tap (instead of shift) for END, double
-  // tap for HOME. This assumes that systems will interpret C+HOME as "start of file"
-  [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME)),
-
-  // on tap, toggle "visual mode"
-  // on hold, send CTL
-  [TD_VI_V] =
-    ACTION_TAP_DANCE_FN_ADVANCED_TIME(
-        NULL,
-        td_vi_v_finished,
-        td_vi_v_reset,
-        125
-        ),
-
-};
 
