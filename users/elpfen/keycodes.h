@@ -1,9 +1,12 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
-#define _DVORAK _BASE
+#define _BASE _DVORAK
+#define _RAISE _SYM
+#define _LOWER _NAV
+
 enum elpfen_layers {
-    _BASE = 0,
+    _DVORAK = 0,
     _SYM,
     _NAV,
     _FNC,

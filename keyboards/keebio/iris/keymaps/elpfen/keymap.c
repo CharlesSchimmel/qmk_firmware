@@ -4,6 +4,10 @@
 // Required to expand ___Dvorak___ macros correctly
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
+/* enum layers { */
+/*     aoeu = ELPFEN_LAYERS_END */
+/* }; */
+
 enum custom_keycodes {
   BASE = ELPFEN_SAFE_RANGE,
   VI_U,
@@ -14,6 +18,8 @@ enum custom_keycodes {
   VI_W,
   VI_B
 };
+
+#define MO_NAV MO(_NAV)
 
 enum tap_dances {
   TD_VIM_G = 0,
@@ -33,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                 _____________Dvorak_Home_Sides_____________,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-        _____________Dvorak_1Dn_Sides_L____________,     MO_ADJ,           MO_ADJ,      _____________Dvorak_1Dn_Sides_R____________,
+        _____________Dvorak_1Dn_Sides_L____________,     MO_NAV,           MO_NAV,      _____________Dvorak_1Dn_Sides_R____________,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                                 ___________Base_Bottom_Center_6k___________
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -141,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 layer_state_t layer_state_set_user(layer_state_t current_state) {
-    current_state = update_tri_layer_state(state, _SYM, _NAV, _ADJ);
+    current_state = update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
     return switchboard(current_state);
 }
 
