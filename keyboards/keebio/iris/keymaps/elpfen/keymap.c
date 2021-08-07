@@ -1,16 +1,8 @@
 #include QMK_KEYBOARD_H
 #include "elpfen.h"
 
+// Required to expand ___Dvorak___ macros correctly
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
-
-enum tap_dances {
-  TD_VIM_G = 0,
-  TD_VI_V
-};
-
-#define VI_G TD(TD_VIM_G)
-#define VI_V TD(TD_VI_V)
-#define Z_NAV TD(TD_ZMO_NAV)
 
 enum custom_keycodes {
   BASE = ELPFEN_SAFE_RANGE,
@@ -22,6 +14,15 @@ enum custom_keycodes {
   VI_W,
   VI_B
 };
+
+enum tap_dances {
+  TD_VIM_G = 0,
+  TD_VI_V
+};
+
+#define VI_G TD(TD_VIM_G)
+#define VI_V TD(TD_VI_V)
+#define Z_NAV TD(TD_ZMO_NAV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_DVORAK] = LAYOUT_wrapper(
