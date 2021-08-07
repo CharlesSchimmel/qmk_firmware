@@ -3,17 +3,6 @@
 
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 
-enum layers {
-    _ADJ = ELPFEN_LAYERS_END,
-    _MOUSE,
-    /* _NEWSYM */
-};
-
-#define MO_ADJ MO(_ADJ)
-#define TG_FNC TG(_FNC)
-#define TG_MSE TG(_MOUSE)
-#define TG_ADJ TG(_ADJ)
-
 enum tap_dances {
   TD_VIM_G = 0,
   TD_VI_V
@@ -149,31 +138,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-/* ~~~~~~~~ Switchboard ~~~~~~~~~
- * Make a "child" layer dependent on its parent layer.
- *
- * Example: If _LOW is the active laer, then TG(ADJ) is pressed, ADJ will stay
- * active so long as _LOW is active.
- *
- * This is really useful as it lets one layer "switchboard" to many other
- * layers, but occupy only one activating switch. It's like a
- * Raise+Lower=Adjust but you only have to keep one key held.
- *
- * Note: this requirse that the child layers are higher than the parent layers.
- */
-layer_state_t switchboard(layer_state_t current_state) {
-    static layer_state_t previous_state;
-    if (was_layer_turned_off(previous_state, current_state, _NAV)) {
-        current_state = layer_off_state(current_state, _MOUSE);
-    }
-
-    if (was_layer_turned_off(previous_state, current_state, _SYM)) {
-        current_state = layer_off_state(current_state, _FNC);
-    }
-
-    previous_state = current_state;
-    return current_state;
-}
 
 layer_state_t layer_state_set_user(layer_state_t current_state) {
     return switchboard(current_state);
@@ -250,12 +214,6 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     }
     return true;
 }
-
-/* ~~~~~~~~~ LayerLock ~~~~~~~~~~
- * "Lock" in a layer, allowing you to let go of a MT(_layer) or MO(_layer) key
- * after you've pressed the lock key in that layer. Sort of like toggling the
- * layer after you're already in it.
- */
 
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {

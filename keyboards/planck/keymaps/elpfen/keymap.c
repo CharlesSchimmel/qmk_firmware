@@ -41,9 +41,6 @@ enum custom_keycodes {
 #define LOWER MO(_SYM)
 #define RAISE MO(_NAV)
 
-#define AL_X LALT_T(KC_X)
-#define AL_DOT RALT_T(KC_DOT)
-
 enum tap_dances {
   TD_VIM_G = 0,
   TD_VI_V
@@ -101,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                    OOO      OOO
  * └────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
  */
-[_SYM] = LAYOUT_planck_grid(
+[_SYM] = LAYOUT_wrapper(
                                     _____________SYM_2U_Sides_12k______________,
     _______,                        _____________SYM_1U_Sides_10k______________,                      _______,
     _______, _______, _______, M_SHTAB, KC_TAB,  _______, _______, _______, _______, _______, _______, SH_DEL,

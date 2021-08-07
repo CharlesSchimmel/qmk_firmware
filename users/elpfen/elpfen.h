@@ -13,3 +13,4 @@ bool multi_purpose_volume_keys(uint16_t, keyrecord_t*);
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record);
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record);
 bool layer_lock(uint16_t current_keycode, keyrecord_t *record);
+layer_state_t switchboard(layer_state_t current_state);

@@ -2,6 +2,7 @@
 #include "action.h"
 #include "elpfen.h"
 #include "keycodes.h"
+#include "layer_helpers.h"
 
 /* Multi-Purpose Volume Keys: Alter the behavior of valume keys depending on
  * if Shift or Control is pressed.
@@ -36,7 +37,7 @@ bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-/* Imitate Xmonad or i3 in Windows by enabling movement of windows with
+/* Pseudo TWM: Imitate Xmonad or i3 in Windows by enabling movement of windows with
  * Win+HJKL and closing windows with W-S-C
  */
 bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
@@ -88,6 +89,34 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
         default:
             return false;
     }
+}
+
+/* Switchboard: For momentary/layer-tapped layers, make a "child" layer
+ * dependent on its parent layer.
+ *
+ * Example: If _LOW is the active laer, then TG(_RAISE) is pressed, _RAISE
+ * will stay active so long as _LOW is active. When _LOW is deactivated, so
+ * will _RAISE.
+ *
+ * This is really useful as it lets one layer "switchboard" to many other
+ * layers, but occupy only one activating switch. It's like a
+ * Raise+Lower=Adjust but you only have to keep one key held.
+ *
+ * Note: this requires that the child layers are higher than the parent
+ * layers.
+ */
+layer_state_t switchboard(layer_state_t current_state) {
+    static layer_state_t previous_state;
+    if (was_layer_turned_off(previous_state, current_state, _NAV)) {
+        current_state = layer_off_state(current_state, _MOUSE);
+    }
+
+    if (was_layer_turned_off(previous_state, current_state, _SYM)) {
+        current_state = layer_off_state(current_state, _FNC);
+    }
+
+    previous_state = current_state;
+    return current_state;
 }
 
 /* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
