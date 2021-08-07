@@ -147,8 +147,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 layer_state_t layer_state_set_user(layer_state_t current_state) {
+    current_state = update_tri_layer_state(state, _SYM, _NAV, _ADJ);
+    static layer_state_t previous_state;
+
+    if (was_layer_turned_off(previous_state, current_state, _SYM)) {
+        SEND_STRING("sym off");
+        tap_code(KC_S);
+        SEND_STRING(SS_UP(X_LALT));
+        SEND_STRING(SS_UP(X_RALT));
+        SEND_STRING(SS_UP(X_LCTL));
+        SEND_STRING(SS_UP(X_RCTL));
+        SEND_STRING(SS_UP(X_LSFT));
+        SEND_STRING(SS_UP(X_RSFT));
+    }
+
     current_state = update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
+
+>>>>>>> 6a37e9c24 ((try to) keep mods active while layer is active)
     return switchboard(current_state);
+}
+
+/* If a mod is pressed in this layer, keep it on until the layer is deactivated.
+ */
+bool layer_specific_sticky_mods(uint16_t current_keycode, keyrecord_t *record) {
+    if (IS_LAYER_OFF(_SYM)) return true;
+    // ignore keydown; only keyup behavior will be changed
+    if (record->event.pressed) return true;
+
+    switch (current_keycode) {
+        case CT_ESC:
+        case CT_MINS:
+        case SH_TAB:
+        case SH_DEL:
+        case AL_V:
+        case AL_Q:
+        case SH_BSP:
+            // ignore keyup when key was held. Taps should still be processed
+            if (record->event.time > TAPPING_TERM) {
+                return false;
+            } else {
+                return true;
+            }
+        case KC_LALT:
+        case KC_RALT:
+        case KC_RCTL:
+            return false;
+        default:
+            return true;
+    }
 }
 
 /* ~~~~~~~~~ Pseudo-Vi ~~~~~~~~~~
@@ -224,11 +270,12 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
 }
 
 // ~~~~ Keypress Processing ~~~~~
-bool process_record_user(uint16_t current_keycode, keyrecord_t *record) {
-    return pseudo_twm(current_keycode, record)
-        && multi_purpose_volume_keys(current_keycode, record)
-        && layer_lock(current_keycode, record)
-        && vi_keys(current_keycode, record)
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    return pseudo_twm(keycode, record)
+        && multi_purpose_volume_keys(keycode, record)
+        && layer_lock(keycode, record)
+        && vi_keys(keycode, record)
+        && layer_specific_sticky_mods(keycode, record)
         && true;
 }
 
