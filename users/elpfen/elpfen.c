@@ -107,6 +107,9 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
  */
 layer_state_t switchboard(layer_state_t current_state) {
     static layer_state_t previous_state;
+    return switchboard_state(previous_state, current_state);
+}
+layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t current_state) {
     if (was_layer_turned_off(previous_state, current_state, _NAV)) {
         current_state = layer_off_state(current_state, _MOUSE);
     }
