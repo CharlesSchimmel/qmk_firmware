@@ -75,22 +75,6 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-/* IGNORE_MOD_TAP_INTERRUPT_PER_KEY: For these specific mod-taps, if the
- * second key in a chord is pressed after the modifier key is released,
- * ignore the modifier, even if it's inside the tapping term.
- */
-__attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case AL_Q:
-        case AL_V:
-        case AL_X:
-        case AL_DOT:
-            return true;
-        default:
-            return false;
-    }
-}
-
 /* Switchboard: For momentary/layer-tapped layers, make a "child" layer
  * dependent on its parent layer.
  *
@@ -174,3 +158,20 @@ __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t 
             return false;
     }
 }
+
+/* IGNORE_MOD_TAP_INTERRUPT_PER_KEY: For these specific mod-taps, if the
+ * second key in a chord is pressed after the modifier key is released,
+ * ignore the modifier, even if it's inside the tapping term.
+ */
+__attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case AL_Q:
+        case AL_V:
+        case AL_X:
+        case AL_DOT:
+            return true;
+        default:
+            return false;
+    }
+}
+

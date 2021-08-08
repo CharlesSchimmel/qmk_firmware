@@ -130,6 +130,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+// using multiple layers means that the mods will stay on so long as any of
+// those layers is activated. May or may not be desired.
+void unregister_mods_on_layer_off(
+        layer_state_t previous_state,
+        layer_state_t current_state,
+        layer_state_t layers) {
+    if (was_layer_turned_off(previous_state, current_state, layers)) {
+        clear_mods();
+    }
+}
+
 
 layer_state_t layer_state_set_user(layer_state_t current_state) {
     static layer_state_t previous_state;
@@ -144,23 +155,6 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
     return current_state;
 }
 
-// using multiple layers means that the mods will stay on so long as any of
-// those layers is activated. May or may not be desired.
-void unregister_mods_on_layer_off(
-        layer_state_t previous_state,
-        layer_state_t current_state,
-        layer_state_t layers) {
-    if (was_layer_turned_off(previous_state, current_state, layers)) {
-        unregister_code(KC_LALT);
-        unregister_code(KC_RALT);
-        unregister_code(KC_LCTL);
-        unregister_code(KC_RCTL);
-        unregister_code(KC_LSFT);
-        unregister_code(KC_RSFT);
-    }
-
-}
-
 /* If a mod is pressed in this layer, keep it on until the layer is deactivated.
  */
 bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_state_t layers) {
@@ -173,9 +167,9 @@ bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_stat
         case CT_MINS:
         case SH_TAB:
         case SH_DEL:
+        case SH_BSP:
         case AL_V:
         case AL_Q:
-        case SH_BSP:
             // ignore keyup when key was held. Taps should still be processed
             if (record->event.time > TAPPING_TERM) {
                 return false;

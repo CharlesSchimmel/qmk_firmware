@@ -4,19 +4,9 @@
 
 /* ~~~~~~~~~ Common Keymaps ~~~~~~~~~~
  *
- * Keymaps are defined here to be reused in multiple keyboards
- *
  * Keymaps are named relative to the home row, so '1Up' is 1 above the home
  * row, '2Dn' is 2 below the home row, etc. Except for the bottom row, which is
  * always the bottom.
- *
- * Some macros include their key count as a suffix. Ex:
- * _____________SYM_2U_Sides_12k______________ corresponds to 12 keys.
- *
- * Rows are organized as "Core" meaning just the 12 (usually alphanumeric)
- * keys, and  "Sides", meaning that they include the side keys. Some rows are
- * also split into Left and Right sections for keyboards that include middle
- * keys.
  *
  */
 
