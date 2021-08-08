@@ -151,7 +151,21 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
 
     current_state = update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
 
-    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
+    unregister_mods_on_layer_off(previous_state, current_state, _ADJ | _SYM);
+
+    current_state = switchboard_state(previous_state, current_state);
+    previous_state = current_state;
+
+    return current_state;
+}
+
+// using multiple layers means that the mods will stay on so long as any of
+// those layers is activated. May or may not be desired.
+void unregister_mods_on_layer_off(
+        layer_state_t previous_state,
+        layer_state_t current_state,
+        layer_state_t layers) {
+    if (was_layer_turned_off(previous_state, current_state, layers)) {
         unregister_code(KC_LALT);
         unregister_code(KC_RALT);
         unregister_code(KC_LCTL);
@@ -160,16 +174,12 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
         unregister_code(KC_RSFT);
     }
 
-    current_state = switchboard_state(previous_state, current_state);
-    previous_state = current_state;
-
-    return current_state;
 }
 
 /* If a mod is pressed in this layer, keep it on until the layer is deactivated.
  */
-bool layer_specific_sticky_mods(uint16_t current_keycode, keyrecord_t *record) {
-    if (IS_LAYER_OFF(_ADJ)) return true;
+bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_state_t layers) {
+    if (IS_LAYER_OFF(layers)) return true;
     // ignore keydown; only keyup behavior will be changed
     if (record->event.pressed) return true;
 
@@ -274,7 +284,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         && multi_purpose_volume_keys(keycode, record)
         && layer_lock(keycode, record)
         && vi_keys(keycode, record)
-        && layer_specific_sticky_mods(keycode, record)
+        && layer_sticky_mods(keycode, record, _ADJ | _SYM)
         && true;
 }
 
