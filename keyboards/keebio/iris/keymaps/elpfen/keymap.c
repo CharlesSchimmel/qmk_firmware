@@ -23,11 +23,10 @@ enum custom_keycodes {
 
 enum tap_dances {
   TD_VIM_G = 0,
-  TD_VI_V
 };
 
 #define VI_G TD(TD_VIM_G)
-#define VI_V TD(TD_VI_V)
+#define VI_V CTL_T(KC_RSFT)
 #define Z_NAV TD(TD_ZMO_NAV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -156,6 +155,8 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
 }
 
 /* If a mod is pressed in this layer, keep it on until the layer is deactivated.
+ * 
+ * I think this could be done more generally, but idk
  */
 bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_state_t layers) {
     if (IS_LAYER_OFF(layers)) return true;
@@ -251,6 +252,52 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
             }
             return false;
 
+        /* Ignore alternating keyups and keydowns for KC_RSFT to toggle it
+         * on and off. There's probably a way to do this more generally by
+         * loading all of the mod keys into a byte, similar to how
+         * one-shot-mods does it. Maybe I just use real_mods as my toggling
+         * var?
+         */
+        case VI_V: // CTL_T(KC_RSFT)
+
+            // let the hold (Ctl) be processed as usual
+            if (record->event.time > TAPPING_TERM) return true;
+
+            /* visual_mode needs to alternate at half the rate of event.pressed
+             * this is sort of like scanning a stream with a XOR:
+             * scanl xor False . take 10 . cycle $ [True, False]
+             * v_m  e.p  ==
+             * f  ^  t    t
+             * t  ^  f    t
+             * t  ^  t    f
+             * f  ^  f    f
+             *
+             * this could also be achieved with:
+             * if (record->event.pressed) visual_mode = !visual_mode;
+             * but that's less fun
+             */
+
+            visual_mode ^= record->event.pressed;
+
+            // v_m   e.p   ===
+            // t      t     t
+            // t      f     f
+            // f      t     f
+            // f      f     t
+            //
+            // mb   e.p   ===  mb
+            //                 f
+            // f     t     t   t
+            // t     f     f   t
+            // t     t     f   t
+            // t     f     t   f
+
+            // results in:
+            // event.pressed: 10101010101
+            // visual_mode  : 11001100110
+            // return       : 10011001100
+            return visual_mode == record->event.pressed;
+
         default:
             return true;
     }
@@ -273,48 +320,8 @@ static td_tap_t td_tap_state = {
 };
 
 
-// This could maybe be replaced with a mod-tap overload
-void td_vi_v_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_tap_state.state = cur_dance(state);
-    switch (td_tap_state.state) {
-        case TD_SINGLE_TAP:
-            // this sends KC_APP, not sure why
-            if (visual_mode) {
-                SEND_STRING(SS_UP(X_RSFT));
-                visual_mode = false;
-            } else {
-                SEND_STRING(SS_DOWN(X_RSFT));
-                visual_mode = true;
-            }
-            break;
-        case TD_SINGLE_HOLD:
-            SEND_STRING(SS_DOWN(X_RCTL));
-            break;
-        default: break;
-
-    }
-}
-
-void td_vi_v_reset(qk_tap_dance_state_t *state, void *user_data) {
-    if (td_tap_state.state == TD_SINGLE_HOLD) {
-        SEND_STRING(SS_UP(X_RCTL));
-    }
-    td_tap_state.state = TD_NONE;
-}
-
 qk_tap_dance_action_t tap_dance_actions[] = {
   // act (sort of) like G in vim: single tap (instead of shift) for END, double
   // tap for HOME. This assumes that systems will interpret C+HOME as "start of file"
-  [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME)),
-
-  // on tap, toggle "visual mode"
-  // on hold, send CTL
-  [TD_VI_V] =
-    ACTION_TAP_DANCE_FN_ADVANCED_TIME(
-        NULL,
-        td_vi_v_finished,
-        td_vi_v_reset,
-        125
-        ),
-
+  [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME))
 };
