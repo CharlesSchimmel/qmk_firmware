@@ -91,8 +91,11 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
  */
 layer_state_t switchboard(layer_state_t current_state) {
     static layer_state_t previous_state;
-    return switchboard_state(previous_state, current_state);
+    current_state = switchboard_state(previous_state, current_state);
+    previous_state = current_state;
+    return current_state;
 }
+
 layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t current_state) {
     if (was_layer_turned_off(previous_state, current_state, _NAV)) {
         current_state = layer_off_state(current_state, _MOUSE);
@@ -101,8 +104,6 @@ layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t curr
     if (was_layer_turned_off(previous_state, current_state, _SYM)) {
         current_state = layer_off_state(current_state, _FNC);
     }
-
-    previous_state = current_state;
     return current_state;
 }
 
