@@ -202,7 +202,6 @@ bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_stat
  * Just some macros to mimic the most useful vim keys
  */
 bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
-    static bool visual_mode = false;
     // ignore keyup
     if (!record->event.pressed) return true;
 
@@ -210,12 +209,6 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
     bool with_shift = get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT);
 
     switch(current_keycode) {
-        case KC_ESC:
-        case KC_LSFT:
-        case KC_RSFT:
-            visual_mode = false;
-            return true;
-
         case VI_B:
             SEND_STRING(SS_DOWN(X_LCTL));
             SEND_STRING(SS_TAP(X_LEFT));
@@ -230,11 +223,10 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
 
         case VI_Y:
             SEND_STRING(SS_LCTL("c"));
-            visual_mode = false;
             return false;
 
         case VI_P:
-            if (!visual_mode && with_shift) {
+            if (with_shift) {
                 SEND_STRING(SS_LSFT(SS_TAP(X_INSERT)));
             } else {
                 SEND_STRING(SS_LCTL("v"));
@@ -260,55 +252,8 @@ bool vi_keys(uint16_t current_keycode, keyrecord_t *record) {
                 SEND_STRING(SS_TAP(X_PGDOWN));
             } else {
                 SEND_STRING(SS_LCTL("x"));
-                visual_mode = false;
             }
             return false;
-
-        /* Ignore alternating keyups and keydowns for KC_RSFT to toggle it
-         * on and off. There's probably a way to do this more generally by
-         * loading all of the mod keys into a byte, similar to how
-         * one-shot-mods does it. Maybe I just use real_mods as my toggling
-         * var?
-         */
-        case VI_V: // CTL_T(KC_RSFT)
-
-            // let the hold (Ctl) be processed as usual
-            if (record->event.time > TAPPING_TERM) return true;
-
-            /* visual_mode needs to alternate at half the rate of event.pressed
-             * this is sort of like scanning a stream with a XOR:
-             * scanl xor False . take 10 . cycle $ [True, False]
-             * v_m  e.p  ==
-             * f  ^  t    t
-             * t  ^  f    t
-             * t  ^  t    f
-             * f  ^  f    f
-             *
-             * this could also be achieved with:
-             * if (record->event.pressed) visual_mode = !visual_mode;
-             * but that's less fun
-             */
-
-            visual_mode ^= record->event.pressed;
-
-            // v_m   e.p   ===
-            // t      t     t
-            // t      f     f
-            // f      t     f
-            // f      f     t
-            //
-            // mb   e.p   ===  mb
-            //                 f
-            // f     t     t   t
-            // t     f     f   t
-            // t     t     f   t
-            // t     f     t   f
-
-            // results in:
-            // event.pressed: 10101010101
-            // visual_mode  : 11001100110
-            // return       : 10011001100
-            return visual_mode == record->event.pressed;
 
         default:
             return true;
