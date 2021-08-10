@@ -155,7 +155,7 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
     // Clear sticky mods
     // using multiple layers means that the mods will stay on so long as any of
     // those layers is activated. May or may not be desired.
-    if (was_layer_turned_off(previous_state, current_state, _ADJ | _SYM)) {
+    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
         clear_mods();
     }
 
@@ -165,7 +165,9 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
     return current_state;
 }
 
-/* If a mod is pressed in this layer, keep it on until the layer is deactivated.
+/* If a mod is pressed in this layer, keep it on until the layer is
+ * deactivated. Simply intercept keyup for those modifiers and call
+ * clear_mods when the layer turns off.
  *
  * I think this could be done more generally, but idk
  */
@@ -175,19 +177,6 @@ bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_stat
     if (record->event.pressed) return true;
 
     switch (current_keycode) {
-        case CT_ESC:
-        case CT_MINS:
-        case SH_TAB:
-        case SH_DEL:
-        case SH_BSP:
-        case AL_V:
-        case AL_Q:
-            // ignore keyup when key was held. Taps should still be processed
-            if (record->event.time > TAPPING_TERM) {
-                return false;
-            } else {
-                return true;
-            }
         case KC_LALT:
         case KC_RALT:
         case KC_RCTL:
@@ -267,7 +256,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         && multi_purpose_volume_keys(keycode, record)
         && layer_lock(keycode, record)
         && vi_keys(keycode, record)
-        && layer_sticky_mods(keycode, record, _ADJ | _SYM)
+        && layer_sticky_mods(keycode, record, _ADJ)
         && true;
 }
 
