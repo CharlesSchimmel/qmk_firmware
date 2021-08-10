@@ -103,6 +103,7 @@ layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t curr
 
     if (was_layer_turned_off(previous_state, current_state, _SYM)) {
         current_state = layer_off_state(current_state, _FNC);
+        current_state = layer_off_state(current_state, _ADJ);
     }
     return current_state;
 }

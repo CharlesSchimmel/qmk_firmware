@@ -29,6 +29,8 @@ enum elpfen_custom_keycodes {
 #define AL_V    RALT_T(KC_V)
 #define AL_X    LALT_T(KC_X)
 #define AL_DOT  RALT_T(KC_DOT)
+#define AL_J    LALT_T(KC_J)
+#define AL_W    LALT_T(KC_W)
 
 #define CT_ESC  CTL_T(KC_ESC)
 #define CT_SLSH CTL_T(KC_SLSH)

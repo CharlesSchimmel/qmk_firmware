@@ -24,6 +24,9 @@
 /*     aoeu = ELPFEN_LAYERS_END */
 /* }; */
 
+// transparent but passes through to a key that is useful
+#define vvvvvvv
+
 enum custom_keycodes {
   BASE = ELPFEN_SAFE_RANGE,
   VI_U,
@@ -43,7 +46,6 @@ enum tap_dances {
 
 #define VI_G TD(TD_VIM_G)
 #define VI_V CTL_T(KC_RSFT)
-#define Z_NAV TD(TD_ZMO_NAV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_DVORAK] = LAYOUT_wrapper(
@@ -69,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______,                                     _____________SYM_Home_Core_10k_____________,                                     _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, KC_LALT, M_SHTAB, KC_TAB,  _______, _______,          _______, _______,  TG_FNC, _______, _______, _______, SH_DEL,
+   _______, _______, _______, _______, _______, _______, _______,          _______, _______,  TG_FNC, _______, _______, _______, SH_DEL,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -80,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
    KC_GRV,  _______, _______, _______, KC_END,  _______,                            _______, _______, _______, _______, KC_HOME, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, MS_WUP,  MS_BTN1, _______,  VI_P,    VI_Y,                              _______,   VI_G,  _______,  VI_R,   KC_RGHT, _______,
+   _______, MS_WUP,  MS_BTN1, _______,  VI_P,    VI_Y,                              _______,   VI_G,  _______,   VI_R,  KC_RGHT, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, _______, _______,  VI_U,   _______,                             VI_D,   KC_LEFT, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______,  VI_B,   TG_MSE,   VI_W,    VI_V,    L_NAV,  _______,
+   _______,  L_NAV,  KC_LCTL, KC_DOWN,  KC_UP,  _______, _______,          _______,  VI_B,    TG_MSE,  VI_W,    VI_V,    L_NAV,  _______,
 //└────────┴oooooooo┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴oooooooo┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -105,9 +107,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______,                            _______, KC_PSCR, _______, _______,  M_LOK,  _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, _______, _______, _______, _______,                             M_CAD,  _______, _______, _______, KC_SLEP, _______,
+   _______, _______, _______, _______,  M_CAD,  _______,                            _______, _______, _______, _______, KC_SLEP, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, RESET,   _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+   _______,  RESET,  _______, _______, _______, _______, _______,          _______, _______, _______, _______, KC_WAKE, _______, _______,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   OOOOOOO, _______, _______,                   _______, _______, OOOOOOO
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -122,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, MS_WDWN, MS_LEFT, MS_DOWN, MS_RGHT, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, _______,
+   _______, OOOOOOO, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, OOOOOOO, _______,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, _______,                   _______, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -137,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, XXXXXXX, KC_LALT, M_SHTAB,  KC_TAB, _______, OOOOOOO,          OOOOOOO, _______, _______, KC_RCTL, KC_RALT, XXXXXXX, _______,
+   KC_LSFT, XXXXXXX, KC_LALT, M_SHTAB,  KC_TAB, _______, OOOOOOO,          OOOOOOO, _______, _______, KC_RCTL, KC_RALT, XXXXXXX, KC_RSFT,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -145,24 +147,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// using multiple layers means that the mods will stay on so long as any of
-// those layers is activated. May or may not be desired.
-void unregister_mods_on_layer_off(
-        layer_state_t previous_state,
-        layer_state_t current_state,
-        layer_state_t layers) {
-    if (was_layer_turned_off(previous_state, current_state, layers)) {
-        clear_mods();
-    }
-}
+// Turn on the third layer if both RAISE and LOWER are on, but only turn
+// off the third layer when _both_ parent layers are turned off.
+layer_state_t lenient_update_tri_layer_state(
+        layer_state_t state,
+        uint8_t layer1,
+        uint8_t layer2,
+        uint8_t layer3
+        ) {
+    layer_state_t mask12 = (1UL << layer1) | (1UL << layer2);
+    layer_state_t mask3  = 1UL << layer3;
 
+    bool both_on = (state & mask12) == mask12;
+    bool both_off = (state & mask12) == 0;
+
+    if (both_on)  return state | mask3;
+    if (both_off) return state & ~mask3;
+
+    return state;
+}
 
 layer_state_t layer_state_set_user(layer_state_t current_state) {
     static layer_state_t previous_state;
 
-    current_state = update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
+    current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
 
-    unregister_mods_on_layer_off(previous_state, current_state, _ADJ | _SYM);
+    // Clear sticky mods
+    // using multiple layers means that the mods will stay on so long as any of
+    // those layers is activated. May or may not be desired.
+    if (was_layer_turned_off(previous_state, current_state, _ADJ | _SYM)) {
+        clear_mods();
+    }
 
     current_state = switchboard_state(previous_state, current_state);
     previous_state = current_state;
@@ -171,7 +186,7 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
 }
 
 /* If a mod is pressed in this layer, keep it on until the layer is deactivated.
- * 
+ *
  * I think this could be done more generally, but idk
  */
 bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_state_t layers) {
@@ -196,6 +211,7 @@ bool layer_sticky_mods(uint16_t current_keycode, keyrecord_t *record, layer_stat
         case KC_LALT:
         case KC_RALT:
         case KC_RCTL:
+        case KC_LCTL:
             return false;
         default:
             return true;
@@ -331,9 +347,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 // ~~~~~~~~~ TapDances ~~~~~~~~~~
-static td_tap_t td_tap_state = {
-    .state = TD_NONE,
-};
+/* static td_tap_t td_tap_state = { */
+/*     .state = TD_NONE, */
+/* }; */
 
 
 qk_tap_dance_action_t tap_dance_actions[] = {
