@@ -18,3 +18,8 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record);
 bool layer_lock(uint16_t current_keycode, keyrecord_t *record);
 layer_state_t switchboard(layer_state_t current_state);
 layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t current_state);
+layer_state_t lenient_update_tri_layer_state(
+        layer_state_t state,
+        uint8_t layer1,
+        uint8_t layer2,
+        uint8_t layer3);

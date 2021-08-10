@@ -145,6 +145,28 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     }
 }
 
+/* Lenient Adjust: Turn on the third layer if both RAISE and LOWER are on (like
+ * update_tri_layer_state), but only turn off the third layer when _both_
+ * parent layers are turned off.
+ */
+layer_state_t lenient_update_tri_layer_state(
+        layer_state_t state,
+        uint8_t layer1,
+        uint8_t layer2,
+        uint8_t layer3
+        ) {
+    layer_state_t mask12 = (1UL << layer1) | (1UL << layer2);
+    layer_state_t mask3  = 1UL << layer3;
+
+    bool both_on = (state & mask12) == mask12;
+    bool both_off = (state & mask12) == 0;
+
+    if (both_on)  return state | mask3;
+    if (both_off) return state & ~mask3;
+
+    return state;
+}
+
 /* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
  * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
  * for mod-taps whose tapped key is used in normal typing.
@@ -176,4 +198,5 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
             return false;
     }
 }
+
 
