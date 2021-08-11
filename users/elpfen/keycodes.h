@@ -17,7 +17,11 @@ enum elpfen_layers {
 
 enum elpfen_custom_keycodes {
     L_NAV = SAFE_RANGE,
-    ELPFEN_SAFE_RANGE
+    VI_U,
+    VI_D,
+    VI_R,
+    VI_P,
+    ELPFEN_KEYCODES_END
 };
 
 // ~~~~~~~~~ Mod-Taps ~~~~~~~~~~
@@ -42,6 +46,8 @@ enum elpfen_custom_keycodes {
 #define SH_DEL  RSFT_T(KC_DEL)
 #define SH_TAB  LSFT_T(KC_TAB)
 #define SH_ENT  LSFT_T(KC_ENT)
+#define SH_A    LSFT_T(KC_A)
+#define SH_S    LSFT_T(KC_S)
 
 // ~~~~~~~~~ Layers ~~~~~~~~~~
 #define LW_SPC  LT(_SYM, KC_SPC)
@@ -53,6 +59,7 @@ enum elpfen_custom_keycodes {
 #define FN_MNU  LT(_FNC, KC_APP)
 
 #define MO_ADJ  MO(_ADJ)
+#define MO_NAV  MO(_NAV)
 #define TG_FNC  TG(_FNC)
 #define TG_MSE  TG(_MOUSE)
 #define TG_ADJ  TG(_ADJ)

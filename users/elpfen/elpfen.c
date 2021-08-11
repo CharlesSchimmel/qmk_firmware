@@ -167,16 +167,47 @@ layer_state_t lenient_update_tri_layer_state(
     return state;
 }
 
+/* Layer-Sticky Mods: If a mod is pressed in this layer, keep it on until the
+ * layer is deactivated. Simply intercept and ignore keyup for those modifiers
+ * and call clear_mods when the layer turns off.
+ *
+ * I think this could be done more generally by checking the mod bits, but idk.
+ */
+bool layer_sticky_mods(
+        uint16_t current_keycode,
+        keyrecord_t *record,
+        layer_state_t layers) {
+    if (IS_LAYER_OFF(layers)) return true;
+    if (record->event.pressed) return true;
+
+    switch (current_keycode) {
+        case KC_LALT:
+        case KC_RALT:
+        case KC_LCTL:
+        case KC_RCTL:
+        case KC_LSFT:
+        case KC_RSFT:
+            return false;
+        default:
+            return true;
+    }
+}
+
+#define ALPHA_MODS   \
+        case AL_Q:   \
+        case AL_V:   \
+        case AL_X:   \
+        case AL_DOT: \
+        case SH_A:   \
+        case SH_S:
+
 /* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
  * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
  * for mod-taps whose tapped key is used in normal typing.
  */
 __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case AL_Q:
-        case AL_V:
-        case AL_X:
-        case AL_DOT:
+        ALPHA_MODS
             return true;
         default:
             return false;
@@ -189,10 +220,7 @@ __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t 
  */
 __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case AL_Q:
-        case AL_V:
-        case AL_X:
-        case AL_DOT:
+        ALPHA_MODS
             return true;
         default:
             return false;
