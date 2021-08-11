@@ -4,12 +4,13 @@
 #include "keycodes.h"
 #include "layer_helpers.h"
 
-/* Multi-Purpose Volume Keys: Alter the behavior of valume keys depending on
+/* Multi-Purpose Volume Keys: Alter the behavior of volume keys depending on
  * if Shift or Control is pressed.
  *
  * Some OS's/Desktops will use Ctl, Alt, and Shift to change how much the
  * volume is increased, so it might not be for everyone.
  */
+
 bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
@@ -30,7 +31,7 @@ bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
             with_shift ? tap_code(KC_MEDIA_NEXT_TRACK) : tap_code(KC_BRIGHTNESS_UP);
             return false;
         case KC_MUTE :
-            SEND_STRING(SS_TAP(X_MEDIA_PLAY_PAUSE));
+            tap_code(KC_MEDIA_PLAY_PAUSE);
             return false;
     }
 
@@ -48,20 +49,20 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
     // move and close windows in Windows using vim keys (WIN+HJKL)
     switch(keycode) {
         case KC_H :
-        SEND_STRING(SS_TAP(X_LEFT));
-        return false;
+            tap_code(KC_LEFT);
+            return false;
 
         case KC_J :
-        SEND_STRING(SS_TAP(X_DOWN));
-        return false;
+            tap_code(KC_DOWN);
+            return false;
 
         case KC_K :
-        SEND_STRING(SS_TAP(X_UP));
-        return false;
+            tap_code(KC_UP);
+            return false;
 
         case KC_L :
-        SEND_STRING(SS_TAP(X_RIGHT));
-        return false;
+            tap_code(KC_RIGHT);
+            return false;
 
         case KC_C :
         if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
