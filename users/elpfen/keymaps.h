@@ -12,6 +12,8 @@
 
 
 // ~~~~~~~~~ Base Dvorak Layer ~~~~~~~~~~
+#define ___1_through_10___ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
+
 #define _____________Dvorak_2Up_Core_______________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 #define _____________Dvorak_2Up_Sides______________ KC_GRV, _____________Dvorak_1Up_Core_______________, KC_BSLS
 
@@ -25,15 +27,29 @@
 #define _____________Dvorak_1Dn_Core_R_____________                                 KC_B, KC_M, KC_W, AL_V, RS_Z
 #define _____________Dvorak_1Dn_Sides_L____________ SH_TAB, _____________Dvorak_1Dn_Core_L_____________
 #define _____________Dvorak_1Dn_Sides_R____________                                                     _____________Dvorak_1Dn_Core_R_____________, SH_BSP
-#define _____________Dvorak_1Dn_Core_______________ _____________Dvorak_1Dn_Core_L_____________, _____________Dvorak_1Dn_Core_R_____________
-#define _____________Dvorak_1Dn_Sides______________ _____________Dvorak_1Dn_Sides_L____________, _____________Dvorak_1Dn_Sides_R____________
 
 #define ___________Base_Bottom_Center_6k___________ FN_MNU, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, FN_MNU
 
 // ~~~~~~~~~ Symbol Layer ~~~~~~~~~~
-#define _____________SYM_2U_Sides_12k______________ KC_F12, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11
+#define _____________SYM_2Up_Sides_12k_____________ KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
+#define _____________SYM_1Up_Core_10k______________ ___1_through_10___
+#define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC
+#define _____________SYM_1Dn_Sides_R_6k____________ _______, TG_FNC,  _______, _______, _______, SH_DEL
 
-#define ___1_through_10___ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
-#define _____________SYM_1U_Core_10k_______________ ___1_through_10___
+#define _____________NAV_2Up_Sides_12k_____________ KC_GRV,  _______, _______, _______, KC_END,  _______, _______, _______, _______, _______, KC_HOME, _______
+#define _____________NAV_1Up_Sides_12k_____________ _______, MS_WUP,  MS_BTN1, _______, VI_P,    VI_Y,    _______, VI_G,    _______, VI_R,    KC_RGHT, _______
+#define _____________NAV_Home_Sides_12k____________ _______, MS_WDWN, _______, _______, VI_U,    _______, VI_D,    KC_LEFT, _______, _______, _______, _______
+#define _____________NAV_1Dn_Sides_L_6k____________ _______, L_NAV,   KC_LCTL, KC_DOWN, KC_UP,   _______
+#define _____________NAV_1Dn_Sides_R_6k____________                                                       VI_B,    TG_MSE,  VI_W,    VI_V,    L_NAV,   _______
 
-#define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL, KC_RPRN, KC_RCBR, KC_RBRC
+#define _____________FNC_2Up_Sides_12k_____________ M_CSE,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+#define _____________FNC_1Up_Sides_12k_____________ _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______, _______, KC_PSCR, _______, _______, M_LOK,   _______
+#define _____________FNC_Home_Sides_12k____________ _______, _______, _______, _______, M_CAD,   _______, _______, _______, _______, _______, KC_SLEP, _______
+#define _____________FNC_1Dn_Sides_L_6k____________ _______, _______, _______, _______, _______, _______
+#define _____________FNC_1Dn_Sides_R_6k____________                                                       _______, _______, _______, KC_WAKE, _______, _______
+#define _____________FNC_BotCenter_6k______________ RESET,   _______, _______, _______, _______, OOOOOOO
+
+#define _____________ADJ_1Up_Sides_12k_____________ _______, GUI_1,   GUI_2,   GUI_3,   GUI_4,   GUI_5,   GUI_6,   GUI_7,   GUI_8,   GUI_9,   _______, _______
+#define _____________ADJ_1Dn_Sides_L_6k____________ KC_LSFT, XXXXXXX, KC_LALT, M_SHTAB,  KC_TAB, _______
+#define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, _______, KC_RCTL, KC_RALT, XXXXXXX, KC_RSFT
+
