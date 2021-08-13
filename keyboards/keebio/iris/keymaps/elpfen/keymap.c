@@ -23,15 +23,15 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_DVORAK] = LAYOUT_wrapper(
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-   KC_GRV,                                      _____________Dvorak_2Up_Core_______________,                                     KC_BSLS,
+   KC_GRV,                                      _____________Dvorak_2Up_Core_10k___________,                                     KC_BSLS,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-                                                _____________Dvorak_1Up_Sides______________,
+                                                _____________Dvorak_1Up_Sides_12k__________,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-                                                _____________Dvorak_Home_Sides_____________,
+                                                _____________Dvorak_Home_Sides_12k_________,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-        _____________Dvorak_1Dn_Sides_L____________,     MO_NAV,           MO_NAV,      _____________Dvorak_1Dn_Sides_R____________,
+        _____________Dvorak_1Dn_Sides_L_6k_________,     MO_NAV,           MO_NAV,      _____________Dvorak_1Dn_Sides_R_6k_________,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                                ___________Base_Bottom_Center_6k___________
+                                                _____________Base_Bottom_Center_6k_________
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -149,7 +149,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  // act (sort of) like G in vim: single tap (instead of shift) for END, double
-  // tap for HOME. This assumes that systems will interpret C+HOME as "start of file"
-  [TD_VIM_G] = ACTION_TAP_DANCE_DOUBLE(C(KC_END), C(KC_HOME))
+  TD_VI_G_ENTRY
 };

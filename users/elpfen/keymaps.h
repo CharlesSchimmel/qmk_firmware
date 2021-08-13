@@ -10,27 +10,27 @@
  *
  */
 
-
 // ~~~~~~~~~ Base Dvorak Layer ~~~~~~~~~~
 #define ___1_through_10___ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 
-#define _____________Dvorak_2Up_Core_______________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
-#define _____________Dvorak_2Up_Sides______________ KC_GRV, _____________Dvorak_1Up_Core_______________, KC_BSLS
+#define _____________Dvorak_2Up_Core_10k___________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
+#define _____________Dvorak_2Up_Sides_12k__________ KC_GRV, _____________Dvorak_2Up_Core_10k___________, KC_BSLS
 
-#define _____________Dvorak_1Up_Core_______________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
-#define _____________Dvorak_1Up_Sides______________ KC_GRV, _____________Dvorak_1Up_Core_______________, KC_SLSH
+#define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
+#define _____________Dvorak_1Up_Sides_12k__________ KC_GRV, _____________Dvorak_1Up_Core_10k___________, KC_SLSH
 
-#define _____________Dvorak_Home_Core______________ SH_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, SH_S
-#define _____________Dvorak_Home_Sides_____________ CT_ESC, _____________Dvorak_Home_Core______________, CT_MINS
+#define _____________Dvorak_Home_Core_10k__________ SH_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, SH_S
+#define _____________Dvorak_Home_Sides_12k_________ CT_ESC, _____________Dvorak_Home_Core_10k__________, CT_MINS
 
-#define _____________Dvorak_1Dn_Core_L_____________ RS_SCLN, AL_Q, KC_J, KC_K, KC_X
-#define _____________Dvorak_1Dn_Core_R_____________                                 KC_B, KC_M, KC_W, AL_V, RS_Z
-#define _____________Dvorak_1Dn_Sides_L____________ SH_TAB, _____________Dvorak_1Dn_Core_L_____________
-#define _____________Dvorak_1Dn_Sides_R____________                                                     _____________Dvorak_1Dn_Core_R_____________, SH_BSP
+#define _____________Dvorak_1Dn_Core_L_5k__________ RS_SCLN, AL_Q, KC_J, KC_K, KC_X
+#define _____________Dvorak_1Dn_Core_R_5k__________                                 KC_B, KC_M, KC_W, AL_V, RS_Z
+#define _____________Dvorak_1Dn_Sides_L_6k_________ SH_TAB, _____________Dvorak_1Dn_Core_L_5k__________
+#define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, SH_BSP
+#define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
-#define ___________Base_Bottom_Center_6k___________ FN_MNU, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, FN_MNU
+#define _____________Base_Bottom_Center_6k_________ FN_MNU, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, FN_MNU
 
-// ~~~~~~~~~ Symbol Layer ~~~~~~~~~~
+// ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
 #define _____________SYM_1Up_Core_10k______________ ___1_through_10___
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC
@@ -41,6 +41,7 @@
 #define _____________NAV_Home_Sides_12k____________ _______, MS_WDWN, _______, _______, VI_U,    _______, VI_D,    KC_LEFT, _______, _______, _______, _______
 #define _____________NAV_1Dn_Sides_L_6k____________ _______, L_NAV,   KC_LCTL, KC_DOWN, KC_UP,   _______
 #define _____________NAV_1Dn_Sides_R_6k____________                                                       VI_B,    TG_MSE,  VI_W,    VI_V,    L_NAV,   _______
+#define _____________NAV_1Dn_Sides_12k_____________ _____________NAV_1Dn_Sides_L_6k____________, _____________NAV_1Dn_Sides_R_6k____________
 
 #define _____________FNC_2Up_Sides_12k_____________ M_CSE,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 #define _____________FNC_1Up_Sides_12k_____________ _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______, _______, KC_PSCR, _______, _______, M_LOK,   _______
