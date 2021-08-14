@@ -5,32 +5,32 @@ designed to be useful in Windows, tmux, vim, and Xmonad.
 
 ## Basic Principles
 
-- Keep it simple: 30% of the keyboard is used 90% of the time. 50% of the
+- **Keep it simple**: 30% of the keyboard is used 90% of the time. 50% of the
     keyboard is used 97% of the time. We quickly approach diminishing returns
     and it's preferable to skip the rarely used keys than add rarely-needed
     complexity to our layout.
 
-- Maximize accessibility, minimize travel: frequently used keys should be more
+- **Maximize accessibility, minimize travel**: frequently used keys should be more
     accessible than infrequently used keys. Only very infrequently used actions
     should be more than 1 key from home row. Layers and modifiers do not add 
     significant impediments to accessibility.
 
-- Consistency is important too: accessibility and travel can be sacrificed if a
+- **Consistency is important too**: accessibility and travel can be sacrificed if a
     key's function is consistent with a less accessible position (e.g. putting
     Shift-Tab and Tab on JK despite being used frequently because it's 
     consistent with other uses of JK).
 
-- Symmetry and ping-ponging: The pattern of alternating hands that Dvorak
+- **Symmetry and ping-ponging**: The pattern of alternating hands that Dvorak
     enables should be maintained with the layout. Both hands should be used
     roughly equally. All modifiers and layers should be symmetric and accessible
     from both hands to avoid "clawing" (holding a key and tapping a key with the
     same hand).
 
-- Two mods and one tap, max: Layout should be designed so that no more than two
+- **Two mods and one tap, max**: Layout should be designed so that no more than two
     mods need to be held at once on a given hand, and that for any action, one
     hand holds a key and the other taps (again, no clawing).
 
-- Don't fear the layers/modifiers: With a little practice, layer-taps can be
+- **Don't fear the layers/modifiers**: With a little practice, layer-taps can be
     used with great precision and speed. Special note should be taken not to put
     characters on another layer if they can be achieved with a modifier (e.g.
     putting shifted symbols on ADJ)
@@ -111,7 +111,7 @@ home row as they're generally used more than numbers or number symbols.
 
 Note: `()` is typed pretty frequently and often leads to clawing as it's pretty
 awkward to immediately switch from one thumb to the other. It's not ideal, but
-it's fine. Also, the most-used number (1) is on the slightly awkward
+it's fine.
 
 ```
 ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -225,3 +225,19 @@ dialog or something.
 
                                └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ```
+
+# License
+Copyright 2021 Charles Schimmelpfennig aka elpfen
+
+This program is free software: you can redistribute it and/or modify 
+it under the terms of the GNU General Public License as published by 
+the Free Software Foundation, either version 2 of the License, or 
+(at your option) any later version. 
+
+This program is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+GNU General Public License for more details. 
+
+You should have received a copy of the GNU General Public License along with 
+this program.  If not, see <http://www.gnu.org/licenses/>. 
