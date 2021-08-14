@@ -54,4 +54,5 @@
 #define _____________ADJ_Home_Sides_12k____________ _______, _______, _______, _______, _______, _______, _______, GUI_H, _______, _______, _______, _______,
 #define _____________ADJ_1Dn_Sides_L_6k____________ KC_LSFT, XXXXXXX, KC_LALT, M_SHTAB,  KC_TAB, _______
 #define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, _______, KC_RCTL, KC_RALT, XXXXXXX, KC_RSFT
+#define _____________ADJ_Bottom_Center_6k__________ _______, _______, _______, _______, _______, _______
 
