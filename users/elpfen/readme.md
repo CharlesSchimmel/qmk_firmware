@@ -7,10 +7,9 @@ layout.
 
 ## Basic Principles
 
-- **Keep it simple**: 30% of the keyboard is used 90% of the time. 50% of the
-    keyboard is used 97% of the time. We quickly approach diminishing returns
-    and it's preferable to skip the rarely used keys than add rarely-needed
-    complexity to our layout.
+- **Keep it simple**: We quickly approach diminishing returns when adding keys
+    and functionality to our layout and it's preferable to skip the rarely used
+    keys than add rarely-needed complexity to our layout.
 
 - **Maximize accessibility, minimize travel**: frequently used keys should be more
     accessible than infrequently used keys. Only very infrequently used actions
@@ -123,7 +122,7 @@ it's fine.
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
              [        {        (        -        <                                   >        =        )        }        ]
 ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-                                                                                            SwFnc                              Sh/Delet
+            Adj                                                                             SwFnc                       Adj    Sh/Delet
 └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
 
                                └────────┴────────┴~~~~~~~~┘                 └~~~~~~~~┴────────┴────────┘
@@ -149,7 +148,7 @@ This layer features "layer lock" on the NavLock key.
   ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
              NavLok    LCtl      ↓        ↑                                         BackWord SwMouse  ForWord    RCtl    NavLok
   └────────┴~~~~~~~~┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴~~~~~~~~┴────────┘
-
+                                                      Sym                        Sym
                                  └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ```
 ## Functions/Utility (FNC)
