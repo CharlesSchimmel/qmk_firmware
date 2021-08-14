@@ -49,6 +49,16 @@ enum elpfen_custom_keycodes {
 #define SH_A    LSFT_T(KC_A)
 #define SH_S    LSFT_T(KC_S)
 
+// ~~~~~~~~~ One-Shots ~~~~~~~~~~
+#define 1_LSFT OSM(MOD_LSFT)
+#define 1_RSFT OSM(MOD_RSFT)
+#define 1_LCTL OSM(MOD_LCTL)
+#define 1_RCTL OSM(MOD_RCTL)
+#define 1_LALT OSM(MOD_LALT)
+#define 1_RALT OSM(MOD_RALT)
+#define 1_LGUI OSM(MOD_LGUI)
+#define 1_RGUI OSM(MOD_RGUI)
+
 // ~~~~~~~~~ Layers ~~~~~~~~~~
 #define LW_SPC  LT(_SYM, KC_SPC)
 #define LW_ENT  LT(_SYM, KC_ENT)
