@@ -52,10 +52,10 @@ designed to be useful in Windows, tmux, vim, and Xmonad.
 
 ### Switchboard
 
-From a parent layer, activate a child layer. When the parent layer is
-deactivated, also deactivate the child layer. This effectively gives access to
-multiple layers from a single layer-tap, minimizing the number of layer-taps
-keys needed to access every layer.
+From a parent layer, activate a child layer and keep it active until the parent 
+layer is deactivated. This effectively gives access to multiple layers from a 
+single layer-tap, minimizing the number of layer-taps keys needed to access 
+every layer while using only a single key as the layer-tap.
 
 Example: SYM -> FNC, NAV -> MOUSE
 
