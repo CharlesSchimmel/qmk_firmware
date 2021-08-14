@@ -1,12 +1,89 @@
-# Base Layer
+# elpfen's keymap
+
+This is my daily-driver layout that I use for programming and text-editing. It's
+designed to be useful in Windows, tmux, vim, and Xmonad.
+
+## Basic Principles
+
+- Keep it simple: 30% of the keyboard is used 90% of the time. 50% of the
+    keyboard is used 97% of the time. We quickly approach diminishing returns
+    and it's preferable to skip the rarely used keys than add rarely-needed
+    complexity to our layout.
+
+- Maximize accessibility, minimize travel: frequently used keys should be more
+    accessible than infrequently used keys. Only very infrequently used actions
+    should be more than 1 key from home row.
+
+- Consistency is important too: accessibility and travel can be sacrificed if a
+    key's function is consistent with a less accessible position (e.g. putting
+    Shift-Tab and Tab on JK because it's consistent despite being used
+    frequently).
+
+- Symmetry and ping-ponging: The pattern of alternating hands that Dvorak
+    enables should be maintained with the layout. Both hands should be used
+    roughly equally. All modifiers and layers should be symmetric and accessible
+    from both hands to avoid "clawing" (holding a key and tapping a key with the
+    same hand).
+
+- Two mods and one tap, max: Layout should be designed so that no more than two
+    mods need to be held at once on a given hand, and that for any action, one
+    hand holds a key and the other taps (again, no clawing).
+
+- Don't fear the layers/modifiers: With a little practice, layer-taps can be
+    used with great precision and speed. Special note should be taken not to put
+    characters on another layer if they can be achieved with a modifier (e.g.
+    putting shifted symbols on ADJ)
+
+## Other Opinions
+
+- Of course Dvorak is the best layout (don't @ me) but more to the point it's
+    particularly useful to designing keymaps because it's already arranged with
+    key-frequency in mind.  The home row has the most-frequently used keys, the
+    top the second most-frequently used, and the bottom has the least-frequently
+    used. This means that we can have consistent, symmetric modifiers on the
+    least used keys without a second thought.
+
+- I prefer modifiers on the bottom row than the home row or top row. Partly
+    because of the key-frequency explained above, but I also simply find it
+    more comfortable to hold bottom row keys than top or home row keys.
+
+## Special Features
+
+### Switchboard
+
+From a parent layer, activate a child layer. When the parent layer is
+deactivated, also deactivate the child layer. This effectively gives access to
+multiple layers from a single layer-tap, minimizing the number of layer-taps
+keys needed to access every layer.
+
+Example: SYM -> FNC, NAV -> MOUSE
+
+### Layer-Sticky Keys
+
+Basically the same as the above but for modifiers as well. The modifier stays on
+so long as the layer it was on stays active. Extremely useful on the ADJ layer
+for scrolling through tabs/windows with Ctl-Tab and Alt-Tab.
+
+### Lenient Tri-Layer
+
+Tri-layer usually works by activating the ADJ layer so long as RAISE and LOWER
+are both active. I've altered it very slightly so that ADJ is still activated
+when RAISE and LOWER are both active, but deactivates ADJ only when _both_ RAISE
+and LOWER are deactivated. This is functionally very similar to Switchboard
+except that it doesn't matter which of the two keys is pressed first, so it's
+easier to activate.
+
+# Layers
+
+## Base Layer
 
 ```
 ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-    `         1       2        3        4        5                                   6        7        8        9        0        \
+    `        1        2        3        4        5                                   6        7        8        9        0        \
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-    `         '       ,        .        P        Y                                   F        G        C        R        L        /
+    `        '        ,        .        P        Y                                   F        G        C        R        L        /
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
- Ctl/Esc      A       O        E        U        I                                   D        H        T        N        S      Ctl/-
+ Ctl/Esc     A        O        E        U        I                                   D        H        T        N        S      Ctl/-
 ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
  Sh/Tab    Nav/;    Alt/Q      J        K        X       GUI               GUI       B        M        W      Alt/V    Nav/Z   Sh/BckSp
 └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -14,10 +91,17 @@
                                └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ```
 
-# Symbols (SYM)
+## Symbols (SYM)
+
+Numbers and symbols are balanced across the two hands. Symbols are placed on the
+home row as they're generally used more than numbers or number symbols.
 
 - SwFnc: Switchboard to the FNC layer. This will toggle on the FNC layer and
     deactivate it when the SYM layer is deactivated.
+
+Note: `()` is typed pretty frequently and often leads to clawing as it's pretty
+awkward to immediately switch from one thumb to the other. It's not ideal, but
+it's fine. Also, the most-used number (1) is on the slightly awkward
 
 ```
 ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -25,7 +109,7 @@
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
              1        2        3        4        5                                   6        7        8        9        0        \
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-             [        {        (        -        <                                   >        =        )        }        [
+             [        {        (        -        <                                   >        =        )        }        ]
 ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
                                                                                             SwFnc                              Sh/Delet
 └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -33,13 +117,12 @@
                                └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ```
 
-# Navigation/Vimmish (NAV)
+## Navigation/Vimmish (NAV)
 
-Vimmish navigation and operations.
+Navigation and operations in a vimmish layout.
 
-- SwMouse: Switchboard to the Mouse layer. This will toggle on the Mouse layer and
-    deactivate it when the NAV layer is deactivated.
-- ⇈⇊ : Double tap for document home, tap for document end
+- SwMouse: Switchboard to the Mouse layer.
+- ⇈⇊ (ggG): Double tap for document home, tap for document end
 
 ```
   ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -54,11 +137,13 @@ Vimmish navigation and operations.
 
                                  └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ```
-# Functions/Utility (FNC)
+## Functions/Utility (FNC)
+Utility keys and macros that are used relatively infrequently.
 
-- VMBDn/Up/Mut: Volume on regular tap, media on ctl+tap, brightness on
-    shift-tap. On the pointy brace keys and which sorta point in the right
-    directions
+- VMBDn/Up/Mut (Volume-Media-Brightness): Volume on regular tap, media on
+    ctl+tap, brightness on shift-tap. They're put on the angle-bracket keys and
+    which sorta point in the right directions.
+
 - Lock: Win-L on L key for mnemonic "Lock"
 - CAD/Unlok: Ctl-Alt-Delete on U for "Unlock"
 - Sleep: on S key for "Sleep"
@@ -69,7 +154,7 @@ Vimmish navigation and operations.
 ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
  CtShEsc
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           VMBDn    VMBUp    VMBMut                                                        PrntScr                     Lock
+           VMBMut   VMBDn    VMBUp                                                         PrntScr                     Lock
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                      CAD/Unlk                                                                          Sleep
 ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -79,19 +164,11 @@ Vimmish navigation and operations.
                                └~~~~~~~~┴────────┴────────┘                 └────────┴────────┴~~~~~~~~┘
 ```
 
-# Adjust/Window Management (ADJ)
+## Adjust/Window Management (ADJ)
 
-This layer has "layer-sticky" modifiers: Modifiers will stay activated until the
-layer is deactivated. Super useful for scolling through tabs and windows with
-Alt-Tab and Ctl-Tab.
+Window management in Windows and Xmonad.
 
-This layer is a lenient tri-layer with NAV and SYM: It is activated when both
-NAV and SYM are activated but is deactivated only when both NAV and SYM are
-deactivated (unlike the usual tri-layer that is deactivated when either of its
-parent layers are deactivated). This means that once it is activated, one of the
-layer-taps can be let go.
-
-Window management in Windows and Xmonad
+This layer has "layer-sticky" modifiers and lenient-tri-layer with NAV and SYM.
 
 - Gui1-9: Open taskbar items in Windows, switch to different workspaces in
     Xmonad
@@ -111,7 +188,9 @@ Window management in Windows and Xmonad
                                └────────┴────────┴~~~~~~~~┘                 └~~~~~~~~┴────────┴────────┘
 ```
 
-# Mouse
+## Mouse
+
+Basic mouse navigation.
 
 It's perhaps a little odd that I have mouse navigation not only not on HJKL like
 all of my other navigation, but also on my non-dominant hand. I don't know why,
