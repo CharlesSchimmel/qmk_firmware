@@ -1,7 +1,9 @@
 # elpfen's keymap
 
 This is my daily-driver layout that I use for programming and text-editing. It's
-designed to be useful in Windows, tmux, vim, and Xmonad.
+designed to be useful in Xmonad, tmux, vim, and Windows. It was designed 
+originally with a Keebio Iris in mind but is adaptable to any 3x10 + thumb 
+layout.
 
 ## Basic Principles
 
