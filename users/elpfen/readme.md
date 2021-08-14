@@ -50,6 +50,15 @@ designed to be useful in Windows, tmux, vim, and Xmonad.
 
 ## Special Features
 
+All of these features are ways of adding more functionality to layers and 
+reducing the number of keys that need to be held at a given time.
+
+### Layer-Lock
+Hold a layer-tap to enter the NAV layer then tap a key to "lock in" the NAV 
+layer. The layer will stay active until the lock key is tapped again. I 
+frequently find that I will enter the NAV layer, move around a bit and then 
+realize I will need to do quite a bit of work in this layer.
+
 ### Switchboard
 
 From a parent layer, activate a child layer and keep it active until the parent 
@@ -59,7 +68,7 @@ every layer while using only a single key as the layer-tap.
 
 Example: SYM -> FNC, NAV -> MOUSE
 
-### Layer-Sticky Keys
+### Layer-Sticky Mods
 
 Basically the same as the above but for modifiers as well. The modifier stays on
 so long as the layer it was on stays active. Extremely useful on the ADJ layer
@@ -122,6 +131,9 @@ it's fine. Also, the most-used number (1) is on the slightly awkward
 
 Navigation and operations in a vimmish layout.
 
+This layer features "layer lock" on the NavLock key.
+
+- NavLok: Lock in this layer
 - SwMouse: Switchboard to the Mouse layer.
 - ⇈⇊ (ggG): Double tap for document home, tap for document end
 
