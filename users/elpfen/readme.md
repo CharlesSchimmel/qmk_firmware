@@ -12,12 +12,13 @@ designed to be useful in Windows, tmux, vim, and Xmonad.
 
 - Maximize accessibility, minimize travel: frequently used keys should be more
     accessible than infrequently used keys. Only very infrequently used actions
-    should be more than 1 key from home row.
+    should be more than 1 key from home row. Layers and modifiers do not add 
+    significant impediments to accessibility.
 
 - Consistency is important too: accessibility and travel can be sacrificed if a
     key's function is consistent with a less accessible position (e.g. putting
-    Shift-Tab and Tab on JK because it's consistent despite being used
-    frequently).
+    Shift-Tab and Tab on JK despite being used frequently because it's 
+    consistent with other uses of JK).
 
 - Symmetry and ping-ponging: The pattern of alternating hands that Dvorak
     enables should be maintained with the layout. Both hands should be used
