@@ -91,6 +91,11 @@ enum elpfen_custom_keycodes {
 #define GUI_8   LGUI(KC_8)
 #define GUI_9   LGUI(KC_9)
 
+#define GUI_L   LGUI(KC_L)
+#define GUI_H   LGUI(KC_H)
+#define GUI_J   LGUI(KC_J)
+#define GUI_K   LGUI(KC_K)
+
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS
 

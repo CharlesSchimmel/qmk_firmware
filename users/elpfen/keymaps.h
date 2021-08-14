@@ -36,7 +36,7 @@
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC
 #define _____________SYM_1Dn_Sides_R_6k____________ _______, TG_FNC,  _______, _______, _______, SH_DEL
 
-#define _____________NAV_2Up_Sides_12k_____________ KC_GRV,  _______, _______, _______, KC_END,  _______, _______, _______, _______, _______, KC_HOME, _______
+#define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, KC_END,  _______, _______, _______, _______, _______, KC_HOME, _______
 #define _____________NAV_1Up_Sides_12k_____________ _______, MS_WUP,  MS_BTN1, _______, VI_P,    VI_Y,    _______, VI_G,    _______, VI_R,    KC_RGHT, _______
 #define _____________NAV_Home_Sides_12k____________ _______, MS_WDWN, _______, _______, VI_U,    _______, VI_D,    KC_LEFT, _______, _______, _______, _______
 #define _____________NAV_1Dn_Sides_L_6k____________ _______, L_NAV,   KC_LCTL, KC_DOWN, KC_UP,   _______
@@ -50,7 +50,8 @@
 #define _____________FNC_1Dn_Sides_R_6k____________                                                       _______, _______, _______, KC_WAKE, _______, _______
 #define _____________FNC_BotCenter_6k______________ RESET,   _______, _______, _______, _______, OOOOOOO
 
-#define _____________ADJ_1Up_Sides_12k_____________ _______, GUI_1,   GUI_2,   GUI_3,   GUI_4,   GUI_5,   GUI_6,   GUI_7,   GUI_8,   GUI_9,   _______, _______
+#define _____________ADJ_1Up_Sides_12k_____________ _______, GUI_1,   GUI_2,   GUI_3,   GUI_4,   GUI_5,   GUI_6,   GUI_7, GUI_8,   GUI_9,   GUI_L,   _______
+#define _____________ADJ_Home_Sides_12k____________ _______, _______, _______, _______, _______, _______, _______, GUI_H, _______, _______, _______, _______,
 #define _____________ADJ_1Dn_Sides_L_6k____________ KC_LSFT, XXXXXXX, KC_LALT, M_SHTAB,  KC_TAB, _______
 #define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, _______, KC_RCTL, KC_RALT, XXXXXXX, KC_RSFT
 
