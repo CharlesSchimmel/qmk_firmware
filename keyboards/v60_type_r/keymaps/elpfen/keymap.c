@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_SYM] = LAYOUT_wrapper(
     KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   KC_DEL,
-    _______,                         _____________SYM_1Up_Core_10k______________,                      KC_EQL,  _______,  KC_INS,
+    _______,                         _____________SYM_1Up_Core_10k______________,                      KC_EQL,  _______,  KC_BSLS,
     _______,                         _____________SYM_Home_Core_10k_____________,                               _______, _______,
     _______, _______, _______, _______, _______, _______,                            _____________SYM_1Dn_Sides_R_6k____________,
     _______, _______, _______,                        OOOOOOO,                                _______, _______, _______, _______

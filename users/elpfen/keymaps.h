@@ -19,7 +19,7 @@
 #define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
 #define _____________Dvorak_1Up_Sides_12k__________ KC_GRV, _____________Dvorak_1Up_Core_10k___________, KC_SLSH
 
-#define _____________Dvorak_Home_Core_10k__________ SH_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, SH_S
+#define _____________Dvorak_Home_Core_10k__________ KC_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
 #define _____________Dvorak_Home_Sides_12k_________ CT_ESC, _____________Dvorak_Home_Core_10k__________, CT_MINS
 
 #define _____________Dvorak_1Dn_Core_L_5k__________ RS_SCLN, AL_Q, KC_J, KC_K, KC_X
