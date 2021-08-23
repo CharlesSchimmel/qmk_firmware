@@ -34,9 +34,9 @@
 #define _____________SYM_2Up_Sides_12k_____________ KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
 #define _____________SYM_1Up_Core_10k______________ ___1_through_10___
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC
-#define _____________SYM_1Dn_Sides_L_6k____________ 1_LSFT, _______,  1_LALT, 1_LCTL, _______, _______
-#define _____________SYM_1Dn_Sides_R_6k____________                                                     _______, TG_FNC,  1_RCTL, 1_RALT, _______, 1_RSFT
-#define _____________SYM_Bottom_Center_6k__________ _______, 1_LGUI, _______, _______, 1_RGUI, _______
+#define _____________SYM_1Dn_Sides_L_6k____________ O_LSFT, _______,  O_LALT, O_LCTL, _______, _______
+#define _____________SYM_1Dn_Sides_R_6k____________                                                     _______, TG_FNC,  O_RCTL, O_RALT, _______, O_RSFT
+#define _____________SYM_Bottom_Center_6k__________ _______, O_LGUI, _______, _______, O_RGUI, _______
 
 #define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, KC_END,  _______, _______, _______, _______, _______, KC_HOME, _______
 #define _____________NAV_1Up_Sides_12k_____________ _______, MS_WUP,  MS_BTN1, _______, VI_P,    VI_Y,    _______, VI_G,    _______, VI_R,    KC_RGHT, _______
