@@ -36,3 +36,5 @@
 
 #define USE_SERIAL
 // #define USE_I2C
+
+#define NO_MUSIC_MODE
