@@ -23,12 +23,11 @@
 enum layers {
   _QWERTY = ELPFEN_LAYERS_END,
   _QNAV,
-  _UTIL,
-  _ADJUST
+  _UTIL
 };
 
 enum custom_keycodes {
-  DVORAK = SAFE_RANGE,
+  DVORAK = ELPFEN_KEYCODES_END,
   QWERTY,
   BACKLIT
 };
@@ -45,15 +44,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *  Ctl-Esc      A       O        E        U        I        D        H        T        N        S      Ctl--
  * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
  *  Sh-Tab    Nav-;    Alt-Q      J        K        X        B        M        W      Alt-V    Nav-Z   Sh-BckSp
- * ├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
- *                             Fnc-App    LGUI   Sym-Entr Sym-Spce   RGUI   Fnc-App
+ * ├────────┼────────┼────────┼────────┼────────┴────────┼────────┴────────┼────────┼────────┼────────┼────────┤
+ *                    Fnc-App    LGUI        Sym-Entr          Sym-Spce       RGUI   Fnc-App
  * └────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
  */
 [_DVORAK] = LAYOUT_wrapper(
                                 _____________Dvorak_1Up_Sides_12k__________,
                                 _____________Dvorak_Home_Sides_12k_________,
                                 _____________Dvorak_1Dn_Sides_12k__________,
-    _______, _______, _______,  _____________Base_Bottom_Center_6k_________, _______, _______, TG(_UTIL)
+   _______, _______, KC_APP, KC_LGUI, LW_ENT, LW_ENT, LW_SPC, LW_SPC, KC_RGUI, KC_APP, _______, MO(_UTIL)
 ),
 
 /* Qwerty
@@ -68,10 +67,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * └────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
  */
 [_QWERTY] = LAYOUT_planck_grid(
-   KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,    KC_SLSH,
-   CT_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,   KC_J,    KC_K,    KC_L,    KC_SCLN, CT_QUOT,
-   SH_TAB,  RS_Z,    AL_X,    KC_C,    KC_V,    KC_B,   KC_N,   KC_M,    KC_COMM, AL_DOT,  RS_SLSH, SH_BSP,
-   _______, _______, _______, _______, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, KC_APP,  _______, _______, _______
+   KC_GRV,  KC_Q,    KC_W,   KC_E,    KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,    KC_O,   KC_P,    KC_SLSH,
+   CT_ESC,  KC_A,    KC_S,   KC_D,    KC_F,   KC_G,   KC_H,   KC_J,   KC_K,    KC_L,   KC_SCLN, CT_QUOT,
+   SH_TAB,  RS_Z,    AL_X,   KC_C,    KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, AL_DOT, RS_SLSH, SH_BSP,
+   _______, _______, KC_APP, KC_LGUI, LW_ENT, LW_ENT, LW_SPC, LW_SPC, KC_RGUI, KC_APP, _______, MO(_UTIL)
 ),
 
 /* SYMbols
@@ -86,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * └────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
  */
 [_SYM] = LAYOUT_wrapper(
-    _______,                        _____________SYM_1Up_Core_10k______________,                       _______,
+                                    _____________SYM_1Up_Sides_12k_____________,
     _______,                        _____________SYM_Home_Core_10k_____________,                       _______,
-    _______, _______, _______, M_SHTAB, KC_TAB,  _______, _______, _______, _______, _______, _______, SH_DEL,
+        _____________SYM_1Dn_Sides_L_6k____________,            _____________SYM_1Dn_Sides_R_6k____________,
     _______, _______, _______, _______, _______, OOOOOOO, OOOOOOO, _______, _______, _______, _______, _______
 ),
 
@@ -132,20 +131,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* FNCtions
  * ,-----------------------------------------------------------------------------------.
- * |      | Lock | CAD  | CSE  |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  F12 |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
+ * |  CSE | Mut  | VolD | VolU |      |      |      |      |      |      | Lok  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |  F12 |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |VolDn |VolUp | Mute |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_FNC] = LAYOUT_planck_grid(
-   M_CSE,   KC_VOLD, KC_VOLU, KC_MUTE, _______, _______, _______, KC_PSCR, _______, _______, M_LOK,   _______,
-   _______, _______, _______, _______, _______, _______, M_CAD,   _______, _______, _______, KC_SLEP, _______,
-   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+[_FNC] = LAYOUT_wrapper(
+   _____________FNC_1Up_Sides_12k_____________,
+   _____________FNC_Home_Sides_12k____________,
+   ___F1_through_F12___,
    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+
+[_ADJ] = LAYOUT_wrapper(
+    _____________ADJ_1Up_Sides_12k_____________,
+    _____________ADJ_Home_Sides_12k____________,
+    _____________ADJ_1Dn_Sides_L_6k____________, _____________ADJ_1Dn_Sides_R_6k____________,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 /* Util
@@ -174,6 +180,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 };
+
+layer_state_t layer_state_set_user(layer_state_t current_state) {
+    static layer_state_t previous_state;
+
+    current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
+
+    // Clear sticky mods: using multiple layers means that the mods will
+    // stay on so long as any of those layers is activated. May or may not
+    // be desired.
+    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
+        clear_mods();
+    }
+
+    current_state = switchboard_state(previous_state, current_state);
+    previous_state = current_state;
+
+    return current_state;
+}
 
 bool process_macros(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -228,7 +252,7 @@ void dip_switch_update_user(uint8_t index, bool active) {
     switch (index) {
         case 0: {
             if (active) {
-                layer_off(_ADJUST);
+                layer_off(_ADJ);
             }
             break;
         }
