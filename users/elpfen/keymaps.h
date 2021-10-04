@@ -12,6 +12,7 @@
 
 // ~~~~~~~~~ Base Dvorak Layer ~~~~~~~~~~
 #define ___1_through_10___ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
+#define _____12_blanks____ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 
 #define _____________Dvorak_2Up_Core_10k___________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 #define _____________Dvorak_2Up_Sides_12k__________ KC_GRV, _____________Dvorak_2Up_Core_10k___________, KC_BSLS
@@ -31,10 +32,11 @@
 #define _____________Base_Bottom_Center_6k_________ FN_MNU, KC_LGUI, LW_ENT, LW_SPC, KC_RGUI, FN_MNU
 
 #define ___F1_through_F12___ KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
+
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
 #define _____________SYM_1Up_Core_10k______________ ___1_through_10___
-#define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_SLSH
+#define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_BSLS
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LCBR, KC_LPRN, KC_MINS, KC_LABK, KC_RABK, KC_EQL,  KC_RPRN, KC_RCBR, KC_RBRC
 #define _____________SYM_1Dn_Sides_L_6k____________ O_LSFT, _______,  O_LALT, O_LCTL, _______, _______
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     _______, TG_FNC,  O_RCTL, O_RALT, _______, O_RSFT
@@ -47,7 +49,7 @@
 #define _____________NAV_1Dn_Sides_R_6k____________                                                       VI_B,    TG_MSE,  VI_W,    VI_V,    L_NAV,   _______
 #define _____________NAV_1Dn_Sides_12k_____________ _____________NAV_1Dn_Sides_L_6k____________, _____________NAV_1Dn_Sides_R_6k____________
 
-#define _____________FNC_2Up_Sides_12k_____________ M_CSE,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+#define _____________FNC_2Up_Sides_12k_____________ M_CSE, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 #define _____________FNC_1Up_Sides_12k_____________ M_CSE, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, _______, KC_PSCR, _______, _______, M_LOK,   _______
 #define _____________FNC_Home_Sides_12k____________ M_CSE, _______, _______, _______, M_CAD,   _______, _______, _______, _______, _______, KC_SLEP, _______
 #define _____________FNC_1Dn_Sides_L_6k____________ _______, _______, _______, _______, _______, _______
