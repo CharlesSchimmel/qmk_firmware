@@ -67,7 +67,7 @@ layer is deactivated. This effectively gives access to multiple layers from a
 single layer-tap, minimizing the number of layer-taps keys needed to access 
 every layer while using only a single key as the layer-tap.
 
-Example: SYM -> FNC, NAV -> MOUSE
+Example: SYM -> MCR, NAV -> MOUSE
 
 ### Layer-Sticky Mods
 
@@ -98,7 +98,7 @@ easier to activate.
 ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
  Sh/Tab    Nav/;    Alt/Q      J        K        X       GUI               GUI       B        M        W      Alt/V    Nav/Z   Sh/BckSp
 └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                Fnc/App    LGUI   Sym/Entr                   Sym/Spce   RGUI   Fnc/App
+                                Mcr/App    LGUI   Sym/Entr                   Sym/Spce   RGUI   Mcr/App
                                └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ```
 
@@ -107,7 +107,7 @@ easier to activate.
 Numbers and symbols are balanced across the two hands. Symbols are placed on the
 home row as they're generally used more than numbers or number symbols.
 
-- SwFnc: Switchboard to the FNC layer. This will toggle on the FNC layer and
+- SwMcr: Switchboard to the MCR layer. This will toggle on the MCR layer and
     deactivate it when the SYM layer is deactivated.
 
 Note: `()` is typed pretty frequently and often leads to clawing as it's pretty
@@ -122,7 +122,7 @@ it's fine.
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
              [        {        (        -        <                                   >        =        )        }        ]
 ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   1Sft     Adj      1Alt     1Ctl                                                          SwFnc     1Ctl     1Alt     Adj      1Sft
+   1Sft     Adj      1Alt     1Ctl                                                          SwMcr     1Ctl     1Alt     Adj      1Sft
 └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                            1Gui                                         1Gui
                                └────────┴────────┴~~~~~~~~┘                 └~~~~~~~~┴────────┴────────┘
@@ -151,7 +151,7 @@ This layer features "layer lock" on the NavLock key.
                                                       Sym                        Sym
                                  └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 ```
-## Functions/Utility (FNC)
+## Macros/Utility (MCR)
 Utility keys and macros that are used relatively infrequently.
 
 - VMBDn/Up/Mut (Volume-Media-Brightness): Volume on regular tap, media on
@@ -168,7 +168,7 @@ Utility keys and macros that are used relatively infrequently.
 ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
  CtShEsc
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-           VMBMut   VMBDn    VMBUp                                                         PrntScr                     Lock
+ CtShEsc   VMBMut   VMBDn    VMBUp                                                         PrntScr                     Lock
 ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                      CAD/Unlk                                                                          Sleep
 ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤

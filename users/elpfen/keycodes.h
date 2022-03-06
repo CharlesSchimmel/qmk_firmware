@@ -9,7 +9,7 @@ enum elpfen_layers {
     _DVORAK = 0,
     _SYM,
     _NAV,
-    _FNC,
+    _MCR,
     _MOUSE,
     _ADJ,
     ELPFEN_LAYERS_END
@@ -66,11 +66,11 @@ enum elpfen_custom_keycodes {
 #define RS_SCLN LT(_NAV, KC_SCLN)
 #define RS_Z    LT(_NAV, KC_Z)
 #define RS_SLSH LT(_NAV, KC_SLSH)
-#define FN_MNU  LT(_FNC, KC_APP)
+#define FN_MNU  LT(_MCR, KC_APP)
 
 #define MO_ADJ  MO(_ADJ)
 #define MO_NAV  MO(_NAV)
-#define TG_FNC  TG(_FNC)
+#define TG_MCR  TG(_MCR)
 #define TG_MSE  TG(_MOUSE)
 #define TG_ADJ  TG(_ADJ)
 

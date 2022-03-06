@@ -103,17 +103,16 @@ layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t curr
     }
 
     if (was_layer_turned_off(previous_state, current_state, _SYM)) {
-        current_state = layer_off_state(current_state, _FNC);
+        current_state = layer_off_state(current_state, _MCR);
         current_state = layer_off_state(current_state, _ADJ);
     }
     return current_state;
 }
 
 /* layer-lock: If a layer-tap is being held to activate a layer, tapping a
- * specific macro associated with that layer will "Lock In" that layer,
- * preventing it from being deactivated when the mod-tap is released. In
- * this case, my layer is _NAV, my mod-taps are aliased to RS_Z and RS_SCLN
- * and my lock macro is L_NAV
+ * specific key will "Lock In" that layer, preventing it from being deactivated
+ * when the mod-tap is released. In this case, my layer is _NAV, my mod-taps
+ * are aliased to RS_Z and RS_SCLN and my lock macro is L_NAV
  *
  * This works by overriding the MT(_LAYER, KC_KEY) code and preventing it's
  * Keyup event from being processed..
