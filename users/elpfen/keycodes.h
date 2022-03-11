@@ -74,7 +74,7 @@ enum elpfen_custom_keycodes {
 #define TG_MSE  TG(_MOUSE)
 #define TG_ADJ  TG(_ADJ)
 
-// ~~~~~~~~~ Simple Aliases ~~~~~~~~~~
+// ~~~~~~ SimpleAliases ~~~~~~~
 #define MS_BTN1 KC_MS_BTN1
 #define MS_BTN2 KC_MS_BTN2
 #define MS_DOWN KC_MS_DOWN
