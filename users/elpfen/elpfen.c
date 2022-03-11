@@ -19,7 +19,7 @@ bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
                    || get_mods() & MOD_BIT(KC_RSFT);
     bool with_ctl = get_mods() & MOD_BIT(KC_LCTL)
                  || get_mods() & MOD_BIT(KC_RCTL);
-    bool vanilla = !with_shift && !with_ctl;
+    bool vanilla = !(with_shift || with_ctl);
 
     if (vanilla) { return true; }
 
@@ -136,7 +136,7 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
                     layer_off(_NAV);
                     nav_lock = false;
                 } else {
-                    nav_lock = true;
+                   nav_lock = true;
                 }
             }
             return false;

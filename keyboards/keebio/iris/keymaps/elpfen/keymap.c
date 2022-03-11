@@ -188,7 +188,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         && layer_lock(keycode, record)
         && vimmish_keys(keycode, record)
         && layer_sticky_mods(keycode, record, _ADJ)
-        && true;
+        ;
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
