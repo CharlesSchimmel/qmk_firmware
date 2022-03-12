@@ -25,29 +25,15 @@ enum elpfen_custom_keycodes {
 };
 
 // ~~~~~~~~~ Mod-Taps ~~~~~~~~~~
-#define AL_ENT  RALT_T(KC_ENT)
-#define AL_TAB  ALT_T(KC_TAB)
-#define AL_QUOT RALT_T(KC_QUOT)
-#define AL_MINS RALT_T(KC_MINS)
 #define AL_Q    LALT_T(KC_Q)
 #define AL_V    RALT_T(KC_V)
-#define AL_X    LALT_T(KC_X)
-#define AL_DOT  RALT_T(KC_DOT)
-#define AL_J    LALT_T(KC_J)
-#define AL_W    LALT_T(KC_W)
 
 #define CT_ESC  CTL_T(KC_ESC)
-#define CT_SLSH CTL_T(KC_SLSH)
-#define CT_BSLS CTL_T(KC_BSLS)
 #define CT_MINS CTL_T(KC_MINS)
-#define CT_QUOT CTL_T(KC_QUOT)
 
 #define SH_BSP  RSFT_T(KC_BSPC)
 #define SH_DEL  RSFT_T(KC_DEL)
 #define SH_TAB  LSFT_T(KC_TAB)
-#define SH_ENT  LSFT_T(KC_ENT)
-#define SH_A    LSFT_T(KC_A)
-#define SH_S    LSFT_T(KC_S)
 
 // ~~~~~~~~~ One-Shots ~~~~~~~~~~
 #define O_LSFT OSM(MOD_LSFT)
@@ -62,11 +48,8 @@ enum elpfen_custom_keycodes {
 // ~~~~~~~~~ Layers ~~~~~~~~~~
 #define LW_SPC  LT(_SYM, KC_SPC)
 #define LW_ENT  LT(_SYM, KC_ENT)
-#define RS_ENT  LT(_NAV, KC_ENT)
 #define RS_SCLN LT(_NAV, KC_SCLN)
 #define RS_Z    LT(_NAV, KC_Z)
-#define RS_SLSH LT(_NAV, KC_SLSH)
-#define FN_MNU  LT(_MCR, KC_APP)
 
 #define MO_ADJ  MO(_ADJ)
 #define MO_NAV  MO(_NAV)
