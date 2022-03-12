@@ -121,8 +121,8 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     static bool nav_lock = false;
     switch (current_keycode) {
         // the MT(_layer, KC_KEY) mod-taps that activate the layer
-        case RS_Z:
-        case RS_SCLN:
+        case RS_ESC:
+        case RS_MINS:
             if (nav_lock) {
                 return false;
             } else {
@@ -194,12 +194,16 @@ bool layer_sticky_mods(
 }
 
 #define ALPHA_MODS   \
+        case GU_SCLN:\
+        case GU_Z:   \
         case AL_Q:   \
         case AL_V:   \
-        case AL_X:   \
-        case AL_DOT: \
-        case SH_A:   \
-        case SH_S:
+        case SH_J:   \
+        case SH_W:   \
+        case SH_DN:  \
+        case CT_K:   \
+        case CT_M:   \
+        case CT_UP:  \
 
 /* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
  * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
@@ -215,7 +219,7 @@ __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t 
 }
 
 /* IGNORE_MOD_TAP_INTERRUPT_PER_KEY: For these specific mod-taps, if the
- * second key in a chord is pressed after the modifier key is released,
+ * second key in a chord is released after the modifier key is released,
  * ignore the modifier, even if it's inside the tapping term.
  */
 __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
@@ -226,5 +230,3 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
             return false;
     }
 }
-
-

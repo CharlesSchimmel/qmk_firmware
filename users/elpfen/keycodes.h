@@ -24,16 +24,26 @@ enum elpfen_custom_keycodes {
     ELPFEN_KEYCODES_END
 };
 
+enum elpfen_combos {
+    ELPFEN_COMBOS_END
+};
+
 // ~~~~~~~~~ Mod-Taps ~~~~~~~~~~
+#define GU_SCLN LGUI_T(KC_SCLN)
+#define GU_Z    RGUI_T(KC_Z)
+
 #define AL_Q    LALT_T(KC_Q)
-#define AL_V    RALT_T(KC_V)
+#define AL_V    LALT_T(KC_V)
 
-#define CT_ESC  CTL_T(KC_ESC)
-#define CT_MINS CTL_T(KC_MINS)
+#define SH_J    LSFT_T(KC_J)
+#define SH_W    RSFT_T(KC_W)
+#define SH_DN   LSFT_T(KC_DOWN)
+#define SH_TAB LSFT_T(KC_TAB)
+#define SH_BSP LSFT_T(KC_BSPC)
 
-#define SH_BSP  RSFT_T(KC_BSPC)
-#define SH_DEL  RSFT_T(KC_DEL)
-#define SH_TAB  LSFT_T(KC_TAB)
+#define CT_K    LCTL_T(KC_K)
+#define CT_M    RCTL_T(KC_M)
+#define CT_UP   LCTL_T(KC_UP)
 
 // ~~~~~~~~~ One-Shots ~~~~~~~~~~
 #define O_LSFT OSM(MOD_LSFT)
@@ -48,14 +58,15 @@ enum elpfen_custom_keycodes {
 // ~~~~~~~~~ Layers ~~~~~~~~~~
 #define LW_SPC  LT(_SYM, KC_SPC)
 #define LW_ENT  LT(_SYM, KC_ENT)
-#define RS_SCLN LT(_NAV, KC_SCLN)
-#define RS_Z    LT(_NAV, KC_Z)
+#define RS_ESC  LT(_NAV, KC_ESC)
+#define RS_MINS LT(_NAV, KC_MINS)
+#define FN_MNU  LT(_MCR, KC_APP)
+#define AD_SPC  LT(_ADJ, KC_SPC)
+#define AD_ENT  LT(_ADJ, KC_ENT)
 
-#define MO_ADJ  MO(_ADJ)
 #define MO_NAV  MO(_NAV)
 #define TG_MCR  TG(_MCR)
 #define TG_MSE  TG(_MOUSE)
-#define TG_ADJ  TG(_ADJ)
 
 // ~~~~~~ SimpleAliases ~~~~~~~
 #define MS_BTN1 KC_MS_BTN1
@@ -73,21 +84,6 @@ enum elpfen_custom_keycodes {
 #define M_CSE   LCTL(LSFT(KC_ESC))
 #define M_PST   LSFT(KC_INS)
 #define M_SHTAB LSFT(KC_TAB)
-
-#define GUI_1   LGUI(KC_1)
-#define GUI_2   LGUI(KC_2)
-#define GUI_3   LGUI(KC_3)
-#define GUI_4   LGUI(KC_4)
-#define GUI_5   LGUI(KC_5)
-#define GUI_6   LGUI(KC_6)
-#define GUI_7   LGUI(KC_7)
-#define GUI_8   LGUI(KC_8)
-#define GUI_9   LGUI(KC_9)
-
-#define GUI_L   LGUI(KC_L)
-#define GUI_H   LGUI(KC_H)
-#define GUI_J   LGUI(KC_J)
-#define GUI_K   LGUI(KC_K)
 
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS

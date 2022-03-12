@@ -4,7 +4,6 @@
 #define VI_B C(KC_LEFT)
 #define VI_W C(KC_RIGHT)
 #define VI_Y C(KC_C)
-#define VI_V CTL_T(KC_RSFT)
 
 #ifdef TAP_DANCE_ENABLE
 #define VI_G TD(TD_VIM_G)

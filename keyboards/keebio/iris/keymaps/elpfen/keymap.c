@@ -17,12 +17,10 @@
 #include QMK_KEYBOARD_H
 #include "elpfen.h"
 
-enum layers {
-    _FNC = ELPFEN_LAYERS_END,
-    /* _GAME */
-};
+/* enum layers { */
+/*     _GAME */
+/* }; */
 
-#define O_FNC OSL(_FNC)
 
 // Required to expand ___Dvorak___ macros correctly
 #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
@@ -47,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
                                                 _____________SYM_2Up_Sides_12k_____________,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-    O_FNC,                                      _____________SYM_1Up_Core_10k______________,                                     KC_BSLS,
+                                                _____________SYM_1Up_Sides_12k_____________,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
    _______,                                     _____________SYM_Home_Core_10k_____________,                                     _______,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -117,31 +115,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
                                                 _____________ADJ_1Up_Sides_12k_____________,
 //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+                                                _____________ADJ_Home_Sides_12k____________,
 //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
         _____________ADJ_1Dn_Sides_L_6k____________,     OOOOOOO,          OOOOOOO,      _____________ADJ_1Dn_Sides_R_6k____________,
 //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                   _______, _______, OOOOOOO,                   OOOOOOO, _______, _______
 //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
-
-  /* Functions
-   */
-  [_FNC] = LAYOUT_wrapper(
-//┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-//├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-    KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-//├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-//├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-   _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-//└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                  _______, _______, _______,                   _______, _______, _______
-//                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
-  ),
-
-
 
   /* // GUI & Other Functions */
   /* [_GAME] = LAYOUT_wrapper( */
@@ -160,25 +140,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-layer_state_t layer_state_set_user(layer_state_t current_state) {
-    static layer_state_t previous_state;
+/* layer_state_t layer_state_set_user(layer_state_t current_state) { */
+/*     static layer_state_t previous_state; */
 
-    current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
+/*     // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ); */
 
-    // Clear sticky mods: using multiple layers means that the mods will
-    // stay on so long as any of those layers is activated. May or may not
-    // be desired.
-    if (was_layer_turned_off(previous_state, current_state, _ADJ)
-            || was_layer_turned_off(previous_state, current_state, _NAV)
-            ) {
-        clear_mods();
-    }
+/*     // Clear sticky mods: using multiple layers means that the mods will */
+/*     // stay on so long as any of those layers is activated. May or may not */
+/*     // be desired. */
+/*     if (was_layer_turned_off(previous_state, current_state, _ADJ) */
+/*             // || was_layer_turned_off(previous_state, current_state, _NAV) */
+/*             ) { */
+/*         clear_mods(); */
+/*     } */
 
-    current_state = switchboard_state(previous_state, current_state);
-    previous_state = current_state;
+/*     current_state = switchboard_state(previous_state, current_state); */
+/*     previous_state = current_state; */
 
-    return current_state;
-}
+/*     return current_state; */
+/* } */
 
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
