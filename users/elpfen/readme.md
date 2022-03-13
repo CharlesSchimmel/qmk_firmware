@@ -88,7 +88,7 @@ easier to activate.
 
 ## Base Layer
 
-![base](./base.svg)
+![base](./iris-base.svg)
 
 ## Symbols (SYM)
 
