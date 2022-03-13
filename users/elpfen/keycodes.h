@@ -59,7 +59,7 @@ enum elpfen_combos {
 #define LW_SPC  LT(_SYM, KC_SPC)
 #define LW_ENT  LT(_SYM, KC_ENT)
 #define RS_ESC  LT(_NAV, KC_ESC)
-#define RS_MINS LT(_NAV, KC_MINS)
+#define RS_BSP  LT(_NAV, KC_BSPC)
 #define FN_MNU  LT(_MCR, KC_APP)
 #define AD_SPC  LT(_ADJ, KC_SPC)
 #define AD_ENT  LT(_ADJ, KC_ENT)
