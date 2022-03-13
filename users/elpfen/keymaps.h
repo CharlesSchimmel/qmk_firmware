@@ -15,8 +15,9 @@
 #define ___F1_through_F12___ KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
 #define _____12_blanks____   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 
+#define ___12_X___ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 #define _____________Dvorak_2Up_Core_10k___________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
-#define _____________Dvorak_2Up_Sides_12k__________ XXXXXXX, _____________Dvorak_2Up_Core_10k___________, XXXXXXX
+#define _____________Dvorak_2Up_Sides_12k__________ KC_GRV, _____________Dvorak_2Up_Core_10k___________, KC_BSLS
 
 #define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
 #define _____________Dvorak_1Up_Sides_12k__________ XXXXXXX, _____________Dvorak_1Up_Core_10k___________, XXXXXXX
