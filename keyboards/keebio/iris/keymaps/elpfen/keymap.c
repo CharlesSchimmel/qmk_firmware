@@ -140,25 +140,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-/* layer_state_t layer_state_set_user(layer_state_t current_state) { */
-/*     static layer_state_t previous_state; */
+layer_state_t layer_state_set_user(layer_state_t current_state) {
+    static layer_state_t previous_state;
+    // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
 
-/*     // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ); */
+    // Clear sticky mods: using multiple layers means that the mods will
+    // stay on so long as any of those layers is activated. May or may not
+    // be desired.
+    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
+        clear_mods();
+    }
 
-/*     // Clear sticky mods: using multiple layers means that the mods will */
-/*     // stay on so long as any of those layers is activated. May or may not */
-/*     // be desired. */
-/*     if (was_layer_turned_off(previous_state, current_state, _ADJ) */
-/*             // || was_layer_turned_off(previous_state, current_state, _NAV) */
-/*             ) { */
-/*         clear_mods(); */
-/*     } */
+    current_state = switchboard_state(previous_state, current_state);
+    previous_state = current_state;
 
-/*     current_state = switchboard_state(previous_state, current_state); */
-/*     previous_state = current_state; */
-
-/*     return current_state; */
-/* } */
+    return current_state;
+}
 
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

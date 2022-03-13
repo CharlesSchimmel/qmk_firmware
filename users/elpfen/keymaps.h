@@ -60,6 +60,6 @@
 #define _____________ADJ_Home_Core_10k_____________ KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_UNDS, KC_PLUS
 #define _____________ADJ_Home_Sides_12k____________ _______, _____________ADJ_Home_Core_10k_____________, _______
 #define _____________ADJ_1Dn_Sides_L_6k____________ _______, _______, _______, M_SHTAB,  KC_TAB, _______
-#define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, O_RCTL, O_RSFT, O_LALT, O_RGUI, _______
+#define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, KC_RCTL, KC_RSFT, KC_LALT, KC_RGUI, _______
 #define _____________ADJ_Bottom_Center_6k__________ _______, _______, OOOOOOO, OOOOOOO, _______, _______
 
