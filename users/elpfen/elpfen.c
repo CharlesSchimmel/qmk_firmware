@@ -122,7 +122,7 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     switch (current_keycode) {
         // the MT(_layer, KC_KEY) mod-taps that activate the layer
         case RS_ESC:
-        case RS_MINS:
+        case RS_BSP:
             if (nav_lock) {
                 return false;
             } else {
@@ -228,5 +228,39 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
             return true;
         default:
             return false;
+    }
+}
+
+enum combos {
+  QT_CMA_GRV,
+  SCLN_Q_TAB,
+  R_L_SLASH,
+  NINE_ZERO_BSLSH,
+  EZ_ARRW,
+  COMBO_LENGTH
+};
+uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
+
+const uint16_t PROGMEM quot_comm_grave[] = {KC_QUOT, KC_COMM, COMBO_END};
+const uint16_t PROGMEM scln_q_tab[] = {KC_SCLN, KC_Q, COMBO_END};
+const uint16_t PROGMEM r_l_slash[] = {KC_R, KC_L, COMBO_END};
+const uint16_t PROGMEM nine_zero_bslsh[] = {KC_9, KC_0, COMBO_END};
+const uint16_t PROGMEM ez_arrw[] = { KC_LCBR, KC_LPRN, COMBO_END};
+combo_t key_combos[] = {
+    /* COMBO(quot_comm_grave, LCTL(KC_Z)), // keycodes with modifiers are possible too */
+    [QT_CMA_GRV] = COMBO(quot_comm_grave, KC_GRV), // keycodes with modifiers are possible too
+    [SCLN_Q_TAB] = COMBO(scln_q_tab, KC_TAB),
+    [R_L_SLASH] = COMBO(r_l_slash, KC_SLASH),
+    [NINE_ZERO_BSLSH] = COMBO(nine_zero_bslsh, KC_BSLS),
+    [EZ_ARRW] = COMBO_ACTION(ez_arrw)
+
+};
+
+__attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed) {
+    if (!pressed) return;
+    switch (combo_index) {
+        case EZ_ARRW:
+            SEND_STRING("=>");
+            break;
     }
 }

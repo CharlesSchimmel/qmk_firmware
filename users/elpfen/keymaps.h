@@ -40,7 +40,7 @@
 #define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, _______
 #define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, KC_APP
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     TG_MCR, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
-#define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, _______, _______
+#define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
 
 #define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, KC_END, _______, _______, _______, _______, _______, KC_HOME, _______
 #define _____________NAV_1Up_Sides_12k_____________ _______, MS_WUP,  MS_BTN1, _______, VI_P,   VI_Y,    _______, VI_G,    _______, VI_R,    KC_RGHT, _______
