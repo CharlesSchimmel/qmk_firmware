@@ -193,6 +193,16 @@ bool layer_sticky_mods(
     }
 }
 
+// the other half of layer_sticky_mods if not using an tri-layer
+bool clear_mods_after_adj(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) return true;
+    if (keycode == AD_ENT || keycode == AD_SPC) {
+        clear_mods();
+    }
+    return true;
+}
+
+
 #define ALPHA_MODS   \
         case GU_SCLN:\
         case GU_Z:   \

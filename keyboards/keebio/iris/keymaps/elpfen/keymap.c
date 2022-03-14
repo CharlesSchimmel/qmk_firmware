@@ -144,9 +144,9 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
     static layer_state_t previous_state;
     // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
 
-    // Clear sticky mods: using multiple layers means that the mods will
-    // stay on so long as any of those layers is activated. May or may not
-    // be desired.
+    // Clear sticky mods for try layer: using multiple layers means that the
+    // mods will stay on so long as any of those layers is activated. May or
+    // may not be desired.
     if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
         clear_mods();
     }
@@ -157,6 +157,14 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
     return current_state;
 }
 
+bool clear_mods_after_adj(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) return true;
+    if (keycode == AD_ENT || keycode == AD_SPC) {
+        clear_mods();
+    }
+    return true;
+}
+
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return pseudo_twm(keycode, record)
@@ -164,6 +172,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         && layer_lock(keycode, record)
         && vimmish_keys(keycode, record)
         && layer_sticky_mods(keycode, record, _ADJ)
+        && clear_mods_after_adj(keycode, record)
         ;
 }
 
