@@ -157,11 +157,10 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
     return current_state;
 }
 
-bool clear_mods_after_adj(uint16_t keycode, keyrecord_t *record) {
+// must be called after clear_mods_after_adj
+bool switchboard_adj(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) return true;
-    if (keycode == AD_ENT || keycode == AD_SPC) {
-        clear_mods();
-    }
+    if (keycode == AD_ENT || keycode == AD_SPC) return false;
     return true;
 }
 
@@ -173,6 +172,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         && vimmish_keys(keycode, record)
         && layer_sticky_mods(keycode, record, _ADJ)
         && clear_mods_after_adj(keycode, record)
+        && switchboard_adj(keycode, record)
         ;
 }
 
