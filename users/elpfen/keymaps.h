@@ -37,7 +37,7 @@
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
 #define _____________SYM_1Up_Core_10k______________ ___1_through_10___
 #define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_BSLS
-#define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LABK, KC_LPRN, KC_LCBR, _______, KC_EQL, KC_RCBR,  KC_RPRN, KC_RABK, KC_RBRC
+#define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LABK, KC_LPRN, KC_LCBR, KC_MINS, KC_EQL, KC_RCBR,  KC_RPRN, KC_RABK, KC_RBRC
 #define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, _______
 #define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, KC_APP
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     TG_MCR, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______

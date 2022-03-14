@@ -252,7 +252,7 @@ enum combos {
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 const uint16_t PROGMEM quot_comm_grave[] = {KC_QUOT, KC_COMM, COMBO_END};
-const uint16_t PROGMEM scln_q_tab[] = {KC_SCLN, KC_Q, COMBO_END};
+const uint16_t PROGMEM scln_q_tab[] = {GU_SCLN, AL_Q, COMBO_END};
 const uint16_t PROGMEM r_l_slash[] = {KC_R, KC_L, COMBO_END};
 const uint16_t PROGMEM nine_zero_bslsh[] = {KC_9, KC_0, COMBO_END};
 const uint16_t PROGMEM ez_arrw[] = { KC_LCBR, KC_LPRN, COMBO_END};
