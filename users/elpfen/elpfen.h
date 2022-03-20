@@ -6,6 +6,7 @@
 #include "keycodes.h"
 #include "keymaps.h"
 #include "vimmish.h"
+#include "caps_word.h"
 
 #ifdef TAP_DANCE_ENABLE
 #include "tap_dances.h"
