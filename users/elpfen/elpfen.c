@@ -264,7 +264,7 @@ const uint16_t PROGMEM quot_comm_grave[] = {KC_QUOT, KC_COMM, COMBO_END};
 const uint16_t PROGMEM scln_q_tab[] = {GU_SCLN, AL_Q, COMBO_END};
 const uint16_t PROGMEM r_l_slash[] = {KC_R, KC_L, COMBO_END};
 const uint16_t PROGMEM nine_zero_bslsh[] = {KC_9, KC_0, COMBO_END};
-const uint16_t PROGMEM ez_arrw[] = { KC_LCBR, KC_LPRN, COMBO_END};
+const uint16_t PROGMEM ez_arrw[] = { KC_RCBR, KC_RPRN, COMBO_END};
 combo_t key_combos[] = {
     /* COMBO(quot_comm_grave, LCTL(KC_Z)), // keycodes with modifiers are possible too */
     [QT_CMA_GRV] = COMBO(quot_comm_grave, KC_GRV), // keycodes with modifiers are possible too
@@ -281,7 +281,7 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
 
     switch (combo_index) {
         case EZ_ARRW:
-            SEND_STRING("=>");
+            with_shift ? SEND_STRING("=>") : SEND_STRING("->");
             break;
     }
 }
