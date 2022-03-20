@@ -8,8 +8,8 @@ bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
 
-    bool with_ctl = get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTL);
-    bool with_shift = get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT);
+    bool with_ctl = WITH_CTRL;
+    bool with_shift = WITH_SHIFT;
 
     switch(current_keycode) {
         case VI_P:

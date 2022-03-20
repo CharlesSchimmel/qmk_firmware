@@ -13,6 +13,10 @@
 #include "td_helpers.h"
 #endif
 
+#define WITH_SHIFT ((get_mods() | get_oneshot_mods()) & MOD_MASK_SHIFT)
+#define WITH_CTRL ((get_mods() | get_oneshot_mods()) & MOD_MASK_CTRL)
+#define WITH_GUI ((get_mods() | get_oneshot_mods()) & MOD_MASK_GUI)
+
 bool pseudo_twm(uint16_t, keyrecord_t*);
 bool multi_purpose_volume_keys(uint16_t, keyrecord_t*);
 

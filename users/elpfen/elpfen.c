@@ -10,15 +10,12 @@
  * Some OS's/Desktops will use Ctl, Alt, and Shift to change how much the
  * volume is increased, so it might not be for everyone.
  */
-
 bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
 
-    bool with_shift = get_mods() & MOD_BIT(KC_LSFT)
-                   || get_mods() & MOD_BIT(KC_RSFT);
-    bool with_ctl = get_mods() & MOD_BIT(KC_LCTL)
-                 || get_mods() & MOD_BIT(KC_RCTL);
+    bool with_shift = WITH_SHIFT;
+    bool with_ctl = WITH_CTRL;
     bool vanilla = !(with_shift || with_ctl);
 
     if (vanilla) { return true; }
@@ -42,7 +39,7 @@ bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
  * Win+HJKL and closing windows with W-S-C
  */
 bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
-    if (get_mods() & MOD_MASK_GUI) return true;
+    if (!WITH_GUI) return true;
 
     // handle mod-tap keys by only intercepting keyup (tap)
     if (!record->event.pressed && record->event.time <= get_tapping_term(keycode, record)) {
@@ -77,7 +74,7 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         case KC_C :
-            if (get_mods() & MOD_MASK_SHIFT) {
+            if (WITH_SHIFT) {
                 tap_code16(A(KC_F4));
                 // still want win-shift-c to get sent when using this keyboard with
                 // xmonad/i3
@@ -275,11 +272,13 @@ combo_t key_combos[] = {
     [R_L_SLASH] = COMBO(r_l_slash, KC_SLASH),
     [NINE_ZERO_BSLSH] = COMBO(nine_zero_bslsh, KC_BSLS),
     [EZ_ARRW] = COMBO_ACTION(ez_arrw)
-
 };
 
 __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed) {
     if (!pressed) return;
+
+    bool with_shift = WITH_SHIFT;
+
     switch (combo_index) {
         case EZ_ARRW:
             SEND_STRING("=>");
