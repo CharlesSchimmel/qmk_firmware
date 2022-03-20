@@ -88,7 +88,7 @@ easier to activate.
 
 ## Base Layer
 
-![base](./iris-base.svg)
+![base](./assets/iris-base.svg)
 
 ## Symbols (SYM)
 
@@ -102,10 +102,10 @@ Note: `()` is typed pretty frequently and often leads to clawing as it's pretty
 awkward to immediately switch from one thumb to the other. It's not ideal, but
 it's fine.
 
-![sym](./iris-sym.svg)
+![sym](./assets/iris-sym.svg)
 
 ## Sym^2
-![sym2](./iris-sym2.svg)
+![sym2](./assets/iris-sym2.svg)
 
 ## Navigation/Vimmish (NAV)
 
@@ -117,7 +117,7 @@ This layer features "layer lock" on the NavLock key.
 - SwMouse: Switchboard to the Mouse layer.
 - ⇈⇊ (ggG): Double tap for document home, tap for document end
 
-![nav](./iris-nav.svg)
+![nav](./assets/iris-nav.svg)
 
 ## Macros/Utility (MCR)
 Utility keys and macros that are used relatively infrequently.
@@ -132,7 +132,7 @@ Utility keys and macros that are used relatively infrequently.
 - CtShEsc: Ctl-Sh-Esc on somewhat close to Escape
 - PrntScr: PrntScr on G for "screenGrab"
 
-![macro](./iris-macro.svg)
+![macro](./assets/iris-macro.svg)
 
 # License
 Copyright 2021 Charles Schimmelpfennig aka elpfen
