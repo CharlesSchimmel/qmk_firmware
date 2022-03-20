@@ -42,9 +42,21 @@ bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
  * Win+HJKL and closing windows with W-S-C
  */
 bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
-    // ignore keyup
-    if (!record->event.pressed) return true;
-    if (!(get_mods() & MOD_BIT(KC_LGUI) || get_mods() & MOD_BIT(KC_RGUI))) return true;
+    if (get_mods() & MOD_MASK_GUI) return true;
+
+    // handle mod-tap keys by only intercepting keyup (tap)
+    if (!record->event.pressed && record->event.time <= get_tapping_term(keycode, record)) {
+        switch (keycode) {
+          case SH_J :
+            tap_code(KC_DOWN);
+            return false;
+
+          case CT_K :
+            tap_code(KC_UP);
+            return false;
+        }
+        return true;
+    }
 
     // move and close windows in Windows using vim keys (WIN+HJKL)
     switch(keycode) {
@@ -65,12 +77,12 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         case KC_C :
-        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)) {
-            tap_code16(A(KC_F4));
-            // still want win-shift-c to get sent when using this keyboard with
-            // xmonad/i3
-            return true;
-        }
+            if (get_mods() & MOD_MASK_SHIFT) {
+                tap_code16(A(KC_F4));
+                // still want win-shift-c to get sent when using this keyboard with
+                // xmonad/i3
+                return true;
+            }
     }
 
     return true;
