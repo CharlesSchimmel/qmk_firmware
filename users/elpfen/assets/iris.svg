@@ -11914,7 +11914,7 @@
    inkscape:window-x="10"
    inkscape:window-y="26"
    inkscape:window-maximized="1"
-   inkscape:current-layer="layer7"
+   inkscape:current-layer="g114393"
    fit-margin-left="0"
    fit-margin-right="0"
    fit-margin-top="0"
@@ -12061,7 +12061,7 @@
    inkscape:groupmode="layer"
    id="layer7"
    inkscape:label="Base"
-   style="display:inline"
+   style="display:none"
    transform="translate(-68.64205,-76.77558)"><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:16px;line-height:85%;font-family:Overpass;-inkscape-font-specification:'Overpass, Thin';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:#253043;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -14259,9 +14259,9 @@
    inkscape:groupmode="layer"
    id="g114393"
    inkscape:label="Sym2 (fka ADJ)"
-   style="display:none"
+   style="display:inline"
    transform="translate(-68.64205,-76.77558)"><path
-     style="display:inline;fill:none;fill-opacity:1;stroke:#495e84;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="display:inline;fill:none;fill-opacity:1;stroke:#64bb44;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:path-effect="#path-effect3155-9-5-0"
      inkscape:original-d="m 863.58245,260.18844 h -39.118 v 39.118 h 39.118 z"
      d="m 854.58245,260.18844 h -21.118 a 9,9 135 0 0 -9,9 v 21.118 a 9,9 45 0 0 9,9 h 21.118 a 9,9 135 0 0 9,-9 v -21.118 a 9,9 45 0 0 -9,-9 z"
@@ -14271,7 +14271,7 @@
      inkscape:original-d="m 701.58246,246.68945 h -39.118 v 39.118 h 39.118 z"
      d="m 692.58246,246.68945 h -21.118 a 9,9 135 0 0 -9,9 v 21.118 a 9,9 45 0 0 9,9 h 21.118 a 9,9 135 0 0 9,-9 v -21.118 a 9,9 45 0 0 -9,-9 z"
      id="path2658-8-8-1-1" /><path
-     style="display:inline;fill:none;fill-opacity:1;stroke:#495e84;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="display:inline;fill:none;fill-opacity:1;stroke:#64bb44;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:path-effect="#path-effect3159-5-2-1"
      inkscape:original-d="m 809.58245,246.68945 h -39.118 v 39.118 h 39.118 z"
      d="m 800.58245,246.68945 h -21.118 a 9,9 135 0 0 -9,9 v 21.118 a 9,9 45 0 0 9,9 h 21.118 a 9,9 135 0 0 9,-9 v -21.118 a 9,9 45 0 0 -9,-9 z"
@@ -14901,9 +14901,9 @@
      style="font-size:48px;line-height:36px;font-family:Overpass;-inkscape-font-specification:Overpass;text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect8612);fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
        x="854.59424"
        y="382.34766"
-       id="tspan3741"><tspan
+       id="tspan5282"><tspan
          style="fill:#000000"
-         id="tspan3739">2</tspan></tspan></text><text
+         id="tspan5280">2</tspan></tspan></text><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:16px;line-height:125%;font-family:'Overpass Mono';-inkscape-font-specification:'Overpass Mono Light';letter-spacing:0px;word-spacing:0px;display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="726.16748"
@@ -15041,11 +15041,11 @@
      y="0"><tspan
        x="83.30835"
        y="162.02344"
-       id="tspan3743">cs-
+       id="tspan5284">cs-
 </tspan><tspan
        x="82.412354"
        y="174.02344"
-       id="tspan3745">esc</tspan></text><path
+       id="tspan5286">esc</tspan></text><path
      style="display:inline;fill:none;fill-opacity:1;stroke:#495e84;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:path-effect="#path-effect2189"
      inkscape:original-d="m 701.58246,246.68945 h -39.118 v 39.118 h 39.118 z"
