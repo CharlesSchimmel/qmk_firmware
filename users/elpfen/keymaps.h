@@ -20,14 +20,14 @@
 #define _____________Dvorak_2Up_Sides_12k__________ KC_GRV, _____________Dvorak_2Up_Core_10k___________, KC_BSLS
 
 #define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
-#define _____________Dvorak_1Up_Sides_12k__________ XXXXXXX, _____________Dvorak_1Up_Core_10k___________, XXXXXXX
+#define _____________Dvorak_1Up_Sides_12k__________ KC_GRAVE, _____________Dvorak_1Up_Core_10k___________, KC_SLSH
 
 #define _____________Dvorak_Home_Core_10k__________ KC_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
-#define _____________Dvorak_Home_Sides_12k_________ XXXXXXX, _____________Dvorak_Home_Core_10k__________, XXXXXXX
+#define _____________Dvorak_Home_Sides_12k_________ KC_ESC, _____________Dvorak_Home_Core_10k__________, KC_BSPC
 
 #define _____________Dvorak_1Dn_Core_L_5k__________ GU_SCLN, AL_Q, SH_J, CT_K, KC_X
 #define _____________Dvorak_1Dn_Core_R_5k__________                                 KC_B, CT_M, SH_W, AL_V, GU_Z
-#define _____________Dvorak_1Dn_Sides_L_6k_________ XXXXXXX, _____________Dvorak_1Dn_Core_L_5k__________
+#define _____________Dvorak_1Dn_Sides_L_6k_________ KC_TAB, _____________Dvorak_1Dn_Core_L_5k__________
 #define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, XXXXXXX
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
@@ -38,7 +38,7 @@
 #define _____________SYM_1Up_Core_10k______________ ___1_through_10___
 #define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_BSLS
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, KC_LABK, KC_LPRN, KC_LCBR, KC_MINS, KC_EQL, KC_RCBR,  KC_RPRN, KC_RABK, KC_RBRC
-#define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, _______
+#define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, KC_DEL
 #define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, KC_APP
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     TG_MCR, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
 #define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
@@ -57,9 +57,9 @@
 #define _____________MCR_1Dn_Sides_R_6k____________                                                       _______, _______, _______, _______, _______, _______
 #define _____________MCR_BotCenter_6k______________ RESET,   _______, _______, _______, _______, OOOOOOO
 
-#define _____________ADJ_1Up_Core_12k______________ KC_F12,  KC_F2, KC_F3,   KC_F4,  KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
+#define _____________ADJ_1Up_Core_12k______________ KC_F12,      KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8, KC_F9,   KC_F10
 #define _____________ADJ_1Up_Sides_12k_____________ _______, _____________ADJ_1Up_Core_12k______________, _______
-#define _____________ADJ_Home_Core_10k_____________ KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_UNDS, KC_PLUS
+#define _____________ADJ_Home_Core_10k_____________ TILDE_SLASH, DDOT_SLASH, _______, _______, _______, _______, _______, ARROW, _______, _______
 #define _____________ADJ_Home_Sides_12k____________ _______, _____________ADJ_Home_Core_10k_____________, _______
 #define _____________ADJ_1Dn_Sides_L_6k____________ _______, _______, _______, M_SHTAB,  KC_TAB, _______
 #define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, KC_RCTL, KC_RSFT, KC_LALT, KC_RGUI, _______

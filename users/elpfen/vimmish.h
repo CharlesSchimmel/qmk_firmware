@@ -1,6 +1,10 @@
 #pragma once
 #include QMK_KEYBOARD_H
 
+#define WITH_SHIFT ((get_mods() | get_oneshot_mods()) & MOD_MASK_SHIFT)
+#define WITH_CTRL ((get_mods() | get_oneshot_mods()) & MOD_MASK_CTRL)
+#define WITH_GUI ((get_mods() | get_oneshot_mods()) & MOD_MASK_GUI)
+
 #define VI_B C(KC_LEFT)
 #define VI_W C(KC_RIGHT)
 #define VI_Y C(KC_C)

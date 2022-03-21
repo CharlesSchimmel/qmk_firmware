@@ -21,6 +21,9 @@ enum elpfen_custom_keycodes {
     VI_D,
     VI_R,
     VI_P,
+    TILDE_SLASH,
+    DDOT_SLASH,
+    ARROW,
     ELPFEN_KEYCODES_END
 };
 
