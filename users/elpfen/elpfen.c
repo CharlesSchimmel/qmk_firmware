@@ -41,8 +41,7 @@ bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
 bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
     if (!WITH_GUI) return true;
 
-    // handle mod-tap keys by only intercepting keyup (tap)
-    if (!record->event.pressed && record->event.time <= get_tapping_term(keycode, record)) {
+    if (record->event.pressed && record->tap.count) {
         switch (keycode) {
           case SH_J :
             tap_code(KC_DOWN);
@@ -75,12 +74,11 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
             return false;
 
         case KC_C :
-            if (WITH_SHIFT) {
+            if (WITH_SHIFT)
                 tap_code16(A(KC_F4));
-                // still want win-shift-c to get sent when using this keyboard with
-                // xmonad/i3
-                return true;
-            }
+            // return true and keep processing the keycode: we still want
+            // win-shift-c to get sent when using this keyboard with xmonad/i3
+            return true;
     }
 
     return true;
