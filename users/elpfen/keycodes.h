@@ -74,6 +74,7 @@ enum elpfen_combos {
 // ~~~~~~ SimpleAliases ~~~~~~~
 #define MS_BTN1 KC_MS_BTN1
 #define MS_BTN2 KC_MS_BTN2
+#define MS_BTN3 KC_MS_BTN3
 #define MS_DOWN KC_MS_DOWN
 #define MS_LEFT KC_MS_LEFT
 #define MS_RGHT KC_MS_RIGHT
