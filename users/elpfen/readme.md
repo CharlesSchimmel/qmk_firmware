@@ -91,16 +91,8 @@ easier to activate.
 ![base](./assets/iris-base.svg)
 
 ## Symbols (SYM)
-
-Numbers and symbols are balanced across the two hands. Symbols are placed on the
-home row as they're generally used more than numbers or number symbols.
-
-- SwMcr: Switchboard to the MCR layer. This will toggle on the MCR layer and
-    deactivate it when the SYM layer is deactivated.
-
-Note: `()` is typed pretty frequently and often leads to clawing as it's pretty
-awkward to immediately switch from one thumb to the other. It's not ideal, but
-it's fine.
+- If the _macro_ layer is activated, it will stay active until thy Symbol layer 
+is deactivated.
 
 ![sym](./assets/iris-sym.svg)
 
@@ -108,6 +100,9 @@ it's fine.
 ![sym2](./assets/iris-sym2.svg)
 
 ## Navigation/Vimmish (NAV)
+- ggG acts a bit like Vim's `g` key: double tap to jump to document start, 
+    tap to jump to document end.
+- forword and backword move forward a word and backward a word, respectively
 
 Navigation and operations in a vimmish layout.
 
@@ -120,17 +115,10 @@ This layer features "layer lock" on the NavLock key.
 ![nav](./assets/iris-nav.svg)
 
 ## Macros/Utility (MCR)
-Utility keys and macros that are used relatively infrequently.
-
-- VMBDn/Up/Mut (Volume-Media-Brightness): Volume on regular tap, media on
-    ctl+tap, brightness on shift-tap. They're put on the angle-bracket keys and
-    which sorta point in the right directions.
-
-- Lock: Win-L on L key for mnemonic "Lock"
-- CAD/Unlok: Ctl-Alt-Delete on U for "Unlock"
-- Sleep: on S key for "Sleep"
-- CtShEsc: Ctl-Sh-Esc on somewhat close to Escape
-- PrntScr: PrntScr on G for "screenGrab"
+- Win-L on L key for mnemonic "Lock"
+- Ctl-Alt-Delete on U for "Unlock"
+- Sleep on S key for "Sleep"
+- PrntScr on G for "screenGrab"
 
 ![macro](./assets/iris-macro.svg)
 
