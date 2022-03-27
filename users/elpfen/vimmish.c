@@ -2,6 +2,7 @@
 #include "tap_dances.h"
 #include "keycodes.h"
 #include <stdbool.h>
+#include "elpfen_util.h"
 
 // Vimmish-Keys: A few mocros to mimic the most useful vim keys
 bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {

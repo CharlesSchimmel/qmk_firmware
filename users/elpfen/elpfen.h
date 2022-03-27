@@ -8,7 +8,7 @@
 #include "layer_sticky_mods.h"
 #include "lenient_tri_layer.h"
 #include "switchboard.h"
-#include "util.h"
+#include "elpfen_util.h"
 #include "vimmish.h"
 
 #ifdef TAP_DANCE_ENABLE
