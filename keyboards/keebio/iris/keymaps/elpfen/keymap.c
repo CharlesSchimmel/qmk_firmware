@@ -166,7 +166,9 @@ bool switchboard_adj(uint16_t keycode, keyrecord_t *record) {
 
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return pseudo_twm(keycode, record)
+    return
+        process_macros(keycode, record)
+        && pseudo_twm(keycode, record)
         && multi_purpose_volume_keys(keycode, record)
         && layer_lock(keycode, record)
         && vimmish_keys(keycode, record)

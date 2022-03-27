@@ -41,6 +41,7 @@ bool multi_purpose_volume_keys(uint16_t keycode, keyrecord_t *record) {
 bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
     if (!WITH_GUI) return true;
 
+    // intercept the "tap" of a mod-tap
     if (record->event.pressed && record->tap.count) {
         switch (keycode) {
           case SH_J :
@@ -78,6 +79,7 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
                 tap_code16(A(KC_F4));
             // return true and keep processing the keycode: we still want
             // win-shift-c to get sent when using this keyboard with xmonad/i3
+            // (xmonad/i3 will ignore A-F4)
             return true;
     }
 
@@ -264,24 +266,3 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
     }
 }
 
-enum combo_events {
-  CMA_DOT_MS1,
-  DOT_P_MS2,
-  CMA_P_MS3,
-  COMBO_LENGTH
-};
-uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
-
-const uint16_t PROGMEM comma_dot_mouse1[] = {KC_COMMA, KC_DOT, COMBO_END};
-const uint16_t PROGMEM dot_p_mouse2[] = {KC_DOT, KC_P, COMBO_END};
-const uint16_t PROGMEM comma_p_mouse3[] = {KC_COMMA, KC_P, COMBO_END};
-
-combo_t key_combos[] = {
-  [CMA_DOT_MS1] = COMBO(comma_dot_mouse1, MS_BTN1),
-  [DOT_P_MS2] = COMBO(dot_p_mouse2, MS_BTN2),
-  [CMA_P_MS3] = COMBO(comma_p_mouse3, MS_BTN3)
-};
-/* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
-
-__attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed) {
-}

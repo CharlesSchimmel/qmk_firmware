@@ -27,10 +27,6 @@ enum elpfen_custom_keycodes {
     ELPFEN_KEYCODES_END
 };
 
-enum elpfen_combos {
-    ELPFEN_COMBOS_END
-};
-
 // ~~~~~~~~~ Mod-Taps ~~~~~~~~~~
 #define GU_SCLN LGUI_T(KC_SCLN)
 #define GU_Z    RGUI_T(KC_Z)
