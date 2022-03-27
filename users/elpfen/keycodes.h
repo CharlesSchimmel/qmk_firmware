@@ -17,13 +17,16 @@ enum elpfen_layers {
 
 enum elpfen_custom_keycodes {
     L_NAV = SAFE_RANGE,
-    VI_U,
-    VI_D,
-    VI_R,
-    VI_P,
-    TILDE_SLASH,
-    DDOT_SLASH,
-    ARROW,
+    VI_U,        // C-Z or PgUp
+    VI_D,        // C-X or PgDn
+    VI_R,        // C-Y
+    VI_P,        // C-V or S-Insert
+    TILDE_SLASH, // ~/
+    DDOT_SLASH,  // ../
+    ARROW,       // => or ->
+    NEQS,        // != or !==
+    EQS,         // == or ===
+    CLS_TAG,     // </
     ELPFEN_KEYCODES_END
 };
 

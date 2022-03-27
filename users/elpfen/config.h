@@ -48,7 +48,3 @@
 // #define PERMISSIVE_HOLD_PER_KEY
 
 #define ONESHOT_TIMEOUT 1500  /* Time (in ms) before the one shot key is released, Default 5000 */
-
-#ifdef RGBLIGHT_ENABLE
-#define RGBLIGHT_DEFAULT_HUE 128
-#endif

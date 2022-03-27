@@ -122,6 +122,7 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     }
 }
 
+// Boring plain macros
 bool process_macros
     ( uint16_t keycode
     , keyrecord_t *record
@@ -131,9 +132,29 @@ bool process_macros
         case TILDE_SLASH:
             SEND_STRING("~/");
             return false;
+
         case DDOT_SLASH:
             SEND_STRING("../");
             return false;
+
+        case ARROW:
+            if (WITH_CTRL) { SEND_STRING("->"); }
+            else {  SEND_STRING("=>"); }
+            return false;
+
+        case NEQS:
+            if (WITH_SHIFT) { SEND_STRING("/="); }
+            else { SEND_STRING("!="); }
+            return false;
+
+        case EQS:
+            if (WITH_SHIFT) { SEND_STRING("==="); }
+            else { SEND_STRING("=="); }
+            return false
+
+        case CLS_TAG:
+            SEND_STRING("</");
+            return false
     }
     return true;
 }

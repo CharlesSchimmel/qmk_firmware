@@ -37,7 +37,7 @@ bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
 
         case VI_D: 
             if (with_ctl) {
-                tap_code(KC_PGUP);
+                tap_code(KC_PGDN);
             } else {
                 tap_code16(C(KC_X));
             }
