@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
+
 #include <stdio.h>
 #include "elpfen.h"
 
@@ -72,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 
-  [3] = LAYOUT_wrapper(
+  [_MCR] = LAYOUT_wrapper(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
                                                 _____________MCR_1Up_Sides_12k_____________,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -93,27 +94,19 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return rotation;
 }
 
-#define L_BASE 0
-#define L_LOWER 2
-#define L_RAISE 4
-#define L_ADJUST 8
-
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (layer_state) {
-        case L_BASE:
-            oled_write_ln_P(PSTR("Default"), false);
+        case _DVORAK:
+            oled_write_ln_P(PSTR("Dvorak"), false);
             break;
-        case L_LOWER:
-            oled_write_ln_P(PSTR("Lower"), false);
+        case _SYM:
+            oled_write_ln_P(PSTR("Symbols"), false);
             break;
-        case L_RAISE:
-            oled_write_ln_P(PSTR("Raise"), false);
+        case _NAV:
+            oled_write_ln_P(PSTR("Vimmish"), false);
             break;
-        case L_ADJUST:
-        case L_ADJUST|L_LOWER:
-        case L_ADJUST|L_RAISE:
-        case L_ADJUST|L_LOWER|L_RAISE:
+        case _ADJ:
             oled_write_ln_P(PSTR("Adjust"), false);
             break;
     }
@@ -182,7 +175,7 @@ bool oled_task_user(void) {
     return false;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool oled_prorec(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     set_keylog(keycode, record);
   }
@@ -191,57 +184,132 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif // OLED_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
-/* Light Layers:
- * SYM, NAV, SYM2, MACRO
- * shift, ctl, alt, gui
- * capsword active
- */
+enum light_layers {
+    LL_DVK,
+    LL_SYM,
+    LL_NAV,
+    LL_ADJ,
+    LL_SFT,
+    LL_CTL,
+    LL_ALT,
+    // LL_GUI,
+    LL_END_NULL
+};
 
+const rgblight_segment_t PROGMEM ll_dvk[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 6, HSV_CYAN}       // Light 4 LEDs, starting with LED 6
+);
 
-// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
-const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {6, 4, HSV_RED},       // Light 4 LEDs, starting with LED 6
-    {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
+const rgblight_segment_t PROGMEM ll_sym[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 6, HSV_CYAN}
 );
-// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
-const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {9, 2, HSV_CYAN}
+
+const rgblight_segment_t PROGMEM ll_nav[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 6, HSV_GREEN}
 );
-// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
-const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {11, 2, HSV_PURPLE}
+
+const rgblight_segment_t PROGMEM ll_adj[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 6, HSV_TEAL}
 );
-// Light LEDs 13 & 14 in green when keyboard layer 3 is active
-const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {13, 2, HSV_GREEN}
+
+const rgblight_segment_t PROGMEM ll_sft[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 3, HSV_ORANGE}
+);
+
+const rgblight_segment_t PROGMEM ll_ctl[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 3, HSV_CORAL}
+);
+
+const rgblight_segment_t PROGMEM ll_alt[] = RGBLIGHT_LAYER_SEGMENTS(
+    {1, 3, HSV_YELLOW}
 );
 
 // Now define the array of layers. Later layers take precedence
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_capslock_layer,
-    my_layer1_layer,    // Overrides caps lock layer
-    my_layer2_layer,    // Overrides other layers
-    my_layer3_layer     // Overrides other layers
-);
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = {
+    [LL_DVK] = ll_dvk,
+    [LL_SYM] = ll_sym,
+    [LL_NAV] = ll_nav,
+    [LL_ADJ] = ll_adj,
+    [LL_SFT] = ll_sft,
+    [LL_CTL] = ll_ctl,
+    [LL_ALT] = ll_alt,
+    [LL_END_NULL] = NULL // required, see definition for RGBLIGHT_LAYERS_LIST
+};
 
 void keyboard_post_init_user(void) {
-    // Enable the LED layers
     rgblight_layers = my_rgb_layers;
 }
 
-bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.caps_lock);
+void default_light_layer_set(layer_state_t state) {
+    rgblight_set_layer_state(LL_DVK, layer_state_cmp(state, _DVORAK));
+}
+
+void light_layer_state_set(layer_state_t state) {
+    rgblight_set_layer_state(LL_SYM, layer_state_cmp(state, _SYM));
+    rgblight_set_layer_state(LL_NAV, layer_state_cmp(state, _NAV));
+    rgblight_set_layer_state(LL_ADJ, layer_state_cmp(state, _ADJ));
+}
+
+// this might need to happen after pro_rec_user
+bool light_layer_prorec(uint16_t keycode, keyrecord_t *record) {
+    rgblight_set_layer_state(LL_SFT, WITH_SHIFT);
+    rgblight_set_layer_state(LL_CTL, WITH_CTRL);
+    rgblight_set_layer_state(LL_ALT, WITH_ALT);
+    return true;
+}
+#endif
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    default_light_layer_set(state);
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t current_state) {
+    static layer_state_t previous_state;
+    // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
+
+    // Clear sticky mods for try layer: using multiple layers means that the
+    // mods will stay on so long as any of those layers is activated. May or
+    // may not be desired.
+    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
+        clear_mods();
+    }
+
+    current_state = switchboard_state(previous_state, current_state);
+    previous_state = current_state;
+
+#ifdef RGBLIGHT_ENABLE
+    light_layer_state_set(current_state);
+#endif
+
+    return current_state;
+}
+
+// must be called after clear_mods_after_adj
+bool switchboard_adj(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) return true;
+    if (keycode == AD_ENT || keycode == AD_SPC) return false;
     return true;
 }
 
-layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, _DVORAK));
-    return state;
+// ~~~~ Keypress Processing ~~~~~
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    return
+        process_macros(keycode, record)
+        && pseudo_twm(keycode, record)
+        && multi_purpose_volume_keys(keycode, record)
+        && layer_lock(keycode, record)
+        && vimmish_keys(keycode, record)
+        && layer_sticky_mods(keycode, record, _ADJ)
+        && clear_mods_after_adj(keycode, record)
+        && switchboard_adj(keycode, record)
+        && process_caps_word(keycode, record)
+#ifdef RGBLIGHT_ENABLE
+        && light_layer_prorec(keycode, record)
+#endif
+#ifdef OLED_ENABLE
+        && oled_prorec(keycode, record)
+#endif
+        ;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(2, layer_state_cmp(state, _SYM));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _ADJ));
-    return state;
-}
-#endif
