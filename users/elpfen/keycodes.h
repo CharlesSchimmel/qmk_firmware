@@ -37,12 +37,24 @@ enum elpfen_custom_keycodes {
 #define SH_J    LSFT_T(KC_J)
 #define SH_W    RSFT_T(KC_W)
 #define SH_DN   LSFT_T(KC_DOWN)
-#define SH_TAB LSFT_T(KC_TAB)
-#define SH_BSP LSFT_T(KC_BSPC)
+#define SH_TAB  LSFT_T(KC_TAB)
+#define SH_BSP  LSFT_T(KC_BSPC)
 
 #define CT_K    LCTL_T(KC_K)
 #define CT_M    RCTL_T(KC_M)
 #define CT_UP   LCTL_T(KC_UP)
+
+#define ALPHA_MODS   \
+        case GU_SCLN:\
+        case GU_Z:   \
+        case AL_Q:   \
+        case AL_V:   \
+        case SH_J:   \
+        case SH_W:   \
+        case SH_DN:  \
+        case CT_K:   \
+        case CT_M:   \
+        case CT_UP:  \
 
 // ~~~~~~~~~ One-Shots ~~~~~~~~~~
 #define O_LSFT OSM(MOD_LSFT)

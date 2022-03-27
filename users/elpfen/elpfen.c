@@ -86,39 +86,6 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-/* Switchboard: For momentary/layer-tapped layers, make a "child" layer
- * dependent on its parent layer.
- *
- * Example: If _LOW is the active laer, then TG(_RAISE) is pressed, _RAISE
- * will stay active so long as _LOW is active. When _LOW is deactivated, so
- * will _RAISE.
- *
- * This is really useful as it lets one layer "switchboard" to many other
- * layers, but occupy only one activating switch. It's like a
- * Raise+Lower=Adjust but you only have to keep one key held.
- *
- * Note: this requires that the child layers are higher than the parent
- * layers.
- */
-layer_state_t switchboard(layer_state_t current_state) {
-    static layer_state_t previous_state;
-    current_state = switchboard_state(previous_state, current_state);
-    previous_state = current_state;
-    return current_state;
-}
-
-layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t current_state) {
-    if (was_layer_turned_off(previous_state, current_state, _NAV)) {
-        current_state = layer_off_state(current_state, _MOUSE);
-    }
-
-    if (was_layer_turned_off(previous_state, current_state, _SYM)) {
-        current_state = layer_off_state(current_state, _MCR);
-        current_state = layer_off_state(current_state, _ADJ);
-    }
-    return current_state;
-}
-
 /* layer-lock: If a layer-tap is being held to activate a layer, tapping a
  * specific key will "Lock In" that layer, preventing it from being deactivated
  * when the mod-tap is released. In this case, my layer is _NAV, my mod-taps
@@ -155,63 +122,6 @@ bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     }
 }
 
-/* Lenient Adjust: Turn on the third layer if both RAISE and LOWER are on (like
- * update_tri_layer_state), but only turn off the third layer when _both_
- * parent layers are turned off.
- */
-layer_state_t lenient_update_tri_layer_state(
-        layer_state_t state,
-        uint8_t layer1,
-        uint8_t layer2,
-        uint8_t layer3
-        ) {
-    layer_state_t mask12 = (1UL << layer1) | (1UL << layer2);
-    layer_state_t mask3  = 1UL << layer3;
-
-    bool both_on = (state & mask12) == mask12;
-    bool both_off = (state & mask12) == 0;
-
-    if (both_on)  return state | mask3;
-    if (both_off) return state & ~mask3;
-
-    return state;
-}
-
-/* Layer-Sticky Mods: If a mod is pressed in this layer, keep it on until the
- * layer is deactivated. Simply intercept and ignore keyup for those modifiers
- * and call clear_mods when the layer turns off.
- *
- * I think this could be done more generally by checking the mod bits, but idk.
- */
-bool layer_sticky_mods(
-        uint16_t current_keycode,
-        keyrecord_t *record,
-        layer_state_t layers) {
-    if (IS_LAYER_OFF(layers)) return true;
-    if (record->event.pressed) return true;
-
-    switch (current_keycode) {
-        case KC_LALT:
-        case KC_RALT:
-        case KC_LCTL:
-        case KC_RCTL:
-        case KC_LSFT:
-        case KC_RSFT:
-            return false;
-        default:
-            return true;
-    }
-}
-
-// the other half of layer_sticky_mods if not using an tri-layer
-bool clear_mods_after_adj(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) return true;
-    if (keycode == AD_ENT || keycode == AD_SPC) {
-        clear_mods();
-    }
-    return true;
-}
-
 bool process_macros
     ( uint16_t keycode
     , keyrecord_t *record
@@ -227,18 +137,6 @@ bool process_macros
     }
     return true;
 }
-
-#define ALPHA_MODS   \
-        case GU_SCLN:\
-        case GU_Z:   \
-        case AL_Q:   \
-        case AL_V:   \
-        case SH_J:   \
-        case SH_W:   \
-        case SH_DN:  \
-        case CT_K:   \
-        case CT_M:   \
-        case CT_UP:  \
 
 /* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
  * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
