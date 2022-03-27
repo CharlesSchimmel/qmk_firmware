@@ -54,7 +54,11 @@
 #define _____________MCR_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, _______, KC_PSCR, _______, _______, M_LOK,   _______
 #define _____________MCR_Home_Sides_12k____________ _______, _______, _______, _______, M_CAD,   _______, _______, _______, _______, _______, KC_SLEP, _______
 #define _____________MCR_1Dn_Sides_L_6k____________ _______, _______, M_CSE,   _______, _______, _______
+#ifdef RGBLIGHT_ENABLE
+#define _____________MCR_1Dn_Sides_R_6k____________                                                       _______, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, RGB_TOG
+#else
 #define _____________MCR_1Dn_Sides_R_6k____________                                                       _______, _______, _______, _______, _______, _______
+#endif
 #define _____________MCR_BotCenter_6k______________ RESET,   _______, _______, _______, _______, OOOOOOO
 
 #define _____________ADJ_1Up_Core_12k______________ KC_F12,      KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8, KC_F9,   KC_F10

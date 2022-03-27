@@ -21,7 +21,6 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
-
 /* Normally with a mod-tap, tapping then tapping and holding will repeat the
  * tap key. TAPPING_FORCE_HOLD turns that off, allowing the mod to be activated
  * shortly after using it as a tap. This is useful for keys that are used as
@@ -49,3 +48,7 @@
 // #define PERMISSIVE_HOLD_PER_KEY
 
 #define ONESHOT_TIMEOUT 1500  /* Time (in ms) before the one shot key is released, Default 5000 */
+
+#ifdef RGBLIGHT_ENABLE
+#define RGBLIGHT_DEFAULT_HUE 128
+#endif
