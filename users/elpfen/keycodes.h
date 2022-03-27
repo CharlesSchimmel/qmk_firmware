@@ -10,8 +10,8 @@ enum elpfen_layers {
     _SYM,
     _NAV,
     _MCR,
-    _MOUSE,
     _ADJ,
+    _MOUSE,
     ELPFEN_LAYERS_END
 };
 
