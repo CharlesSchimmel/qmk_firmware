@@ -13,25 +13,31 @@
  * layers, but occupy only one activating switch. It's like a
  * Raise+Lower=Adjust but you only have to keep one key held.
  *
+ * Switchboard layers are enabled by either adding a TG(<Child Layer>) to the
+ * parent layer keymap, or intercepting the "mod" half of a mod-tap in
+ * process_record_user
+ *
  * Note: this requires that the child layers are higher than the parent
  * layers.
+ *
+ * TODO: Allow passing in a list of {parent, children} layers
  */
 layer_state_t switchboard(layer_state_t current_state) {
     static layer_state_t previous_state;
-    current_state = switchboard_state(previous_state, current_state);
+    current_state = switchboard_state(previous_state, current_state, _NAV, _MOUSE)  
+                  & switchboard_state(previous_state, current_state, _SYM, _MCR & _ADJ);
+;
     previous_state = current_state;
     return current_state;
 }
 
-layer_state_t switchboard_state(layer_state_t previous_state, layer_state_t current_state) {
-    if (was_layer_turned_off(previous_state, current_state, _NAV)) {
-        current_state = layer_off_state(current_state, _MOUSE);
-    }
-
-    if (was_layer_turned_off(previous_state, current_state, _SYM)) {
-        current_state = layer_off_state(current_state, _MCR);
-        current_state = layer_off_state(current_state, _ADJ);
-    }
+layer_state_t switchboard_state
+    ( layer_state_t previous_state
+    , layer_state_t current_state
+    , uint8_t parent_layer
+    , uint8_t child_layers
+    ) {
+    if (was_layer_turned_off(previous_state, current_state, parent_layer))
+        current_state = layer_off_state(current_state, child_layers);
     return current_state;
 }
-
