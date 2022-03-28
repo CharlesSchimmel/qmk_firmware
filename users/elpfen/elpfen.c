@@ -150,11 +150,11 @@ bool process_macros
         case EQS:
             if (WITH_SHIFT) { SEND_STRING("==="); }
             else { SEND_STRING("=="); }
-            return false
+            return false;
 
         case CLS_TAG:
             SEND_STRING("</");
-            return false
+            return false;
     }
     return true;
 }
