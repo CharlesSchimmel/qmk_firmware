@@ -152,7 +152,7 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
         clear_mods();
     }
 
-    current_state = switchboard_state(previous_state, current_state);
+    current_state = switchboard_state(previous_state, current_state, _SYM, _ADJ & _MCR);
     previous_state = current_state;
 
     return current_state;
@@ -162,7 +162,7 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
 // must be called after clear_mods_after_adj
 bool switchboard_adj(uint16_t keycode, keyrecord_t *record) {
     /* if (record->event.pressed) return true; */
-    if (record->tap.count) return true;
+    if (!record->event.pressed || record->tap.count) return true;
     if (keycode == AD_ENT || keycode == AD_SPC) return false;
     return true;
 }
