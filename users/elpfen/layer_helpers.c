@@ -4,9 +4,7 @@
 bool was_layer_turned_off(layer_state_t previous, layer_state_t current, uint16_t layer) {
   if (previous == current) return false;
 
-  uint16_t was_on = IS_LAYER_ON_STATE(previous, layer);
-  uint16_t now_off = IS_LAYER_OFF_STATE(current, layer);
-  return was_on && now_off;
+  return (IS_LAYER_ON_STATE(previous, layer)) && (IS_LAYER_OFF_STATE(current, layer));
 }
 
 // modified from tmk_core/common/action_layer.c

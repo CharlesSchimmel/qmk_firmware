@@ -123,65 +123,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                               └oooooooo┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
-
-  /* // GUI & Other Functions */
-  /* [_GAME] = LAYOUT_wrapper( */
-/* //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐ */
-  /*  _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______, */
-/* //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤ */
-  /*  ____QWERTY_L1____,                            ____QWERTY_R1____, */
-/* //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤ */
-  /*  ____QWERTY_L2____,                            ____QWERTY_R2____, */
-/* //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤ */
-  /*       ____QWERTY_L3____,     OOOOOOO,          OOOOOOO,      ____QWERTY_R3____, */
-/* //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘ */
-  /*                                 _______, _______, OOOOOOO,                   OOOOOOO, _______, TO(_DVORAK) */
-/* //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘ */
-  /* ), */
-
 };
-
-layer_state_t layer_state_set_user(layer_state_t current_state) {
-    static layer_state_t previous_state;
-    // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
-
-    // Clear sticky mods for try layer: using multiple layers means that the
-    // mods will stay on so long as any of those layers is activated. May or
-    // may not be desired.
-    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
-        clear_mods();
-    }
-
-    previous_state = switchboard_state(previous_state, current_state, _SYM, _MCR)
-                   & switchboard_state(previous_state, current_state, _SYM, _ADJ);
-
-    return current_state;
-}
-
-// ignore keyup of ADJ mod-taps to switcboard them from SYM
-// must be called after clear_mods_after_adj
-bool switchboard_adj(uint16_t keycode, keyrecord_t *record) {
-    /* if (record->event.pressed) return true; */
-    if (!record->event.pressed || record->tap.count) return true;
-    if (keycode == AD_ENT || keycode == AD_SPC) return false;
-    return true;
-}
 
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return
-        process_macros(keycode, record)
+    return process_macros(keycode, record)
         && pseudo_twm(keycode, record)
         && multi_purpose_volume_keys(keycode, record)
-        && layer_lock(keycode, record)
         && vimmish_keys(keycode, record)
         && layer_sticky_mods(keycode, record, _ADJ)
-        && clear_mods_after_adj(keycode, record)
-        /* && switchboard_adj(keycode, record) */
+        && switchboard_adj(keycode, record)
         && process_caps_word(keycode, record)
         ;
 }
 
+#ifdef TAP_DANCE_ENABLE
 qk_tap_dance_action_t tap_dance_actions[] = {
   TD_VI_G_ENTRY
 };
+#endif

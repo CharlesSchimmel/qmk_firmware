@@ -7,8 +7,9 @@ bool layer_sticky_mods
     , layer_state_t layers
     );
 
-bool clear_mods_after_adj
-    ( uint16_t keycode
-    , keyrecord_t *record
+void layer_sticky_mods_state_hook
+    ( layer_state_t previous_state
+    , layer_state_t current_state
+    , layer_state_t layer
     );
 

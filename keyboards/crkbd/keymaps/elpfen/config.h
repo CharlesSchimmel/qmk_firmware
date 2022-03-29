@@ -42,9 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
-#define LAYER_STATE_8BIT
 
 // space saving
+#define LAYER_STATE_8BIT
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 #define NO_MUSIC_MODE
+

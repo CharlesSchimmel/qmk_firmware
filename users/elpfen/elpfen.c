@@ -184,4 +184,3 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
             return false;
     }
 }
-

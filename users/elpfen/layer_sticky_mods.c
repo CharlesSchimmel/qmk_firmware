@@ -1,4 +1,5 @@
 #include "layer_sticky_mods.h"
+#include "layer_helpers.h"
 #include "keycodes.h"
 
 /* Layer-Sticky Mods: If a mod is pressed in this layer, keep it on until the
@@ -28,13 +29,14 @@ bool layer_sticky_mods
     }
 }
 
-// the other half of layer_sticky_mods if not using an tri-layer
-// should not be needed with the layer_state_set_user hook
-bool clear_mods_after_adj(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) return true;
-    if (keycode == AD_ENT || keycode == AD_SPC) {
+// Clear layer-sticky mods: using multiple layers means that the mods will stay
+// on so long as any of those layers is activated. May or may not be desired.
+void layer_sticky_mods_state_hook
+    ( layer_state_t previous_state
+    , layer_state_t current_state
+    , layer_state_t layer
+    ) {
+    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
         clear_mods();
     }
-    return true;
 }
-

@@ -260,48 +260,19 @@ bool light_layer_prorec(uint16_t keycode, keyrecord_t *record) {
 #endif
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    default_light_layer_set(state);
-    return state;
-}
-
-layer_state_t layer_state_set_user(layer_state_t current_state) {
-    static layer_state_t previous_state;
-    // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
-
-    // Clear sticky mods for try layer: using multiple layers means that the
-    // mods will stay on so long as any of those layers is activated. May or
-    // may not be desired.
-    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
-        clear_mods();
-    }
-
-    current_state = switchboard_state(previous_state, current_state, _SYM, _ADJ & _MCR);
-    previous_state = current_state;
-
 #ifdef RGBLIGHT_ENABLE
-    light_layer_state_set(current_state);
+    default_light_layer_set(state);
 #endif
-
-    return current_state;
-}
-
-// must be called after clear_mods_after_adj
-bool switchboard_adj(uint16_t keycode, keyrecord_t *record) {
-    if (!record->event.pressed || record->tap.count) return true;
-    if (keycode == AD_ENT || keycode == AD_SPC) return false;
-    return true;
+    return state;
 }
 
 // ~~~~ Keypress Processing ~~~~~
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return
-        process_macros(keycode, record)
+    return process_macros(keycode, record)
         && pseudo_twm(keycode, record)
         && multi_purpose_volume_keys(keycode, record)
-        && layer_lock(keycode, record)
         && vimmish_keys(keycode, record)
         && layer_sticky_mods(keycode, record, _ADJ)
-        && clear_mods_after_adj(keycode, record)
         && switchboard_adj(keycode, record)
         && process_caps_word(keycode, record)
 #ifdef RGBLIGHT_ENABLE

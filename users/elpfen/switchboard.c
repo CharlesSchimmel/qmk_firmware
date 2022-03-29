@@ -1,6 +1,7 @@
-#include "switchboard.h"
 #include "keycodes.h"
 #include "layer_helpers.h"
+
+#include "switchboard.h"
 
 /* Switchboard: For momentary/layer-tapped layers, make a "child" layer
  * dependent on its parent layer.
@@ -41,3 +42,11 @@ layer_state_t switchboard_state
         current_state = layer_off_state(current_state, child_layers);
     return current_state;
 }
+
+// ignore keyup of ADJ mod-taps to switchboard them from SYM
+bool switchboard_adj(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed || record->tap.count) return true; // ignore taps
+    if (keycode == AD_ENT || keycode == AD_SPC) return false;    // intercept holds
+    return true;
+}
+
