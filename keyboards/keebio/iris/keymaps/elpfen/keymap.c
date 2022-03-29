@@ -125,17 +125,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// ~~~~ Keypress Processing ~~~~~
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return process_macros(keycode, record)
-        && pseudo_twm(keycode, record)
-        && multi_purpose_volume_keys(keycode, record)
-        && vimmish_keys(keycode, record)
-        && layer_sticky_mods(keycode, record, _ADJ)
-        && switchboard_adj(keycode, record)
-        && process_caps_word(keycode, record)
-        ;
-}
+
+// user virtual func in elpfen.c
+/* bool process_record_user(uint16_t keycode, keyrecord_t *record) { } */
 
 #ifdef TAP_DANCE_ENABLE
 qk_tap_dance_action_t tap_dance_actions[] = {
