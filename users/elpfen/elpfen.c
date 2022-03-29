@@ -2,6 +2,7 @@
 #include "action.h"
 #include "elpfen.h"
 #include "keycodes.h"
+#include "layer_sticky_mods.h"
 #include "layer_helpers.h"
 
 /* Multi-Purpose Volume Keys: Alter the behavior of volume keys depending on
@@ -183,4 +184,22 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
         default:
             return false;
     }
+}
+
+// order must follow:
+// 1. Lenient Tri-Layer
+// 2. Switchboard
+// 3. Layer-Sticky Mods
+__attribute__((weak))layer_state_t layer_state_set_user(layer_state_t current_state) {
+    static layer_state_t previous_state;
+    // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
+
+    current_state = switchboard_state(previous_state, current_state, _SYM, _MCR);
+    current_state = switchboard_state(previous_state, current_state, _SYM, _ADJ);
+
+    layer_sticky_mods_state_hook(previous_state, current_state, _ADJ);
+
+    previous_state = current_state;
+
+    return current_state;
 }
