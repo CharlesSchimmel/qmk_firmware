@@ -29,3 +29,8 @@ bool process_macros
     ( uint16_t keycode
     , keyrecord_t *record
     );
+
+bool weird_taps
+    ( uint16_t keycode
+    , keyrecord_t *record
+    );

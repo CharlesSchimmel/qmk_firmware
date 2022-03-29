@@ -99,6 +99,10 @@ enum elpfen_custom_keycodes {
 #define M_CSE   LCTL(LSFT(KC_ESC))
 #define M_PST   LSFT(KC_INS)
 #define M_SHTAB LSFT(KC_TAB)
+// overridden in process_record_user, KC_DOT on tap, KC_F13 on hold
+// F13 will get used by system macro software
+#define M_DOT13 LT(0, KC_DOT)
+
 
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS

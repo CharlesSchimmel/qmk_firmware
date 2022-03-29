@@ -4,8 +4,8 @@
 uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
 #ifdef MOUSE_ENABLE
-const uint16_t PROGMEM comma_dot_mouse1[] = {KC_COMMA, KC_DOT, COMBO_END};
-const uint16_t PROGMEM dot_p_mouse2[] = {KC_DOT, KC_P, COMBO_END};
+const uint16_t PROGMEM comma_dot_mouse1[] = {KC_COMMA, M_DOT13, COMBO_END};
+const uint16_t PROGMEM dot_p_mouse2[] = {M_DOT13, KC_P, COMBO_END};
 const uint16_t PROGMEM comma_p_mouse3[] = {KC_COMMA, KC_P, COMBO_END};
 #endif
 

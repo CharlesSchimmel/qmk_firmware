@@ -16,13 +16,13 @@
 #define _____12_blanks____   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 
 #define ___12_X___ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-#define _____________Dvorak_2Up_Core_10k___________ KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
+#define _____________Dvorak_2Up_Core_10k___________ KC_1,    KC_2,    KC_3,    KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 #define _____________Dvorak_2Up_Sides_12k__________ KC_GRV, _____________Dvorak_2Up_Core_10k___________, KC_BSLS
 
-#define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
+#define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, M_DOT13, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
 #define _____________Dvorak_1Up_Sides_12k__________ KC_GRAVE, _____________Dvorak_1Up_Core_10k___________, KC_SLSH
 
-#define _____________Dvorak_Home_Core_10k__________ KC_A, KC_O, KC_E, KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
+#define _____________Dvorak_Home_Core_10k__________ KC_A,    KC_O,    KC_E,    KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
 #define _____________Dvorak_Home_Sides_12k_________ KC_ESC, _____________Dvorak_Home_Core_10k__________, KC_BSPC
 
 #define _____________Dvorak_1Dn_Core_L_5k__________ GU_SCLN, AL_Q, SH_J, CT_K, KC_X

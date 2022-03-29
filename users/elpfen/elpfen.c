@@ -160,6 +160,25 @@ bool process_macros
     return true;
 }
 
+// Weird-Taps: Custom Mod-Taps
+bool weird_taps
+    ( uint16_t keycode
+    , keyrecord_t *record
+    ) {
+    switch (keycode) {
+        case M_DOT13: 
+            if (record->tap.count) { // intercept tap
+                return true; // process normally
+            } else if (record->event.pressed) { // intercept hold-down
+                register_code(KC_F13);
+            } else if (!record->event.pressed) { // intercept hold-up
+                unregister_code16(KC_F13);
+            }
+            return false;
+    }
+    return true;
+}
+
 /* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
  * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
  * for mod-taps whose tapped key is used in normal typing.
