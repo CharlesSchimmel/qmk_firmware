@@ -92,7 +92,7 @@ bool pseudo_twm(uint16_t keycode, keyrecord_t *record) {
  * are aliased to RS_Z and RS_SCLN and my lock macro is L_NAV
  *
  * This works by overriding the MT(_LAYER, KC_KEY) code and preventing it's
- * Keyup event from being processed..
+ * Keyup event from being processed.
  */
 bool layer_lock(uint16_t current_keycode, keyrecord_t *record) {
     static bool nav_lock = false;
@@ -138,17 +138,17 @@ bool process_macros
             return false;
 
         case ARROW:
-            if (WITH_CTRL) { SEND_STRING("->"); }
+            if (WITH_CTRL) { clear_mods(); SEND_STRING("->"); }
             else {  SEND_STRING("=>"); }
             return false;
 
         case NEQS:
-            if (WITH_SHIFT) { SEND_STRING("/="); }
+            if (WITH_SHIFT) { clear_mods(); SEND_STRING("/="); }
             else { SEND_STRING("!="); }
             return false;
 
         case EQS:
-            if (WITH_SHIFT) { SEND_STRING("==="); }
+            if (WITH_SHIFT) { clear_mods(); SEND_STRING("==="); }
             else { SEND_STRING("=="); }
             return false;
 

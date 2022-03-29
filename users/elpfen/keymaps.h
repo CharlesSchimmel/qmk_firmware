@@ -31,7 +31,7 @@
 #define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, XXXXXXX
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
-#define _____________Base_Bottom_Center_6k_________ FN_MNU, RS_ESC, LW_ENT, LW_SPC, RS_BSP, FN_MNU
+#define _____________Base_Bottom_Center_6k_________ MO(_ADJ), RS_ESC, LW_ENT, LW_SPC, RS_BSP, MO(_ADJ)
 
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
@@ -63,7 +63,7 @@
 
 #define _____________ADJ_1Up_Core_12k______________ KC_F12,      KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8, KC_F9,   KC_F10
 #define _____________ADJ_1Up_Sides_12k_____________ _______, _____________ADJ_1Up_Core_12k______________, _______
-#define _____________ADJ_Home_Core_10k_____________ TILDE_SLASH, DDOT_SLASH, _______, _______, _______, _______, _______, ARROW, _______, _______
+#define _____________ADJ_Home_Core_10k_____________ TILDE_SLASH, CLS_TAG, _______, DDOT_SLASH, _______, EQS, NEQS, _______, ARROW, _______
 #define _____________ADJ_Home_Sides_12k____________ _______, _____________ADJ_Home_Core_10k_____________, _______
 #define _____________ADJ_1Dn_Sides_L_6k____________ _______, _______, _______, M_SHTAB,  KC_TAB, _______
 #define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, KC_RCTL, KC_RSFT, KC_LALT, KC_RGUI, _______

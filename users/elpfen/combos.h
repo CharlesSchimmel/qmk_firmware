@@ -3,17 +3,21 @@
 #include <stdbool.h>
 
 enum combo_events {
+#ifdef MOUSE_ENABLE
   CMA_DOT_MS1,
   DOT_P_MS2,
   CMA_P_MS3,
+#endif
   COMBO_LENGTH
 };
 
 uint16_t COMBO_LEN; // remove the COMBO_COUNT define and use this instead!
 
+#ifdef MOUSE_ENABLE
 const uint16_t PROGMEM comma_dot_mouse1[];
 const uint16_t PROGMEM dot_p_mouse2[];
 const uint16_t PROGMEM comma_p_mouse3[];
+#endif
 
 combo_t key_combos[];
 

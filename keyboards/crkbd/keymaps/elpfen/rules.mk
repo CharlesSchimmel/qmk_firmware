@@ -1,3 +1,4 @@
+COMBO_ENABLE       = yes
 MOUSEKEY_ENABLE    = yes    # Mouse keys
 RGBLIGHT_ENABLE    = yes    # Enable WS2812 RGB underlight.
 OLED_ENABLE        = yes
@@ -11,3 +12,6 @@ SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE   = no
 MAGIC_ENABLE       = no
 MUSIC_ENABLE       = no
+TAP_DANCE_ENABLE   = no
+
+

@@ -152,8 +152,8 @@ layer_state_t layer_state_set_user(layer_state_t current_state) {
         clear_mods();
     }
 
-    current_state = switchboard_state(previous_state, current_state, _SYM, _ADJ & _MCR);
-    previous_state = current_state;
+    previous_state = switchboard_state(previous_state, current_state, _SYM, _MCR)
+                   & switchboard_state(previous_state, current_state, _SYM, _ADJ);
 
     return current_state;
 }
@@ -177,7 +177,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         && vimmish_keys(keycode, record)
         && layer_sticky_mods(keycode, record, _ADJ)
         && clear_mods_after_adj(keycode, record)
-        && switchboard_adj(keycode, record)
+        /* && switchboard_adj(keycode, record) */
         && process_caps_word(keycode, record)
         ;
 }
