@@ -69,7 +69,15 @@ so long as the layer it was on stays active. Extremely useful on the ADJ layer
 for scrolling through tabs, windows, or window elements with Ctl-Tab and 
 Alt-Tab.
 
+### Layer-Lock
+Hold a layer-tap to enter the NAV layer then tap a key to "lock in" the NAV 
+layer. The layer will stay active until the lock key is tapped again. I 
+frequently find that I will enter the NAV layer, move around a bit and then 
+realize I will need to do quite a bit of work in this layer.
+
 ### Lenient Tri-Layer
+Not currently used in favor of a pseudo-tri-layer when both thumb keys are 
+pressed.
 
 Tri-layer usually works by activating the ADJ layer so long as RAISE and LOWER
 are both active. I've altered it very slightly so that ADJ is still activated
@@ -77,12 +85,6 @@ when RAISE and LOWER are both active, but deactivates ADJ only when _both_ RAISE
 and LOWER are deactivated. This is functionally very similar to Switchboard
 except that it doesn't matter which of the two keys is pressed first, so it's
 easier to activate.
-
-### Layer-Lock
-Hold a layer-tap to enter the NAV layer then tap a key to "lock in" the NAV 
-layer. The layer will stay active until the lock key is tapped again. I 
-frequently find that I will enter the NAV layer, move around a bit and then 
-realize I will need to do quite a bit of work in this layer.
 
 # Layers
 
