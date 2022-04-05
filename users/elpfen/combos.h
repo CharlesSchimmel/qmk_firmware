@@ -8,6 +8,7 @@ enum combo_events {
   DOT_P_MS2,
   CMA_P_MS3,
 #endif
+
   COMBO_LENGTH
 };
 

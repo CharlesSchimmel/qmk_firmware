@@ -9,8 +9,8 @@ enum elpfen_layers {
     _DVORAK = 0,
     _SYM,
     _NAV,
-    _MCR,
     _ADJ,
+    _MCR,
     _MOUSE,
     ELPFEN_LAYERS_END
 };

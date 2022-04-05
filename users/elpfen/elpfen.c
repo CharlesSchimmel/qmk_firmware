@@ -1,4 +1,3 @@
-#include "quantum.h"
 #include "action.h"
 #include "elpfen.h"
 #include "keycodes.h"
@@ -209,7 +208,7 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
 // 1. Lenient Tri-Layer
 // 2. Switchboard
 // 3. Layer-Sticky Mods
-__attribute__((weak)) layer_state_t layer_state_set_user(layer_state_t current_state) {
+layer_state_t elpfen_default_layer_state_set(layer_state_t current_state) {
     static layer_state_t previous_state;
     // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
 
@@ -223,15 +222,11 @@ __attribute__((weak)) layer_state_t layer_state_set_user(layer_state_t current_s
     return current_state;
 }
 
+__attribute__((weak)) layer_state_t layer_state_set_user(layer_state_t current_state) {
+    return elpfen_default_layer_state_set(current_state);
+}
+
 // ~~~~ Keypress Processing ~~~~~
 __attribute__((weak)) bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return process_macros(keycode, record)
-        && weird_taps(keycode, record)
-        && pseudo_twm(keycode, record)
-        && multi_purpose_volume_keys(keycode, record)
-        && vimmish_keys(keycode, record)
-        && layer_sticky_mods(keycode, record, _ADJ)
-        && switchboard_adj(keycode, record)
-        && process_caps_word(keycode, record)
-        ;
+    return ELPFEN_DEFAULT_PROREC ;
 }

@@ -7,29 +7,28 @@ layout.
 
 ## Basic Principles
 
-- **Keep it simple**: We quickly approach diminishing returns when adding keys
-    and functionality to our layout and it's preferable to skip the rarely used
-    keys than add rarely-needed complexity to our layout.
+- **Keep it simple**: We quickly approach diminishing returns when adding keys, 
+    features, and functions to our layout and it's preferable to skip the rarely 
+    used keys than add rarely-needed complexity to our layout.
 
 - **Maximize accessibility, minimize travel**: frequently used keys should be more
     accessible than infrequently used keys. Only very infrequently used actions
-    should be more than 1 key from home row. Layers and modifiers do not add 
-    significant impediments to accessibility.
+    should be more than 1 key from home row. 
 
-- **Consistency is important too**: accessibility and travel can be sacrificed if a
-    key's function is consistent with a less accessible position (e.g. putting
-    Shift-Tab and Tab on JK despite being used frequently because it's 
-    consistent with other uses of JK).
+- **Consistency & conceptual simplicity**: Instead of jam-packing every key on 
+    as few layers as possible, I prefer to group similar keys and macros 
+    together. To that end, accessibility and travel can be sacrificed if a key's 
+    function is consistent with its neighbors, or makes some kind of semantic 
+    sense.
 
 - **Symmetry and ping-ponging**: The pattern of alternating hands that Dvorak
     enables should be maintained with the layout. Both hands should be used
     roughly equally. All modifiers and layers should be symmetric and accessible
-    from both hands to avoid "clawing" (holding a key and tapping a key with the
-    same hand).
+    from both hands.
 
 - **Two mods and one tap, max**: Layout should be designed so that no more than two
-    mods need to be held at once on a given hand, and that for any action, one
-    hand holds a key and the other taps (again, no clawing).
+    keys need to be held at once on a given hand, and that for any action, one
+    hand holds a key and the other taps.
 
 - **Don't fear the layers/modifiers**: With a little practice, layer-taps can be
     used with great precision and speed. Special note should be taken not to put
@@ -40,7 +39,7 @@ layout.
 
 - Of course Dvorak is the best layout (don't @ me) but more to the point it's
     particularly useful to designing keymaps because it's already arranged with
-    key-frequency in mind.  The home row has the most-frequently used keys, the
+    key-frequency in mind. The home row has the most-frequently used keys, the
     top the second most-frequently used, and the bottom has the least-frequently
     used. This means that we can have consistent, symmetric modifiers on the
     least used keys without a second thought.
@@ -53,12 +52,6 @@ layout.
 
 All of these features are ways of adding more functionality to layers and 
 reducing the number of keys that need to be held at a given time.
-
-### Layer-Lock
-Hold a layer-tap to enter the NAV layer then tap a key to "lock in" the NAV 
-layer. The layer will stay active until the lock key is tapped again. I 
-frequently find that I will enter the NAV layer, move around a bit and then 
-realize I will need to do quite a bit of work in this layer.
 
 ### Switchboard
 
@@ -73,7 +66,8 @@ Example: SYM -> MCR, NAV -> MOUSE
 
 Basically the same as the above but for modifiers as well. The modifier stays on
 so long as the layer it was on stays active. Extremely useful on the ADJ layer
-for scrolling through tabs/windows with Ctl-Tab and Alt-Tab.
+for scrolling through tabs, windows, or window elements with Ctl-Tab and 
+Alt-Tab.
 
 ### Lenient Tri-Layer
 
@@ -84,35 +78,33 @@ and LOWER are deactivated. This is functionally very similar to Switchboard
 except that it doesn't matter which of the two keys is pressed first, so it's
 easier to activate.
 
+### Layer-Lock
+Hold a layer-tap to enter the NAV layer then tap a key to "lock in" the NAV 
+layer. The layer will stay active until the lock key is tapped again. I 
+frequently find that I will enter the NAV layer, move around a bit and then 
+realize I will need to do quite a bit of work in this layer.
+
 # Layers
 
 ## Base Layer
 
-![base](./assets/iris-base.svg)
+![base](./assets/base.svg)
 
 ## Symbols (SYM)
 - If the _macro_ layer is activated, it will stay active until thy Symbol layer 
 is deactivated.
 
-![sym](./assets/iris-sym.svg)
+![sym](./assets/sym.svg)
 
-## Sym^2
-![sym2](./assets/iris-sym2.svg)
+## Sym^2 (ADJ)
+![sym2](./assets/adj.svg)
 
 ## Navigation/Vimmish (NAV)
 - ggG acts a bit like Vim's `g` key: double tap to jump to document start, 
     tap to jump to document end.
 - forword and backword move forward a word and backward a word, respectively
 
-Navigation and operations in a vimmish layout.
-
-This layer features "layer lock" on the NavLock key.
-
-- NavLok: Lock in this layer
-- SwMouse: Switchboard to the Mouse layer.
-- ⇈⇊ (ggG): Double tap for document home, tap for document end
-
-![nav](./assets/iris-nav.svg)
+![nav](./assets/nav.svg)
 
 ## Macros/Utility (MCR)
 - Win-L on L key for mnemonic "Lock"
@@ -120,7 +112,7 @@ This layer features "layer lock" on the NavLock key.
 - Sleep on S key for "Sleep"
 - PrntScr on G for "screenGrab"
 
-![macro](./assets/iris-macro.svg)
+![macro](./assets/macro.svg)
 
 # License
 Copyright 2021 Charles Schimmelpfennig aka elpfen

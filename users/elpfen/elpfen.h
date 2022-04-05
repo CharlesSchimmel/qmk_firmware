@@ -16,6 +16,15 @@
 #include "td_helpers.h"
 #endif
 
+#define ELPFEN_DEFAULT_PROREC process_macros(keycode, record) \
+        && weird_taps(keycode, record)                        \
+        && pseudo_twm(keycode, record)                        \
+        && multi_purpose_volume_keys(keycode, record)         \
+        && vimmish_keys(keycode, record)                      \
+        && layer_sticky_mods(keycode, record, _ADJ)           \
+        && switchboard_adj(keycode, record)                   \
+        && process_caps_word(keycode, record)                 \
+
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record);
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record);
 
@@ -34,3 +43,5 @@ bool weird_taps
     ( uint16_t keycode
     , keyrecord_t *record
     );
+
+layer_state_t elpfen_default_layer_state_set(layer_state_t current_state);

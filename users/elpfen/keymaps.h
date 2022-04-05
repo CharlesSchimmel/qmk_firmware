@@ -31,7 +31,7 @@
 #define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, XXXXXXX
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
-#define _____________Base_Bottom_Center_6k_________ MO(_ADJ), RS_ESC, LW_ENT, LW_SPC, RS_BSP, MO(_ADJ)
+#define _____________Base_Bottom_Center_6k_________ MO(_MCR), RS_ESC, LW_ENT, LW_SPC, RS_BSP, KC_SPC
 
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
@@ -59,7 +59,7 @@
 #else
 #define _____________MCR_1Dn_Sides_R_6k____________                                                       _______, _______, _______, _______, _______, _______
 #endif
-#define _____________MCR_BotCenter_6k______________ RESET,   _______, _______, _______, _______, OOOOOOO
+#define _____________MCR_BotCenter_6k______________ QK_BOOTLOADER,   _______, _______, _______, _______, OOOOOOO
 
 #define _____________ADJ_1Up_Core_12k______________ KC_F12,      KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8, KC_F9,   KC_F10
 #define _____________ADJ_1Up_Sides_12k_____________ _______, _____________ADJ_1Up_Core_12k______________, _______

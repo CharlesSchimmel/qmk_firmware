@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 
 #define RGBLIGHT_LAYERS
+
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
     #define RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -35,7 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     // #define RGBLIGHT_EFFECT_RGB_TEST
     // #define RGBLIGHT_EFFECT_ALTERNATING
     // #define RGBLIGHT_EFFECT_TWINKLE
-    #define RGBLIGHT_LIMIT_VAL 120
+    #define RGBLIGHT_DEFAULT_HUE 180
+    #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_BREATHING
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
@@ -44,7 +46,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 
 // space saving
-#define LAYER_STATE_8BIT
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 #define NO_MUSIC_MODE
