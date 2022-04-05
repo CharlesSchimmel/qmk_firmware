@@ -88,23 +88,23 @@ realize I will need to do quite a bit of work in this layer.
 
 ## Base Layer
 
-![base](./assets/base.svg)
+![base](./assets/base.png)
 
 ## Symbols (SYM)
 - If the _macro_ layer is activated, it will stay active until thy Symbol layer 
 is deactivated.
 
-![sym](./assets/sym.svg)
+![sym](./assets/sym.png)
 
 ## Sym^2 (ADJ)
-![sym2](./assets/adj.svg)
+![sym2](./assets/adj.png)
 
 ## Navigation/Vimmish (NAV)
 - ggG acts a bit like Vim's `g` key: double tap to jump to document start, 
     tap to jump to document end.
 - forword and backword move forward a word and backward a word, respectively
 
-![nav](./assets/nav.svg)
+![nav](./assets/nav.png)
 
 ## Macros/Utility (MCR)
 - Win-L on L key for mnemonic "Lock"
@@ -112,7 +112,7 @@ is deactivated.
 - Sleep on S key for "Sleep"
 - PrntScr on G for "screenGrab"
 
-![macro](./assets/macro.svg)
+![macro](./assets/macro.png)
 
 # License
 Copyright 2021 Charles Schimmelpfennig aka elpfen
