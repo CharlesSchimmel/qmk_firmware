@@ -165,7 +165,7 @@ bool weird_taps
     , keyrecord_t *record
     ) {
     switch (keycode) {
-        case M_DOT13: 
+        case LT(0, KC_DOT): 
             if (record->tap.count) { // intercept tap
                 return true; // process normally
             } else if (record->event.pressed) { // intercept hold-down

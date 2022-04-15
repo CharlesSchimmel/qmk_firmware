@@ -20,7 +20,6 @@ enum elpfen_custom_keycodes {
     VI_U,        // C-Z or PgUp
     VI_D,        // C-X or PgDn
     VI_R,        // C-Y
-    VI_P,        // C-V or S-Insert
     TILDE_SLASH, // ~/
     DDOT_SLASH,  // ../
     ARROW,       // => or ->

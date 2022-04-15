@@ -12,11 +12,38 @@ bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
     bool with_shift = WITH_SHIFT;
 
     switch(current_keycode) {
-        case VI_P:
-            if (with_shift) {
-                tap_code16(S(KC_INSERT));
+#ifndef TAP_DANCE_ENABLE
+        case VI_G:
+            if (record->tap.count) {
+                tap_code16(C(KC_HOME));
             } else {
-                tap_code16(C(KC_V));
+                tap_code16(C(KC_END));
+            }
+            return false;
+#endif
+        case VI_L:
+            if (record->tap.count) {
+                tap_code(KC_RIGHT);
+            } else {
+                tap_code(KC_HOME);
+            }
+            return false;
+        case VI_W:
+            if (record->tap.count) { // tap
+                tap_code16(C(KC_RIGHT));
+                return false;
+            } else {
+                return true;
+            }
+        case VI_P:
+            if (record->tap.count) {
+                if (with_shift) {
+                    tap_code16(S(KC_INSERT));
+                } else {
+                    tap_code16(C(KC_V));
+                }
+            } else {
+                tap_code16(KC_END);
             }
             return false;
 

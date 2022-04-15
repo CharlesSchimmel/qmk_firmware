@@ -21,6 +21,7 @@
         && pseudo_twm(keycode, record)                        \
         && multi_purpose_volume_keys(keycode, record)         \
         && vimmish_keys(keycode, record)                      \
+        && layer_lock(keycode, record)                        \
         && layer_sticky_mods(keycode, record, _ADJ)           \
         && switchboard_adj(keycode, record)                   \
         && process_caps_word(keycode, record)                 \

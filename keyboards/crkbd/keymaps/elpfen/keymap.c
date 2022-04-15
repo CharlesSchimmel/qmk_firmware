@@ -156,7 +156,8 @@ bool oled_task_user(void) {
 /*   } */
 /*   return true; */
 /* } */
-/* #endif // OLED_ENABLE */
+
+#endif // OLED_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
 enum light_layers {
@@ -173,7 +174,7 @@ enum light_layers {
 };
 
 const rgblight_segment_t PROGMEM ll_sym[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 54, HSV_CYAN}
+    {0, 54, HSV_PURPLE}
 );
 
 const rgblight_segment_t PROGMEM ll_nav[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -188,11 +189,11 @@ const rgblight_segment_t PROGMEM ll_nav[] = RGBLIGHT_LAYER_SEGMENTS(
 );
 
 const rgblight_segment_t PROGMEM ll_mcr[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 10, HSV_PINK}
+    {0, 54, HSV_RED}
 );
 
 const rgblight_segment_t PROGMEM ll_adj[] = RGBLIGHT_LAYER_SEGMENTS(
-    {1, 10, HSV_MAGENTA}
+    {0, 54, HSV_CORAL}
 );
 
 /* const rgblight_segment_t PROGMEM ll_sft[] = RGBLIGHT_LAYER_SEGMENTS( */
