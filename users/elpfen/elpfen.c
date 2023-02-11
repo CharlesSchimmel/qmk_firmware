@@ -216,6 +216,7 @@ layer_state_t elpfen_default_layer_state_set(layer_state_t current_state) {
     current_state = switchboard_state(previous_state, current_state, _SYM, _ADJ);
 
     layer_sticky_mods_state_hook(previous_state, current_state, _ADJ);
+    layer_sticky_mods_state_hook(previous_state, current_state, _NAV);
 
     previous_state = current_state;
 

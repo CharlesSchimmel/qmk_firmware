@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "elpfen_util.h"
 
+
 // Vimmish-Keys: A few mocros to mimic the most useful vim keys
 bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
@@ -69,9 +70,17 @@ bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
             }
             return false;
 
+        case VI_V:
+            if (record->tap.count) { // tap
+                static bool visual_mode = false;
+                visual_mode ? unregister_code(KC_RSFT) : register_code(KC_RSFT);
+                visual_mode = !visual_mode;
+            } else {
+                return true;
+            }
+
         default:
             return true;
     }
     return true;
 }
-

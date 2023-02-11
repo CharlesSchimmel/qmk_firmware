@@ -36,7 +36,7 @@ void layer_sticky_mods_state_hook
     , layer_state_t current_state
     , layer_state_t layer
     ) {
-    if (was_layer_turned_off(previous_state, current_state, _ADJ)) {
+    if (was_layer_turned_off(previous_state, current_state, layer)) {
         clear_mods();
     }
 }

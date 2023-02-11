@@ -5,12 +5,15 @@
 #define _RAISE _SYM
 #define _LOWER _NAV
 
+#define MT_OVR(...) LT(0, __VA_ARGS__)
+
 enum elpfen_layers {
     _DVORAK = 0,
     _SYM,
     _NAV,
     _ADJ,
     _MCR,
+    _ABL,
     _MOUSE,
     ELPFEN_LAYERS_END
 };
@@ -79,7 +82,6 @@ enum elpfen_custom_keycodes {
 
 #define MO_NAV  MO(_NAV)
 #define TG_MCR  TG(_MCR)
-#define TG_MSE  TG(_MOUSE)
 
 // ~~~~~~ SimpleAliases ~~~~~~~
 #define MS_BTN1 KC_MS_BTN1
@@ -106,3 +108,29 @@ enum elpfen_custom_keycodes {
 // "This key is pressed for this layer"
 #define OOOOOOO KC_TRNS
 
+
+// ~~~~~~~~~ Ableton ~~~~~~~~~~
+#define ZERO_S       MT_OVR(KC_INT1)
+#define CUT_DEL      MT_OVR(KC_INT2)
+#define CPY_PST      MT_OVR(KC_INT3)
+#define NDO_RDO      MT_OVR(KC_INT4)
+#define SPLIT_JOIN   MT_OVR(KC_INT5)
+#define QUANT        MT_OVR(KC_INT6)
+#define GROUP        MT_OVR(KC_INT7)
+#define TAB_SHTAB    MT_OVR(KC_INT8)
+#define Z_X          MT_OVR(KC_INT9)
+#define SPC_SHPC     MT_OVR(KC_LANGUAGE_1)
+#define MIDI_KEY_MAP MT_OVR(KC_LANGUAGE_2)
+
+#define NOTE_C  KC_A
+#define NOTE_CS KC_W
+#define NOTE_D  KC_S
+#define NOTE_DS KC_E
+#define NOTE_E  KC_D
+#define NOTE_F  KC_F
+#define NOTE_FS KC_T
+#define NOTE_G  KC_G
+#define NOTE_GS KC_Y
+#define NOTE_A  KC_H
+#define NOTE_AS KC_U
+#define NOTE_B  KC_H
