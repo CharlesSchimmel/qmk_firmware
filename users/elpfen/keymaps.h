@@ -63,7 +63,7 @@
 
 #define _____________ADJ_1Up_Core_12k______________ KC_F12,      KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8, KC_F9,   KC_F10
 #define _____________ADJ_1Up_Sides_12k_____________ _______, _____________ADJ_1Up_Core_12k______________, _______
-#define _____________ADJ_Home_Core_10k_____________ TILDE_SLASH, CLS_TAG, _______, DDOT_SLASH, _______, EQS, NEQS, _______, ARROW, _______
+#define _____________ADJ_Home_Core_10k_____________ TILDE_SLASH, CLS_TAG, _______, DDOT_SLASH, _______, EQS, NEQS, DARROW, ARROW, _______
 #define _____________ADJ_Home_Sides_12k____________ _______, _____________ADJ_Home_Core_10k_____________, _______
 #define _____________ADJ_1Dn_Sides_L_6k____________ _______, _______, _______, M_SHTAB,  KC_TAB, _______
 #define _____________ADJ_1Dn_Sides_R_6k____________                                                        _______, KC_RCTL, KC_RSFT, KC_LALT, KC_RGUI, _______

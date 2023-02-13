@@ -138,18 +138,19 @@ bool process_macros
             return false;
 
         case ARROW:
-            if (WITH_CTRL) { clear_mods(); SEND_STRING("->"); }
-            else {  SEND_STRING("=>"); }
+            SEND_STRING("->");
+            return false;
+
+        case DARROW:
+            SEND_STRING("=>");
             return false;
 
         case NEQS:
-            if (WITH_SHIFT) { clear_mods(); SEND_STRING("/="); }
-            else { SEND_STRING("!="); }
+            SEND_STRING("!=");
             return false;
 
         case EQS:
-            if (WITH_SHIFT) { clear_mods(); SEND_STRING("==="); }
-            else { SEND_STRING("=="); }
+            SEND_STRING("==");
             return false;
 
         case CLS_TAG:

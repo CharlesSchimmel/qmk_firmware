@@ -25,7 +25,8 @@ enum elpfen_custom_keycodes {
     VI_R,        // C-Y
     TILDE_SLASH, // ~/
     DDOT_SLASH,  // ../
-    ARROW,       // => or ->
+    ARROW,       // ->
+    DARROW,      // =>
     NEQS,        // != or !==
     EQS,         // == or ===
     CLS_TAG,     // </
