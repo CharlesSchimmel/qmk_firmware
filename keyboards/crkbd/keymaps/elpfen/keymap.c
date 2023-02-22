@@ -123,7 +123,7 @@ void oled_render_layer_state(void) {
 
     oled_write_P(PSTR(" GUI "), (modifiers & MOD_BIT(KC_LGUI)) | (modifiers & MOD_BIT(KC_RGUI)));
     oled_write_P(PSTR(" ALT "), (modifiers & MOD_BIT(KC_LALT)) | (modifiers & MOD_BIT(KC_RALT)));
-    oled_write_P(PSTR(" SFT "), (modifiers & MOD_BIT(KC_LSHIFT)) | (modifiers & MOD_BIT(KC_RSHIFT)));
+    oled_write_P(PSTR(" SFT "), (modifiers & MOD_BIT(KC_LSFT)) | (modifiers & MOD_BIT(KC_RSFT)));
     oled_write_P(PSTR(" CTL "), (modifiers & MOD_BIT(KC_LCTL)) | (modifiers & MOD_BIT(KC_RCTL)));
 
     static const char PROGMEM icon[] = {
