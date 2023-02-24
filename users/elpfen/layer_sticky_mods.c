@@ -37,6 +37,21 @@ void layer_sticky_mods_state_hook
     , layer_state_t layer
     ) {
     if (was_layer_turned_off(previous_state, current_state, layer)) {
-        clear_mods();
+        if (get_mods() & MOD_BIT(KC_LALT)) 
+            SEND_STRING(SS_UP(X_LALT));
+        if (get_mods() & MOD_BIT(KC_RALT)) 
+            SEND_STRING(SS_UP(X_RALT));
+        if (get_mods() & MOD_BIT(KC_LSFT)) 
+            SEND_STRING(SS_UP(X_LSFT));
+        if (get_mods() & MOD_BIT(KC_RSFT)) 
+            SEND_STRING(SS_UP(X_RSFT));
+        if (get_mods() & MOD_BIT(KC_LCTL)) 
+            SEND_STRING(SS_UP(X_LCTL));
+        if (get_mods() & MOD_BIT(KC_RCTL)) 
+            SEND_STRING(SS_UP(X_RCTL));
+        if (get_mods() & MOD_BIT(KC_LGUI)) 
+            SEND_STRING(SS_UP(X_LGUI));
+        if (get_mods() & MOD_BIT(KC_RGUI)) 
+            SEND_STRING(SS_UP(X_RGUI));
     }
 }
