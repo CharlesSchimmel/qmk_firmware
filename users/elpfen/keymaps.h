@@ -32,6 +32,7 @@
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
 #define _____________Base_Bottom_Center_6k_________ MO(_MCR), RS_ESC, LW_ENT, LW_SPC, RS_BSP, KC_SPC
+#define _____________Alt_Bottom_Center_6k__________ RS_ESC, LW_ENT, _______, _______, LW_SPC, RS_BSP
 
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
