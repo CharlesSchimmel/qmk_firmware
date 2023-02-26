@@ -17,7 +17,7 @@
 #endif
 
 #define ELPFEN_DEFAULT_PROREC process_macros(keycode, record) \
-        && weird_taps(keycode, record)                        \
+        && custom_tap_holds(keycode, record)                  \
         && pseudo_twm(keycode, record)                        \
         && multi_purpose_volume_keys(keycode, record)         \
         && vimmish_keys(keycode, record)                      \
@@ -40,7 +40,7 @@ bool process_macros
     , keyrecord_t *record
     );
 
-bool weird_taps
+bool custom_tap_holds
     ( uint16_t keycode
     , keyrecord_t *record
     );

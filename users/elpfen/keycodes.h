@@ -23,7 +23,6 @@ enum elpfen_custom_keycodes {
     VI_U,        // C-Z or PgUp
     VI_D,        // C-X or PgDn
     VI_R,        // C-Y
-    TILDE_SLASH, // ~/
     DDOT_SLASH,  // ../
     ARROW,       // ->
     DARROW,      // =>
@@ -101,9 +100,18 @@ enum elpfen_custom_keycodes {
 #define M_CSE   LCTL(LSFT(KC_ESC))
 #define M_PST   LSFT(KC_INS)
 #define M_SHTAB LSFT(KC_TAB)
-// overridden in process_record_user, KC_DOT on tap, KC_F13 on hold
-// F13 will get used by system macro software
+
+/* ~~~~~~~~~ Weird Taps ~~~~~~~~~~
+ * Send KEY on tap, and some other behavior on hold by intercepting the hold 
+ * event for LT(0, KEY). Overridden in process_record_user.
+ *
+ * The advantage of using LT(0, KEY) over regular macros is that you don't 
+ * have to specify the tap behavior, just the hold behavior.
+ */
+// KC_DOT on tap, KC_F13 on hold. F13 mapped in AutoHotkey
 #define M_DOT13 LT(0, KC_DOT)
+// Grave/Tilde on tap, ~/ on hold
+#define TILDE_SLASH LT(0, KC_GRAVE)
 
 
 // "This key is pressed for this layer"

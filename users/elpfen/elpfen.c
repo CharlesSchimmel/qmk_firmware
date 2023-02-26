@@ -129,10 +129,6 @@ bool process_macros
     ) {
     if (!record->event.pressed) return true;
     switch (keycode) {
-        case TILDE_SLASH:
-            SEND_STRING("~/");
-            return false;
-
         case DDOT_SLASH:
             SEND_STRING("../");
             return false;
@@ -160,13 +156,13 @@ bool process_macros
     return true;
 }
 
-// Weird-Taps: Custom Mod-Taps
-bool weird_taps
+// Custom Tap-Holds https://docs.qmk.fm/#/mod_tap?id=intercepting-mod-taps
+bool custom_tap_holds
     ( uint16_t keycode
     , keyrecord_t *record
     ) {
     switch (keycode) {
-        case LT(0, KC_DOT): 
+        case M_DOT13: 
             if (record->tap.count) { // intercept tap
                 return true; // process normally
             } else if (record->event.pressed) { // intercept hold-down
@@ -175,6 +171,11 @@ bool weird_taps
                 unregister_code16(KC_F13);
             }
             return false;
+        case TILDE_SLASH: 
+            if (!record->tap.count && record->event.pressed) { // intercept hold
+                SEND_STRING("~/");
+                return false;
+            } else return true; // pass-through tap
     }
     return true;
 }
