@@ -152,10 +152,6 @@ bool process_macros
         case CLS_TAG:
             SEND_STRING("</");
             return false;
-
-        case SLSH_BSLSH:
-            tap_code(KC_BSLS);
-            return false;
     }
     return true;
 }
@@ -196,6 +192,19 @@ bool custom_tap_holds
             case DASH_ARW:
                 SEND_STRING("->");
                 return false;
+            case SLSH_BSLSH:
+                tap_code(KC_BSLS);
+                return false;
+            case HT_1: tap_code(KC_F12); return false;
+            case HT_2: tap_code(KC_F2); return false;
+            case HT_3: tap_code(KC_F3); return false;
+            case HT_4: tap_code(KC_F4); return false;
+            case HT_5: tap_code(KC_F5); return false;
+            case HT_6: tap_code(KC_F6); return false;
+            case HT_7: tap_code(KC_F7); return false;
+            case HT_8: tap_code(KC_F8); return false;
+            case HT_9: tap_code(KC_F9); return false;
+            case HT_0: tap_code(KC_F10); return false;
         }
         return true;
 }

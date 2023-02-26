@@ -11,6 +11,8 @@ enum combo_events {
   QT_CMA_TAB,
   F12_F2_F1,
   F9_F10_F11,
+  HT_F12_F2_F1,
+  HT_F9_F10_F11,
   COMBO_LENGTH
 };
 
@@ -25,6 +27,8 @@ const uint16_t PROGMEM comma_p_mouse3[];
 const uint16_t PROGMEM quot_comma_tab[];
 const uint16_t PROGMEM f12_f2_f1[];
 const uint16_t PROGMEM f9_f10_f11[];
+const uint16_t PROGMEM ht_f12_f2_f1[];
+const uint16_t PROGMEM ht_f9_f10_f11[];
 
 combo_t key_combos[];
 

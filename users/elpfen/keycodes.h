@@ -129,6 +129,16 @@ enum hold_tap_keycodes {
 #define SLSH_BSLSH  HT(KC_SLSH)    // /, \ on hold
 #define LAB_CLS     HT(HT_LAB_CLS) // <, </ on hold
 #define RAB_DRW     HT(HT_RAB_DRW) // >, => on hold
+#define HT_1        HT(KC_1)
+#define HT_2        HT(KC_2)
+#define HT_3        HT(KC_3)
+#define HT_4        HT(KC_4)
+#define HT_5        HT(KC_5)
+#define HT_6        HT(KC_6)
+#define HT_7        HT(KC_7)
+#define HT_8        HT(KC_8)
+#define HT_9        HT(KC_9)
+#define HT_0       HT(KC_0)
 
 
 // ~~~~~~~~~ Ableton ~~~~~~~~~~

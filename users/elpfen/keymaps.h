@@ -12,6 +12,7 @@
 
 // ~~~~~~~~~ Base Dvorak Layer ~~~~~~~~~~
 #define ___1_through_10___   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+#define ___HT_1_through_10___   HT_1,    HT_2,    HT_3,    HT_4,    HT_5,    HT_6,    HT_7,    HT_8,    HT_9,    HT_0
 #define ___F1_through_F12___ KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
 #define _____12_blanks____   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 
@@ -36,11 +37,11 @@
 
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
-#define _____________SYM_1Up_Core_10k______________ ___1_through_10___
+#define _____________SYM_1Up_Core_10k______________ ___HT_1_through_10___
 #define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_BSLS
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, KC_RCBR,  KC_RPRN, RAB_DRW, KC_RBRC
 #define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, KC_DEL
-#define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, KC_SLSH
+#define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, SLSH_BSLSH
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     TG_MCR, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
 #define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
 
