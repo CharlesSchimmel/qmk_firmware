@@ -3,10 +3,10 @@
 #include "keycodes.h"
 
 #define VI_B C(KC_LEFT)
-#define VI_W RSFT_T(KC_WFAV)
-#define VI_V LALT_T(KC_WFAV)
-#define VI_L LT(0, KC_WWW_REFRESH) // right or home
-#define VI_P LT(0, KC_MAIL) // paste or end
+#define VI_W RSFT_T(HT_VI_WV)
+#define VI_V LALT_T(HT_VI_WV)
+#define VI_L LT(0, HT_VI_L) // right or home
+#define VI_P LT(0, HT_VI_P) // paste or end
 #define VI_Y C(KC_C)
 #define VI_H KC_LEFT
 #define VI_J SH_DN

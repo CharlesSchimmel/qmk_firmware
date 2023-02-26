@@ -5,8 +5,6 @@
 #define _RAISE _SYM
 #define _LOWER _NAV
 
-#define MT_OVR(...) LT(0, __VA_ARGS__)
-
 enum elpfen_layers {
     _DVORAK = 0,
     _SYM,
@@ -31,6 +29,8 @@ enum elpfen_custom_keycodes {
     CLS_TAG,     // </
     ELPFEN_KEYCODES_END
 };
+
+#define OOOOOOO KC_TRNS // "This key is pressed for this layer"
 
 // ~~~~~~~~~ Mod-Taps ~~~~~~~~~~
 #define GU_SCLN LGUI_T(KC_SCLN)
@@ -101,35 +101,48 @@ enum elpfen_custom_keycodes {
 #define M_PST   LSFT(KC_INS)
 #define M_SHTAB LSFT(KC_TAB)
 
-/* ~~~~~~~~~ Weird Taps ~~~~~~~~~~
+/* ~~~~~~~~~ Hold-Taps ~~~~~~~~~~
  * Send KEY on tap, and some other behavior on hold by intercepting the hold 
  * event for LT(0, KEY). Overridden in process_record_user.
  *
  * The advantage of using LT(0, KEY) over regular macros is that you don't 
  * have to specify the tap behavior, just the hold behavior.
  */
-// KC_DOT on tap, KC_F13 on hold. F13 mapped in AutoHotkey
-#define M_DOT13 LT(0, KC_DOT)
-// Grave/Tilde on tap, ~/ on hold
-#define TILDE_SLASH LT(0, KC_GRAVE)
+// Keycodes used for hold-tap overrides. Check quantum/keycodes.h for more.
+enum hold_tap_keycodes {
+    HT_VI_WV = KC_NUM_LOCK,
+    HT_VI_L = KC_KP_SLASH,
+    HT_VI_P = KC_KP_ASTERISK,
+    HT_LAB_CLS = KC_KP_MINUS,
+    HT_RAB_DRW = KC_KP_PLUS,
+    // there's like 11 more safe ones before KC_APP
+    _END_KEYPAD_RANGE_ = KC_APPLICATION,
+    _MORE_SAFE_RANGE_ = KC_KP_COMMA,
+};
 
+#define HT(...) LT(0, __VA_ARGS__)
 
-// "This key is pressed for this layer"
-#define OOOOOOO KC_TRNS
+#define M_DOT13     HT(KC_DOT)     // . on tap, F13 on hold
+#define TILDE_SLASH HT(KC_GRAVE)   // Grave/Tilde on tap, ~/ on hold
+#define DASH_ARW    HT(KC_MINS)    // -, ->
+#define EQ_DEQ      HT(KC_EQL)     // =, ==
+#define SLSH_BSLSH  HT(KC_SLSH)    // /, \ on hold
+#define LAB_CLS     HT(HT_LAB_CLS) // <, </ on hold
+#define RAB_DRW     HT(HT_RAB_DRW) // >, => on hold
 
 
 // ~~~~~~~~~ Ableton ~~~~~~~~~~
-#define ZERO_S       MT_OVR(KC_INT1)
-#define CUT_DEL      MT_OVR(KC_INT2)
-#define CPY_PST      MT_OVR(KC_INT3)
-#define NDO_RDO      MT_OVR(KC_INT4)
-#define SPLIT_JOIN   MT_OVR(KC_INT5)
-#define QUANT        MT_OVR(KC_INT6)
-#define GROUP        MT_OVR(KC_INT7)
-#define TAB_SHTAB    MT_OVR(KC_INT8)
-#define Z_X          MT_OVR(KC_INT9)
-#define SPC_SHPC     MT_OVR(KC_LANGUAGE_1)
-#define MIDI_KEY_MAP MT_OVR(KC_LANGUAGE_2)
+#define ZERO_S       HT(KC_INT1)
+#define CUT_DEL      HT(KC_INT2)
+#define CPY_PST      HT(KC_INT3)
+#define NDO_RDO      HT(KC_INT4)
+#define SPLIT_JOIN   HT(KC_INT5)
+#define QUANT        HT(KC_INT6)
+#define GROUP        HT(KC_INT7)
+#define TAB_SHTAB    HT(KC_INT8)
+#define Z_X          HT(KC_INT9)
+#define SPC_SHPC     HT(KC_LANGUAGE_1)
+#define MIDI_KEY_MAP HT(KC_LANGUAGE_2)
 
 #define NOTE_C  KC_A
 #define NOTE_CS KC_W

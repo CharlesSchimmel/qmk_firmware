@@ -127,7 +127,7 @@ bool process_macros
     ( uint16_t keycode
     , keyrecord_t *record
     ) {
-    if (!record->event.pressed) return true;
+    if (!record->event.pressed) return true; // ignore keyup
     switch (keycode) {
         case DDOT_SLASH:
             SEND_STRING("../");
@@ -152,6 +152,10 @@ bool process_macros
         case CLS_TAG:
             SEND_STRING("</");
             return false;
+
+        case SLSH_BSLSH:
+            tap_code(KC_BSLS);
+            return false;
     }
     return true;
 }
@@ -161,23 +165,39 @@ bool custom_tap_holds
     ( uint16_t keycode
     , keyrecord_t *record
     ) {
-    switch (keycode) {
-        case M_DOT13: 
-            if (record->tap.count) { // intercept tap
-                return true; // process normally
-            } else if (record->event.pressed) { // intercept hold-down
-                register_code(KC_F13);
-            } else if (!record->event.pressed) { // intercept hold-up
-                unregister_code16(KC_F13);
-            }
-            return false;
-        case TILDE_SLASH: 
-            if (!record->tap.count && record->event.pressed) { // intercept hold
+        if (!record->event.pressed) return true; // ignore tap-up and hold-up
+        switch (keycode) {
+            case LAB_CLS:
+                if (!record->tap.count) {
+                    SEND_STRING("</");
+                    return false;
+                } else {
+                    tap_code16(KC_LABK);
+                    return false;
+                }
+            case RAB_DRW:
+                if (!record->tap.count) {
+                    SEND_STRING("=>");
+                    return false;
+                } else {
+                    tap_code16(KC_RABK);
+                    return false;
+                }
+        }
+        if (record->tap.count) return true;
+
+        switch (keycode) {
+            case TILDE_SLASH:
                 SEND_STRING("~/");
                 return false;
-            } else return true; // pass-through tap
-    }
-    return true;
+            case EQ_DEQ:
+                SEND_STRING("==");
+                return false;
+            case DASH_ARW:
+                SEND_STRING("->");
+                return false;
+        }
+        return true;
 }
 
 /* TAPPING_FORCE_HOLD_PER_KEY: For these specific mod-taps, do not interpret
