@@ -38,20 +38,20 @@ void layer_sticky_mods_state_hook
     ) {
     if (was_layer_turned_off(previous_state, current_state, layer)) {
         if (get_mods() & MOD_BIT(KC_LALT)) 
-            SEND_STRING(SS_UP(X_LALT));
+            unregister_code16(KC_LALT);
         if (get_mods() & MOD_BIT(KC_RALT)) 
-            SEND_STRING(SS_UP(X_RALT));
+            unregister_code16(KC_RALT);
         if (get_mods() & MOD_BIT(KC_LSFT)) 
-            SEND_STRING(SS_UP(X_LSFT));
+            unregister_code16(KC_LSFT);
         if (get_mods() & MOD_BIT(KC_RSFT)) 
-            SEND_STRING(SS_UP(X_RSFT));
+            unregister_code16(KC_RSFT);
         if (get_mods() & MOD_BIT(KC_LCTL)) 
-            SEND_STRING(SS_UP(X_LCTL));
+            unregister_code16(KC_LCTL);
         if (get_mods() & MOD_BIT(KC_RCTL)) 
-            SEND_STRING(SS_UP(X_RCTL));
+            unregister_code16(KC_RCTL);
         if (get_mods() & MOD_BIT(KC_LGUI)) 
-            SEND_STRING(SS_UP(X_LGUI));
+            unregister_code16(KC_LGUI);
         if (get_mods() & MOD_BIT(KC_RGUI)) 
-            SEND_STRING(SS_UP(X_RGUI));
+            unregister_code16(KC_RGUI);
     }
 }

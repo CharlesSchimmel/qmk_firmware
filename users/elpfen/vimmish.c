@@ -10,7 +10,6 @@ bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
     if (!record->event.pressed) return true;
 
     bool with_ctl = WITH_CTRL;
-    bool with_shift = WITH_SHIFT;
 
     switch(current_keycode) {
 #ifndef TAP_DANCE_ENABLE
@@ -38,11 +37,7 @@ bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
             }
         case VI_P:
             if (record->tap.count) {
-                if (with_shift) {
-                    tap_code16(S(KC_INSERT));
-                } else {
-                    tap_code16(C(KC_V));
-                }
+                tap_code16(S(KC_INSERT));
             } else {
                 tap_code16(KC_END);
             }

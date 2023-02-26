@@ -60,7 +60,7 @@ layer is deactivated. This effectively gives access to multiple layers from a
 single layer-tap, minimizing the number of layer-taps keys needed to access 
 every layer while using only a single key as the layer-tap.
 
-Example: SYM -> MCR, NAV -> MOUSE
+Example: SYM -> MCR, SYM -> ADJ
 
 ### Layer-Sticky Mods
 
@@ -93,12 +93,15 @@ easier to activate.
 ![base](./assets/base.png)
 
 ## Symbols (SYM)
-- If the _macro_ layer is activated, it will stay active until thy Symbol layer 
-is deactivated.
+- If the _macro_ or _sym2_ layers are activated, they will stay active until the Symbol layer is deactivated.
 
 ![sym](./assets/sym.png)
 
 ## Sym^2 (ADJ)
+When the mod keys are tapped on this layer, they will stay on until the layer is 
+released. This enables scrubbing through windows, browser tabs, forms, etc. 
+using the tab and shift-tab keys on the left hand.
+
 ![sym2](./assets/adj.png)
 
 ## Navigation/Vimmish (NAV)
