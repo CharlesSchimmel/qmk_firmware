@@ -13584,8 +13584,8 @@
    inkscape:pagecheckerboard="0"
    showgrid="false"
    inkscape:zoom="1.3638931"
-   inkscape:cx="240.48806"
-   inkscape:cy="173.76728"
+   inkscape:cx="598.65396"
+   inkscape:cy="145.17267"
    inkscape:window-width="1261"
    inkscape:window-height="1042"
    inkscape:window-x="10"
@@ -15721,7 +15721,7 @@
    inkscape:groupmode="layer"
    id="g114393"
    inkscape:label="Sym2 (fka ADJ)"
-   style="display:none"
+   style="display:inline"
    transform="translate(-27.289782,-76.365265)"><path
      style="display:inline;fill:none;fill-opacity:1;stroke:#64bb44;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:path-effect="#path-effect3155-9-5-0"
@@ -16295,9 +16295,9 @@
      style="font-size:48px;line-height:36px;font-family:Overpass;-inkscape-font-specification:Overpass;text-align:center;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect8612);display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><tspan
        x="854.59424"
        y="382.34766"
-       id="tspan10772"><tspan
+       id="tspan12404"><tspan
          style="fill:#000000"
-         id="tspan10770">2</tspan></tspan></text><text
+         id="tspan12402">2</tspan></tspan></text><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:16px;line-height:100%;font-family:'Overpass Mono';-inkscape-font-specification:'Overpass Mono Light';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="670.02344"
@@ -16401,7 +16401,7 @@
    inkscape:groupmode="layer"
    id="g2185"
    inkscape:label="Macro"
-   style="display:inline"
+   style="display:none"
    transform="translate(-27.289782,-76.365265)"><text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:16px;line-height:10px;font-family:Overpass;-inkscape-font-specification:'Overpass, Thin';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:#253043;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -16526,11 +16526,11 @@
      y="0"><tspan
        x="83.30835"
        y="162.02344"
-       id="tspan10774">cs-
+       id="tspan12406">cs-
 </tspan><tspan
        x="82.412354"
        y="174.02344"
-       id="tspan10776">esc</tspan></text><path
+       id="tspan12408">esc</tspan></text><path
      style="display:inline;fill:none;fill-opacity:1;stroke:#495e84;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:path-effect="#path-effect2189"
      inkscape:original-d="m 581.58246,246.68945 h -39.118 v 39.118 h 39.118 z"
