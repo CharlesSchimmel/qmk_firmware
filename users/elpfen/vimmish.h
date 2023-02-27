@@ -1,6 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
+#include "tap_hold.h"
 
 #define VI_B C(KC_LEFT)
 #define VI_W RSFT_T(HT_VI_WV)

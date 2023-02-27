@@ -1,9 +1,9 @@
 # elpfen's keymap
 
-This is my daily-driver layout that I use for programming and text-editing. It's
-designed to be useful in Xmonad, tmux, vim, and Windows. It was designed 
-originally with a Keebio Iris in mind but is adaptable to any 3x10 + thumb 
-layout.
+A simple, intuitive, general-purpose layout that maximizes ping-ponging, 
+minimizes travel, and minimizes holds. It's designed to be useful in Xmonad, 
+tmux, vim, and Windows. It was designed with a Corne in mind but is adaptable to 
+any 3x10 & thumbs layout.
 
 ## Basic Principles
 
@@ -68,6 +68,13 @@ Basically the same as the above but for modifiers as well. The modifier stays on
 so long as the layer it was on stays active. Extremely useful on the ADJ layer
 for scrolling through tabs, windows, or window elements with Ctl-Tab and 
 Alt-Tab.
+
+### Hold Taps
+
+Some keys will have one behavior on tap and another behavior on hold. This is 
+the same as a mod-tap, layer-tap, or [auto 
+shift](https://qmk.github.io/qmk_mkdocs/master/en/feature_auto_shift/) but with 
+custom behavior.
 
 ### Layer-Lock
 Hold a layer-tap to enter the NAV layer then tap a key to "lock in" the NAV 
