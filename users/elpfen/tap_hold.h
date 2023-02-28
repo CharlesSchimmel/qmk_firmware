@@ -39,8 +39,26 @@ enum hold_tap_keycodes {
 #define HT_7        HT(KC_7)
 #define HT_8        HT(KC_8)
 #define HT_9        HT(KC_9)
-#define HT_0       HT(KC_0)
+#define HT_0        HT(KC_0)
 
+#define TAP_HOLDS  \
+case M_DOT13:      \
+case TILDE_SLASH:  \
+case DASH_ARW:     \
+case EQ_DEQ:       \
+case SLSH_BSLSH:   \
+case LAB_CLS:      \
+case RAB_DRW:      \
+case HT_1:         \
+case HT_2:         \
+case HT_3:         \
+case HT_4:         \
+case HT_5:         \
+case HT_6:         \
+case HT_7:         \
+case HT_8:         \
+case HT_9:         \
+case HT_0:         \
 
 bool custom_tap_holds
     ( uint16_t keycode

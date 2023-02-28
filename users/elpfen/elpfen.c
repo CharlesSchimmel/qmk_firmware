@@ -176,11 +176,25 @@ __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t 
 __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         ALPHA_MODS
+        TAP_HOLDS
             return true;
         default:
             return false;
     }
 }
+
+#ifdef TAPPING_TERM_PER_KEY
+/* TAPPING_TERM_PER_KEY: Pretty self-explanatory */
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        TAP_HOLDS
+            return 50;
+        default:
+            return TAPPING_TERM;
+    }
+}
+#endif
+
 
 // order must follow:
 // 1. Lenient Tri-Layer
