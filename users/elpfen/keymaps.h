@@ -45,11 +45,15 @@
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     TG_MCR, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
 #define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
 
-#define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, KC_END, _______, _______, _______, _______, _______, KC_HOME, _______
-#define _____________NAV_1Up_Sides_12k_____________ L_NAV,   MS_WUP,  MS_BTN1, _______, VI_P,   VI_Y,    _______, VI_G,    _______, VI_R,    VI_L, _______
-#define _____________NAV_Home_Sides_12k____________ _______, MS_WDWN, _______, _______, VI_U,   _______, VI_D,    VI_H,    _______, _______, _______, _______
-#define _____________NAV_1Dn_Sides_L_6k____________ _______, KC_LGUI, KC_LALT, VI_J,    VI_K,   _______
-#define _____________NAV_1Dn_Sides_R_6k____________                                                      VI_B,   KC_RCTL,  VI_W,    VI_V,    KC_RGUI, _______
+#define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, _______, _______,   _______, _______,  _______,  _______,  _______,  _______
+#define _____________NAV_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, M_PST,   _______,   _______, BWD_HOME, PDN_DEND, PUP_DHOM, FWD_END,  MS_WUP
+#define _____________NAV_Home_Sides_12k____________ _______, _______, _______, _______, _______, LOK_UNLOK, _______, KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, MS_WDWN
+#define _____________NAV_1Dn_Sides_L_6k____________ _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______
+#ifdef RGBLIGHT_ENABLE
+#define _____________NAV_1Dn_Sides_R_6k____________ _______, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, RGB_TOG
+#else
+#define _____________NAV_1Dn_Sides_R_6k____________ _______, _______, _______, _______, _______, _______
+#endif
 #define _____________NAV_1Dn_Sides_12k_____________ _____________NAV_1Dn_Sides_L_6k____________, _____________NAV_1Dn_Sides_R_6k____________
 
 #define _____________MCR_2Up_Sides_12k_____________ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
