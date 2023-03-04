@@ -10,17 +10,15 @@ enum elpfen_layers {
     _SYM,
     _NAV,
     _ADJ,
-    _MCR,
-    _ABL,
-    _MOUSE,
+    /* _MCR, */
+    /* _ABL, */
+    /* _MOUSE, */
     ELPFEN_LAYERS_END
 };
 
 enum elpfen_custom_keycodes {
     L_NAV = SAFE_RANGE,
-    VI_U,        // C-Z or PgUp
-    VI_D,        // C-X or PgDn
-    VI_R,        // C-Y
+    TILDE_SLASH, // ~/
     DDOT_SLASH,  // ../
     ARROW,       // ->
     DARROW,      // =>
@@ -76,12 +74,8 @@ enum elpfen_custom_keycodes {
 #define LW_ENT  LT(_SYM, KC_ENT)
 #define RS_ESC  LT(_NAV, KC_ESC)
 #define RS_BSP  LT(_NAV, KC_BSPC)
-#define FN_MNU  LT(_MCR, KC_APP)
 #define AD_SPC  LT(_ADJ, KC_SPC)
 #define AD_ENT  LT(_ADJ, KC_ENT)
-
-#define MO_NAV  MO(_NAV)
-#define TG_MCR  TG(_MCR)
 
 // ~~~~~~ SimpleAliases ~~~~~~~
 #define MS_BTN1 KC_MS_BTN1
@@ -95,12 +89,11 @@ enum elpfen_custom_keycodes {
 #define MS_WUP  KC_MS_WH_UP
 
 // ~~~~~~~~~ Quick Mocros ~~~~~~~~~~
+#define M_SHTAB LSFT(KC_TAB)
+#define M_PST   LSFT(KC_INS)
 #define M_LOK   LGUI(KC_L)
 #define M_CAD   LCA(KC_DEL)
 #define M_CSE   LCTL(LSFT(KC_ESC))
-#define M_PST   LSFT(KC_INS)
-#define M_SHTAB LSFT(KC_TAB)
-
 
 // ~~~~~~~~~ Ableton ~~~~~~~~~~
 #define ZERO_S       HT(KC_INT1)

@@ -3,13 +3,12 @@
 #include <stdbool.h>
 #include "elpfen_util.h"
 
+/****** Currently Unused (but there's some cool stuff in there) ********/
 
 // Vimmish-Keys: A few mocros to mimic the most useful vim keys
 bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
     // ignore keyup
     if (!record->event.pressed) return true;
-
-    bool with_ctl = WITH_CTRL;
 
     switch(current_keycode) {
 #ifndef TAP_DANCE_ENABLE
@@ -40,28 +39,6 @@ bool vimmish_keys(uint16_t current_keycode, keyrecord_t *record) {
                 tap_code16(S(KC_INSERT));
             } else {
                 tap_code16(KC_END);
-            }
-            return false;
-
-        case VI_R:
-            if (with_ctl) {
-                tap_code16(C(KC_Y));
-            }
-            return false;
-
-        case VI_U:
-            if (with_ctl) {
-                tap_code(KC_PGUP);
-            } else {
-                tap_code16(C(KC_Z));
-            }
-            return false;
-
-        case VI_D: 
-            if (with_ctl) {
-                tap_code(KC_PGDN);
-            } else {
-                tap_code16(C(KC_X));
             }
             return false;
 

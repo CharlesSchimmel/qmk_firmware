@@ -9,7 +9,6 @@
 #include "lenient_tri_layer.h"
 #include "switchboard.h"
 #include "elpfen_util.h"
-#include "vimmish.h"
 
 #ifdef TAP_DANCE_ENABLE
 #include "tap_dances.h"
@@ -20,7 +19,6 @@
         && custom_tap_holds(keycode, record)                  \
         && pseudo_twm(keycode, record)                        \
         && multi_purpose_volume_keys(keycode, record)         \
-        && vimmish_keys(keycode, record)                      \
         && layer_lock(keycode, record)                        \
         && layer_sticky_mods(keycode, record, _ADJ)           \
         && switchboard_adj(keycode, record)                   \

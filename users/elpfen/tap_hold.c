@@ -56,7 +56,7 @@ bool custom_tap_holds
 
         // These keycodes keep their Tap behavior
         switch (keycode) {
-            case TILDE_SLASH: SEND_STRING("~/");      return false;
+            case GRAVE_SLASH: SEND_STRING("~/");      return false;
             case EQ_DEQ:      SEND_STRING("==");      return false;
             case DASH_ARW:    SEND_STRING("->");      return false;
             case SLSH_BSLSH:  tap_code(KC_BSLS);      return false;

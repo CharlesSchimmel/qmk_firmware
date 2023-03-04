@@ -3,6 +3,8 @@
 #include "keycodes.h"
 #include "tap_hold.h"
 
+/****** Currently Unused (but there's some cool stuff in there) ********/
+
 #define VI_B C(KC_LEFT)
 #define VI_W RSFT_T(HT_VI_WV)
 #define VI_V LALT_T(HT_VI_WV)

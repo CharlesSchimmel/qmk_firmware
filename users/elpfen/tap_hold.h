@@ -28,7 +28,7 @@ enum hold_tap_keycodes {
 #define HT(...) LT(0, __VA_ARGS__)
 
 #define M_DOT13     HT(KC_DOT)      // . on tap, F13 on hold
-#define TILDE_SLASH HT(KC_GRAVE)    // Grave/Tilde on tap, ~/ on hold
+#define GRAVE_SLASH HT(KC_GRAVE)    // Grave/Tilde on tap, ~/ on hold
 #define DASH_ARW    HT(KC_MINS)     // -, ->
 #define EQ_DEQ      HT(KC_EQL)      // =, ==
 #define SLSH_BSLSH  HT(KC_SLSH)     // /, \ on hold
@@ -59,7 +59,7 @@ enum hold_tap_keycodes {
 // for use in per_key functions
 #define TAP_HOLDS \
 case M_DOT13:     \
-case TILDE_SLASH: \
+case GRAVE_SLASH: \
 case DASH_ARW:    \
 case EQ_DEQ:      \
 case SLSH_BSLSH:  \

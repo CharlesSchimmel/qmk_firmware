@@ -26,7 +26,7 @@
 layer_state_t switchboard(layer_state_t current_state) {
     static layer_state_t previous_state;
     current_state = // switchboard_state(previous_state, current_state, _NAV, _MOUSE) &
-                    switchboard_state(previous_state, current_state, _SYM, _MCR & _ADJ);
+                    switchboard_state(previous_state, current_state, _SYM, _ADJ);
 
     previous_state = current_state;
     return current_state;

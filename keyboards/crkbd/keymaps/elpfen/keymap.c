@@ -70,20 +70,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
-  ),
-
-
-  [_MCR] = LAYOUT_wrapper(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-                                                _____________MCR_1Up_Sides_12k_____________,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-                                                _____________MCR_Home_Sides_12k____________,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-        _____________MCR_1Dn_Sides_L_6k____________,                                _____________MCR_1Dn_Sides_R_6k____________,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                                _____________MCR_BotCenter_6k______________
-                                      //`--------------------------'  `--------------------------'
   )
+
 };
 
 #ifdef OLED_ENABLE
@@ -111,9 +99,6 @@ void oled_render_layer_state(void) {
             break;
         case _ADJ:
             oled_write_ln_P(PSTR("ADJ"), false);
-            break;
-        case _MCR:
-            oled_write_ln_P(PSTR("MCR"), false);
             break;
         default:
             oled_write_ln_P(PSTR("???"), false);
@@ -160,7 +145,6 @@ enum light_layers {
     LL_SYM,
     LL_NAV,
     LL_ADJ,
-    LL_MCR,
     LL_END_NULL
 };
 
@@ -185,7 +169,6 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = {
     [LL_SYM] = ll_sym,
     [LL_NAV] = ll_nav,
     [LL_ADJ] = ll_adj,
-    [LL_MCR] = ll_mcr,
     [LL_END_NULL] = NULL // required, see definition for RGBLIGHT_LAYERS_LIST
 };
 
@@ -197,7 +180,6 @@ void light_layer_state_set(layer_state_t state) {
     rgblight_set_layer_state(LL_SYM, layer_state_cmp(state, _SYM));
     rgblight_set_layer_state(LL_NAV, layer_state_cmp(state, _NAV));
     rgblight_set_layer_state(LL_ADJ, layer_state_cmp(state, _ADJ));
-    rgblight_set_layer_state(LL_MCR, layer_state_cmp(state, _MCR));
 }
 
 // this might need to happen after pro_rec_user

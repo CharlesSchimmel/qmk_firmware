@@ -1,6 +1,7 @@
 #include "action.h"
 #include "elpfen.h"
 #include "keycodes.h"
+#include "tap_hold.h"
 #include "layer_sticky_mods.h"
 #include "layer_helpers.h"
 
@@ -152,6 +153,10 @@ bool process_macros
         case CLS_TAG:
             SEND_STRING("</");
             return false;
+
+        case TILDE_SLASH:
+            SEND_STRING("~/");
+            return false;
     }
     return true;
 }
@@ -225,9 +230,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 // 3. Layer-Sticky Mods
 layer_state_t elpfen_default_layer_state_set(layer_state_t current_state) {
     static layer_state_t previous_state;
-    // current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ);
+    /* current_state = lenient_update_tri_layer_state(current_state, _SYM, _NAV, _ADJ); */
 
-    current_state = switchboard_state(previous_state, current_state, _SYM, _MCR);
+    /* current_state = switchboard_state(previous_state, current_state, _SYM, _MCR); */
     current_state = switchboard_state(previous_state, current_state, _SYM, _ADJ);
 
     layer_sticky_mods_state_hook(previous_state, current_state, _ADJ);

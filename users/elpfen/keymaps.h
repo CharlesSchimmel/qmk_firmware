@@ -1,6 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 #include "keycodes.h"
+#include "tap_hold.h"
 
 /* ~~~~~~~~~ Common Keymaps ~~~~~~~~~~
  *
@@ -32,7 +33,7 @@
 #define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, XXXXXXX
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
-#define _____________Base_Bottom_Center_6k_________ MO(_MCR), RS_ESC, LW_ENT, LW_SPC, RS_BSP, KC_SPC
+#define _____________Base_Bottom_Center_6k_________ _______, RS_ESC, LW_ENT, LW_SPC, RS_BSP, KC_SPC
 #define _____________Alt_Bottom_Center_6k__________ RS_ESC, LW_ENT, _______, _______, LW_SPC, RS_BSP
 
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
@@ -42,7 +43,7 @@
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, KC_RCBR,  KC_RPRN, RAB_DRW, KC_RBRC
 #define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, KC_DEL
 #define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, SLSH_BSLSH
-#define _____________SYM_1Dn_Sides_R_6k____________                                                     TG_MCR, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
+#define _____________SYM_1Dn_Sides_R_6k____________                                                     TG(_NAV), O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
 #define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
 
 #define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, _______, _______,   _______, _______,  _______,  _______,  _______,  _______
@@ -55,17 +56,6 @@
 #define _____________NAV_1Dn_Sides_R_6k____________ _______, _______, _______, _______, _______, _______
 #endif
 #define _____________NAV_1Dn_Sides_12k_____________ _____________NAV_1Dn_Sides_L_6k____________, _____________NAV_1Dn_Sides_R_6k____________
-
-#define _____________MCR_2Up_Sides_12k_____________ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-#define _____________MCR_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, _______, KC_PSCR, _______, _______, M_LOK,   _______
-#define _____________MCR_Home_Sides_12k____________ _______, _______, _______, _______, M_CAD,   _______, _______, _______, _______, _______, KC_SLEP, _______
-#define _____________MCR_1Dn_Sides_L_6k____________ _______, _______, M_CSE,   _______, _______, _______
-#ifdef RGBLIGHT_ENABLE
-#define _____________MCR_1Dn_Sides_R_6k____________                                                       _______, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, RGB_TOG
-#else
-#define _____________MCR_1Dn_Sides_R_6k____________                                                       _______, _______, _______, _______, _______, _______
-#endif
-#define _____________MCR_BotCenter_6k______________ QK_BOOTLOADER,   _______, _______, _______, _______, OOOOOOO
 
 #define _____________ADJ_1Up_Core_12k______________ KC_F12,      KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8, KC_F9,   KC_F10
 #define _____________ADJ_1Up_Sides_12k_____________ _______, _____________ADJ_1Up_Core_12k______________, _______
