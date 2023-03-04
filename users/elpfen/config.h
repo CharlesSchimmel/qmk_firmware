@@ -10,7 +10,7 @@
  * in more dropped holds. Good for keys that are tapped more often than held.
  */
 #define TAPPING_TERM 150
-// #define TAPPING_TERM_PER_KEY
+#define TAPPING_TERM_PER_KEY
 
 /* If the second key in a chord is released after the modifier key is released,
  * treat it as two taps instead, even if it's inside the tapping term.
@@ -39,12 +39,18 @@
 
 /* If a chord is executed entirely within the tapping term, register it as a
  * chord (instead of ignoring the held key because it was released before the
- * tapping term elaprsed.)
+ * tapping term elapsed.)
  *
  * This makes it easier for fast typists to use dual-function keys, but can
  * result in unintended chords 
  */
 #define PERMISSIVE_HOLD
-// #define PERMISSIVE_HOLD_PER_KEY
+#define PERMISSIVE_HOLD_PER_KEY
 
 #define ONESHOT_TIMEOUT 1500  /* Time (in ms) before the one shot key is released, Default 5000 */
+
+/* HOLD_ON_OTHER_KEY_PRESS chooses the hold action immediately when another key 
+ * is tapped.
+ */
+#define HOLD_ON_OTHER_KEY_PRESS
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY

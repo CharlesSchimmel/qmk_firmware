@@ -138,6 +138,7 @@ void oled_render_layer_state(void) {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x04, 0x0c, 0x08, 0x10, 
         0x10, 0x08, 0x08, 0x04, 0x06, 0x02, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     };
+
     oled_set_cursor(0, 11);
     oled_write_raw_P(icon, sizeof(icon));
 }
@@ -151,12 +152,6 @@ bool oled_task_user(void) {
     return false;
 }
 
-/* bool oled_prorec(uint16_t keycode, keyrecord_t *record) { */
-/*   if (record->event.pressed) { */
-/*   } */
-/*   return true; */
-/* } */
-
 #endif // OLED_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
@@ -166,10 +161,6 @@ enum light_layers {
     LL_NAV,
     LL_ADJ,
     LL_MCR,
-    /* LL_SFT, */
-    /* LL_CTL, */
-    /* LL_ALT, */
-    // LL_GUI,
     LL_END_NULL
 };
 
@@ -179,13 +170,6 @@ const rgblight_segment_t PROGMEM ll_sym[] = RGBLIGHT_LAYER_SEGMENTS(
 
 const rgblight_segment_t PROGMEM ll_nav[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 54, HSV_GREEN}
-	/* {9, 2, HSV_GREEN}, */
-	/* {17, 2, HSV_GREEN}, */
-	/* {23, 2, HSV_GREEN} */
-    /* {0, 6, HSV_GREEN}, */
-	/* {9}, */
-	/* {17, 2, HSV_GREEN}, */
-	/* {27, 6, HSV_GREEN} */
 );
 
 const rgblight_segment_t PROGMEM ll_mcr[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -196,27 +180,12 @@ const rgblight_segment_t PROGMEM ll_adj[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, 54, HSV_CORAL}
 );
 
-/* const rgblight_segment_t PROGMEM ll_sft[] = RGBLIGHT_LAYER_SEGMENTS( */
-/*     {1, 3, HSV_ORANGE} */
-/* ); */
-
-/* const rgblight_segment_t PROGMEM ll_ctl[] = RGBLIGHT_LAYER_SEGMENTS( */
-/*     {1, 3, HSV_CORAL} */
-/* ); */
-
-/* const rgblight_segment_t PROGMEM ll_alt[] = RGBLIGHT_LAYER_SEGMENTS( */
-/*     {1, 3, HSV_YELLOW} */
-/* ); */
-
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = {
     [LL_SYM] = ll_sym,
     [LL_NAV] = ll_nav,
     [LL_ADJ] = ll_adj,
     [LL_MCR] = ll_mcr,
-    /* [LL_SFT] = ll_sft, */
-    /* [LL_CTL] = ll_ctl, */
-    /* [LL_ALT] = ll_alt, */
     [LL_END_NULL] = NULL // required, see definition for RGBLIGHT_LAYERS_LIST
 };
 
@@ -241,9 +210,6 @@ bool light_layer_prorec(uint16_t keycode, keyrecord_t *record) {
 }
 #endif
 
-/* layer_state_t default_layer_state_set_user(layer_state_t state) { */
-/* } */
-
 layer_state_t layer_state_set_user(layer_state_t current_state) {
     current_state = elpfen_default_layer_state_set(current_state);
 #ifdef RGBLIGHT_ENABLE
@@ -260,8 +226,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         light_layer_prorec(keycode, record) &&
 #endif
         ELPFEN_DEFAULT_PROREC
-#ifdef OLED_ENABLE
-        /* && oled_prorec(keycode, record) */
-#endif
         ;
 }

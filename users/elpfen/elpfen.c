@@ -176,21 +176,44 @@ __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t 
 __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         ALPHA_MODS
-        TAP_HOLDS
             return true;
         default:
             return false;
     }
 }
 
-#ifdef TAPPING_TERM_PER_KEY
-/* TAPPING_TERM_PER_KEY: Pretty self-explanatory */
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+__attribute__((weak)) bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    // !!! Note that the default is true for this one
     switch (keycode) {
         TAP_HOLDS
-            return 50;
+            return false;
+        default:
+            return true;
+    }
+}
+
+#ifdef TAPPING_TERM_PER_KEY
+/* TAPPING_TERM_PER_KEY: Pretty self-explanatory */
+__attribute__((weak)) uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        TAP_HOLDS
+            return 75;
         default:
             return TAPPING_TERM;
+    }
+}
+#endif
+
+#ifdef HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case RS_BSP:
+        case RS_ESC:
+        case LW_ENT:
+            // Immediately select the hold action when another key is pressed.
+            return true;
+        default:
+            return false;
     }
 }
 #endif
@@ -223,25 +246,3 @@ __attribute__((weak)) layer_state_t layer_state_set_user(layer_state_t current_s
 __attribute__((weak)) bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return ELPFEN_DEFAULT_PROREC ;
 }
-
-#ifdef TAP_DANCE_ENABLE
-// Enums defined for all examples:
-enum {
-    TD_ESC_CAPS,
-    CT_EGG,
-    CT_FLSH,
-    CT_CLN,
-    X_CTL,
-};
-
-void dance_egg(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count >= 100) {
-        SEND_STRING("Safety dance!");
-        reset_tap_dance(state);
-    }
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [CT_EGG] = ACTION_TAP_DANCE_FN(dance_egg),
-};
-#endif
