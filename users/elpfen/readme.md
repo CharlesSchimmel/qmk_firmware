@@ -48,6 +48,32 @@ any 3x10 & thumbs layout.
     because of the key-frequency explained above, but I also simply find it
     more comfortable to hold bottom row keys than top or home row keys.
 
+# Layers
+
+## Base Layer
+
+![base](./assets/base.png)
+
+## Symbols (SYM)
+- If the _macro_ or _sym2_ layers are activated, they will stay active until the Symbol layer is deactivated.
+
+![sym](./assets/sym.png)
+
+## Sym^2 (ADJ)
+When the mod keys are tapped on this layer, they will stay on until the layer is 
+released. This enables scrubbing through windows, browser tabs, forms, etc. 
+using the tab and shift-tab keys on the left hand.
+
+![sym2](./assets/adj.png)
+
+## Navigation/Vimmish (NAV)
+- Ctl-Alt-Delete on U for "Unlock"
+- ggG acts a bit like Vim's `g` key: double tap to jump to document start, 
+    tap to jump to document end.
+- forword and backword move forward a word and backward a word, respectively
+
+![nav](./assets/nav.png)
+
 ## Special Features
 
 All of these features are ways of adding more functionality to layers and 
@@ -92,39 +118,6 @@ when RAISE and LOWER are both active, but deactivates ADJ only when _both_ RAISE
 and LOWER are deactivated. This is functionally very similar to Switchboard
 except that it doesn't matter which of the two keys is pressed first, so it's
 easier to activate.
-
-# Layers
-
-## Base Layer
-
-![base](./assets/base.png)
-
-## Symbols (SYM)
-- If the _macro_ or _sym2_ layers are activated, they will stay active until the Symbol layer is deactivated.
-
-![sym](./assets/sym.png)
-
-## Sym^2 (ADJ)
-When the mod keys are tapped on this layer, they will stay on until the layer is 
-released. This enables scrubbing through windows, browser tabs, forms, etc. 
-using the tab and shift-tab keys on the left hand.
-
-![sym2](./assets/adj.png)
-
-## Navigation/Vimmish (NAV)
-- ggG acts a bit like Vim's `g` key: double tap to jump to document start, 
-    tap to jump to document end.
-- forword and backword move forward a word and backward a word, respectively
-
-![nav](./assets/nav.png)
-
-## Macros/Utility (MCR)
-- Win-L on L key for mnemonic "Lock"
-- Ctl-Alt-Delete on U for "Unlock"
-- Sleep on S key for "Sleep"
-- PrntScr on G for "screenGrab"
-
-![macro](./assets/macro.png)
 
 # License
 Copyright 2021 Charles Schimmelpfennig aka elpfen
