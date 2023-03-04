@@ -21,6 +21,7 @@ enum hold_tap_keycodes {
     HT_BWD_HOME,
     HT_FWD_END,
     HT_LOK_UNLOK,
+    HT_OC_PARENS,
     _END_KEYPAD_RANGE_ = KC_APPLICATION,
     _MORE_SAFE_RANGE_ = KC_KP_COMMA,
 };
@@ -39,6 +40,7 @@ enum hold_tap_keycodes {
 #define PUP_DHOM    HT(KC_PGUP)     // PgUp, C(Home)
 #define FWD_END     HT(HT_FWD_END)  // C(Right), End
 #define LOK_UNLOK   HT(HT_LOK_UNLOK) // G(L), C(S(Del))
+#define OC_PARENS   HT(HT_OC_PARENS) // ), ()
 
 #define HT_1        HT(KC_1)
 #define HT_2        HT(KC_2)
@@ -80,6 +82,7 @@ case PDN_DEND:    \
 case PUP_DHOM:    \
 case FWD_END:     \
 case LOK_UNLOK:   \
+case OC_PARENS:   \
 
 bool custom_tap_holds
     ( uint16_t keycode

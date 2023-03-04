@@ -40,15 +40,15 @@
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
 #define _____________SYM_1Up_Core_10k______________ ___HT_1_through_10___
 #define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_BSLS
-#define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, KC_RCBR,  KC_RPRN, RAB_DRW, KC_RBRC
+#define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, KC_RCBR,  OC_PARENS, RAB_DRW, KC_RBRC
 #define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, KC_DEL
 #define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, SLSH_BSLSH
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     TG(_NAV), O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
 #define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
 
 #define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, _______, _______,   _______, _______,  _______,  _______,  _______,  _______
-#define _____________NAV_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, M_PST,   _______,   _______, BWD_HOME, PDN_DEND, PUP_DHOM, FWD_END,  MS_WUP
-#define _____________NAV_Home_Sides_12k____________ _______, _______, _______, _______, _______, LOK_UNLOK, _______, KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, MS_WDWN
+#define _____________NAV_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, M_PST,   _______,   BWD_HOME, PDN_DEND, PUP_DHOM, FWD_END,  _______, MS_WUP
+#define _____________NAV_Home_Sides_12k____________ _______, _______, _______, _______, _______, LOK_UNLOK, KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______, MS_WDWN
 #define _____________NAV_1Dn_Sides_L_6k____________ _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______
 #ifdef RGBLIGHT_ENABLE
 #define _____________NAV_1Dn_Sides_R_6k____________ _______, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, RGB_TOG

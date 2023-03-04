@@ -51,6 +51,14 @@ bool custom_tap_holds
                     tap_code16(C(A(KC_DEL)));
                     return false;
                 }
+            case OC_PARENS:
+                if (!record->tap.count) {
+                    SEND_STRING("()");
+                    return false;
+                } else {
+                    tap_code16(KC_RPRN);
+                    return false;
+                }
         }
         if (record->tap.count) return true; // ignore any unhandled hold behaviors
 
