@@ -66,10 +66,8 @@ using the tab and shift-tab keys on the left hand.
 
 ![sym2](./assets/adj.png)
 
-## Navigation/Vimmish (NAV)
+## Navigation
 - Ctl-Alt-Delete on U for "Unlock"
-- ggG acts a bit like Vim's `g` key: double tap to jump to document start, 
-    tap to jump to document end.
 - forword and backword move forward a word and backward a word, respectively
 
 ![nav](./assets/nav.png)
