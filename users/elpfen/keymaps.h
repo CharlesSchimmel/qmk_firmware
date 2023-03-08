@@ -21,7 +21,7 @@
 #define _____________Dvorak_2Up_Core_10k___________ KC_1,    KC_2,    KC_3,    KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0
 #define _____________Dvorak_2Up_Sides_12k__________ KC_GRV, _____________Dvorak_2Up_Core_10k___________, KC_BSLS
 
-#define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, M_DOT13, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
+#define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
 #define _____________Dvorak_1Up_Sides_12k__________ KC_GRAVE, _____________Dvorak_1Up_Core_10k___________, KC_SLSH
 
 #define _____________Dvorak_Home_Core_10k__________ KC_A,    KC_O,    KC_E,    KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
@@ -46,10 +46,10 @@
 #define _____________SYM_1Dn_Sides_R_6k____________                                                     TG(_NAV), O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
 #define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
 
-#define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, _______, _______,   _______, _______,  _______,  _______,  _______,  _______
-#define _____________NAV_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, M_PST,   _______,   BWD_HOME, PDN_DEND, PUP_DHOM, FWD_END,  _______, MS_WUP
-#define _____________NAV_Home_Sides_12k____________ _______, _______, _______, _______, _______, LOK_UNLOK, KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______, MS_WDWN
-#define _____________NAV_1Dn_Sides_L_6k____________ _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______
+#define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, _______,   _______, _______,  _______,  _______,  _______,  _______, _______
+#define _____________NAV_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, M_PST,     _______, BWD_HOME, PDN_DEND, PUP_DHOM, FWD_END,  _______, MS_WUP
+#define _____________NAV_Home_Sides_12k____________ _______, _______, _______, _______, LOK_UNLOK, _______, KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______, MS_WDWN
+#define _____________NAV_1Dn_Sides_L_6k____________ _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL,   _______
 #ifdef RGBLIGHT_ENABLE
 #define _____________NAV_1Dn_Sides_R_6k____________ _______, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, RGB_TOG
 #else

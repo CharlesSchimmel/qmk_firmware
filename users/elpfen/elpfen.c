@@ -202,7 +202,7 @@ __attribute__((weak)) bool get_permissive_hold(uint16_t keycode, keyrecord_t *re
 __attribute__((weak)) uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         TAP_HOLDS
-            return 75;
+            return 125;
         default:
             return TAPPING_TERM;
     }

@@ -12,10 +12,10 @@ bool custom_tap_holds
         // These keycodes everride their tap behavior
         switch (keycode) {
             case LAB_CLS:
-                if (!record->tap.count) {
+                if (!record->tap.count) { // hold
                     SEND_STRING("</");
                     return false;
-                } else {
+                } else { // tap
                     tap_code16(KC_LABK);
                     return false;
                 }
@@ -29,26 +29,26 @@ bool custom_tap_holds
                 }
             case BWD_HOME:
                 if (!record->tap.count) {
-                    tap_code16(C(KC_HOME));
+                    tap_code16(KC_HOME);
                     return false;
                 } else {
-                    tap_code16(KC_HOME);
+                    tap_code16(C(KC_LEFT));
                     return false;
                 }
             case FWD_END:
                 if (!record->tap.count) {
-                    tap_code16(C(KC_END));
+                    tap_code16(KC_END);
                     return false;
                 } else {
-                    tap_code16(KC_END);
+                    tap_code16(C(KC_RIGHT));
                     return false;
                 }
             case LOK_UNLOK:
                 if (!record->tap.count) {
-                    tap_code16(G(KC_L));
+                    tap_code16(C(A(KC_DEL)));
                     return false;
                 } else {
-                    tap_code16(C(A(KC_DEL)));
+                    tap_code16(G(KC_L));
                     return false;
                 }
             case OC_PARENS:
