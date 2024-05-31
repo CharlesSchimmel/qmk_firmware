@@ -1,5 +1,8 @@
 #pragma once
-#include QMK_KEYBOARD_H
+
+#include "quantum.h"
+#include "action.h"
+#include "version.h"
 
 #define _BASE _DVORAK
 #define _RAISE _SYM
@@ -17,7 +20,8 @@ enum elpfen_layers {
 };
 
 enum elpfen_custom_keycodes {
-    L_NAV = SAFE_RANGE,
+    L_NAV = 0x7E40, // SAFE_RANGE isnt working, idk
+    /* L_NAV = SAFE_RANGE, */
     TILDE_SLASH, // ~/
     DDOT_SLASH,  // ../
     ARROW,       // ->

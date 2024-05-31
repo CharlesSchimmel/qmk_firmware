@@ -1,6 +1,9 @@
+#include "quantum.h"
+#include "version.h"
 #include "action.h"
+
 #include "elpfen.h"
-#include "keycodes.h"
+/* #include "keycodes.h" */
 #include "tap_hold.h"
 #include "layer_sticky_mods.h"
 #include "layer_helpers.h"
@@ -165,12 +168,13 @@ bool process_macros
  * a 'tap, tap-hold' event as repeating the tapped keypress. This is useful
  * for mod-taps whose tapped key is used in normal typing.
  */
-__attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+// https://github.com/qmk/qmk_firmware/blob/master/docs/ChangeLog/20230226.md
+__attribute__((weak)) uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         ALPHA_MODS
-            return true;
+            return 0;
         default:
-            return false;
+            return QUICK_TAP_TERM;
     }
 }
 
@@ -178,12 +182,18 @@ __attribute__((weak)) bool get_tapping_force_hold(uint16_t keycode, keyrecord_t 
  * second key in a chord is released after the modifier key is released,
  * ignore the modifier, even if it's inside the tapping term.
  */
-__attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+// https://github.com/qmk/qmk_firmware/blob/master/docs/ChangeLog/20230226.md
+__attribute__((weak)) bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         ALPHA_MODS
+            return false;
+        case RS_BSP:
+        case RS_ESC:
+        case LW_ENT:
+            // Immediately select the hold action when another key is pressed.
             return true;
         default:
-            return false;
+            return true; // previously false?
     }
 }
 
@@ -210,17 +220,17 @@ __attribute__((weak)) uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *r
 #endif
 
 #ifdef HOLD_ON_OTHER_KEY_PRESS_PER_KEY
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case RS_BSP:
-        case RS_ESC:
-        case LW_ENT:
-            // Immediately select the hold action when another key is pressed.
-            return true;
-        default:
-            return false;
-    }
-}
+/* bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) { */
+/*     switch (keycode) { */
+/*         case RS_BSP: */
+/*         case RS_ESC: */
+/*         case LW_ENT: */
+/*             // Immediately select the hold action when another key is pressed. */
+/*             return true; */
+/*         default: */
+/*             return false; */
+/*     } */
+/* } */
 #endif
 
 

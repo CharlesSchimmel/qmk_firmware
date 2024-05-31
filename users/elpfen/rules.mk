@@ -6,7 +6,7 @@ endif
 
 COMBO_ENABLE ?= yes
 ifeq ($(strip $(COMBO_ENABLE)), yes)
-	SRC += combos.c
+	INTROSPECTION_KEYMAP_C = combos.c
 endif
 
 
