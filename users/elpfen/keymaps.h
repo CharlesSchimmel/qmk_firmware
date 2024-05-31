@@ -34,7 +34,7 @@
 #define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, XXXXXXX
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
-#define _____________Base_Bottom_Center_6k_________ _______, RS_ESC, LW_ENT,  LW_SPC,  RS_BSP, KC_SPC
+#define _____________Base_Bottom_Center_6k_________ _______, RS_ESC, LW_ENT,  LW_SPC,  RS_BSP, DF_GAME
 #define _____________Alt_Bottom_Center_6k__________ RS_ESC,  LW_ENT, _______, _______, LW_SPC, RS_BSP
 
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
