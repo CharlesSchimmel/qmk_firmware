@@ -1,6 +1,6 @@
 # Space Cadet: The Future, Built In
 
-Steve Losh described the [Space Cadet Shift](https://stevelosh.com/blog/2012/10/a-modern-space-cadet/) quite well. Essentially, when you tap Left Shift on its own, you get an opening parenthesis; tap Right Shift on its own and you get the closing one. When held, the Shift keys function as normal. Yes, it's as cool as it sounds, and now even cooler supporting Control and Alt as well!
+Steve Losh described the [Space Cadet Shift](https://web.archive.org/web/20230330090938/https://stevelosh.com/blog/2012/10/a-modern-space-cadet/) quite well. Essentially, when you tap Left Shift on its own, you get an opening parenthesis; tap Right Shift on its own and you get the closing one. When held, the Shift keys function as normal. Yes, it's as cool as it sounds, and now even cooler supporting Control and Alt as well!
 
 ## Usage
 
@@ -24,7 +24,7 @@ Firstly, in your keymap, do one of the following:
 
 ## Caveats
 
-Space Cadet's functionality can conflict with the default Command functionality when both Shift keys are held at the same time. See the [Command feature](feature_command.md) for info on how to change it, or make sure that Command is disabled in your `rules.mk` with:
+Space Cadet's functionality can conflict with the default Command functionality when both Shift keys are held at the same time. See the [Command feature](feature_command) for info on how to change it, or make sure that Command is disabled in your `rules.mk` with:
 
 ```make
 COMMAND_ENABLE = no

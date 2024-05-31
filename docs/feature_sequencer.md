@@ -2,7 +2,9 @@
 
 Since QMK has experimental support for MIDI, you can now turn your keyboard into a [step sequencer](https://en.wikipedia.org/wiki/Music_sequencer#Step_sequencers)!
 
-!> **IMPORTANT:** This feature is highly experimental, it has only been tested on a Planck EZ so far. Also, the scope will be limited to support the drum machine use-case to start with.
+::: warning
+This feature is highly experimental, it has only been tested on a Planck EZ so far. Also, the scope will be limited to support the drum machine use-case to start with.
+:::
 
 ## Enable the step sequencer
 
@@ -40,20 +42,20 @@ While the tempo defines the absolute speed at which the sequencer goes through t
 
 ## Keycodes
 
-|Keycode  |Description                                        |
-|-------  |-----------                                        |
-|`SQ_ON`  |Start the step sequencer                           |
-|`SQ_OFF` |Stop the step sequencer                            |
-|`SQ_TOG` |Toggle the step sequencer playback                 |
-|`SQ_SALL`|Enable all the steps                               |
-|`SQ_SCLR`|Disable all the steps                              |
-|`SQ_S(n)`|Toggle the step `n`                                |
-|`SQ_TMPD`|Decrease the tempo                                 |
-|`SQ_TMPU`|Increase the tempo                                 |
-|`SQ_R(n)`|Set the resolution to n                            |
-|`SQ_RESD`|Change to the slower resolution                    |
-|`SQ_RESU`|Change to the faster resolution                    |
-|`SQ_T(n)`|Set `n` as the only active track or deactivate all |
+|Key                            |Aliases  |Description                                        |
+|-------------------------------|---------|---------------------------------------------------|
+|`QK_SEQUENCER_ON`              |`SQ_ON`  |Start the step sequencer                           |
+|`QK_SEQUENCER_OFF`             |`SQ_OFF` |Stop the step sequencer                            |
+|`QK_SEQUENCER_TOGGLE`          |`SQ_TOGG`|Toggle the step sequencer playback                 |
+|`QK_SEQUENCER_STEPS_ALL`       |`SQ_SALL`|Enable all the steps                               |
+|`QK_SEQUENCER_STEPS_CLEAR`     |`SQ_SCLR`|Disable all the steps                              |
+|`QK_SEQUENCER_TEMPO_DOWN`      |`SQ_TMPD`|Decrease the tempo                                 |
+|`QK_SEQUENCER_TEMPO_UP`        |`SQ_TMPU`|Increase the tempo                                 |
+|`QK_SEQUENCER_RESOLUTION_DOWN` |`SQ_RESD`|Change to the slower resolution                    |
+|`QK_SEQUENCER_RESOLUTION_UP`   |`SQ_RESU`|Change to the faster resolution                    |
+|`SQ_S(n)`                      |         |Toggle the step `n`                                |
+|`SQ_R(n)`                      |         |Set the resolution to n                            |
+|`SQ_T(n)`                      |         |Set `n` as the only active track or deactivate all |
 
 ## Functions
 
