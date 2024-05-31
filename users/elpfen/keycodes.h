@@ -7,6 +7,7 @@
 
 enum elpfen_layers {
     _DVORAK = 0,
+    _GAME,
     _SYM,
     _NAV,
     _ADJ,
@@ -68,6 +69,7 @@ enum elpfen_custom_keycodes {
 #define O_RALT OSM(MOD_RALT)
 #define O_LGUI OSM(MOD_LGUI)
 #define O_RGUI OSM(MOD_RGUI)
+#define O_SYM  OSL(_SYM)
 
 // ~~~~~~~~~ Layers ~~~~~~~~~~
 #define LW_SPC  LT(_SYM, KC_SPC)
@@ -76,6 +78,9 @@ enum elpfen_custom_keycodes {
 #define RS_BSP  LT(_NAV, KC_BSPC)
 #define AD_SPC  LT(_ADJ, KC_SPC)
 #define AD_ENT  LT(_ADJ, KC_ENT)
+#define LW_TAB  LT(_SYM, KC_TAB)
+#define DF_DVRK DF(_DVORAK)
+#define DF_GAME DF(_GAME)
 
 // ~~~~~~ SimpleAliases ~~~~~~~
 #define MS_BTN1 KC_MS_BTN1

@@ -28,13 +28,13 @@
 #define _____________Dvorak_Home_Sides_12k_________ KC_ESC, _____________Dvorak_Home_Core_10k__________, KC_BSPC
 
 #define _____________Dvorak_1Dn_Core_L_5k__________ GU_SCLN, AL_Q, SH_J, CT_K, KC_X
-#define _____________Dvorak_1Dn_Core_R_5k__________                                 KC_B, CT_M, SH_W, AL_V, GU_Z
+#define _____________Dvorak_1Dn_Core_R_5k__________ KC_B,    CT_M, SH_W, AL_V, GU_Z
 #define _____________Dvorak_1Dn_Sides_L_6k_________ KC_TAB, _____________Dvorak_1Dn_Core_L_5k__________
 #define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, XXXXXXX
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
-#define _____________Base_Bottom_Center_6k_________ _______, RS_ESC, LW_ENT, LW_SPC, RS_BSP, KC_SPC
-#define _____________Alt_Bottom_Center_6k__________ RS_ESC, LW_ENT, _______, _______, LW_SPC, RS_BSP
+#define _____________Base_Bottom_Center_6k_________ _______, RS_ESC, LW_ENT,  LW_SPC,  RS_BSP, KC_SPC
+#define _____________Alt_Bottom_Center_6k__________ RS_ESC,  LW_ENT, _______, _______, LW_SPC, RS_BSP
 
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
@@ -43,7 +43,7 @@
 #define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, KC_RCBR,  OC_PARENS, RAB_DRW, KC_RBRC
 #define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, KC_DEL
 #define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, SLSH_BSLSH
-#define _____________SYM_1Dn_Sides_R_6k____________                                                     TG(_NAV), O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
+#define _____________SYM_1Dn_Sides_R_6k____________ _______, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
 #define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
 
 #define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, _______,   _______, _______,  _______,  _______,  _______,  _______, _______
