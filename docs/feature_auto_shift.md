@@ -51,7 +51,9 @@ Yes, unfortunately.
 
 Add to your `rules.mk` in the keymap folder:
 
-    AUTO_SHIFT_ENABLE = yes
+```
+AUTO_SHIFT_ENABLE = yes
+```
 
 If no `rules.mk` exists, you can create one.
 
@@ -100,7 +102,9 @@ occasion. This is simply due to habit and holding some keys a little longer
 than others. Once you find this value, work on tapping your problem keys a little
 quicker than normal and you will be set.
 
-?> Auto Shift has three special keys that can help you get this value right very quick. See "Auto Shift Setup" for more details!
+::: tip
+Auto Shift has three special keys that can help you get this value right very quick. See "Auto Shift Setup" for more details!
+:::
 
 For more granular control of this feature, you can add the following to your `config.h`:
 
@@ -133,7 +137,17 @@ groups in the below fallback switch.
 ### NO_AUTO_SHIFT_SPECIAL (simple define)
 
 Do not Auto Shift special keys, which include -\_, =+, [{, ]}, ;:, '", ,<, .>,
-and /?
+/?, and the KC_TAB.
+
+### NO_AUTO_SHIFT_TAB (simple define)
+
+Do not Auto Shift KC_TAB but leave Auto Shift enabled for the other special
+characters.
+
+### NO_AUTO_SHIFT_SYMBOLS (simple define)
+
+Do not Auto Shift symbol keys, which include -\_, =+, [{, ]}, ;:, '", ,<, .>,
+and /?.
 
 ### NO_AUTO_SHIFT_NUMERIC (simple define)
 
@@ -143,9 +157,13 @@ Do not Auto Shift numeric keys, zero through nine.
 
 Do not Auto Shift alpha characters, which include A through Z.
 
+### AUTO_SHIFT_ENTER (simple define)
+
+Auto Shift the enter key.
+
 ### Auto Shift Per Key
 
-There are functions that allows you to determine which keys shold be autoshifted, much like the tap-hold keys.
+There are functions that allows you to determine which keys should be autoshifted, much like the tap-hold keys.
 
 The first of these, used to simply add a key to Auto Shift, is `get_custom_auto_shifted_key`:
 
@@ -165,17 +183,23 @@ For more granular control, there is `get_auto_shifted_key`. The default function
 ```c
 bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-#    ifndef NO_AUTO_SHIFT_ALPHA
-        case KC_A ... KC_Z:
-#    endif
-#    ifndef NO_AUTO_SHIFT_NUMERIC
-        case KC_1 ... KC_0:
-#    endif
-#    ifndef NO_AUTO_SHIFT_SPECIAL
+# ifndef NO_AUTO_SHIFT_ALPHA
+        case AUTO_SHIFT_ALPHA:
+# endif
+# ifndef NO_AUTO_SHIFT_NUMERIC
+        case AUTO_SHIFT_NUMERIC:
+# endif
+# ifndef NO_AUTO_SHIFT_SPECIAL
+# ifndef NO_AUTO_SHIFT_TAB
         case KC_TAB:
-        case KC_MINUS ... KC_SLASH:
-        case KC_NONUS_BACKSLASH:
-#    endif
+#        endif
+# ifndef NO_AUTO_SHIFT_SYMBOLS
+        case AUTO_SHIFT_SYMBOLS:
+#        endif
+# endif
+# ifdef AUTO_SHIFT_ENTER
+        case KC_ENT:
+# endif
             return true;
     }
     return get_custom_auto_shifted_key(keycode, record);
@@ -191,6 +215,25 @@ Enables keyrepeat.
 ### AUTO_SHIFT_NO_AUTO_REPEAT (simple define)
 
 Disables automatically keyrepeating when `AUTO_SHIFT_TIMEOUT` is exceeded.
+
+
+### AUTO_SHIFT_ALPHA (predefined key group)
+
+A predefined group of keys representing A through Z.
+
+### AUTO_SHIFT_NUMERIC (predefined key group)
+
+A predefined group of keys representing 0 through 9. Note, these are defined as
+1 through 0 since that is the order they normally appear in.
+
+### AUTO_SHIFT_SYMBOLS (predefined key group)
+
+A predefined group of keys representing symbolic characters which include -\_, =+, [{, ]}, ;:, '", ,<, .>,
+and /?.
+
+### AUTO_SHIFT_SPECIAL (predefined key group)
+
+A predefined group of keys that combines AUTO_SHIFT_SYMBOLS and KC_TAB.
 
 ## Custom Shifted Values
 
@@ -251,7 +294,7 @@ Holding and releasing a Tap Hold key without pressing another key will ordinaril
 result in only the hold. With `retro shift` enabled this action will instead
 produce a shifted version of the tap keycode on release.
 
-It does not require [Retro Tapping](tap_hold.md#retro-tapping) to be enabled, and
+It does not require [Retro Tapping](tap_hold#retro-tapping) to be enabled, and
 if both are enabled the state of `retro tapping` will only apply if the tap keycode
 is not matched by Auto Shift. `RETRO_TAPPING_PER_KEY` and its corresponding
 function, however, are checked before `retro shift` is applied.
@@ -271,9 +314,15 @@ generating taps on release. For example:
 #define RETRO_SHIFT 500
 ```
 
+Without a value set, holds of any length without an interrupting key will produce the shifted value.
+
 This value (if set) must be greater than one's `TAPPING_TERM`, as the key press
 must be designated as a 'hold' by `process_tapping` before we send the modifier.
+[Per-key tapping terms](tap_hold#tapping-term) can be used as a workaround.
 There is no such limitation in regards to `AUTO_SHIFT_TIMEOUT` for normal keys.
+
+**Note:** Tap Holds must be added to Auto Shift, see [here.](feature_auto_shift#auto-shift-per-key)
+`IS_RETRO` may be helpful if one wants all Tap Holds retro shifted.
 
 ### Retro Shift and Tap Hold Configurations
 
@@ -281,16 +330,7 @@ Tap Hold Configurations work a little differently when using Retro Shift.
 Referencing `TAPPING_TERM` makes little sense, as holding longer would result in
 shifting one of the keys.
 
-`IGNORE_MOD_TAP_INTERRUPT` changes *only* rolling from a mod tap (releasing it
-first), sending both keys instead of the modifier on the second. Its effects on
-nested presses are ignored.
-
-As nested taps were changed to act as though `PERMISSIVE_HOLD` is set unless only
-`IGNORE_MOD_TAP_INTERRUPT` is (outside of Retro Shift), and Retro Shift ignores
-`IGNORE_MOD_TAP_INTERRUPT`, `PERMISSIVE_HOLD` has no effect on Mod Taps.
-
-Nested taps will *always* act as though the `TAPPING_TERM` was exceeded for both
-Mod and Layer Tap keys.
+`RETRO_SHIFT` enables [`PERMISSIVE_HOLD`-like behaviour](tap_hold#permissive-hold) (even if not explicitly enabled) on all mod-taps for which `RETRO_SHIFT` applies.
 
 ## Using Auto Shift Setup
 
@@ -334,22 +374,24 @@ completely normal and with no intention of shifted keys.
 
 #### An Example Run
 
-    hello world. my name is john doe. i am a computer programmer playing with
-    keyboards right now.
+```
+hello world. my name is john doe. i am a computer programmer playing with
+keyboards right now.
 
-    [PRESS AS_DOWN quite a few times]
+[PRESS AS_DOWN quite a few times]
 
-    heLLo woRLd. mY nAMe is JOHn dOE. i AM A compUTeR proGRaMMER PlAYiNG witH
-    KEYboArDS RiGHT NOw.
+heLLo woRLd. mY nAMe is JOHn dOE. i AM A compUTeR proGRaMMER PlAYiNG witH
+KEYboArDS RiGHT NOw.
 
-    [PRESS AS_UP a few times]
+[PRESS AS_UP a few times]
 
-    hello world. my name is john Doe. i am a computer programmer playing with
-    keyboarDs right now.
+hello world. my name is john Doe. i am a computer programmer playing with
+keyboarDs right now.
 
-    [PRESS AS_RPT]
+[PRESS AS_RPT]
 
-    115
+115
+```
 
 The keyboard typed `115` which represents your current `AUTO_SHIFT_TIMEOUT`
 value. You are now set! Practice on the *D* key a little bit that showed up

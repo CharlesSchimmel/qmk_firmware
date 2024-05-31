@@ -12,14 +12,6 @@
 #define TAPPING_TERM 150
 #define TAPPING_TERM_PER_KEY
 
-/* If the second key in a chord is released after the modifier key is released,
- * treat it as two taps instead, even if it's inside the tapping term.
- *
- * Fewer dropped keypresses, but more dropped chords. Good for keys that are
- * used in normal typing (ie, alpha-nums)
- */
-#define IGNORE_MOD_TAP_INTERRUPT
-#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 
 /* Normally with a mod-tap, tapping then tapping and holding will repeat the
  * tap key. TAPPING_FORCE_HOLD turns that off, allowing the mod to be activated
@@ -42,14 +34,22 @@
  * tapping term elapsed.)
  *
  * This makes it easier for fast typists to use dual-function keys, but can
- * result in unintended chords 
+ * result in unintended chords
  */
 #define PERMISSIVE_HOLD
 #define PERMISSIVE_HOLD_PER_KEY
 
 #define ONESHOT_TIMEOUT 1500  /* Time (in ms) before the one shot key is released, Default 5000 */
 
-/* HOLD_ON_OTHER_KEY_PRESS chooses the hold action immediately when another key 
+/* If the second key in a chord is released after the modifier key is released,
+ * treat it as two taps instead, even if it's inside the tapping term.
+ *
+ * Fewer dropped keypresses, but more dropped chords. Good for keys that are
+ * used in normal typing (ie, alpha-nums)
+ */
+/* #define IGNORE_MOD_TAP_INTERRUPT */
+/* #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY */
+/* HOLD_ON_OTHER_KEY_PRESS chooses the hold action immediately when another key
  * is tapped.
  */
 #define HOLD_ON_OTHER_KEY_PRESS

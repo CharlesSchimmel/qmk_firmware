@@ -1,5 +1,7 @@
 #pragma once
-#include QMK_KEYBOARD_H
+#include "quantum.h"
+#include "version.h"
+#include "action.h"
 
 #include "caps_word.h"
 #include "keycodes.h"
