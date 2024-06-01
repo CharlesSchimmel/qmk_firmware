@@ -193,7 +193,7 @@ __attribute__((weak)) bool get_hold_on_other_key_press(uint16_t keycode, keyreco
             // Immediately select the hold action when another key is pressed.
             return true;
         default:
-            return true; // previously false?
+            return false; // previously false?
     }
 }
 
