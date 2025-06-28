@@ -41,6 +41,7 @@ enum elpfen_custom_keycodes {
 
 #define AL_Q    LALT_T(KC_Q)
 #define AL_V    LALT_T(KC_V)
+#define AL_X    LALT_T(KC_X)
 
 #define SH_J    LSFT_T(KC_J)
 #define SH_W    RSFT_T(KC_W)
