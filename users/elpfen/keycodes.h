@@ -88,15 +88,15 @@ enum elpfen_custom_keycodes {
 #define DF_GAME DF(_GAME)
 
 // ~~~~~~ SimpleAliases ~~~~~~~
-#define MS_BTN1 KC_MS_BTN1
-#define MS_BTN2 KC_MS_BTN2
-#define MS_BTN3 KC_MS_BTN3
-#define MS_DOWN KC_MS_DOWN
-#define MS_LEFT KC_MS_LEFT
-#define MS_RGHT KC_MS_RIGHT
-#define MS_UP   KC_MS_UP
-#define MS_WDWN KC_MS_WH_DOWN
-#define MS_WUP  KC_MS_WH_UP
+// #define MS_BTN1 MS_BTN1
+// #define MS_BTN2 MS_BTN2
+// #define MS_BTN3 MS_BTN3
+// #define MS_DOWN MS_DOWN
+// #define MS_LEFT MS_LEFT
+// #define MS_RGHT MS_RIGHT
+// #define MS_UP   MS_UP
+#define MS_WDWN QK_MOUSE_WHEEL_UP
+#define MS_WUP  QK_MOUSE_WHEEL_DOWN
 
 // ~~~~~~~~~ Quick Mocros ~~~~~~~~~~
 #define M_SHTAB LSFT(KC_TAB)

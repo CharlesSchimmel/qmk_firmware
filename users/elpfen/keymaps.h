@@ -51,7 +51,15 @@
 #define _____________NAV_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, M_PST,     _______, BWD_HOME, PDN_DEND, PUP_DHOM, FWD_END,  _______, MS_WUP
 #define _____________NAV_Home_Sides_12k____________ _______, _______, _______, _______, LOK_UNLOK, _______, KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______, MS_WDWN
 #define _____________NAV_1Dn_Sides_L_6k____________ _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL,   _______
+
 #ifdef RGBLIGHT_ENABLE
+// These were renamed at some point
+#define RGB_TOG QK_UNDERGLOW_TOGGLE
+#define RGB_MOD QK_UNDERGLOW_MODE_NEXT
+#define RGB_VAI QK_UNDERGLOW_VALUE_UP
+#define RGB_SAI QK_UNDERGLOW_SATURATION_UP
+#define RGB_HUI QK_UNDERGLOW_HUE_UP
+
 #define _____________NAV_1Dn_Sides_R_6k____________ _______, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, RGB_TOG
 #else
 #define _____________NAV_1Dn_Sides_R_6k____________ _______, _______, _______, _______, _______, _______
