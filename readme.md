@@ -42,3 +42,11 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 - Optimize symbols for bigraphs: 
     https://getreuer.info/posts/keyboards/symbol-layer/index.html
 - `-` on the base layer? Autoshifted to `_`
+- Add more digraph shortcuts
+- Review all of the mod-tap adjustment parameters and see which ones may be 
+    simplified or adjusted:
+    - Permissive Hold
+    - Chordal Hold
+    - TAPPING_TERM
+        - Could be more aggresive when used in conjunction with CHORDAL_HOLD
+    - HOLD_ON_OTHER_KEY_PRESS

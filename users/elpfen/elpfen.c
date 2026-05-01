@@ -208,9 +208,11 @@ __attribute__((weak)) bool get_permissive_hold(uint16_t keycode, keyrecord_t *re
 }
 
 #ifdef TAPPING_TERM_PER_KEY
-/* TAPPING_TERM_PER_KEY: Pretty self-explanatory */
+/* TAPPING_TERM_PER_KEY: Pretty self-explanatory. */
 __attribute__((weak)) uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        // Tap-holds (one key on tap, a different key or a macro on hold) can
+        // be slightly more aggresive than other things that use TAPPING_TERM
         TAP_HOLDS
             return 125;
         default:
@@ -262,6 +264,7 @@ __attribute__((weak)) bool process_record_user(uint16_t keycode, keyrecord_t *re
     return ELPFEN_DEFAULT_PROREC ;
 }
 
+#ifdef CHORDAL_HOLD
 const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
     LAYOUT(
         'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
@@ -269,3 +272,30 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
         'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
                        'L', 'L', 'L',  'R', 'R', 'R'
     );
+
+bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
+                      uint16_t other_keycode, keyrecord_t* other_record) {
+    switch (tap_hold_keycode) {
+        case LW_ENT:
+        case LW_SPC:
+            switch (other_keycode) {
+                // Specify the original key, not the key on the new layer.
+                // These are for 1234567890
+                case KC_QUOT:
+                case KC_COMM:
+                case KC_DOT:
+                case KC_P:
+                case KC_Y:
+                case KC_F:
+                case KC_G:
+                case KC_C:
+                case KC_R:
+                case KC_L:
+                    return true;
+            }
+            break;
+    }
+    // Otherwise defer to the opposite hands rule.
+    return get_chordal_hold_default(tap_hold_record, other_record);
+}
+#endif

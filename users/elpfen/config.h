@@ -55,6 +55,9 @@
 #define HOLD_ON_OTHER_KEY_PRESS
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
+/* Generally assume that opposite-hand chords are chords, and same-hand chords
+ * are taps.
+ */
 #define CHORDAL_HOLD
 
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
