@@ -31,7 +31,7 @@
 #define _____________Dvorak_1Dn_Core_L_5k__________ GU_SCLN, AL_Q, SH_J, CT_K, KC_X
 #define _____________Dvorak_1Dn_Core_R_5k__________ KC_B,    CT_M, SH_W, AL_V, GU_Z
 #define _____________Dvorak_1Dn_Sides_L_6k_________ KC_TAB, _____________Dvorak_1Dn_Core_L_5k__________
-#define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, XXXXXXX
+#define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, KC_BSPC
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
 
 #define _____________Base_Bottom_Center_6k_________ _______, RS_ESC, LW_ENT,  LW_SPC,  RS_BSP, DF_GAME

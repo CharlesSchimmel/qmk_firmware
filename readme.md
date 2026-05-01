@@ -34,3 +34,11 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 ## Official Website
 
 [qmk.fm](https://qmk.fm) is the official website of QMK, where you can find links to this page, the documentation, and the keyboards supported by QMK.
+
+# Ideas
+- Required both outer thumb buttons to be pressed to switch to game mode.
+- Use QMK's built-in caps-word
+- Backspace on 1dn6right
+- Optimize symbols for bigraphs: 
+    https://getreuer.info/posts/keyboards/symbol-layer/index.html
+- `-` on the base layer? Autoshifted to `_`
