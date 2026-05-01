@@ -261,3 +261,11 @@ __attribute__((weak)) layer_state_t layer_state_set_user(layer_state_t current_s
 __attribute__((weak)) bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return ELPFEN_DEFAULT_PROREC ;
 }
+
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT(
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+                       'L', 'L', 'L',  'R', 'R', 'R'
+    );
