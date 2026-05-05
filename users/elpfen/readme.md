@@ -1,5 +1,7 @@
 # elpfen's keymap
 
+`qmk compile -kb crkbd -km elpfen`
+
 A simple, intuitive, general-purpose layout that maximizes ping-ponging, 
 minimizes travel, and minimizes holds. It's designed to be useful in Xmonad, 
 tmux, vim, and Windows. It was designed with a Corne in mind but is adaptable to 
