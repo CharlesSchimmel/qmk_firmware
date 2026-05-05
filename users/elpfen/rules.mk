@@ -10,3 +10,5 @@ ifeq ($(strip $(COMBO_ENABLE)), yes)
 endif
 
 CAPS_WORD_ENABLE = yes
+
+REPEAT_KEY_ENABLE = yes
