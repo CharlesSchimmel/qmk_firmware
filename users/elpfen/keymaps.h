@@ -42,7 +42,7 @@
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
 #define _____________SYM_1Up_Core_10k______________ ___HT_1_through_10___
 #define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_BSLS
-#define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, KC_RCBR,  OC_PARENS, RAB_DRW, KC_RBRC
+#define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, OC_BRACES,  OC_PARENS, RAB_DRW, OC_BRKETS
 #define _____________SYM_Home_Sides_12k____________ _______, _____________SYM_Home_Core_10k_____________, KC_DEL
 #define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, SLSH_BSLSH
 #define _____________SYM_1Dn_Sides_R_6k____________ _______, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______

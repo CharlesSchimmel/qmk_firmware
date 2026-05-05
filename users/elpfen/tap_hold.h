@@ -3,14 +3,14 @@
 #include "keycodes.h"
 
 /* ~~~~~~~~~ Hold-Taps ~~~~~~~~~~
- * Send KEY on tap, and some other behavior on hold by intercepting the hold 
+ * Send KEY on tap, and some other behavior on hold by intercepting the hold
  * event for LT(0, KEY). Overridden in process_record_user.
  *
- * The advantage of using LT(0, KEY) over regular macros is that you don't 
+ * The advantage of using LT(0, KEY) over regular macros is that you don't
  * have to specify the tap behavior, just the hold behavior.
  */
 // Keycodes used for hold-tap overrides. Check quantum/keycodes.h for more.
-// LT(0, KC_whatever) is unlikely to be used, but sometimes it's useful to 
+// LT(0, KC_whatever) is unlikely to be used, but sometimes it's useful to
 enum hold_tap_keycodes {
     _HT_SAFe_range_start = KC_NUM_LOCK,
     HT_VI_WV = KC_NUM_LOCK, // there's 18 free until KC_APP
@@ -22,6 +22,8 @@ enum hold_tap_keycodes {
     HT_FWD_END,
     HT_LOK_UNLOK,
     HT_OC_PARENS,
+    HT_OC_BRACES,
+    HT_OC_BRACKETS,
     _END_KEYPAD_RANGE_ = KC_APPLICATION,
     _MORE_SAFE_RANGE_ = KC_KP_COMMA,
 };
@@ -41,6 +43,8 @@ enum hold_tap_keycodes {
 #define FWD_END     HT(HT_FWD_END)  // C(Right), End
 #define LOK_UNLOK   HT(HT_LOK_UNLOK) // G(L), C(S(Del))
 #define OC_PARENS   HT(HT_OC_PARENS) // ), ()
+#define OC_BRACES   HT(HT_OC_BRACES) // }, {}
+#define OC_BRKETS   HT(HT_OC_BRACKETS) // ], []
 
 #define HT_1        HT(KC_1)
 #define HT_2        HT(KC_2)
@@ -83,6 +87,8 @@ case PUP_DHOM:    \
 case FWD_END:     \
 case LOK_UNLOK:   \
 case OC_PARENS:   \
+case OC_BRACES:   \
+case OC_BRKETS:   \
 
 bool custom_tap_holds
     ( uint16_t keycode

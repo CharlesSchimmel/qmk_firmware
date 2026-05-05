@@ -59,6 +59,22 @@ bool custom_tap_holds
                     tap_code16(KC_RPRN);
                     return false;
                 }
+            case OC_BRACES:
+                if (!record->tap.count) {
+                    SEND_STRING("{}");
+                    return false;
+                } else {
+                    tap_code16(KC_RCBR);
+                    return false;
+                }
+            case OC_BRKETS:
+                if (!record->tap.count) {
+                    SEND_STRING("[]");
+                    return false;
+                } else {
+                    tap_code16(KC_RBRC);
+                    return false;
+                }
         }
         if (record->tap.count) return true; // ignore any unhandled hold behaviors
 
