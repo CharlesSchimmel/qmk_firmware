@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "keycodes.h"
 #include "tap_hold.h"
 
@@ -23,13 +22,13 @@
 #define _____________Dvorak_2Up_Sides_12k__________ KC_GRV, _____________Dvorak_2Up_Core_10k___________, KC_BSLS
 
 #define _____________Dvorak_1Up_Core_10k___________ KC_QUOT, KC_COMM, KC_DOT, KC_P, KC_Y, KC_F, KC_G, KC_C, KC_R, KC_L
-#define _____________Dvorak_1Up_Sides_12k__________ KC_GRAVE, _____________Dvorak_1Up_Core_10k___________, KC_SLSH
+#define _____________Dvorak_1Up_Sides_12k__________ GRAVE_SLASH, _____________Dvorak_1Up_Core_10k___________, KC_SLSH
 
 #define _____________Dvorak_Home_Core_10k__________ KC_A,    KC_O,    KC_E,    KC_U, KC_I, KC_D, KC_H, KC_T, KC_N, KC_S
 #define _____________Dvorak_Home_Sides_12k_________ KC_ESC, _____________Dvorak_Home_Core_10k__________, KC_MINS
 
-#define _____________Dvorak_1Dn_Core_L_5k__________ GU_SCLN, AL_Q, SH_J, CT_K, KC_X
-#define _____________Dvorak_1Dn_Core_R_5k__________ KC_B,    CT_M, SH_W, AL_V, GU_Z
+#define _____________Dvorak_1Dn_Core_L_5k__________ GU_SCLN, AL_Q, SH_J, CT_K, AD_X
+#define _____________Dvorak_1Dn_Core_R_5k__________ AD_B,    CT_M, SH_W, AL_V, GU_Z
 #define _____________Dvorak_1Dn_Sides_L_6k_________ KC_TAB, _____________Dvorak_1Dn_Core_L_5k__________
 #define _____________Dvorak_1Dn_Sides_R_6k_________                                                     _____________Dvorak_1Dn_Core_R_5k__________, KC_BSPC
 #define _____________Dvorak_1Dn_Sides_12k__________ _____________Dvorak_1Dn_Sides_L_6k_________, _____________Dvorak_1Dn_Sides_R_6k_________
@@ -41,12 +40,12 @@
 // ~~~~~~~~~ Other Layers ~~~~~~~~~~
 #define _____________SYM_2Up_Sides_12k_____________ ___F1_through_F12___
 #define _____________SYM_1Up_Core_10k______________ ___HT_1_through_10___
-#define _____________SYM_1Up_Sides_12k_____________ _______, ___1_through_10___, KC_BSLS
-#define _____________SYM_Home_Core_10k_____________ KC_LBRC, LAB_CLS, KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, OC_BRACES,  OC_PARENS, RAB_DRW, OC_BRKETS
-#define _____________SYM_Home_Sides_12k____________ KC_EQL, _____________SYM_Home_Core_10k_____________, KC_DEL
-#define _____________SYM_1Dn_Sides_L_6k____________ _______, O_LGUI,  O_LALT, O_LSFT, O_LCTL, SLSH_BSLSH
-#define _____________SYM_1Dn_Sides_R_6k____________ _______, O_RCTL,  O_LSFT, O_LALT, O_RGUI, _______
-#define _____________SYM_Bottom_Center_6k__________ _______, _______, AD_ENT, AD_SPC, KC_DEL, _______
+#define _____________SYM_1Up_Sides_12k_____________ _______,  ___1_through_10___,                          KC_BSLS
+#define _____________SYM_Home_Core_10k_____________ KC_LBRC,  LAB_CLS,                                     KC_LPRN, KC_LCBR, DASH_ARW, EQ_DEQ, OC_BRACES, OC_PARENS, RAB_DRW, OC_BRKETS
+#define _____________SYM_Home_Sides_12k____________ KC_EQL,   _____________SYM_Home_Core_10k_____________, KC_DEL
+#define _____________SYM_1Dn_Sides_L_6k____________ _______,  O_LGUI,                                      O_LALT,  O_LSFT,  O_LCTL,   SLSH_BSLSH
+#define _____________SYM_1Dn_Sides_R_6k____________ KC_COLON, O_RCTL,                                      O_LSFT,  O_LALT,  O_RGUI,   _______
+#define _____________SYM_Bottom_Center_6k__________ _______,  _______,                                     _______,  _______,  KC_DEL,   _______
 
 #define _____________NAV_2Up_Sides_12k_____________ _______, _______, _______, _______, _______,   _______, _______,  _______,  _______,  _______,  _______, _______
 #define _____________NAV_1Up_Sides_12k_____________ _______, KC_MUTE, KC_VOLD, KC_VOLU, M_PST,     _______, BWD_HOME, PDN_DEND, PUP_DHOM, FWD_END,  _______, MS_WUP

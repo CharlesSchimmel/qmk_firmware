@@ -86,6 +86,8 @@ enum elpfen_custom_keycodes {
 #define LW_TAB  LT(_SYM, KC_TAB)
 #define DF_DVRK DF(_DVORAK)
 #define DF_GAME DF(_GAME)
+#define AD_X    LT(_ADJ, KC_X)
+#define AD_B    LT(_ADJ, KC_B)
 
 // ~~~~~~ SimpleAliases ~~~~~~~
 // #define MS_BTN1 MS_BTN1

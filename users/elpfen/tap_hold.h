@@ -21,7 +21,7 @@ enum hold_tap_keycodes {
     HT_BWD_HOME,
     HT_FWD_END,
     HT_LOK_UNLOK,
-    HT_OC_PARENS,
+    HT_OC_PARENS, // "Open Close Parens"
     HT_OC_BRACES,
     HT_OC_BRACKETS,
     _END_KEYPAD_RANGE_ = KC_APPLICATION,
